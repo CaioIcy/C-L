@@ -7,43 +7,39 @@ include_once("bd.inc");
 
 $id_usuario = $_SESSION['id_usuario_corrente'];
 
-$r = bd_connect() or die("Erro ao conectar ao SGBD");
-
-
+$conectionobd = bd_connect() or die("Erro ao conectar ao SGBD");
 ?>
 
 <html>
     <head>
-        <title>Alterar dados de Usuário</title>
+        <title>Alterar dados de UsuÃ¡rio</title>
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
     </head>
 
 
-   <body>
+    <body>
 
-<?php
-
-// Cenário - Alterar cadastro
+        <?php
+// CenÃ¡rio - Alterar cadastro
 //
-//Objetivo:  Permitir ao usuário realizar alteração nos seus dados cadastrais	
-//Contexto:  Sistema aberto, Usuário ter acessado ao sistema e logado 
-//           Usuário deseja alterar seus dados cadastrais 
-//           Pré-Condição: Usuário ter acessado ao sistema	
-//Atores:    Usuário, Sistema.	
+//Objetivo:  Permitir ao usuÃ¡rio realizar alteraÃ§Ã£o nos seus dados cadastrais	
+//Contexto:  Sistema aberto, UsuÃ¡rio ter acessado ao sistema e logado 
+//           UsuÃ¡rio deseja alterar seus dados cadastrais 
+//           PrÃ©-CondiÃ§Ã£o: UsuÃ¡rio ter acessado ao sistema	
+//Atores:    UsuÃ¡rio, Sistema.	
 //Recursos:  Interface	
-//Episódios: O usuário altera os dados desejados
-// 	     Usuário clica no botão de atualizar
+//EpisÃ³dios: O usuÃ¡rio altera os dados desejados
+// 	     UsuÃ¡rio clica no botÃ£o de atualizar
 
-$senha_cript = md5($senha);
-$q = "UPDATE usuario SET  nome ='$nome' , login = '$login' , email = '$email' , senha = '$senha_cript' WHERE  id_usuario='$id_usuario'";
+        $password_cript = md5($senha);
+        $user = "UPDATE usuario SET  nome ='$name' , login = '$login' , email = '$email' , senha = '$password_cript' WHERE  id_usuario='$id_user'";
 
-mysql_query($q) or die("<p style='color: red; font-weight: bold; text-align: center'>Erro!Login ja existente!</p><br><br><center><a href='JavaScript:window.history.go(-1)'>Voltar</a></center>");
+        mysql_query($user) or die("<p style='color: red; font-weight: bold; text-align: center'>Erro!Login ja existente!</p><br><br><center><a href='JavaScript:window.history.go(-1)'>Voltar</a></center>");
+        ?>
 
-?>
+    <center><b>Cadastro atualizado com sucesso!</b></center>
+    <center><button onClick="javascript:window.close();">Fechar</button></center>
 
-<center><b>Cadastro atualizado com sucesso!</b></center>
-<center><button onClick="javascript:window.close();">Fechar</button></center>
 
-         
-  </body>
+</body>
 </html>
