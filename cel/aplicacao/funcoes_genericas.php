@@ -777,7 +777,6 @@ if (!(function_exists("alteraLexico"))) {
         for ($i = 0; $i < $count; $i++) {//Para cada sinonimo
             $qrr = mysql_query($qr) or die("Erro ao enviar a query de SELECT 2<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
             while ($result2 = mysql_fetch_array($qrr)) {// para cada cenario
-
                 $nomeSinonimoEscapado = escapa_metacaracteres($sinonimos[$i]);
                 $regex = "/(\s|\b)(" . $nomeSinonimoEscapado . ")(\s|\b)/i";
 
@@ -844,7 +843,6 @@ if (!(function_exists("alteraLexico"))) {
 
         $count = count($sinonimos);
         for ($i = 0; $i < $count; $i++) {// para cada sinonimo do lexico alterado
-
             $qrr = mysql_query($ql) or die("Erro ao enviar a query de select no lexico<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
             while ($resultl = mysql_fetch_array($qrr)) {// para cada lexico exceto o alterado
                 $nomeSinonimoEscapado = escapa_metacaracteres($sinonimos[$i]);
@@ -1172,7 +1170,6 @@ if (!(function_exists("inserirPedidoAlterarCenario"))) {
 
 
         if ($resultArray == false) { //nao e gerente
-
             $insere->execute("INSERT INTO pedidocen (id_projeto, id_cenario, titulo, objetivo, contexto, atores, recursos, excecao, episodios, id_usuario, tipo_pedido, aprovado, justificativa) VALUES ($id_projeto, $id_cenario, '$titulo', '$objetivo', '$contexto', '$atores', '$recursos', '$excecao', '$episodios', $id_usuario, 'alterar', 0, '$justificativa')");
             $select->execute("SELECT * FROM usuario WHERE id_usuario = $id_usuario");
             $select2->execute("SELECT * FROM participa WHERE gerente = 1 AND id_projeto = $id_projeto");
@@ -1266,7 +1263,6 @@ if (!(function_exists("inserirPedidoAdicionarLexico"))) {
 
 
         if ($resultArray == false) { //nao e gerente
-
             $insere->execute("INSERT INTO pedidolex (id_projeto,nome,nocao,impacto,tipo,id_usuario,tipo_pedido,aprovado) VALUES ($id_projeto,'$nome','$nocao','$impacto','$classificacao',$id_usuario,'inserir',0)");
 
             $newId = $insere->getLastId();
@@ -1332,7 +1328,6 @@ if (!(function_exists("inserirPedidoAlterarLexico"))) {
 
 
         if ($resultArray == false) { //nao e gerente
-
             $insere->execute("INSERT INTO pedidolex (id_projeto,id_lexico,nome,nocao,impacto,id_usuario,tipo_pedido,aprovado,justificativa, tipo) VALUES ($id_projeto,$id_lexico,'$nome','$nocao','$impacto',$id_usuario,'alterar',0,'$justificativa', '$classificacao')");
 
             $newPedidoId = $insere->getLastId();
@@ -1391,7 +1386,6 @@ if (!(function_exists("inserirPedidoRemoverLexico"))) {
         $resultArray = mysql_fetch_array($qr);
 
         if ($resultArray == false) { //nao e gerente
-
             $select->execute("SELECT * FROM lexico WHERE id_lexico = $id_lexico");
             $lexico = $select->gofirst();
             $nome = $lexico['nome'];
@@ -1446,7 +1440,6 @@ if (!(function_exists("inserirPedidoAlterarCenario"))) {
 
 
         if ($resultArray == false) { //nao e gerente
-
             $insere->execute("INSERT INTO pedidocon (id_projeto, id_conceito, nome, descricao, namespace, id_usuario, tipo_pedido, aprovado, justificativa) VALUES ($id_projeto, $id_conceito, '$nome', '$descricao', '$namespace', $id_usuario, 'alterar', 0, '$justificativa')");
             $select->execute("SELECT * FROM usuario WHERE id_usuario = $id_usuario");
             $select2->execute("SELECT * FROM participa WHERE gerente = 1 AND id_projeto = $id_projeto");

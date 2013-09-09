@@ -48,16 +48,16 @@ mysql_close($link);
     <head><title>Gerar DAML</title></head> 
     <body bgcolor="#FFFFFF"> 
 
-<?php
-if (!$daml) {
-    print 'Erro ao exportar ontologia para DAML!';
-} else {
+        <?php
+        if (!$daml) {
+            print 'Erro ao exportar ontologia para DAML!';
+        } else {
 
-    print 'Ontologia exportada para DAML com sucesso! <br>';
-    print 'Arquivo criado: ';
-    print "<a href=\"$site$daml\">$daml</a>";
-}
-?>  
+            print 'Ontologia exportada para DAML com sucesso! <br>';
+            print 'Arquivo criado: ';
+            print "<a href=\"$site$daml\">$daml</a>";
+        }
+        ?>  
 
     </body> 
 </html> 

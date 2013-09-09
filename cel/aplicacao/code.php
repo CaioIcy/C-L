@@ -1,11 +1,9 @@
 <?php
 session_start();
 
-
 if (isset($_GET['id_projeto'])) {
     $id_projeto = $_GET['id_projeto'];
 }
-
 
 include("funcoes_genericas.php");
 include_once("bd.inc");
@@ -51,11 +49,11 @@ if (isset($id_projeto)) {
     <head> 
 
         <script type="text/javascript">
-        // Framebuster script to relocate browser when MSIE bookmarks this 
-        // page instead of the parent frameset.  Set variable relocateURL to 
-        // the index document of your website (relative URLs are ok): 
+            // Framebuster script to relocate browser when MSIE bookmarks this 
+            // page instead of the parent frameset.  Set variable relocateURL to 
+            // the index document of your website (relative URLs are ok): 
             /*var relocateURL = "/"; 
-     
+             
              if (parent.frames.length == 0) { 
              if(document.images) { 
              location.replace(relocateURL); 
@@ -69,20 +67,20 @@ if (isset($id_projeto)) {
         </script> 
 
         <script type="text/javascript">
-        // Morten's JavaScript Tree Menu 
-        // version 2.3.2, dated 2002-02-24 
-        // http://www.treemenu.com/ 
+            // Morten's JavaScript Tree Menu 
+            // version 2.3.2, dated 2002-02-24 
+            // http://www.treemenu.com/ 
 
-        // Copyright (c) 2001-2002, Morten Wang & contributors 
-        // All rights reserved. 
+            // Copyright (c) 2001-2002, Morten Wang & contributors 
+            // All rights reserved. 
 
-        // This software is released under the BSD License which should accompany 
-        // it in the file "COPYING".  If you do not have this file you can access 
-        // the license through the WWW at http://www.treemenu.com/license.txt 
+            // This software is released under the BSD License which should accompany 
+            // it in the file "COPYING".  If you do not have this file you can access 
+            // the license through the WWW at http://www.treemenu.com/license.txt 
 
-        // Nearly all user-configurable options are set to their default values. 
-        // Have a look at the section "Setting options" in the installation guide 
-        // for description of each option and their possible values. 
+            // Nearly all user-configurable options are set to their default values. 
+            // Have a look at the section "Setting options" in the installation guide 
+            // for description of each option and their possible values. 
 
             MTMDefaultTarget = "text";
             MTMenuText = "<?= $nome_projeto ?>";
@@ -103,7 +101,7 @@ if (isset($id_projeto)) {
             var menu = null;
             menu = new MTMenu();
             menu.addItem("Cen�rios");
-        // + submenu 
+            // + submenu 
             var mc = null;
             mc = new MTMenu();
 
@@ -127,11 +125,11 @@ while ($row = mysql_fetch_row($qrr)) {    // para cada cenario do projeto
 
                 mc.addItem("<?= $row[1] ?>", "main.php?id=<?= $row[0] ?>&t=c");
 
-            // + submenu 
+                // + submenu 
                 var mcs_<?= $row[0] ?> = null;
                 mcs_<?= $row[0] ?> = new MTMenu();
                 mcs_<?= $row[0] ?>.addItem("Sub-cen�rios", "", null, "Cen�rios que este cen�rio referencia");
-            // + submenu 
+                // + submenu 
                 var mcsrc_<?= $row[0] ?> = null;
                 mcsrc_<?= $row[0] ?> = new MTMenu();
 
@@ -149,24 +147,20 @@ while ($row = mysql_fetch_row($qrr)) {    // para cada cenario do projeto
     }
     ?>
 
-            // - submenu 
+                // - submenu 
                 mcs_<?= $row[0] ?>.makeLastSubmenu(mcsrc_<?= $row[0] ?>);
 
-            // - submenu 
+                // - submenu 
                 mc.makeLastSubmenu(mcs_<?= $row[0] ?>);
 
     <?php
 }
 ?>
 
-        // - submenu 
+            // - submenu 
             menu.makeLastSubmenu(mc);
-
-
-
-
             menu.addItem("L�xico");
-        // + submenu 
+            // + submenu 
             var ml = null;
             ml = new MTMenu();
 
@@ -181,13 +175,13 @@ while ($row = mysql_fetch_row($qrr)) {   // para cada lexico do projeto
     ?>
 
                 ml.addItem("<?= $row[1] ?>", "main.php?id=<?= $row[0] ?>&t=l");
-            // + submenu 
+                // + submenu 
                 var mls_<?= $row[0] ?> = null;
                 mls_<?= $row[0] ?> = new MTMenu();
-            // mls_<?= $row[0] ?>.addItem("L�xico", "", null, "Termos do l�xico que este termo referencia"); 
-            // + submenu 
-            // var mlsrl_<?= $row[0] ?> = null; 
-            // mlsrl_<?= $row[0] ?> = new MTMenu(); 
+                // mls_<?= $row[0] ?>.addItem("L�xico", "", null, "Termos do l�xico que este termo referencia"); 
+                // + submenu 
+                // var mlsrl_<?= $row[0] ?> = null; 
+                // mlsrl_<?= $row[0] ?> = new MTMenu(); 
 
     <?php
     $q = "SELECT l.id_lexico_to, lex.nome FROM lextolex l, lexico lex WHERE l.id_lexico_from = " . $row[0];
@@ -196,46 +190,37 @@ while ($row = mysql_fetch_row($qrr)) {   // para cada lexico do projeto
     while ($row_2 = mysql_fetch_row($qrr_2)) {
         ?>
 
-                // mlsrl_<?= $row[0] ?>.addItem("<?= $row_2[1] ?>", "main.php?id=<?= $row_2[0] ?>&t=l&ll=<?= $row[0] ?>"); 
+                    // mlsrl_<?= $row[0] ?>.addItem("<?= $row_2[1] ?>", "main.php?id=<?= $row_2[0] ?>&t=l&ll=<?= $row[0] ?>"); 
                     mls_<?= $row[0] ?>.addItem("<?= $row_2[1] ?>", "main.php?id=<?= $row_2[0] ?>&t=l&ll=<?= $row[0] ?>");
 
         <?php
     }
     ?>
 
-            // - submenu 
-            // mls_<?= $row[0] ?>.makeLastSubmenu(mlsrl_<?= $row[0] ?>); 
-            // - submenu 
+                // - submenu 
+                // mls_<?= $row[0] ?>.makeLastSubmenu(mlsrl_<?= $row[0] ?>); 
+                // - submenu 
                 ml.makeLastSubmenu(mls_<?= $row[0] ?>);
 
     <?php
 }
 ?>
 
-        // -submenu 
+            // -submenu 
             menu.makeLastSubmenu(ml);
 
-
-
-
-
-
-
-
-
-
-        // ONTOLGIA 
-        // + submenu 
+            // ONTOLGIA 
+            // + submenu 
             menu.addItem("Ontologia");
             var mo = null;
             mo = new MTMenu();
 
-        // -submenu 
+            // -submenu 
             menu.makeLastSubmenu(mo);
 
 
-        // CONCEITO 
-        // ++ submenu 
+            // CONCEITO 
+            // ++ submenu 
             mo.addItem("Conceitos");
             var moc = null;
             moc = new MTMenu();
@@ -252,14 +237,11 @@ while ($row = mysql_fetch_row($qrr)) {  // para cada conceito do projeto
 }
 ?>
 
-        // --submenu 
+            // --submenu 
             mo.makeLastSubmenu(moc);
 
-
-
-
-        // RELA��ES 
-        // ++ submenu 
+            // RELA��ES 
+            // ++ submenu 
             mo.addItem("Rela��es");
             var mor = null;
             mor = new MTMenu();
@@ -276,14 +258,11 @@ while ($row = mysql_fetch_row($qrr)) {   // para cada rela��o do projeto
 }
 ?>
 
-        // --submenu    
+            // --submenu    
             mo.makeLastSubmenu(mor);
 
-
-
-
-        // AXIOMAS 
-        // ++ submenu 
+            // AXIOMAS 
+            // ++ submenu 
             mo.addItem("Axiomas");
             var moa = null;
             moa = new MTMenu();
@@ -302,11 +281,9 @@ while ($row = mysql_fetch_row($qrr)) {  // para cada axioma do projeto
 }
 ?>
 
-        // --submenu    
+            // --submenu    
             mo.makeLastSubmenu(moa);
-
-
-
+            
         </script> 
     </head> 
     <body onload="MTMStartMenu(true)" bgcolor="#000033" text="#ffffcc" link="yellow" vlink="lime" alink="red"> 

@@ -16,7 +16,7 @@ chkUser("index.php");        // Checa se o usuario foi autenticado
     </head><form action="gerador_xml.php" method="post">
 
         <h2>Propriedades do Relat�rio a ser Gerado:</h2>
-<?php
+        <?php
 //Cen�rio - Gerar Relat�rios XML 
 //Objetivo:    Permitir ao administrador gerar relat�rios em formato XML de um projeto,
 //          identificados por data.     
@@ -29,8 +29,8 @@ chkUser("index.php");        // Checa se o usuario foi autenticado
 //          O sistema fornece para o administrador uma tela onde dever� fornecer os dados
 //          do relat�rio para sua posterior identifica��o, como data e vers�o. 
 
-$today = getdate();
-?>
+        $today = getdate();
+        ?>
 
         &nbsp;Data da Vers�o:
         <?= $today['mday']; ?>/<?= $today['mon']; ?>/<?= $today['year']; ?>
