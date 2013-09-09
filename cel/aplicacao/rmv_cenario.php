@@ -17,23 +17,23 @@ inserirPedidoRemoverCenario($_SESSION['id_projeto_corrente'], $id_cenario, $_SES
     opener.parent.frames['text'].location.replace('main.php?id_projeto=<?= $_SESSION['id_projeto_corrente'] ?>');
 
 <?php
-/* Cen�rio -  Excluir Cen�rio 
-Objetivo:   Permitir ao Usu�rio Excluir um cen�rio que esteja ativo
-Contexto:   Usu�rio deseja excluir um cen�rio
-Pr�-Condi��o:   Login, cen�rio cadastrado no sistema
-Atores: Usu�rio, Sistema
+/* Cenário -  Excluir Cenário 
+Objetivo:   Permitir ao Usuário Excluir um cenário que esteja ativo
+Contexto:   Usuário deseja excluir um cenário
+Pré-Condição:   Login, cenário cadastrado no sistema
+Atores: Usuário, Sistema
 Recursos:   Dados informados
-Epis�dios:  O sistema fornecer� uma tela para o usu�rio justificar a necessidade daquela
-exclus�o para que o administrador possa ler e aprovar ou n�o a mesma.
-Esta tela tamb�m conter� um bot�o para a confirma��o da exclus�o.
-Restri��o: Depois de clicar no bot�o, o sistema verifica se todos os campos foram preenchidos 
-Exce��o:    Se todos os campos n�o foram preenchidos, retorna para o usu�rio uma mensagem
-              avisando que todos os campos devem ser preenchidos e um bot�o de voltar para a pagina anterior.
+Episódios:  O sistema fornecerá uma tela para o usuário justificar a necessidade daquela
+exclusão para que o administrador possa ler e aprovar ou não a mesma.
+Esta tela também conterá um botão para a confirmação da exclusão.
+Restrição: Depois de clicar no botão, o sistema verifica se todos os campos foram preenchidos 
+Exceçãoo:    Se todos os campos não foram preenchidos, retorna para o usuário uma mensagem
+              avisando que todos os campos devem ser preenchidos e um botão de voltar para a pagina anterior.
 ?>*/
 
 </script>
 
-<h4>Opera��o efetuada com sucesso!</h4>
+<h4>Operação efetuada com sucesso!</h4>
 
 <script language="javascript1.3">
 
