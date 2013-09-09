@@ -41,7 +41,7 @@ if (isset($submit)) {
 
     </script>
 
-    <?php } else {
+<?php } else {
     ?>
     <html>
         <head>
@@ -51,7 +51,7 @@ if (isset($submit)) {
             <h2>Pedidos de Alteração no Conjunto de Cenários</h2>
             <form action="?id_projeto=<?= $id_projeto ?>" method="post">
 
-    <?php
+                <?php
 // Cenário - Verificar pedidos de alteração de cenários
 //Objetivo:	Permitir ao administrador gerenciar os pedidos de alteração de cenários.
 //Contexto:	Gerente deseja visualizar os pedidos de alteração de cenários.
@@ -68,31 +68,36 @@ if (isset($submit)) {
 //           o sistema somente habilita a opção remover para o administrador.
 //           Para efetivar as seleções de aprovação e remoção, basta clicar em Processar.
 
-    $DB = new PGDB ();
-    $select = new QUERY($DB);
-    $select2 = new QUERY($DB);
-    $select->execute("SELECT * FROM pedidocen WHERE id_projeto = $id_projeto");
-    if ($select->getntuples() == 0) {
-        echo "<BR>Nenhum pedido.<BR>";
-    } else {
-        $i = 0;
-        $record = $select->gofirst();
-        while ($record != 'LAST_RECORD_REACHED') {
-            $id_usuario = $record['id_usuario'];
-            $id_pedido = $record['id_pedido'];
-            $tipo_pedido = $record['tipo_pedido'];
-            $aprovado = $record['aprovado'];
-            $select2->execute("SELECT * FROM usuario WHERE id_usuario = $id_usuario");
-            $usuario = $select2->gofirst();
-            if (strcasecmp($tipo_pedido, 'remover')) {
-                ?>
+                $DB = new PGDB ();
+                $select = new QUERY($DB);
+                $select2 = new QUERY($DB);
+                $select->execute("SELECT * FROM pedidocen WHERE id_projeto = $id_projeto");
+                if ($select->getntuples() == 0) {
+                    echo "<BR>Nenhum pedido.<BR>";
+                } else {
+                    $i = 0;
+                    $record = $select->gofirst();
+                    while ($record != 'LAST_RECORD_REACHED') {
+                        $id_usuario = $record['id_usuario'];
+                        $id_pedido = $record['id_pedido'];
+                        $tipo_pedido = $record['tipo_pedido'];
+                        $aprovado = $record['aprovado'];
+                        $select2->execute("SELECT * FROM usuario WHERE id_usuario = $id_usuario");
+                        $usuario = $select2->gofirst();
+                        if (strcasecmp($tipo_pedido, 'remover')) {
+                            ?>
 
                             <br>
-                            <h3>O usuário <a  href="mailto:<?= $usuario['email'] ?>" ><?= $usuario['nome'] ?></a> pede para <?= $tipo_pedido ?> o cenário <font color="#ff0000"><?= $record['titulo'] ?></font> <? if (!strcasecmp($tipo_pedido, 'alterar')) {
-                    echo"para cenário abaixo:</h3>";
-                } else {
-                    echo"</h3>";
-                } ?>
+                            <h3>O usuário <a  href="mailto:<?= $usuario['email'] ?>" ><?= $usuario['nome'] ?></a> 
+                                pede para <?= $tipo_pedido ?> o cenário 
+                                <font color="#ff0000"><?= $record['titulo'] ?></font>
+                                <?
+                                if (!strcasecmp($tipo_pedido, 'alterar')) {
+                                    echo"para cenário abaixo:</h3>";
+                                } else {
+                                    echo"</h3>";
+                                }
+                                ?>
                                 <table>
                                     <td><b>Título:</b></td>
                                     <td><?= $record['titulo'] ?></td>
@@ -125,9 +130,12 @@ if (isset($submit)) {
                                         <td><textarea name="justificativa" cols="48" rows="2"><?= $record['justificativa'] ?></textarea></td>
                                     </tr>
                                 </table>
-                            <?php } else { ?>
-                                <h3>O usuário <a  href="mailto:<?= $usuario['email'] ?>" ><?= $usuario['nome'] ?></a> pede para <?= $tipo_pedido ?> o cenário <font color="#ff0000"><?= $record['titulo'] ?></font></h3>
-                            <?php
+            <?php } else { ?>
+                                <h3>O usuário <a  href="mailto:<?= $usuario['email'] ?>" ><?= $usuario['nome'] ?></a> 
+                                    pede para <?= $tipo_pedido ?> o cenário
+                                    <font color="#ff0000"><?= $record['titulo'] ?></font></h3>
+
+                                <?php
                             }
                             if ($aprovado == 1) {
                                 echo "[<font color=\"#ff0000\"><STRONG>Aprovado</STRONG></font>]<BR>";
