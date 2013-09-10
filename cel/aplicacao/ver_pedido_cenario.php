@@ -140,10 +140,12 @@ if (isset($submit)) {
                             if ($aprovado == 1) {
                                 echo "[<font color=\"#ff0000\"><STRONG>Aprovado</STRONG></font>]<BR>";
                             } else {
-                                echo "[<input type=\"checkbox\" name=\"pedidos[]\" value=\"$id_pedido\"> <STRONG>Aprovar</STRONG>]<BR>  ";
+                                echo "[<input type=\"checkbox\" name=\"pedidos[]\" value=\"$id_pedido\"> 
+                                <STRONG>Aprovar</STRONG>]<BR>  ";
 //                     echo "Rejeitar<input type=\"checkbox\" name=\"remover[]\" value=\"$id_pedido\">" ;
                             }
-                            echo "[<input type=\"checkbox\" name=\"remover[]\" value=\"$id_pedido\"> <STRONG>Remover da lista</STRONG>]";
+                            echo "[<input type=\"checkbox\" name=\"remover[]\" value=\"$id_pedido\">
+                            <STRONG>Remover da lista</STRONG>]";
                             print( "<br>\n<hr color=\"#000000\"><br>\n");
                             $record = $select->gonext();
                         }
