@@ -1,12 +1,10 @@
 <?php
-/* vim: set expandtab tabstop=4 shiftwidth=4: */
-// ver_pedido_cenario.php: Esse script exibe os varios pedidos referentes
-// ao cenario.O gerente tem a opcao de ver os pedidos
-// jah validados. O gerente tb podera validar e processar pedidos.
-// O gerente tera uma terceira opcao que eh a de remover o pedido
-// validado ou nao da lista de pedidos.O gerente podera responder
-// a um pedido via e-mail direto desta pagina.
-// Arquivo chamador: heading.php
+/* vim: set expandtab tabstop=4 shiftwidth=4: 
+ ver_pedido_cenario.php: Esse script exibe os varios pedidos referentes ao cenario.
+ O gerente tem a opcao de ver os pedidos jah validados. O gerente tb podera validar e processar pedidos.
+ O gerente tera uma terceira opcao que eh a de remover o pedido validado ou nao da lista de pedidos.
+ O gerente podera responder a um pedido via e-mail direto desta pagina.
+ Arquivo chamador: heading.php*/
 session_start();
 
 include("funcoes_genericas.php");
