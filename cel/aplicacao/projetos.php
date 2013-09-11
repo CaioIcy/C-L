@@ -24,8 +24,8 @@ $bd_recupera = bd_connect() or die("Erro ao conectar ao SGBD");
 //            ver ADMINISTRADOR ESCOLHE PROJETO.
 //            Caso contr�rio, ver USU�RIO ESCOLHE PROJETO.
 
-$q = "SELECT * FROM publicacao";
-$qrr = mysql_query($q) or die("Erro ao enviar a query de busca");
+$query = "SELECT * FROM publicacao";
+$qrr = mysql_query($query) or die("Erro ao enviar a query de busca");
 ?>
 
     <?php

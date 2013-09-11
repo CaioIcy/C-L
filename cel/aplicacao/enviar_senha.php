@@ -15,9 +15,9 @@ include("httprequest.inc");
 
 $r = bd_connect() or die("Erro ao conectar ao SGBD");
 
-$q = "SELECT * FROM usuario WHERE login='$login'";
+$query = "SELECT * FROM usuario WHERE login='$login'";
 
-$qrr = mysql_query($q) or die("Erro ao executar a query");
+$qrr = mysql_query($query) or die("Erro ao executar a query");
 ?>
 
 <html>

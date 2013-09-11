@@ -60,8 +60,8 @@ if (isset($submit)) {       // Script chamado atraves do submit do formulario
     <?php
 } else {        // Script chamado atraves do link do lexico corrente
     $nome_projeto = simple_query("nome", "projeto", "id_projeto = " . $_SESSION['id_projeto_corrente']);
-    $q = "SELECT * FROM lexico WHERE id_lexico = $id_lexico";
-    $qrr = mysql_query($q) or die("Erro ao executar a query");
+    $query = "SELECT * FROM lexico WHERE id_lexico = $id_lexico";
+    $qrr = mysql_query($query) or die("Erro ao executar a query");
     $result = mysql_fetch_array($qrr);
 
     //sinonimos

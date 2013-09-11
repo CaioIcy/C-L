@@ -196,7 +196,7 @@ if (isset($id_project)) {
                                     $r = bd_connect() or die("Erro ao conectar ao SGBD");
 
 // define a consulta
-                                    $q = "SELECT p.id_projeto, p.nome, pa.gerente
+                                    $query = "SELECT p.id_projeto, p.nome, pa.gerente
       FROM usuario u, participa pa, projeto p
       WHERE u.id_usuario = pa.id_usuario
       AND pa.id_projeto = p.id_projeto
@@ -204,7 +204,7 @@ if (isset($id_project)) {
       ORDER BY p.nome";
 
 // executa a consulta
-                                    $qrr = mysql_query($q) or die("Erro ao executar query");
+                                    $qrr = mysql_query($query) or die("Erro ao executar query");
 
                                     while ($result = mysql_fetch_array($qrr)) {    // enquanto houver projetos
                                         ?>

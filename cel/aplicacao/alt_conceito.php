@@ -38,8 +38,8 @@ if (isset($submit)) {       // Script chamado atraves do submit do formulario
 } else { // Script chamado atraves do link no cenario corrente
     $nome_projeto = simple_query("nome", "projeto", "id_projeto = " . $_SESSION['id_projeto_corrente']);
 
-    $q = "SELECT * FROM conceito WHERE id_conceito = $id_conceito";
-    $qrr = mysql_query($q) or die("Erro ao executar a query");
+    $query = "SELECT * FROM conceito WHERE id_conceito = $id_conceito";
+    $qrr = mysql_query($query) or die("Erro ao executar a query");
     $result = mysql_fetch_array($qrr);
 
 // Cen�rio -    Alterar Conceito 
