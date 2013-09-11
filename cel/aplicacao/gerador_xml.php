@@ -376,28 +376,28 @@ if (!(function_exists("gera_xml_links"))) {
 ?>
 
 <?php
-$id_projeto = $_SESSION['id_projeto_corrente'];
+$id_project = $_SESSION['id_projeto_corrente'];
 $data_pesquisa = $data_ano . "-" . $data_mes . "-" . $data_dia;
 $flag_formatado = $flag;
 
 // Abre base de dados.
 $bd_trabalho = bd_connect() or die("Erro ao conectar ao SGBD");
 
-$qVerifica = "SELECT * FROM publicacao WHERE id_projeto = '$id_projeto' AND versao = '$versao' ";
+$qVerifica = "SELECT * FROM publicacao WHERE id_projeto = '$id_project' AND versao = '$versao' ";
 $qrrVerifica = mysql_query($qVerifica);
 
 // Se n�o existir nenhum XML com o id passado ele cria
 if (!mysql_num_rows($qrrVerifica)) {
 
-    $str_xml = gerar_xml($bd_trabalho, $id_projeto, $data_pesquisa, $flag_formatado);
+    $str_xml = gerar_xml($bd_trabalho, $id_project, $data_pesquisa, $flag_formatado);
 
     $xml_resultante = "<?xml version='1.0' encoding='ISO-8859-1' ?>\n" . $str_xml;
 
     $q = "INSERT INTO publicacao ( id_projeto, data_publicacao, versao, XML)
-                 VALUES ( '$id_projeto', '$data_pesquisa', '$versao', '" . mysql_real_escape_string($xml_resultante) . "')";
+                 VALUES ( '$id_project', '$data_pesquisa', '$versao', '" . mysql_real_escape_string($xml_resultante) . "')";
 
     mysql_query($q) or die("Erro ao enviar a query INSERT do XML no banco de dados! ");
-    recarrega("http://pes.inf.puc-rio.br/cel/aplicacao/mostraXML.php?id_projeto=" . $id_projeto . "&versao=" . $versao);
+    recarrega("http://pes.inf.puc-rio.br/cel/aplicacao/mostraXML.php?id_projeto=" . $id_project . "&versao=" . $versao);
 } else {
     ?>
     <html><head><title>Projeto</title></head><body bgcolor="#FFFFFF">

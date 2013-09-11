@@ -22,7 +22,7 @@ chkUser("index.php");
 //              uma mensagem avisando que todos os campos devem ser preenchidos 
 //              e um botão de voltar para a pagina anterior.
 
-inserirPedidoRemoverLexico($id_projeto, $id_lexico, $_SESSION['id_usuario_corrente']);
+inserirPedidoRemoverLexico($id_project, $id_lexico, $_SESSION['id_usuario_corrente']);
 ?>  
 
 <script language="javascript1.3">

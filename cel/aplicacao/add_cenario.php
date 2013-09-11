@@ -60,10 +60,10 @@ if (isset($submit)) {
         opener.parent.frames['code'].location.reload();
         opener.parent.frames['text'].location.replace('main.php?id_projeto=<?= $_SESSION['id_projeto_corrente'] ?>');
     //self.close();
-    //location.href = "http://<?php print( CELConfig_ReadVar("HTTPD_ip") . "/" . CELConfig_ReadVar("CEL_dir_relativo")); ?>add_cenario.php?id_projeto=<?= $id_projeto ?>&sucesso=s" ;
+    //location.href = "http://<?php print( CELConfig_ReadVar("HTTPD_ip") . "/" . CELConfig_ReadVar("CEL_dir_relativo")); ?>add_cenario.php?id_projeto=<?= $id_project ?>&sucesso=s" ;
 
 
-        location.href = "add_cenario.php?id_projeto=<?= $id_projeto ?>&sucesso=s";
+        location.href = "add_cenario.php?id_projeto=<?= $id_project ?>&sucesso=s";
 
     </script>
 

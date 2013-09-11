@@ -48,7 +48,7 @@ if (isset($submit)) {
         </head>
         <body>
             <h2>Pedidos de Alteração no Conjunto de Conceitos</h2>
-            <form action="?id_projeto=<?= $id_projeto ?>" method="post">
+            <form action="?id_projeto=<?= $id_project ?>" method="post">
 
                 <?php
 // Cenário - Verificar pedidos de alteração de conceitos
@@ -70,7 +70,7 @@ if (isset($submit)) {
                 $DB = new PGDB ();
                 $select = new QUERY($DB);
                 $select2 = new QUERY($DB);
-                $select->execute("SELECT * FROM pedidocon WHERE id_projeto = $id_projeto");
+                $select->execute("SELECT * FROM pedidocon WHERE id_projeto = $id_project");
                 if ($select->getntuples() == 0) {
                     echo "<BR>Nenhum pedido.<BR>";
                 } else {

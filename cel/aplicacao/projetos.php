@@ -30,12 +30,12 @@ $qrr = mysql_query($q) or die("Erro ao enviar a query de busca");
 
     <?php
     while ($result = mysql_fetch_row($qrr)) {
-        $id_projeto = $result[0];
+        $id_project = $result[0];
         $data = $result[1];
         $versao = $result[2];
         $XML = $result[3];
 
-        $qProcuraNomeProjeto = "SELECT * FROM projeto WHERE id_projeto = '$id_projeto'";
+        $qProcuraNomeProjeto = "SELECT * FROM projeto WHERE id_projeto = '$id_project'";
         $qrrProcura = mysql_query($qProcuraNomeProjeto) or die("Erro ao enviar a query de busca de projeto");
         $resultNome = mysql_fetch_row($qrrProcura);
         $nome_projeto = $resultNome[1];
@@ -44,7 +44,7 @@ $qrr = mysql_query($q) or die("Erro ao enviar a query de busca");
 
             <tr>
 
-                <th height="29" width="140"><a href="mostrarProjeto.php?id_projeto=<?= $id_projeto ?>&versao=<?= $versao ?>"><?= $nome_projeto ?></a></th>
+                <th height="29" width="140"><a href="mostrarProjeto.php?id_projeto=<?= $id_project ?>&versao=<?= $versao ?>"><?= $nome_projeto ?></a></th>
                 <th height="29" width="140">Data: <?= $data ?></th>
                 <th height="29" width="100">Vers�o: <?= $versao ?></th>
 

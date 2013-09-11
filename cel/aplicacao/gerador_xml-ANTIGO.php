@@ -168,30 +168,30 @@ function gerar_xml($bd, $id_projeto, $data_pesquisa, $flag_formatado) {
 ?>
 
 <?php
-$id_projeto = $_SESSION['id_projeto_corrente'];
+$id_project = $_SESSION['id_projeto_corrente'];
 $data_pesquisa = $data_ano . "-" . $data_mes . "-" . $data_dia;
 $flag_formatado = $flag;
 
 // Abre base de dados.
 $bd_trabalho = bd_connect() or die("Erro ao conectar ao SGBD");
 
-$qVerifica = "SELECT * FROM publicacao WHERE id_projeto = '$id_projeto' AND versao = '$versao' ";
+$qVerifica = "SELECT * FROM publicacao WHERE id_projeto = '$id_project' AND versao = '$versao' ";
 $qrrVerifica = mysql_query($qVerifica);
 
 if (!mysql_num_rows($qrrVerifica)) {
-    $str_xml = gerar_xml($bd_trabalho, $id_projeto, $data_pesquisa, $flag_formatado);
+    $str_xml = gerar_xml($bd_trabalho, $id_project, $data_pesquisa, $flag_formatado);
 
     $xml_resultante = "<?xml version=''1.0'' encoding=''ISO-8859-1'' ?>\n" . $str_xml;
     $str_xml = "<?xml version='1.0' encoding='ISO-8859-1' ?>\n" . $str_xml;
 
     $q = "INSERT INTO publicacao ( id_projeto, data_publicacao, versao, XML)
-                 VALUES ( '$id_projeto', '$data_pesquisa', '$versao', '$xml_resultante')";
+                 VALUES ( '$id_project', '$data_pesquisa', '$versao', '$xml_resultante')";
 
     //echo $q;
 
     mysql_query($q) or die("Erro ao enviar a query INSERT!");
 
-    $qq = "select * from publicacao where id_projeto = $id_projeto ";
+    $qq = "select * from publicacao where id_projeto = $id_project ";
     $qrr = mysql_query($qq) or die("Erro ao enviar a query");
     $row = mysql_fetch_row($qrr);
     $xml_banco = $row[3];
@@ -199,7 +199,7 @@ if (!mysql_num_rows($qrrVerifica)) {
     // echo $xml_banco;
 
     $bd_recupera = bd_connect() or die("Erro ao conectar ao SGBD");
-    $qRecupera = "SELECT * FROM publicacao WHERE id_projeto = '$id_projeto' AND versao = '$versao'";
+    $qRecupera = "SELECT * FROM publicacao WHERE id_projeto = '$id_project' AND versao = '$versao'";
     $qrrRecupera = mysql_query($qRecupera) or die("Erro ao enviar a query de busca!");
     $row = mysql_fetch_row($qrrRecupera);
 

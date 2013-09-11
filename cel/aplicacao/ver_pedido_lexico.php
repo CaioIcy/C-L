@@ -38,7 +38,7 @@ if (isset($submit)) {
 		opener.parent.frames['code'].location.reload();
 		opener.parent.frames['text'].location.replace("main.php") ;
 	</script>
-	<h4>Operação efetuada com sucesso!</h4>
+	<h4>Operaï¿½ï¿½o efetuada com sucesso!</h4>
 	<script language="javascript1.2">
 	self.close();
 	</script>
@@ -47,36 +47,36 @@ if (isset($submit)) {
 ?>
 	<html>
 	  <head>
-	     <title>Pedido Léxico</title>
+	     <title>Pedido Lï¿½xico</title>
 	  </head>
 	<body>
-	<h2>Pedidos de Alteração no Léxico</h2>
-	<form action="?id_projeto=<?=$id_projeto?>" method="post">
+	<h2>Pedidos de Alteraï¿½ï¿½o no Lï¿½xico</h2>
+	<form action="?id_projeto=<?=$id_project?>" method="post">
 
 <?php
 
-// Cenário - Verificar pedidos de alteração de termos do léxico
+// Cenï¿½rio - Verificar pedidos de alteraï¿½ï¿½o de termos do lï¿½xico
 
-//Objetivo:	Permitir ao administrador gerenciar os pedidos de alteração de termos do léxico.
-//Contexto:	Gerente deseja visualizar os pedidos de alteração de termos do léxico.
-//              Pré-Condição: Login, projeto cadastrado.
+//Objetivo:	Permitir ao administrador gerenciar os pedidos de alteraï¿½ï¿½o de termos do lï¿½xico.
+//Contexto:	Gerente deseja visualizar os pedidos de alteraï¿½ï¿½o de termos do lï¿½xico.
+//              Prï¿½-Condiï¿½ï¿½o: Login, projeto cadastrado.
 //Atores:	Administrador
 //Recursos:	Sistema, banco de dados.
-//Episódios: 1- O administrador clica na opção de Verificar pedidos de alteração de termos do léxico.
-//           Restrição: Somente o Administrador do projeto pode ter essa função visível.
-//           2- O sistema fornece para o administrador uma tela onde poderá visualizar o histórico
-//              de todas as alterações pendentes ou não para os termos do léxico.
-//           3- Para novos pedidos de inclusão ou alteração de termos do léxico,
+//Episï¿½dios: 1- O administrador clica na opï¿½ï¿½o de Verificar pedidos de alteraï¿½ï¿½o de termos do lï¿½xico.
+//           Restriï¿½ï¿½o: Somente o Administrador do projeto pode ter essa funï¿½ï¿½o visï¿½vel.
+//           2- O sistema fornece para o administrador uma tela onde poderï¿½ visualizar o histï¿½rico
+//              de todas as alteraï¿½ï¿½es pendentes ou nï¿½o para os termos do lï¿½xico.
+//           3- Para novos pedidos de inclusï¿½o ou alteraï¿½ï¿½o de termos do lï¿½xico,
 //              O sistema permite que o administrador opte por Aprovar ou Remover.
-//           4- Para os pedidos de inclusão ou alteração já aprovados,
-//              o sistema somente habilita a opção remover para o administrador.
-//           5- Para efetivar as seleções de aprovação e remoção, o administrador deve clicar em Processar.
+//           4- Para os pedidos de inclusï¿½o ou alteraï¿½ï¿½o jï¿½ aprovados,
+//              o sistema somente habilita a opï¿½ï¿½o remover para o administrador.
+//           5- Para efetivar as seleï¿½ï¿½es de aprovaï¿½ï¿½o e remoï¿½ï¿½o, o administrador deve clicar em Processar.
 
 				$DB = new PGDB () ;
 				$select = new QUERY ($DB) ;
 				$select2 = new QUERY ($DB) ;
 				$select3 = new QUERY ($DB) ;
-				$select->execute("SELECT * FROM pedidolex where id_projeto = $id_projeto") ;
+				$select->execute("SELECT * FROM pedidolex where id_projeto = $id_project") ;
 				if ($select->getntuples() == 0){
 			 		 echo "<BR>Nenhum pedido.<BR>" ;
 			 }else{
@@ -94,14 +94,14 @@ if (isset($submit)) {
 						$select2->execute("SELECT * FROM usuario WHERE id_usuario = $id_usuario") ;
 						$usuario = $select2->gofirst () ;
 						if(strcasecmp($tipo_pedido,'remover')){?>
-						<h3>O usuário <a  href="mailto:<?=$usuario['email']?>" ><?=$usuario['nome']?></a> pede para <?=$tipo_pedido?> o léxico <font color="#ff0000"><?=$record['nome']?></font> <?  if(!strcasecmp($tipo_pedido,'alterar')){echo"para léxico abaixo:</h3>" ;}else{echo"</h3>" ;}?>
+						<h3>O usuï¿½rio <a  href="mailto:<?=$usuario['email']?>" ><?=$usuario['nome']?></a> pede para <?=$tipo_pedido?> o lï¿½xico <font color="#ff0000"><?=$record['nome']?></font> <?  if(!strcasecmp($tipo_pedido,'alterar')){echo"para lï¿½xico abaixo:</h3>" ;}else{echo"</h3>" ;}?>
 				<table>
                 <td><b>Nome:</b></td>
                 <td><?=$record['nome']?></td>
                 
             <tr>
      
-                <td><b>Noção:</b></td>
+                <td><b>Noï¿½ï¿½o:</b></td>
                 <td><?=$record['nocao']?></td>
             </tr>
             <tr>
@@ -111,7 +111,7 @@ if (isset($submit)) {
             
             
             <tr>
-            <td><b>Sinônimos:</b></td>
+            <td><b>Sinï¿½nimos:</b></td>
             <td>
             <?php
             $sinonimo = $select3->gofirst();
@@ -135,7 +135,7 @@ if (isset($submit)) {
         </table>
 					<?php
 					}else{?>
-							<h3>O usuário <a  href="mailto:<?=$usuario['email']?>" ><?=$usuario['nome']?></a> pede para <?=$tipo_pedido?> o léxico <font color="#ff0000"><?=$record['nome']?></font></h3>
+							<h3>O usuï¿½rio <a  href="mailto:<?=$usuario['email']?>" ><?=$usuario['nome']?></a> pede para <?=$tipo_pedido?> o lï¿½xico <font color="#ff0000"><?=$record['nome']?></font></h3>
 		<?php }
 					if ($aprovado == 1)
                     {
@@ -152,7 +152,7 @@ if (isset($submit)) {
 		}?>
 			 	 <input name="submit" type="submit" value="Processar">
 </form>
-<br><i><a href="showSource.php?file=ver_pedido_lexico.php">Veja o código fonte!</a></i>
+<br><i><a href="showSource.php?file=ver_pedido_lexico.php">Veja o cï¿½digo fonte!</a></i>
 </body>
 </html>
 

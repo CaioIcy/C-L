@@ -36,7 +36,7 @@ opener.parent.frames['text'].location.replace('main.php?id_projeto=' + '<?=$_SES
 
 </script>
 
-<h4>Operação efetuada com sucesso!</h4>
+<h4>Operaï¿½ï¿½o efetuada com sucesso!</h4>
 <script language="javascript1.3">
 
 self.close();
@@ -47,35 +47,35 @@ self.close();
 } else {?>
 <html>
   <head>
-     <title>Pedidos de alteração das Relaçoes</title>
+     <title>Pedidos de alteraï¿½ï¿½o das Relaï¿½oes</title>
   </head>
 <body>
-<h2>Pedidos de Alteração no Conjunto de Relações</h2>
-<form action="?id_projeto=<?=$id_projeto?>" method="post">
+<h2>Pedidos de Alteraï¿½ï¿½o no Conjunto de Relaï¿½ï¿½es</h2>
+<form action="?id_projeto=<?=$id_project?>" method="post">
 
 <?php
 
-// Cenário - Verificar pedidos de alteração de conceitos
+// Cenï¿½rio - Verificar pedidos de alteraï¿½ï¿½o de conceitos
 
-//Objetivo:	Permitir ao administrador gerenciar os pedidos de alteração de conceitos.
-//Contexto:	Gerente deseja visualizar os pedidos de alteração de conceitos.
-//              Pré-Condição: Login, projeto cadastrado.
+//Objetivo:	Permitir ao administrador gerenciar os pedidos de alteraï¿½ï¿½o de conceitos.
+//Contexto:	Gerente deseja visualizar os pedidos de alteraï¿½ï¿½o de conceitos.
+//              Prï¿½-Condiï¿½ï¿½o: Login, projeto cadastrado.
 //Atores:	Administrador
 //Recursos:	Sistema, banco de dados.
-//Episódios: O administrador clica na opção de Verificar pedidos de alteração de cenários.
-//           Restrição: Somente o Administrador do projeto pode ter essa função visível.
-//           O sistema fornece para o administrador uma tela onde poderá visualizar o histórico
-//           de todas as alterações pendentes ou não para os cenários.
-//           Para novos pedidos de inclusão ou alteração de cenários,
+//Episï¿½dios: O administrador clica na opï¿½ï¿½o de Verificar pedidos de alteraï¿½ï¿½o de cenï¿½rios.
+//           Restriï¿½ï¿½o: Somente o Administrador do projeto pode ter essa funï¿½ï¿½o visï¿½vel.
+//           O sistema fornece para o administrador uma tela onde poderï¿½ visualizar o histï¿½rico
+//           de todas as alteraï¿½ï¿½es pendentes ou nï¿½o para os cenï¿½rios.
+//           Para novos pedidos de inclusï¿½o ou alteraï¿½ï¿½o de cenï¿½rios,
 //           o sistema permite que o administrador opte por Aprovar ou Remover.
-//           Para os pedidos de inclusão ou alteração já aprovados,
-//           o sistema somente habilita a opção remover para o administrador.
-//           Para efetivar as seleções de aprovação e remoção, basta clicar em Processar.
+//           Para os pedidos de inclusï¿½o ou alteraï¿½ï¿½o jï¿½ aprovados,
+//           o sistema somente habilita a opï¿½ï¿½o remover para o administrador.
+//           Para efetivar as seleï¿½ï¿½es de aprovaï¿½ï¿½o e remoï¿½ï¿½o, basta clicar em Processar.
 
                 $DB = new PGDB () ;
                 $select = new QUERY ($DB) ;
                 $select2 = new QUERY ($DB) ;
-                $select->execute("SELECT * FROM pedidorel WHERE id_projeto = $id_projeto") ;
+                $select->execute("SELECT * FROM pedidorel WHERE id_projeto = $id_project") ;
                 if ($select->getntuples() == 0){
                       echo "<BR>Nenhum pedido.<BR>" ;
                 }else{
@@ -92,7 +92,7 @@ self.close();
                             if(strcasecmp($tipo_pedido,'remover')){?>
         
         <br>
-                <h3>O usuário <a  href="mailto:<?=$usuario['email']?>" ><?=$usuario['nome']?></a> pede para <?=$tipo_pedido?> a relação <font color="#ff0000"><?=$record['nome']?></font> <?  if(!strcasecmp($tipo_pedido,'alterar')){echo"para conceito abaixo:</h3>" ;}else{echo"</h3>" ;}?>
+                <h3>O usuï¿½rio <a  href="mailto:<?=$usuario['email']?>" ><?=$usuario['nome']?></a> pede para <?=$tipo_pedido?> a relaï¿½ï¿½o <font color="#ff0000"><?=$record['nome']?></font> <?  if(!strcasecmp($tipo_pedido,'alterar')){echo"para conceito abaixo:</h3>" ;}else{echo"</h3>" ;}?>
                     <table>
                 <td><b>Nome:</b></td>
                 <td><?=$record['nome']?></td>
@@ -102,7 +102,7 @@ self.close();
             </tr>
         </table>
 <?php    }else{?>
-            <h3>O usuário <a  href="mailto:<?=$usuario['email']?>" ><?=$usuario['nome']?></a> pede para <?=$tipo_pedido?> a relação <font color="#ff0000"><?=$record['nome']?></font></h3>
+            <h3>O usuï¿½rio <a  href="mailto:<?=$usuario['email']?>" ><?=$usuario['nome']?></a> pede para <?=$tipo_pedido?> a relaï¿½ï¿½o <font color="#ff0000"><?=$record['nome']?></font></h3>
 <?php }
 				if ($aprovado == 1)
                 {
@@ -120,7 +120,7 @@ self.close();
 ?>
 <input name="submit" type="submit" value="Processar">
 </form>
-<br><i><a href="showSource.php?file=ver_pedido_cenario.php">Veja o código fonte!</a></i>
+<br><i><a href="showSource.php?file=ver_pedido_cenario.php">Veja o cï¿½digo fonte!</a></i>
 </body>
 </html>
 <?php

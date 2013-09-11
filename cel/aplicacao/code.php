@@ -2,7 +2,7 @@
 session_start();
 
 if (isset($_GET['id_projeto'])) {
-    $id_projeto = $_GET['id_projeto'];
+    $id_project = $_GET['id_projeto'];
 }
 
 include("funcoes_genericas.php");
@@ -25,9 +25,9 @@ $r = bd_connect() or die("Erro ao conectar ao SGBD");
 // se este id realmente corresponde a um projeto que o usuario tenha acesso 
 // (seguranca). 
 
-if (isset($id_projeto)) {
-    check_proj_perm($_SESSION['id_usuario_corrente'], $id_projeto) or die("Permissao negada");
-    $q = "SELECT nome FROM projeto WHERE id_projeto = $id_projeto";
+if (isset($id_project)) {
+    check_proj_perm($_SESSION['id_usuario_corrente'], $id_project) or die("Permissao negada");
+    $q = "SELECT nome FROM projeto WHERE id_projeto = $id_project";
     $qrr = mysql_query($q) or die("Erro ao enviar a query");
     $result = mysql_fetch_array($qrr);
     $nome_projeto = $result['nome'];
@@ -108,7 +108,7 @@ if (isset($id_projeto)) {
 <?php
 $q = "SELECT id_cenario, titulo  
                   FROM cenario  
-                  WHERE id_projeto = $id_projeto  
+                  WHERE id_projeto = $id_project  
                   ORDER BY titulo";
 
 $qrr = mysql_query($q) or die("Erro ao enviar a query de selecao");
@@ -167,7 +167,7 @@ while ($row = mysql_fetch_row($qrr)) {    // para cada cenario do projeto
 <?php
 $q = "SELECT id_lexico, nome  
                   FROM lexico  
-                  WHERE id_projeto = $id_projeto  
+                  WHERE id_projeto = $id_project  
                   ORDER BY nome";
 
 $qrr = mysql_query($q) or die("Erro ao enviar a query de selecao");
@@ -228,7 +228,7 @@ while ($row = mysql_fetch_row($qrr)) {   // para cada lexico do projeto
 <?php
 $q = "SELECT id_conceito, nome  
                   FROM conceito 
-                  WHERE id_projeto = $id_projeto  
+                  WHERE id_projeto = $id_project  
                   ORDER BY nome";
 
 $qrr = mysql_query($q) or die("Erro ao enviar a query de selecao");
@@ -249,7 +249,7 @@ while ($row = mysql_fetch_row($qrr)) {  // para cada conceito do projeto
 <?php
 $q = "SELECT   id_relacao, nome 
                   FROM     relacao r 
-                  WHERE    id_projeto = $id_projeto  
+                  WHERE    id_projeto = $id_project  
                   ORDER BY nome";
 
 $qrr = mysql_query($q) or die("Erro ao enviar a query de selecao");
@@ -270,7 +270,7 @@ while ($row = mysql_fetch_row($qrr)) {   // para cada rela��o do projeto
 <?php
 $q = "SELECT   id_axioma, axioma 
                  FROM     axioma 
-                 WHERE    id_projeto = $id_projeto  
+                 WHERE    id_projeto = $id_project  
                  ORDER BY axioma";
 
 $qrr = mysql_query($q) or die("Erro ao enviar a query de selecao");

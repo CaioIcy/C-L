@@ -15,9 +15,9 @@ include_once("CELConfig/CELConfig.inc");
 //Epis�dios:       O sistema apaga todos os dados referentes ao determinado projeto da sua base de dados.
 
 
-$id_projeto = $_SESSION['id_projeto_corrente'];
+$id_project = $_SESSION['id_projeto_corrente'];
 
-removeProjeto($id_projeto);
+removeProjeto($id_project);
 ?>
 <html>
     <script language="javascript1.3">
