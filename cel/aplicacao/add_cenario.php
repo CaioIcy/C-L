@@ -21,26 +21,26 @@ if (!isset($sucesso)) {
 $r = bd_connect() or die("Erro ao conectar ao SGBD");
 
 if (isset($submit)) {
-    $ret = checarCenarioExistente($_SESSION['id_projeto_corrente'], $titulo);
+    $is_existingScenario = checarCenarioExistente($_SESSION['id_projeto_corrente'], $scene_title);
     ?>  <!-- ADICIONEI ISTO PARA TESTES -->
     <!--
-       RET = <?= $ret ?> => RET = <?PHP $ret ? print("TRUE")  : print("FALSE") ; ?><BR>
+       RET = <?= $is_existingScenario ?> => RET = <?PHP $is_existingScenario ? print("TRUE")  : print("FALSE") ; ?><BR>
     $sucesso        = <?= $sucesso ?><BR>
     _GET["sucesso"] = <?= $_GET["sucesso"] ?><BR>   
     -->
     <?PHP
-    if ($ret == true) {
+    if ($is_existingScenario == true) {
         print("<!-- Tentando Inserir Cenario --><BR>");
 
         /* Substitui todas as ocorrencias de ">" e "<" por " " */
-        $titulo = str_replace(">", " ", str_replace("<", " ", $titulo));
-        $objetivo = str_replace(">", " ", str_replace("<", " ", $objetivo));
-        $contexto = str_replace(">", " ", str_replace("<", " ", $contexto));
-        $atores = str_replace(">", " ", str_replace("<", " ", $atores));
-        $recursos = str_replace(">", " ", str_replace("<", " ", $recursos));
-        $excecao = str_replace(">", " ", str_replace("<", " ", $excecao));
-        $episodios = str_replace(">", " ", str_replace("<", " ", $episodios));
-        inserirPedidoAdicionarCenario($_SESSION['id_projeto_corrente'], $titulo, $objetivo, $contexto, $atores, $recursos, $excecao, $episodios, $_SESSION['id_usuario_corrente']);
+        $scene_title = str_replace(">", " ", str_replace("<", " ", $scene_title));
+        $scene_goal = str_replace(">", " ", str_replace("<", " ", $scene_goal));
+        $scene_context = str_replace(">", " ", str_replace("<", " ", $scene_context));
+        $scene_performer = str_replace(">", " ", str_replace("<", " ", $scene_performer));
+        $scene_resource = str_replace(">", " ", str_replace("<", " ", $scene_resource));
+        $scene_exception = str_replace(">", " ", str_replace("<", " ", $scene_exception));
+        $scene_episode = str_replace(">", " ", str_replace("<", " ", $scene_episode));
+        inserirPedidoAdicionarCenario($_SESSION['id_projeto_corrente'], $scene_title, $scene_goal, $scene_context, $scene_performer, $scene_resource, $scene_exception, $scene_episode, $_SESSION['id_usuario_corrente']);
         print("<!-- Cenario Inserido Com Sucesso! --><BR>");
     } else {
         ?>
@@ -69,7 +69,7 @@ if (isset($submit)) {
 
     <?php
 } else {    // Script chamado atraves do menu superior
-    $nome_projeto = simple_query("nome", "projeto", "id_projeto = " . $_SESSION['id_projeto_corrente']);
+    $project_name = simple_query("nome", "projeto", "id_projeto = " . $_SESSION['id_projeto_corrente']);
     ?>
 
     <html>
@@ -79,7 +79,7 @@ if (isset($submit)) {
         <body>
             <script language="JavaScript">
             <!--
-                function TestarBranco(form)
+                function test_blankText(form)
                 {
                     titulo = form.titulo.value;
                     objetivo = form.objetivo.value;
@@ -154,7 +154,7 @@ if (isset($submit)) {
                 <table>
                     <tr>
                         <td>Projeto:</td>
-                        <td><input disabled size="51" type="text" value="<?= $nome_projeto ?>"></td>
+                        <td><input disabled size="51" type="text" value="<?= $project_name ?>"></td>
                     </tr>
                     <td>T�tulo:</td>
                     <td><input size="51" name="titulo" type="text" value=""></td>                
@@ -183,7 +183,7 @@ if (isset($submit)) {
                         <td><textarea cols="51" name="episodios" rows="5" WRAP="SOFT"></textarea></td>
                     </tr>
                     <tr>
-                        <td align="center" colspan="2" height="60"><input name="submit" type="submit" onClick="return TestarBranco(this.form);" value="Adicionar Cen�rio"></td>
+                        <td align="center" colspan="2" height="60"><input name="submit" type="submit" onClick="return test_blankText(this.form);" value="Adicionar Cen�rio"></td>
                     </tr>
                 </table>
             </form>

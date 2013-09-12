@@ -18,24 +18,24 @@ chkUser("index.php");        // Checa se o usuario foi autenticado
 $r = bd_connect() or die("Erro ao conectar ao SGBD");
 
 if (isset($submit)) {       // Script chamado atraves do submit do formulario
-    if (!isset($listSinonimo))
-        $listSinonimo = array();
+    if (!isset($list_ofSynonyms))
+        $list_ofSynonyms = array();
 
     //tira os sinonimos caso aja um nulo.
-    $count = count($listSinonimo);
+    $count = count($list_ofSynonyms);
     for ($i = 0; $i < $count; $i++) {
-        if ($listSinonimo[$i] == "") {
-            $listSinonimo = null;
+        if ($list_ofSynonyms[$i] == "") {
+            $list_ofSynonyms = null;
         }
     }
     //$count = count($listSinonimo);
 
-    foreach ($listSinonimo as $key => $sinonimo) {
-        $listSinonimo[$key] = str_replace(">", " ", str_replace("<", " ", $sinonimo));
+    foreach ($list_ofSynonyms as $key => $sinonimo) {
+        $list_ofSynonyms[$key] = str_replace(">", " ", str_replace("<", " ", $sinonimo));
     }
 
 
-    inserirPedidoAlterarLexico($id_project, $id_lexico, $nome, $nocao, $impacto, $justificativa, $_SESSION['id_usuario_corrente'], $listSinonimo, $classificacao);
+    inserirPedidoAlterarLexico($id_project, $id_lexico, $nome, $nocao, $impacto, $justificativa, $_SESSION['id_usuario_corrente'], $list_ofSynonyms, $classificacao);
     ?>
     <html>
         <head>
@@ -59,7 +59,7 @@ if (isset($submit)) {       // Script chamado atraves do submit do formulario
 
     <?php
 } else {        // Script chamado atraves do link do lexico corrente
-    $nome_projeto = simple_query("nome", "projeto", "id_projeto = " . $_SESSION['id_projeto_corrente']);
+    $project_name = simple_query("nome", "projeto", "id_projeto = " . $_SESSION['id_projeto_corrente']);
     $query = "SELECT * FROM lexico WHERE id_lexico = $id_lexico";
     $qrr = mysql_query($query) or die("Erro ao executar a query");
     $result = mysql_fetch_array($qrr);
@@ -158,7 +158,7 @@ if (isset($submit)) {       // Script chamado atraves do submit do formulario
 
                         <tr>
                             <td>Projeto:</td>
-                            <td><input disabled size="48" type="text" value="<?= $nome_projeto ?>"></td>
+                            <td><input disabled size="48" type="text" value="<?= $project_name ?>"></td>
                         </tr>
                         <tr>
                             <td>Nome:</td>

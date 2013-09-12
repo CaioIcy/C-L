@@ -16,7 +16,7 @@ chkUser("index.php"); // Checa se o usuario foi autenticado
 $r = bd_connect() or die("Erro ao conectar ao SGBD");
 
 if (isset($submit)) {       // Script chamado atraves do submit do formulario
-    inserirPedidoAlterarCenario($_SESSION['id_projeto_corrente'], $id_cenario, $titulo, $objetivo, $contexto, $atores, $recursos, $excecao, $episodios, $justificativa, $_SESSION['id_usuario_corrente']);
+    inserirPedidoAlterarCenario($_SESSION['id_projeto_corrente'], $id_cenario, $scene_title, $scene_goal, $scene_context, $scene_performer, $scene_resource, $scene_exception, $scene_episode, $justificativa, $_SESSION['id_usuario_corrente']);
     ?>
 
     <script language="javascript1.3">
@@ -36,7 +36,7 @@ if (isset($submit)) {       // Script chamado atraves do submit do formulario
 
     <?php
 } else { // Script chamado atraves do link no cenario corrente
-    $nome_projeto = simple_query("nome", "projeto", "id_projeto = " . $_SESSION['id_projeto_corrente']);
+    $project_name = simple_query("nome", "projeto", "id_projeto = " . $_SESSION['id_projeto_corrente']);
 
     $query = "SELECT * FROM cenario WHERE id_cenario = $id_cenario";
     $qrr = mysql_query($query) or die("Erro ao executar a query");
@@ -68,7 +68,7 @@ if (isset($submit)) {       // Script chamado atraves do submit do formulario
                 <table>
                     <tr>
                         <td>Projeto:</td>
-                        <td><input disabled size="48" type="text" value="<?= $nome_projeto ?>"></td>
+                        <td><input disabled size="48" type="text" value="<?= $project_name ?>"></td>
                     </tr>
                     <input type="hidden" name="id_cenario" value="<?= $result['id_cenario'] ?>">
                     <td>T�tulo:</td>

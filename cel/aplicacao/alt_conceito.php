@@ -36,7 +36,7 @@ if (isset($submit)) {       // Script chamado atraves do submit do formulario
 
     <?php
 } else { // Script chamado atraves do link no cenario corrente
-    $nome_projeto = simple_query("nome", "projeto", "id_projeto = " . $_SESSION['id_projeto_corrente']);
+    $project_name = simple_query("nome", "projeto", "id_projeto = " . $_SESSION['id_projeto_corrente']);
 
     $query = "SELECT * FROM conceito WHERE id_conceito = $id_conceito";
     $qrr = mysql_query($query) or die("Erro ao executar a query");
@@ -67,7 +67,7 @@ if (isset($submit)) {       // Script chamado atraves do submit do formulario
                 <table>
                     <tr>
                         <td>Projeto:</td>
-                        <td><input disabled size="48" type="text" value="<?= $nome_projeto ?>"></td>
+                        <td><input disabled size="48" type="text" value="<?= $project_name ?>"></td>
                     </tr>
                     <input type="hidden" name="id_conceitos" value="<?= $result['id_conceito'] ?>">
                     <td>Nome:</td>

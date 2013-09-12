@@ -22,15 +22,15 @@ $r = bd_connect() or die("Erro ao conectar ao SGBD");
 //Script chamado atrav�s do submit do formul�rio
 if (isset($submit)) {
 
-    $ret = checarLexicoExistente($_SESSION['id_projeto_corrente'], $nome);
-    if (!isset($listSinonimo))
-        $listSinonimo = array();
+    $is_existingScenario = checarLexicoExistente($_SESSION['id_projeto_corrente'], $nome);
+    if (!isset($list_ofSynonyms))
+        $list_ofSynonyms = array();
 
-    $retSin = checarSinonimo($_SESSION['id_projeto_corrente'], $listSinonimo);
+    $retSin = checarSinonimo($_SESSION['id_projeto_corrente'], $list_ofSynonyms);
 
-    if (($ret == true) AND ($retSin == true )) {
+    if (($is_existingScenario == true) AND ($retSin == true )) {
         $id_usuario_corrente = $_SESSION['id_usuario_corrente'];
-        inserirPedidoAdicionarLexico($id_project, $nome, $nocao, $impacto, $id_usuario_corrente, $listSinonimo, $classificacao);
+        inserirPedidoAdicionarLexico($id_project, $nome, $nocao, $impacto, $id_usuario_corrente, $list_ofSynonyms, $classificacao);
     } else {
         ?>
         <html><head><title>Projeto</title></head><body bgcolor="#FFFFFF">
@@ -58,7 +58,7 @@ if (isset($submit)) {
     $query = "SELECT nome FROM projeto WHERE id_projeto = $id_project";
     $qrr = mysql_query($query) or die("Erro ao executar a query");
     $result = mysql_fetch_array($qrr);
-    $nome_projeto = $result['nome'];
+    $project_name = $result['nome'];
     ?>
 
     <html>
@@ -179,7 +179,7 @@ if (isset($submit)) {
                 <table>
                     <tr>
                         <td>Projeto:</td>
-                        <td><input disabled size="48" type="text" value="<?= $nome_projeto ?>"></td>
+                        <td><input disabled size="48" type="text" value="<?= $project_name ?>"></td>
                     </tr>
                     <tr>
                         <td>Nome:</td>
