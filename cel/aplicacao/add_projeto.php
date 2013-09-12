@@ -31,7 +31,7 @@ if (isset($submit)) {
     // Inserir na tabela participa
 
     if ($id_includedProject != -1) {
-        $r = bd_connect() or die("Erro ao conectar ao SGBD");
+        $db_conection = bd_connect() or die("Erro ao conectar ao SGBD");
         $manager = 1;
         $id_currentUser = $_SESSION['id_currentUser'];
         $query = "INSERT INTO participa (id_usuario, id_projeto, gerente) VALUES ($id_currentUser, $id_includedProject, $manager  )";

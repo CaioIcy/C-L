@@ -13,7 +13,7 @@ include_once("bd.inc");
 
 chkUser("index.php"); // Checa se o usuario foi autenticado
 // Conecta ao SGBD
-$r = bd_connect() or die("Erro ao conectar ao SGBD");
+$db_conection = bd_connect() or die("Erro ao conectar ao SGBD");
 
 if (isset($submit)) {       // Script chamado atraves do submit do formulario
     inserirPedidoAlterarCenario($_SESSION['id_projeto_corrente'], $id_cenario, $scene_title, $scene_goal, $scene_context, $scene_performer, $scene_resource, $scene_exception, $scene_episode, $justificativa, $_SESSION['id_usuario_corrente']);

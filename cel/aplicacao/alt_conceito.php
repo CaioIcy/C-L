@@ -13,7 +13,7 @@ include_once("bd.inc");
 
 chkUser("index.php"); // Checa se o usuario foi autenticado
 // Conecta ao SGBD
-$r = bd_connect() or die("Erro ao conectar ao SGBD");
+$db_conection = bd_connect() or die("Erro ao conectar ao SGBD");
 
 if (isset($submit)) {       // Script chamado atraves do submit do formulario
     inserirPedidoAlterarConceito($_SESSION['id_currentUser'], $id_concept, $concept_name, $concept_description, $namespace, $concept_justification, $_SESSION['id_currentUser']);

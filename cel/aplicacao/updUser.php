@@ -7,7 +7,7 @@ include_once("bd.inc");
 
 $id_user = $_SESSION['id_usuario_corrente'];
 
-$conectionbd = bd_connect() or die("Erro ao conectar ao SGBD");
+$db_conection = bd_connect() or die("Erro ao conectar ao SGBD");
 ?>
 
 <html>

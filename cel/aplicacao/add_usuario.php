@@ -52,7 +52,7 @@ if (isset($submit)) {   // Se chamado pelo botao de submit
 //              Caso aquele login digitado j� exista, o sistema retorna a mesma p�gina
 //               para o usu�rio avisando que o usu�rio deve escolher outro login,.
 
-            $r = bd_connect() or die("Erro ao conectar ao SGBD");
+            $db_conection = bd_connect() or die("Erro ao conectar ao SGBD");
             $query = "SELECT id_usuario FROM usuario WHERE login = '$user_login'";
             $qrr = mysql_query($query) or die("Erro ao enviar a query");
             if (mysql_num_rows($qrr)) {        // Se ja existe algum usuario com este login
@@ -134,7 +134,7 @@ if (isset($submit)) {   // Se chamado pelo botao de submit
         // Devemos agora adicionar o usuario incluido no projeto
         // do administrador.
         // Conexao com a base de dados
-        $r = bd_connect() or die("Erro ao conectar ao SGBD");
+        $db_conection = bd_connect() or die("Erro ao conectar ao SGBD");
         // $login eh o login do usuario incluido, passado na URL
         $id_includedUser = simple_query("id_usuario", "usuario", "login = '$user_login'");
         $query = "INSERT INTO participa (id_usuario, id_projeto)
