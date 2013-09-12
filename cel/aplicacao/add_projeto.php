@@ -34,7 +34,7 @@ if (isset($submit)) {
         $db_conection = bd_connect() or die("Erro ao conectar ao SGBD");
         $manager = 1;
         $id_currentUser = $_SESSION['id_currentUser'];
-        $query = "INSERT INTO participa (id_usuario, id_projeto, gerente) VALUES ($id_currentUser, $id_includedProject, $manager  )";
+        $query = "INSERT INTO participa (id_user, id_project, manager) VALUES ($id_currentUser, $id_includedProject, $manager)";
         mysql_query($query) or die("Erro ao inserir na tabela participa");
     } else {
         ?>
@@ -66,7 +66,7 @@ if (isset($submit)) {
             <title>Adicionar Projeto</title>
             <script language="javascript1.3">
 
-                function chkFrmVals() {
+                function checks_textArea() {
                     if (document.forms[0].nome.value == "") {
                         alert('Preencha o campo "Nome"');
                         document.forms[0].nome.focus();
@@ -89,7 +89,7 @@ if (isset($submit)) {
         <body>
             <h4>Adicionar Projeto:</h4>
             <br>
-            <form action="" method="post" onSubmit="return chkFrmVals();">
+            <form action="" method="post" onSubmit="return checks_textArea();">
                 <table>
                     <tr>
                         <td>Nome:</td>
