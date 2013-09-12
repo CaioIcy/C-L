@@ -68,7 +68,7 @@ if (isset($submit)) {
         <body>
             <script language="JavaScript">
             <!--
-                function TestarBranco(form)
+                function checks_textArea(form)
                 {
                     nome = form.nome.value;
                     nocao = form.nocao.value;
@@ -97,7 +97,7 @@ if (isset($submit)) {
                     }
 
                 }
-                function addSinonimo()
+                function adds_synonymou()
                 {
                     listSinonimo = document.forms[0].elements['listSinonimo[]'];
 
@@ -122,7 +122,7 @@ if (isset($submit)) {
 
                 }
 
-                function delSinonimo()
+                function deletes_synonymou()
                 {
                     listSinonimo = document.forms[0].elements['listSinonimo[]'];
 
@@ -131,7 +131,7 @@ if (isset($submit)) {
                     else
                         listSinonimo.options[listSinonimo.selectedIndex] = null;
 
-                    delSinonimo();
+                    deletes_synonymou();
                 }
 
                 function doSubmit()
@@ -175,7 +175,7 @@ if (isset($submit)) {
         <?php
     }
     ?>       
-            <form action="?id_projeto=<?= $id_project ?>" method="post" onSubmit="return(doSubmit());">
+            <form action="?id_project=<?= $id_project ?>" method="post" onSubmit="return(doSubmit());">
                 <table>
                     <tr>
                         <td>Projeto:</td>
@@ -189,8 +189,8 @@ if (isset($submit)) {
                         <td>Sin�nimos:</td>
                         <td width="0%">
                             <input name="sinonimo" size="15" type="text" maxlength="50">             
-                            &nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Adicionar" onclick="addSinonimo()">
-                            &nbsp;&nbsp;<input type="button" value="Remover" onclick="delSinonimo()">&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Adicionar" onclick="adds_synonymou()">
+                            &nbsp;&nbsp;<input type="button" value="Remover" onclick="deletes_synonymou()">&nbsp;
                         </td>
                     </tr>
                     <tr> 
@@ -223,7 +223,7 @@ if (isset($submit)) {
                     </tr>
                     <tr>
                         <td align="center" colspan="2" height="60">
-                            <input name="submit" type="submit" onClick="return TestarBranco(this.form);" value="Adicionar S�mbolo"><BR><BR>
+                            <input name="submit" type="submit" onClick="return checks_textArea(this.form);" value="Adicionar S�mbolo"><BR><BR>
                             </script>
                             <!--            <A HREF="RegrasLAL.html" TARGET="new">Ver Regras do LAL</A><BR>   -->
                             <A HREF="#" OnClick="javascript:open('RegrasLAL.html', '_blank', 'dependent,height=380,width=520,titlebar');"> Veja as regras do <i>LAL</i></A>
