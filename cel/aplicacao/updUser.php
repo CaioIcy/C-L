@@ -31,8 +31,8 @@ $conectionbd = bd_connect() or die("Erro ao conectar ao SGBD");
 //Episódios: O usuário altera os dados desejados
 // 	     Usuário clica no botão de atualizar
 
-        $password_cript = md5($senha);
-        $user = "UPDATE usuario SET  nome ='$name' , login = '$login' , email = '$email' , senha = '$password_cript' WHERE  id_usuario='$id_user'";
+        $password_cript = md5($user_password);
+        $user = "UPDATE usuario SET  nome ='$name' , login = '$user_login' , email = '$user_email' , senha = '$password_cript' WHERE  id_usuario='$id_user'";
 
         mysql_query($user) or die("<p style='color: red; font-weight: bold; text-align: center'>Erro!Login ja existente!</p><br><br><center><a href='JavaScript:window.history.go(-1)'>Voltar</a></center>");
         ?>

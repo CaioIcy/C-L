@@ -8,26 +8,26 @@ session_start();
 include("funcoes_genericas.php");
 include_once("bd.inc");
 
-$primeira_vez = "true";
+$first_access = "true";
 
 include("httprequest.inc");
 
 if (isset($submit)) {   // Se chamado pelo botao de submit
-    $primeira_vez = "false";
+    $first_access = "false";
     // ** Cenario "Inclusao de Usuario Independente" **
     // O sistema checa se todos os campos estao preenchidos. Se algum nao estiver, o
     // sistema avisa pro usuario que todos os campos devem ser preenchidos.
-    if ($nome == "" || $email == "" || $login == "" || $senha == "" || $senha_conf == "") {
+    if ($user_name == "" || $user_email == "" || $user_login == "" || $user_password == "" || $check_userPassword == "") {
         $p_style = "color: red; font-weight: bold";
         $p_text = "Por favor, preencha todos os campos.";
-        recarrega("?p_style=$p_style&p_text=$p_text&nome=$nome&email=$email&login=$login&senha=$senha&senha_conf=$senha_conf&novo=$novo");
+        recarrega("?p_style=$p_style&p_text=$p_text&nome=$user_name&email=$user_email&login=$user_login&senha=$user_password&senha_conf=$check_userPassword&novo=$novo");
     } else {
 
         // Testa se as senhas fornecidas pelo usuario sao iguais.
-        if ($senha != $senha_conf) {
+        if ($user_password != $check_userPassword) {
             $p_style = "color: red; font-weight: bold";
             $p_text = "Senhas diferentes. Favor preencher novamente as senhas.";
-            recarrega("?p_style=$p_style&p_text=$p_text&nome=$nome&email=$email&login=$login&novo=$novo");
+            recarrega("?p_style=$p_style&p_text=$p_text&nome=$user_name&email=$user_email&login=$user_login&novo=$novo");
         } else {
 
             // ** Cenario "Inclusao de Usuario Independente" **
@@ -53,7 +53,7 @@ if (isset($submit)) {   // Se chamado pelo botao de submit
 //               para o usu�rio avisando que o usu�rio deve escolher outro login,.
 
             $r = bd_connect() or die("Erro ao conectar ao SGBD");
-            $query = "SELECT id_usuario FROM usuario WHERE login = '$login'";
+            $query = "SELECT id_usuario FROM usuario WHERE login = '$user_login'";
             $qrr = mysql_query($query) or die("Erro ao enviar a query");
             if (mysql_num_rows($qrr)) {        // Se ja existe algum usuario com este login
 //                $p_style = "color: red; font-weight: bold";
@@ -79,15 +79,15 @@ if (isset($submit)) {   // Se chamado pelo botao de submit
                 recarrega("?novo=$novo");
             } else {    // Cadastro passou por todos os testes -- ja pode ser incluido na BD
                 /* Substitui todas as ocorrencias de ">" e "<" por " " */
-                $nome = str_replace(">", " ", str_replace("<", " ", $nome));
-                $login = str_replace(">", " ", str_replace("<", " ", $login));
-                $email = str_replace(">", " ", str_replace("<", " ", $email));
+                $user_name = str_replace(">", " ", str_replace("<", " ", $user_name));
+                $user_login = str_replace(">", " ", str_replace("<", " ", $user_login));
+                $user_email = str_replace(">", " ", str_replace("<", " ", $user_email));
 
                 // Criptografando a senha
-                $senha = md5($senha);
-                $query = "INSERT INTO usuario (nome, login, email, senha) VALUES ('$nome', '$login', '$email', '$senha')";
+                $user_password = md5($user_password);
+                $query = "INSERT INTO usuario (nome, login, email, senha) VALUES ('$user_name', '$user_login', '$user_email', '$user_password')";
                 mysql_query($query) or die("Erro ao cadastrar o usuario");
-                recarrega("?cadastrado=&novo=$novo&login=$login");
+                recarrega("?cadastrado=&novo=$novo&login=$user_login");
             }
         }   // else
     }   // else
@@ -112,7 +112,7 @@ if (isset($submit)) {   // Se chamado pelo botao de submit
 // Epis�dios:  Caso aquele login digitado n�o exista, o sistema cadastra esse usu�rio 
 //               como administrador no banco de dados,  possibilitando:
 //              - Redirecion�-lo  para a interface de CADASTRAR NOVO PROJETO; 
-        $id_usuario_corrente = simple_query("id_usuario", "usuario", "login = '$login'");
+        $id_usuario_corrente = simple_query("id_usuario", "usuario", "login = '$user_login'");
         session_register("id_usuario_corrente");
         ?>
 
@@ -136,7 +136,7 @@ if (isset($submit)) {   // Se chamado pelo botao de submit
         // Conexao com a base de dados
         $r = bd_connect() or die("Erro ao conectar ao SGBD");
         // $login eh o login do usuario incluido, passado na URL
-        $id_usuario_incluido = simple_query("id_usuario", "usuario", "login = '$login'");
+        $id_usuario_incluido = simple_query("id_usuario", "usuario", "login = '$user_login'");
         $query = "INSERT INTO participa (id_usuario, id_projeto)
           VALUES ($id_usuario_incluido, " . $_SESSION['id_projeto_corrente'] . ")";
         mysql_query($query) or die("Erro ao inserir na tabela participa");
@@ -160,12 +160,12 @@ if (isset($submit)) {   // Se chamado pelo botao de submit
         $p_text = "Favor preencher os dados abaixo:";
     }
 
-    if ($primeira_vez) {
-        $email = "";
-        $login = "";
-        $nome = "";
-        $senha = "";
-        $senha_conf = "";
+    if ($first_access) {
+        $user_email = "";
+        $user_login = "";
+        $user_name = "";
+        $user_password = "";
+        $check_userPassword = "";
     }
     ?>
 
@@ -213,21 +213,21 @@ if (isset($submit)) {   // Se chamado pelo botao de submit
             <form action="?novo=<?= $novo ?>" method="post">
                 <table>
                     <tr>
-                        <td>Nome:</td><td colspan="3"><input name="nome" maxlength="255" size="48" type="text" value="<?= $nome ?>"></td>
+                        <td>Nome:</td><td colspan="3"><input name="nome" maxlength="255" size="48" type="text" value="<?= $user_name ?>"></td>
                     </tr>
                     <tr>
-                        <td>E-mail:</td><td colspan="3"><input name="email" maxlength="64" size="48" type="text" value="<?= $email ?>" OnBlur="checkEmail(this)"></td>
+                        <td>E-mail:</td><td colspan="3"><input name="email" maxlength="64" size="48" type="text" value="<?= $user_email ?>" OnBlur="checkEmail(this)"></td>
                     </tr>
                     <tr>
-                        <td>Login:</td><td><input name="login" maxlength="32" size="24" type="text" value="<?= $login ?>"></td>
+                        <td>Login:</td><td><input name="login" maxlength="32" size="24" type="text" value="<?= $user_login ?>"></td>
                     </tr>
                     <tr>
-                        <td>Senha:</td><td><input name="senha" maxlength="32" size="16" type="password" value="<?= $senha ?>"></td>
+                        <td>Senha:</td><td><input name="senha" maxlength="32" size="16" type="password" value="<?= $user_password ?>"></td>
                         <td>Senha (confirma��o):</td><td><input name="senha_conf" maxlength="32" size="16" type="password" value=""></td>
                     </tr>
                     <tr>
 
-    <?php
+                        <?php
 // Cen�rio - Adicionar Usu�rio
 // Objetivo:  Permitir ao Administrador criar novos usu�rios.
 // Contexto:  O Administrador deseja adicionar novos usu�rios (n�o cadastrados) criando novos
@@ -238,7 +238,7 @@ if (isset($submit)) {   // Se chamado pelo botao de submit
 // Epis�dios: Clicando no bot�o Cadastrar para confirmar a adi��o do novo
 //             usu�rio ao projeto selecionado.
 //            O novo usu�rio criado receber� uma mensagem via email com seu login e senha.
-    ?>
+                        ?>
 
                         <td align="center" colspan="4" height="40" valign="bottom"><input name="submit" onClick="return verifyEmail(this.form);" type="submit" value="Cadastrar"></td>
                     </tr>
@@ -248,6 +248,6 @@ if (isset($submit)) {   // Se chamado pelo botao de submit
         </body>
     </html>
 
-                        <?php
-                    }
-                    ?>
+    <?php
+}
+?>

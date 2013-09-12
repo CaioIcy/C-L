@@ -15,7 +15,7 @@ include("httprequest.inc");
 
 $r = bd_connect() or die("Erro ao conectar ao SGBD");
 
-$query = "SELECT * FROM usuario WHERE login='$login'";
+$query = "SELECT * FROM usuario WHERE login='$user_login'";
 
 $qrr = mysql_query($query) or die("Erro ao executar a query");
 ?>
@@ -35,10 +35,10 @@ $qrr = mysql_query($query) or die("Erro ao executar a query");
         <?php
     } else {
         $row = mysql_fetch_row($qrr);
-        $nome = $row[1];
+        $user_name = $row[1];
         $mail = $row[2];
-        $login = $row[3];
-        $senha = $row[4];
+        $user_login = $row[3];
+        $user_password = $row[4];
 
 // Cen�rio - Lembrar senha 
 //Objetivo:	 Permitir o usu�rio cadastrado, que esqueceu sua senha,  receber  a mesma por email	
@@ -76,10 +76,10 @@ $qrr = mysql_query($query) or die("Erro ao executar a query");
 
         // Substitui senha antiga pela nova senha no banco de dados
 
-        $qUp = "update usuario set senha = '$nova_senha_cript' where login = '$login'";
+        $qUp = "update usuario set senha = '$nova_senha_cript' where login = '$user_login'";
         $qrrUp = mysql_query($qUp) or die("Erro ao executar a query de update na tabela usuario");
 
-        $corpo_email = "Caro $nome,\n Como solicitado, estamos enviando sua nova senha para acesso ao sistema C&L.\n\n login: $login \n senha: $nova_senha \n\n Para evitar futuros transtornos altere sua senha o mais breve poss�vel. \n Obrigado! \n Equipe de Suporte do C&L.";
+        $corpo_email = "Caro $user_name,\n Como solicitado, estamos enviando sua nova senha para acesso ao sistema C&L.\n\n login: $user_login \n senha: $nova_senha \n\n Para evitar futuros transtornos altere sua senha o mais breve poss�vel. \n Obrigado! \n Equipe de Suporte do C&L.";
         $headers = "";
         if (mail("$mail", "Nova senha do C&L", "$corpo_email", $headers)) {
             ?>
