@@ -14,11 +14,11 @@ session_start();
     <body>
         <?php
 
-        function verifica_consistencia() {
+        function checks_consistence() {
             return TRUE;
         }
 
-        function compara_arrays($array1, $array2) {
+        function compares_arrrays($array1, $array2) {
 
             if (count($array1) != count($array2)) {
                 return FALSE;
@@ -269,7 +269,7 @@ session_start();
                 $conceitos[] = $_SESSION["conceito"];
                 asort($conceitos);
 
-                if (!verifica_consistencia()) {
+                if (!checks_consistence()) {
                     exit();
                 }
 
@@ -328,7 +328,7 @@ session_start();
 
                 //	$lista_de_relacoes = $_SESSION["lista"];
 
-                if (!verifica_consistencia()) {
+                if (!checks_consistence()) {
                     exit();
                 }
 
@@ -395,7 +395,7 @@ session_start();
 
 
 
-                if (!verifica_consistencia()) {
+                if (!checks_consistence()) {
                     exit();
                 }
 
@@ -511,7 +511,7 @@ session_start();
                     }
                 }
 
-                if (!verifica_consistencia()) {
+                if (!checks_consistence()) {
                     exit();
                 }
                 //array_splice($conc->subconceitos, 0, 1);

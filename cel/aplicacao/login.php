@@ -48,7 +48,7 @@ if ($submit == 'Entrar') {
     /** @Episodio 11: Se o login e senha estiverem corretos ent�o registrar sess�o para o usu�rio, fechar login.php e abrir aplica��o . * */ else {
 
         $row = mysql_fetch_row($qrr);
-        $id_usuario_corrente = $row[0];
+        $id_currentUser = $row[0];
 
         session_register("id_usuario_corrente");
         ?>

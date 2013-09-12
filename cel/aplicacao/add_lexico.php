@@ -29,8 +29,8 @@ if (isset($submit)) {
     $retSin = checarSinonimo($_SESSION['id_projeto_corrente'], $list_ofSynonyms);
 
     if (($is_existingScenario == true) AND ($retSin == true )) {
-        $id_usuario_corrente = $_SESSION['id_usuario_corrente'];
-        inserirPedidoAdicionarLexico($id_project, $nome, $nocao, $impacto, $id_usuario_corrente, $list_ofSynonyms, $classificacao);
+        $id_currentUser = $_SESSION['id_usuario_corrente'];
+        inserirPedidoAdicionarLexico($id_project, $nome, $nocao, $impacto, $id_currentUser, $list_ofSynonyms, $classificacao);
     } else {
         ?>
         <html><head><title>Projeto</title></head><body bgcolor="#FFFFFF">

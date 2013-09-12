@@ -17,14 +17,14 @@ if (isset($submit)) {   // Se chamado pelo botao de submit
     // ** Cenario "Inclusao de Usuario Independente" **
     // O sistema checa se todos os campos estao preenchidos. Se algum nao estiver, o
     // sistema avisa pro usuario que todos os campos devem ser preenchidos.
-    if ($user_name == "" || $user_email == "" || $user_login == "" || $user_password == "" || $check_userPassword == "") {
+    if ($user_name == "" || $user_email == "" || $user_login == "" || $user_password == "" || $password_check == "") {
         $p_style = "color: red; font-weight: bold";
         $p_text = "Por favor, preencha todos os campos.";
-        recarrega("?p_style=$p_style&p_text=$p_text&nome=$user_name&email=$user_email&login=$user_login&senha=$user_password&senha_conf=$check_userPassword&novo=$novo");
+        recarrega("?p_style=$p_style&p_text=$p_text&nome=$user_name&email=$user_email&login=$user_login&senha=$user_password&senha_conf=$password_check&novo=$novo");
     } else {
 
         // Testa se as senhas fornecidas pelo usuario sao iguais.
-        if ($user_password != $check_userPassword) {
+        if ($user_password != $password_check) {
             $p_style = "color: red; font-weight: bold";
             $p_text = "Senhas diferentes. Favor preencher novamente as senhas.";
             recarrega("?p_style=$p_style&p_text=$p_text&nome=$user_name&email=$user_email&login=$user_login&novo=$novo");
@@ -112,8 +112,8 @@ if (isset($submit)) {   // Se chamado pelo botao de submit
 // Epis�dios:  Caso aquele login digitado n�o exista, o sistema cadastra esse usu�rio 
 //               como administrador no banco de dados,  possibilitando:
 //              - Redirecion�-lo  para a interface de CADASTRAR NOVO PROJETO; 
-        $id_usuario_corrente = simple_query("id_usuario", "usuario", "login = '$user_login'");
-        session_register("id_usuario_corrente");
+        $id_currentUser = simple_query("id_usuario", "usuario", "login = '$user_login'");
+        session_register("id_currentUser");
         ?>
 
         <script language="javascript1.3">
@@ -136,18 +136,18 @@ if (isset($submit)) {   // Se chamado pelo botao de submit
         // Conexao com a base de dados
         $r = bd_connect() or die("Erro ao conectar ao SGBD");
         // $login eh o login do usuario incluido, passado na URL
-        $id_usuario_incluido = simple_query("id_usuario", "usuario", "login = '$user_login'");
+        $id_includedUser = simple_query("id_usuario", "usuario", "login = '$user_login'");
         $query = "INSERT INTO participa (id_usuario, id_projeto)
-          VALUES ($id_usuario_incluido, " . $_SESSION['id_projeto_corrente'] . ")";
+          VALUES ($id_includedUser, " . $_SESSION['id_projeto_corrente'] . ")";
         mysql_query($query) or die("Erro ao inserir na tabela participa");
 
-        $nome_usuario = simple_query("nome", "usuario", "id_usuario = $id_usuario_incluido");
+        $user_name = simple_query("nome", "usuario", "id_usuario = $id_includedUser");
         $project_name = simple_query("nome", "projeto", "id_projeto = " . $_SESSION['id_projeto_corrente']);
         ?>
 
         <script language="javascript1.3">
 
-            document.writeln('<p style="color: blue; font-weight: bold; text-align: center">Usu�rio <b><?= $nome_usuario ?></b> cadastrado e inclu�do no projeto <b><?= $project_name ?></b></p>');
+            document.writeln('<p style="color: blue; font-weight: bold; text-align: center">Usu�rio <b><?= $user_name ?></b> cadastrado e inclu�do no projeto <b><?= $project_name ?></b></p>');
             document.writeln('<p align="center"><a href="javascript:self.close();">Fechar</a></p>');
 
         </script>
@@ -165,7 +165,7 @@ if (isset($submit)) {   // Se chamado pelo botao de submit
         $user_login = "";
         $user_name = "";
         $user_password = "";
-        $check_userPassword = "";
+        $password_check = "";
     }
     ?>
 
