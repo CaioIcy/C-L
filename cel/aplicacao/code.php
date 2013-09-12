@@ -30,7 +30,7 @@ if (isset($id_project)) {
     $query = "SELECT nome FROM projeto WHERE id_projeto = $id_project";
     $qrr = mysql_query($query) or die("Erro ao enviar a query");
     $result = mysql_fetch_array($qrr);
-    $nome_projeto = $result['nome'];
+    $project_name = $result['nome'];
 } else {
     ?>  
 
@@ -83,7 +83,7 @@ if (isset($id_project)) {
             // for description of each option and their possible values. 
 
             MTMDefaultTarget = "text";
-            MTMenuText = "<?= $nome_projeto ?>";
+            MTMenuText = "<?= $project_name ?>";
 
             /****************************************************************************** 
              * User-configurable list of icons.                                            * 

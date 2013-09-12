@@ -38,13 +38,13 @@ $qrr = mysql_query($query) or die("Erro ao enviar a query de busca");
         $qProcuraNomeProjeto = "SELECT * FROM projeto WHERE id_projeto = '$id_project'";
         $qrrProcura = mysql_query($qProcuraNomeProjeto) or die("Erro ao enviar a query de busca de projeto");
         $resultNome = mysql_fetch_row($qrrProcura);
-        $nome_projeto = $resultNome[1];
+        $project_name = $resultNome[1];
         ?>
         <table border='0'>
 
             <tr>
 
-                <th height="29" width="140"><a href="mostrarProjeto.php?id_projeto=<?= $id_project ?>&versao=<?= $versao ?>"><?= $nome_projeto ?></a></th>
+                <th height="29" width="140"><a href="mostrarProjeto.php?id_projeto=<?= $id_project ?>&versao=<?= $versao ?>"><?= $project_name ?></a></th>
                 <th height="29" width="140">Data: <?= $data ?></th>
                 <th height="29" width="100">Vers�o: <?= $versao ?></th>
 
