@@ -79,7 +79,7 @@ if (isset($submit)) {
         <body>
             <script language="JavaScript">
             <!--
-                function test_blankText(form)
+                function checks_textArea(form)
                 {
                     titulo = form.titulo.value;
                     objetivo = form.objetivo.value;
@@ -183,7 +183,7 @@ if (isset($submit)) {
                         <td><textarea cols="51" name="episodios" rows="5" WRAP="SOFT"></textarea></td>
                     </tr>
                     <tr>
-                        <td align="center" colspan="2" height="60"><input name="submit" type="submit" onClick="return test_blankText(this.form);" value="Adicionar Cen�rio"></td>
+                        <td align="center" colspan="2" height="60"><input name="submit" type="submit" onClick="return checks_textArea(this.form);" value="Adicionar Cen�rio"></td>
                     </tr>
                 </table>
             </form>
