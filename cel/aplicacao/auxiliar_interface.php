@@ -181,7 +181,7 @@ function importancia_central($termo, $impactos) {
                         foreach ($conceitos as $conc) {
                             $concsel = $conc; //trocar
                             print("<INPUT type='radio' name='pai' id='pai' value='$conc->nome' onFocus='Salvar()'> <b> $conc->nome </b> <br>\n");
-                            foreach ($conc->subconceitos as $subc) {
+                            foreach ($conc->sub_concept as $subc) {
                                 print("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-$subc<br>");
                             }
                         }
@@ -191,7 +191,7 @@ function importancia_central($termo, $impactos) {
                                         <?php
                                         foreach ($conceitos as $key => $conc) {
                                             $sel = false;
-                                            $existe = array_search($conc->nome, $concsel->subconceitos);
+                                            $existe = array_search($conc->nome, $concsel->sub_concept);
                                             if ($existe !== false)
                                                 $sel = true;
 

@@ -7,14 +7,14 @@ class conceito {
     var $nome;
     var $descricao;
     var $relacoes;
-    var $subconceitos;
+    var $sub_concept;
     var $namespace;
 
     function conceito($n, $d) {
         $this->nome = $n;
         $this->descricao = $d;
         $this->relacoes = array();
-        $this->subconceitos = array(); //not initialized
+        $this->sub_concept = array(); //not initialized
         $this->namespace = "";
     }
 

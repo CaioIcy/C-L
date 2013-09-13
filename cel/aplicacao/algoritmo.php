@@ -44,10 +44,10 @@ session_start();
          * Adicionar a chave como um subconceito do conceito.
          */
 
-        function montar_hierarquia($conc, $nova_lista, $list) {
-            foreach ($nova_lista as $subcon) {
-                $key = existe_conceito($subcon, $list);
-                $conc->subconceitos[] = $subcon;
+        function create_hierarchy($concept, $new_list, $current_list) {
+            foreach ($new_list as $sub_concept) {
+                $key = existe_conceito($sub_concept, $current_list);
+                $concept->sub_concept[] = $sub_concept;
             }
         }
 
@@ -69,7 +69,7 @@ session_start();
          * Verificar consistencia.
          */
 
-        function traduz_sujeito_objeto($lista_de_sujeito_e_objeto, $conceitos, $relacoes, $axiomas) {
+        function traduz_sujeito_objeto($lista_de_sujeito_e_objeto, $concept, $relations, $axioms) {
 
             for (; $_SESSION["index1"] < count($lista_de_sujeito_e_objeto); ++$_SESSION["index1"]) {
 
@@ -100,8 +100,8 @@ session_start();
                     }
                     while (!$_SESSION["finish_insert"]) {
                         if (!isset($_SESSION["exist"])) {
-                            asort($relacoes);
-                            $_SESSION["lista"] = $relacoes;
+                            asort($relations);
+                            $_SESSION["lista"] = $relations;
                             $_SESSION["nome1"] = $imp;
                             $_SESSION["nome2"] = $suj;
                             $_SESSION["job"] = "exist";
@@ -126,18 +126,18 @@ session_start();
                                 continue;
                             }
                             $_SESSION["verbos_selecionados"][] = $nome;
-                            $i = array_search($nome, $relacoes);
+                            $i = array_search($nome, $relations);
                             if ($i === false) {
-                                $_SESSION["impact"][] = (array_push($relacoes, $nome) - 1);
+                                $_SESSION["impact"][] = (array_push($relations, $nome) - 1);
                             } else {
                                 $_SESSION["impact"][] = $i;
                             }
                         } else if ($_POST["indice"] != -1) {
                             session_unregister("exist");
-                            if ((count($_SESSION["verbos_selecionados"]) != 0) && array_search($relacoes[$_POST["indice"]], $_SESSION["verbos_selecionados"]) !== false) {
+                            if ((count($_SESSION["verbos_selecionados"]) != 0) && array_search($relations[$_POST["indice"]], $_SESSION["verbos_selecionados"]) !== false) {
                                 continue;
                             }
-                            $_SESSION["verbos_selecionados"][] = $relacoes[$_POST["indice"]];
+                            $_SESSION["verbos_selecionados"][] = $relations[$_POST["indice"]];
                             $_SESSION["impact"][] = $_POST["indice"];
                         } else {
                             $_SESSION["finish_insert"] = TRUE;
@@ -159,9 +159,9 @@ session_start();
                         $_SESSION["finish_relation"] = FALSE;
                         while (!$_SESSION["finish_relation"]) {
                             if (!isset($_SESSION["insert_relation"])) {
-                                asort($conceitos);
-                                $_SESSION["lista"] = $conceitos;
-                                $_SESSION["nome1"] = $relacoes[$indice];
+                                asort($concept);
+                                $_SESSION["lista"] = $concept;
+                                $_SESSION["nome1"] = $relations[$indice];
                                 $_SESSION["nome2"] = $suj->nome;
                                 $_SESSION["nome3"] = $imp;
                                 $_SESSION["job"] = "insert_relation";
@@ -203,7 +203,7 @@ session_start();
                                         $_SESSION["conceito"]->relacoes[] = new relacao_entre_conceitos($conc, $_SESSION["nome1"]);
                                     }
                                 } else if ($_POST["indice"] != "-1") {
-                                    $conc = $conceitos[$_POST["indice"]]->nome;
+                                    $conc = $concept[$_POST["indice"]]->nome;
                                     if ((count($_SESSION["predicados_selecionados"]) != 0) && (array_search($conc, $_SESSION["predicados_selecionados"]) !== null)) {
                                         continue;
                                     }
@@ -243,7 +243,7 @@ session_start();
                         $_SESSION["axiomas_selecionados"] = array();
 
                     if (!isset($_SESSION["disjoint"])) {
-                        $_SESSION["lista"] = $conceitos;
+                        $_SESSION["lista"] = $concept;
                         $_SESSION["nome1"] = $_SESSION["conceito"]->nome;
                         $_SESSION["job"] = "disjoint";
                         ?>
@@ -255,8 +255,8 @@ session_start();
                     }
                     if ($_POST["existe"] == "TRUE") {
                         $axioma = $_SESSION["conceito"]->nome . " disjoint " . strtolower($_POST["nome"]);
-                        if (array_search($axioma, $axiomas) === false) {
-                            $axiomas[] = $axioma;
+                        if (array_search($axioma, $axioms) === false) {
+                            $axioms[] = $axioma;
                             $_SESSION["axiomas_selecionados"][] = $axioma;
                         }
                         session_unregister("disjoint");
@@ -266,8 +266,8 @@ session_start();
                 }
                 $_SESSION["axiomas_selecionados"] = array();
 
-                $conceitos[] = $_SESSION["conceito"];
-                asort($conceitos);
+                $concept[] = $_SESSION["conceito"];
+                asort($concept);
 
                 if (!checks_consistence()) {
                     exit();
@@ -498,7 +498,7 @@ session_start();
                             }
                         }
                         if (count($filhos) > 0) {
-                            montar_hierarquia(&$conceitos[$key2], $filhos, $conceitos);
+                            create_hierarchy(&$conceitos[$key2], $filhos, $conceitos);
                             $achou = true;
                         }
                     } else {

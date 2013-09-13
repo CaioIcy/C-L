@@ -120,7 +120,7 @@ function grava_conceitos($fp, $url, $lista_de_conceitos, $criador) {
 
 
         // Procura pelo conceito-pai (SubConceptOf) 
-        $lista_subconceitos = $oConceito->subconceitos;
+        $lista_subconceitos = $oConceito->sub_concept;
         foreach ($lista_subconceitos as $subconceito) {
             $s_subconc = '<rdfs:subClassOf>';
             $s_subconc = $s_subconc . '<daml:Class rdf:about="' . $url . '#' . strip_tags($subconceito) . '" />';

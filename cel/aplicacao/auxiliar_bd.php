@@ -211,7 +211,7 @@ function get_lista_de_conceitos() {
 
         foreach ($aux as $key => $conc1) {
             if ($conc1->nome == $conceito_nome) {
-                $aux[$key]->subconceitos[] = $subconceito_nome;
+                $aux[$key]->sub_concept[] = $subconceito_nome;
             }
         }
     }
@@ -347,7 +347,7 @@ function salvar_algoritmo() {
             }
         }
         foreach ($_SESSION["lista_de_conceitos"] as $conc) {
-            foreach ($conc->subconceitos as $subconceito) {
+            foreach ($conc->sub_concept as $subconceito) {
                 if ($subconceito != -1) {
                     $query = "select id_conceito from conceito where nome = '$subconceito' and id_projeto='$id_projeto';";
                     $result = mysql_query($query) or die("A consulta � BD falhou : " . mysql_error() . __LINE__);
