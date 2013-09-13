@@ -81,18 +81,18 @@ if (isset($submit)) {
             <!--
                 function checks_textArea(form)
                 {
-                    titulo = form.titulo.value;
-                    objetivo = form.objetivo.value;
-                    contexto = form.contexto.value;
+                    title_area = form.titulo.value;
+                    goal_area = form.objetivo.value;
+                    context_area = form.contexto.value;
 
-                    if ((titulo == ""))
+                    if ((title_area == ""))
                     {
                         alert("Por favor, digite o titulo do cen�rio.")
                         form.titulo.focus()
                         return false;
                     } else {
                         padrao = /[\\\/\?"<>:|]/;
-                        OK = padrao.exec(titulo);
+                        OK = padrao.exec(title_area);
                         if (OK)
                         {
                             window.alert("O t�tulo do cen�rio n�o pode conter nenhum dos seguintes caracteres:   / \\ : ? \" < > |");
@@ -101,14 +101,14 @@ if (isset($submit)) {
                         }
                     }
 
-                    if ((objetivo == ""))
+                    if ((goal_area == ""))
                     {
                         alert("Por favor, digite o objetivo do cen�rio.")
                         form.objetivo.focus()
                         return false;
                     }
 
-                    if ((contexto == ""))
+                    if ((context_area == ""))
                     {
                         alert("Por favor, digite o contexto do cen�rio.")
                         form.contexto.focus()
@@ -144,7 +144,7 @@ if (isset($submit)) {
             <h4>Adicionar Cen�rio</h4>
             <br>
     <?php
-    if ($sucesso == "s") {
+    if ($success == "s") {
         ?>
                 <p style="color: blue; font-weight: bold; text-align: center">Cen�rio inserido com sucesso!</p>
         <?php
