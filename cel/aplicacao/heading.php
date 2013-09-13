@@ -4,7 +4,7 @@ session_start();
 include("funcoes_genericas.php");
 
 
-chkUser("index.php");        // Cenario: controle de acesso
+chechUserAuthentication("index.php");        // Cenario: controle de acesso
 // Cen�rio - Usu�rio escolhe Projeto
 // Objetivo:  Permitir ao Usu�rio escolher um projeto.
 // Contexto:  O usu�rio deseja escoher um projeto.
@@ -24,7 +24,7 @@ if (isset($_GET['id_projeto'])) {
 
 <script language="javascript1.3">
 
-    function getIDPrj() {
+    function getIDProject() {
         var select = document.forms[0].id_projeto; // combo-box de projeto
         var indice = select.selectedIndex; // indice selecionado
         var id_projeto = select.options[indice].value; // id_projeto correspondente ao indice
@@ -36,11 +36,11 @@ if (isset($_GET['id_projeto'])) {
         // Para nao fazer nada se selecionarem o "-- Selecione um Projeto --"
         if (!(document.forms[0].id_projeto.options[0].selected))
         {
-            top.frames['code'].location.replace('code.php?id_projeto=' + getIDPrj());
-            top.frames['text'].location.replace('main.php?id_projeto=' + getIDPrj());
+            top.frames['code'].location.replace('code.php?id_projeto=' + getIDProject());
+            top.frames['text'].location.replace('main.php?id_projeto=' + getIDProject());
 
 
-            location.replace('heading.php?id_projeto=' + getIDPrj());
+            location.replace('heading.php?id_projeto=' + getIDProject());
         } else {
 
             location.reload();
@@ -52,10 +52,10 @@ if (isset($_GET['id_projeto'])) {
 if (isset($id_project)) {   // $id_projeto soh nao estara setada caso seja a primeira
     // vez que o usuario esteja acessando o sistema
     // Checagem de seguranca, pois $id_projeto eh passado atraves de JavaScript (cliente)
-    check_proj_perm($_SESSION['id_usuario_corrente'], $id_project) or die("Permissao negada");
+    checkPermissionToProject($_SESSION['id_usuario_corrente'], $id_project) or die("Permissao negada");
     ?>
 
-        function setPrjSelected() {
+        function setProjectSelected() {
             var select = document.forms[0].id_projeto;
             for (var i = 0; i < select.length; i++) {
                 if (select.options[i].value == <?= $id_project ?>) {
@@ -100,7 +100,7 @@ if (isset($id_project)) {
 
                 function novoLexico() {
 <?php
-//Cen�rios -  Atualizar L�xico
+//Cen�rios - Atualizar L�xico
 //Objetivo:	Permitir Inclus�o, Altera��o e Exclus�o de um L�xico por um usu�rio
 //Contexto:	Usu�rio deseja incluir um l�xico ainda n�o cadastrado, alterar e/ou 
 //              excluir um cen�rio/l�xico previamente cadastrados.
@@ -126,7 +126,7 @@ if (isset($id_project)) {
                     open(url, where, window_spec);
                 }
 
-                function prjInfo(idprojeto) {
+                function projectInformation(idprojeto) {
                     top.frames['text'].location.replace('main.php?id_projeto=' + idprojeto);
                 }
 
@@ -240,7 +240,7 @@ if (isset($id_project)) {    // Se o usuario ja tiver escolhido um projeto,
 //            -Alterar Cadastro.
     ?> <a href="#" onClick="novoCenario();">Adicionar Cen�rio</a>&nbsp;&nbsp;&nbsp; 
                                         <a href="#" onClick="novoLexico();">Adicionar S�mbolo</a>&nbsp;&nbsp;&nbsp; 
-                                        <a href="#" title="Informa��es sobre o Projeto" onClick="prjInfo(<?= $id_project ?>);">Info</a>&nbsp;&nbsp;&nbsp; 
+                                        <a href="#" title="Informa��es sobre o Projeto" onClick="projectInformation(<?= $id_project ?>);">Info</a>&nbsp;&nbsp;&nbsp; 
     <?php
 }
 ?> <?php

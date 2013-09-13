@@ -18,7 +18,7 @@ include_once("coloca_links.php");
 
 
 // Checa se o usu�rio foi autenticado
-chkUser("index.php");
+chechUserAuthentication("index.php");
 
 //Recebe parametro da heading.php. Sem isso vai travar ja que a variavel nao foi inicializada 
 if (isset($_GET['id_projeto'])) {
@@ -42,7 +42,7 @@ if (!isset($_SESSION['id_projeto_corrente'])) {
         <script language="javascript1.3"> 
 
             // Funcoes que serao usadas quando o script for chamado atraves dele proprio ou da arvore 
-            function reCarrega(URL) { 
+            function recharge(URL) { 
                 document.location.replace(URL); 
             } 
 
@@ -58,7 +58,7 @@ if (!isset($_SESSION['id_projeto_corrente'])) {
 //                Se usu�rio clica em Alterar ent�o ALTERAR CEN�RIO 
 ?>    
 
-    function altCenario(cenario) { 
+    function changes_scene(cenario) { 
         var url = 'alt_cenario.php?id_projeto=' + '<?= $_SESSION['id_projeto_corrente'] ?>' + '&id_cenario=' + cenario; 
         var where = '_blank'; 
         var window_spec = 'dependent,height=660,width=550,resizable,scrollbars,titlebar';
@@ -77,7 +77,7 @@ if (!isset($_SESSION['id_projeto_corrente'])) {
 //                Se usu�rio clica em Excluir ent�o EXCLUIR CEN�RIO 
 ?>    
 
-    function rmvCenario(cenario) { 
+    function removes_scene(cenario) { 
         var url = 'rmv_cenario.php?id_projeto=' + '<?= $_SESSION['id_projeto_corrente'] ?>' + '&id_cenario=' + cenario; 
         var where = '_blank'; 
         var window_spec = 'dependent,height=300,width=550,resizable,scrollbars,titlebar'; 
@@ -96,7 +96,7 @@ if (!isset($_SESSION['id_projeto_corrente'])) {
 //                Se usu�rio clica em Alterar ent�o ALTERAR L�XICO 
 ?>    
 
-    function altLexico(lexico) { 
+    function changes_lexicon(lexico) { 
         var url = 'alt_lexico.php?id_projeto=' + '<?= $_SESSION['id_projeto_corrente'] ?>' + '&id_lexico=' + lexico; 
         var where = '_blank'; 
         var window_spec = 'dependent,height=573,width=570,resizable,scrollbars,titlebar';
@@ -115,7 +115,7 @@ if (!isset($_SESSION['id_projeto_corrente'])) {
 //                Se usu�rio clica em Excluir ent�o EXCLUIR L�XICO 
 ?>    
 
-    function rmvLexico(lexico) { 
+    function removes_lexicon(lexico) { 
         var url = 'rmv_lexico.php?id_projeto=' + '<?= $_SESSION['id_projeto_corrente'] ?>' + '&id_lexico=' + lexico; 
         var where = '_blank'; 
         var window_spec = 'dependent,height=300,width=550,resizable,scrollbars,titlebar'; 
@@ -137,7 +137,7 @@ if (!isset($_SESSION['id_projeto_corrente'])) {
 //                Se usu�rio clica em Alterar ent�o ALTERAR CEN�RIO 
 ?>    
 
-    function altConceito(conceito) { 
+    function change_concept(concept) { 
         var url = 'alt_conceito.php?id_projeto=' + '<?= $_SESSION['id_projeto_corrente'] ?>' + '&id_conceito=' + conceito; 
         var where = '_blank'; 
         var window_spec = 'dependent,height=300,width=550,resizable,scrollbars,titlebar'; 
@@ -156,16 +156,16 @@ if (!isset($_SESSION['id_projeto_corrente'])) {
 //                Se usu�rio clica em Excluir ent�o EXCLUIR CEN�RIO 
 ?>    
 
-    function rmvConceito(conceito) { 
-        var url = 'rmv_conceito.php?id_projeto=' + '<?= $_SESSION['id_projeto_corrente'] ?>' + '&id_conceito=' + conceito; 
+    function remove_conceito(concept) { 
+        var url = 'rmv_conceito.php?id_projeto=' + '<?= $_SESSION['id_projeto_corrente'] ?>' + '&id_conceito=' + concept; 
         var where = '_blank'; 
         var window_spec = 'dependent,height=300,width=550,resizable,scrollbars,titlebar'; 
         open(url, where, window_spec); 
     } 
         
-    function rmvRelacao(relacao) { 
+    function remove_relationship(relationship) { 
             
-        var url = 'rmv_relacao.php?id_projeto=' + '<?= $_SESSION['id_projeto_corrente'] ?>' + '&id_relacao=' + relacao; 
+        var url = 'rmv_relacao.php?id_projeto=' + '<?= $_SESSION['id_projeto_corrente'] ?>' + '&id_relacao=' + relationship; 
         var where = '_blank'; 
         var window_spec = 'dependent,height=300,width=550,resizable,scrollbars,titlebar'; 
         open(url, where, window_spec); 
@@ -185,7 +185,7 @@ if (!isset($_SESSION['id_projeto_corrente'])) {
 //            de cen�rio); 
 ?>    
 
-    function pedidoCenario() { 
+    function request_scene() { 
 <?php
 if (isset($id_project)) {
     ?>    
@@ -217,7 +217,7 @@ if (isset($id_project)) {
 //            ( ver Verificar pedidos de altera��o de termos do l�xico); 
 ?>    
 
-    function pedidoLexico() { 
+    function request_lexicon() { 
 
 <?php
 if (isset($id_project)) {
@@ -250,7 +250,7 @@ if (isset($id_project)) {
 //            ( ver Verificar pedidos de altera��o de termos do l�xico); 
 ?>    
 
-    function pedidoConceito() { 
+    function request_concept() { 
 
 <?php
 if (isset($id_project)) {
@@ -269,7 +269,7 @@ if (isset($id_project)) {
                     open(url, where, window_spec); 
                 } 
         
-                function pedidoRelacao() { 
+                function request_relationship() { 
 
 <?php
 if (isset($id_project)) {
@@ -301,7 +301,7 @@ if (isset($id_project)) {
 //            -Adicionar usu�rio (n�o existente) neste projeto (ver Adicionar Usu�rio); 
 ?>    
 
-    function addUsuario() { 
+    function add_user() { 
         var url = 'add_usuario.php'; 
         var where = '_blank'; 
         var window_spec = 'dependent,height=320,width=490,resizable,scrollbars,titlebar'; 
@@ -322,7 +322,7 @@ if (isset($id_project)) {
 //            (ver Relacionar usu�rios com projetos); 
 ?>    
 
-    function relUsuario() { 
+    function relationship_user() { 
         var url = 'rel_usuario.php'; 
         var where = '_blank'; 
         var window_spec = 'dependent,height=380,width=550,resizable,scrollbars,titlebar'; 
@@ -342,7 +342,7 @@ if (isset($id_project)) {
 //            -Gerar xml deste projeto (ver Gerar relat�rios XML); 
 ?>    
 
-    function geraXML() 
+    function generates_XML() 
     { 
 
 <?php
@@ -362,7 +362,7 @@ if (isset($id_project)) {
                     open(url, where, window_spec); 
                 } 
 
-                function recuperaXML() 
+                function recuperates_XML() 
                 { 
 
 <?php
@@ -382,7 +382,7 @@ if (isset($id_project)) {
                     open(url, where, window_spec); 
                 } 
 		
-                function geraGrafo() 
+                function generates_grafo() 
                 { 
 
 <?php
@@ -407,7 +407,7 @@ if (isset($id_project)) {
 // Ontologia 
 // Objetivo:  Gerar ontologia do projeto 
 ?>    
-                    function geraOntologia() 
+                    function generates_Ontology() 
                     { 
 
 <?php
@@ -431,7 +431,7 @@ if (isset($id_project)) {
 // Ontologia - DAML 
 // Objetivo:  Gerar daml deste da ontologia do projeto 
 ?>    
-    function geraDAML() 
+    function generates_DAML() 
     { 
 
 <?php
@@ -452,9 +452,9 @@ if (isset($id_project)) {
                 } 
 
 <?php
-// Objetivo: Recuperar hist�rico da ontologia em DAML 
+// Objetivo : Recuperar hist�rico da ontologia em DAML 
 ?>    
-    function recuperaDAML() 
+    function recuperates_DAML() 
     { 
 
 <?php
@@ -510,7 +510,7 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
 
 
     <?php
-    $c = bd_connect() or die("Erro ao conectar ao SGBD");
+    $conexaoComBanco = bd_connect() or die("Erro ao conectar ao SGBD");
     ?>   
 
 
@@ -523,52 +523,52 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
               FROM cenario    
               WHERE id_cenario = $id";
 
-        $qrr = mysql_query($query) or die("Erro ao enviar a query de selecao !!" . mysql_error());
-        $result = mysql_fetch_array($qrr);
+        $query_r = mysql_query($query) or die("Erro ao enviar a query de selecao !!" . mysql_error());
+        $result = mysql_fetch_array($query_r);
 
         $c_id_projeto = $result['id_projeto'];
 
         $vetorDeCenarios = carrega_vetor_cenario($c_id_projeto, $id, true); // carrega vetor de cenario
         quicksort($vetorDeCenarios, 0, count($vetorDeCenarios) - 1, 'cenario');
 
-        $vetorDeLexicos = carrega_vetor_lexicos($c_id_projeto, 0, false); // carrega vetor de l�xicos 
-        quicksort($vetorDeLexicos, 0, count($vetorDeLexicos) - 1, 'lexico');
+        $vetor_of_lexicos = carrega_vetor_lexicos($c_id_projeto, 0, false); // carrega vetor de l�xicos 
+        quicksort($vetor_of_lexicos, 0, count($vetor_of_lexicos) - 1, 'lexico');
         ?>    
 
                     <tr> 
                         <th>Titulo:</th><td CLASS="Estilo">
-        <?php echo nl2br(monta_links($result['titulo'], $vetorDeLexicos, $vetorVazio)); ?>
+        <?php echo nl2br(monta_links($result['titulo'], $vetor_of_lexicos, $vetorVazio)); ?>
                         </td> 
 
                     </tr> 
                     <tr> 
                         <th>Objetivo:</th><td CLASS="Estilo">
-        <?php echo nl2br(monta_links($result['objetivo'], $vetorDeLexicos, $vetorVazio)); ?>
+        <?php echo nl2br(monta_links($result['objetivo'], $vetor_of_lexicos, $vetorVazio)); ?>
                         </td> 
                     </tr> 
                     <tr> 
                         <th>Contexto:</th><td CLASS="Estilo">
-        <?php echo nl2br(monta_links($result['contexto'], $vetorDeLexicos, $vetorDeCenarios)); ?>		 
+        <?php echo nl2br(monta_links($result['contexto'], $vetor_of_lexicos, $vetorDeCenarios)); ?>		 
                         </td> 
                     </tr> 
                     <tr> 
                         <th>Atores:</th><td CLASS="Estilo">
-        <?php echo nl2br(monta_links($result['atores'], $vetorDeLexicos, $vetorVazio)); ?>
+        <?php echo nl2br(monta_links($result['atores'], $vetor_of_lexicos, $vetorVazio)); ?>
                         </td>  
                     </tr> 
                     <tr> 
                         <th>Recursos:</th><td CLASS="Estilo">
-        <?php echo nl2br(monta_links($result['recursos'], $vetorDeLexicos, $vetorVazio)); ?>
+        <?php echo nl2br(monta_links($result['recursos'], $vetor_of_lexicos, $vetorVazio)); ?>
                         </td> 
                     </tr> 
                     <tr> 
                         <th>Exce��o:</th><td CLASS="Estilo">
-        <?php echo nl2br(monta_links($result['excecao'], $vetorDeLexicos, $vetorVazio)); ?>
+        <?php echo nl2br(monta_links($result['excecao'], $vetor_of_lexicos, $vetorVazio)); ?>
                         </td> 
                     </tr> 
                     <tr> 
                         <th>Epis�dios:</th><td CLASS="Estilo">
-        <?php echo nl2br(monta_links($result['episodios'], $vetorDeLexicos, $vetorDeCenarios)); ?>
+        <?php echo nl2br(monta_links($result['episodios'], $vetor_of_lexicos, $vetorDeCenarios)); ?>
 
                         </td> 
                     </tr> 
@@ -577,10 +577,10 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
                 <TABLE> 
                     <tr> 
                         <td CLASS="Estilo" height="40" valign=MIDDLE> 
-                            <a href="#" onClick="altCenario(<?= $result['id_cenario'] ?>);">Alterar Cen�rio</a> 
+                            <a href="#" onClick="changes_scene(<?= $result['id_cenario'] ?>);">Alterar Cen�rio</a> 
                             </th> 
                         <td CLASS="Estilo"  valign=MIDDLE> 
-                            <a href="#" onClick="rmvCenario(<?= $result['id_cenario'] ?>);">Remover Cen�rio</a> 
+                            <a href="#" onClick="removes_scene(<?= $result['id_cenario'] ?>);">Remover Cen�rio</a> 
                             </th> 
                     </tr> 
 
@@ -594,21 +594,21 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
               FROM lexico    
               WHERE id_lexico = $id";
 
-                $qrr = mysql_query($query) or die("Erro ao enviar a query de selecao !!" . mysql_error());
-                $result = mysql_fetch_array($qrr);
+                $query_r = mysql_query($query) or die("Erro ao enviar a query de selecao !!" . mysql_error());
+                $result = mysql_fetch_array($query_r);
 
                 $l_id_projeto = $result['id_projeto'];
 
-                $vetorDeLexicos = carrega_vetor_lexicos($l_id_projeto, $id, true);
+                $vetor_of_lexicos = carrega_vetor_lexicos($l_id_projeto, $id, true);
 
-                quicksort($vetorDeLexicos, 0, count($vetorDeLexicos) - 1, 'lexico');
+                quicksort($vetor_of_lexicos, 0, count($vetor_of_lexicos) - 1, 'lexico');
                 ?>    
                     <tr> 
                         <th>Nome:</th><td CLASS="Estilo"><?php echo $result['nome']; ?>
                         </td> 
                     </tr> 
                     <tr> 
-                        <th>No��o:</th><td CLASS="Estilo"><?php echo nl2br(monta_links($result['nocao'], $vetorDeLexicos, $vetorVazio)); ?>
+                        <th>No��o:</th><td CLASS="Estilo"><?php echo nl2br(monta_links($result['nocao'], $vetor_of_lexicos, $vetorVazio)); ?>
                         </td> 
                     </tr> 
                     <tr> 
@@ -616,7 +616,7 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
                         </td> 
                     </tr> 
                     <tr> 
-                        <th>Impacto(s):</th><td CLASS="Estilo"><?php echo nl2br(monta_links($result['impacto'], $vetorDeLexicos, $vetorVazio)); ?> 
+                        <th>Impacto(s):</th><td CLASS="Estilo"><?php echo nl2br(monta_links($result['impacto'], $vetor_of_lexicos, $vetorVazio)); ?> 
                         </td>
                     </tr> 
                     <tr> 
@@ -625,26 +625,26 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
                     <?php
                     //sinonimos 
                     $id_project = $_SESSION['id_projeto_corrente'];
-                    $qSinonimo = "SELECT * FROM sinonimo WHERE id_lexico = $id";
-                    $qrr = mysql_query($qSinonimo) or die("Erro ao enviar a query de Sinonimos" . mysql_error());
+                    $$query_sinonimous = "SELECT * FROM sinonimo WHERE id_lexico = $id";
+                    $query_r = mysql_query($$query_sinonimous) or die("Erro ao enviar a query de Sinonimos" . mysql_error());
 
-                    $tempS = array();
+                    $$temporary_variable_sinonimous = array();
 
-                    while ($resultSinonimo = mysql_fetch_array($qrr)) {
-                        $tempS[] = $resultSinonimo['nome'];
+                    while ($resultSinonimo = mysql_fetch_array($query_r)) {
+                        $$temporary_variable_sinonimous[] = $resultSinonimo['nome'];
                     }
                     ?>    
 
                         <td CLASS="Estilo">
 
                             <?php
-                            $count = count($tempS);
+                            $counter = count($$temporary_variable_sinonimous);
 
-                            for ($i = 0; $i < $count; $i++) {
-                                if ($i == $count - 1) {
-                                    echo $tempS[$i] . ".";
+                            for ($i = 0; $i < $counter; $i++) {
+                                if ($i == $counter - 1) {
+                                    echo $$temporary_variable_sinonimous[$i] . ".";
                                 } else {
-                                    echo $tempS[$i] . ", ";
+                                    echo $$temporary_variable_sinonimous[$i] . ", ";
                                 }
                             }
                             ?>    
@@ -657,10 +657,10 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
                 <TABLE> 
                     <tr> 
                         <td CLASS="Estilo" height="40" valign="middle"> 
-                            <a href="#" onClick="altLexico(<?= $result['id_lexico'] ?>);">Alterar S�mbolo</a> 
+                            <a href="#" onClick="changes_lexicon(<?= $result['id_lexico'] ?>);">Alterar S�mbolo</a> 
                             </th> 
                         <td CLASS="Estilo" valign="middle"> 
-                            <a href="#" onClick="rmvLexico(<?= $result['id_lexico'] ?>);">Remover S�mbolo</a> 
+                            <a href="#" onClick="removes_lexicon(<?= $result['id_lexico'] ?>);">Remover S�mbolo</a> 
                             </th> 
                     </tr> 
 
@@ -673,8 +673,8 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
               FROM   conceito   
               WHERE  id_conceito = $id";
 
-        $qrr = mysql_query($query) or die("Erro ao enviar a query de selecao !!" . mysql_error());
-        $result = mysql_fetch_array($qrr);
+        $query_r = mysql_query($query) or die("Erro ao enviar a query de selecao !!" . mysql_error());
+        $result = mysql_fetch_array($query_r);
         ?>    
 
                     <tr> 
@@ -704,8 +704,8 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
                     $query = "SELECT id_relacao, nome   
               FROM relacao   
               WHERE id_relacao = $id";
-                    $qrr = mysql_query($query) or die("Erro ao enviar a query de selecao !!" . mysql_error());
-                    $result = mysql_fetch_array($qrr);
+                    $query_r = mysql_query($query) or die("Erro ao enviar a query de selecao !!" . mysql_error());
+                    $result = mysql_fetch_array($query_r);
                     ?>    
 
                     <tr> 
@@ -719,7 +719,7 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
                         <td CLASS="Estilo" height="40" valign=MIDDLE>                   
                             </th>
                         <td CLASS="Estilo"  valign=MIDDLE> 
-                            <a href="#" onClick="rmvRelacao(<?= $result['id_relacao'] ?>);">Remover Rela��o</a> 
+                            <a href="#" onClick="remove_relationship(<?= $result['id_relacao'] ?>);">Remover Rela��o</a> 
                             </th> 
                     </tr> 
 
@@ -759,13 +759,13 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
 
 
     <?php
-    frame_inferior($c, $t, $id);
+    frame_inferior($conexaoComBanco, $t, $id);
 } elseif (isset($id_project)) {         // SCRIPT CHAMADO PELO HEADING.PHP 
     // Foi passada uma variavel $id_projeto. Esta variavel deve conter o id de um 
     // projeto que o usuario esteja cadastrado. Entretanto, como a passagem eh 
     // feita usando JavaScript (no heading.php), devemos checar se este id realmente 
     // corresponde a um projeto que o usuario tenha acesso (seguranca). 
-    check_proj_perm($_SESSION['id_usuario_corrente'], $id_project) or die("Permissao negada");
+    checkPermissionToProject($_SESSION['id_usuario_corrente'], $id_project) or die("Permissao negada");
 
     // Seta uma variavel de sessao correspondente ao projeto atual 
     $_SESSION['id_projeto_corrente'] = $id_project;
@@ -832,10 +832,10 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
                     </TR>
 
                     <TR> 
-                        <td CLASS="Estilo"><a href="#" onClick="addUsuario();">Adicionar usu�rio (n�o cadastrado) neste projeto</a></td> 
+                        <td CLASS="Estilo"><a href="#" onClick="add_user();">Adicionar usu�rio (n�o cadastrado) neste projeto</a></td> 
                     </TR> 
                     <TR> 
-                        <td CLASS="Estilo"><a href="#" onClick="relUsuario();">Adicionar usu�rios j� existentes neste projeto</a></td> 
+                        <td CLASS="Estilo"><a href="#" onClick="relationship_user();">Adicionar usu�rios j� existentes neste projeto</a></td> 
                     </TR>   
 
                     <TR> 
@@ -843,17 +843,17 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
                     </TR> 
 
                     <TR> 
-                        <td CLASS="Estilo"><a href="#" onClick="pedidoCenario();">Verificar pedidos de altera��o de Cen�rios</a></td> 
+                        <td CLASS="Estilo"><a href="#" onClick="request_scene();">Verificar pedidos de altera��o de Cen�rios</a></td> 
                     </TR> 
                     <TR> 
-                        <td CLASS="Estilo"><a href="#" onClick="pedidoLexico();">Verificar pedidos de altera��o de termos do L�xico</a></td> 
+                        <td CLASS="Estilo"><a href="#" onClick="request_lexicon();">Verificar pedidos de altera��o de termos do L�xico</a></td> 
                     </TR>
                     <TR> 
-                        <td CLASS="Estilo"><a href="#" onClick="pedidoConceito();">Verificar pedidos de altera��o de Conceitos</a></td> 
+                        <td CLASS="Estilo"><a href="#" onClick="request_concept();">Verificar pedidos de altera��o de Conceitos</a></td> 
                     </TR> 
 
                     <TR> 
-                        <td CLASS="Estilo"><a href="#" onClick="pedidoRelacao();">Verificar pedidos de altera��o de Rela��es</a></td> 
+                        <td CLASS="Estilo"><a href="#" onClick="request_relationship();">Verificar pedidos de altera��o de Rela��es</a></td> 
                     </TR>
 
 
@@ -861,13 +861,13 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
                         <td CLASS="Estilo">&nbsp;</td> 
                     </TR> 
                     <TR> 
-                        <td CLASS="Estilo"><a href="#" onClick="geraGrafo();" >Gerar grafo deste projeto</a></td>
+                        <td CLASS="Estilo"><a href="#" onClick="generates_grafo();" >Gerar grafo deste projeto</a></td>
                     </TR>       
                     <TR> 
-                        <td CLASS="Estilo"><a href="#" onClick="geraXML();">Gerar XML deste projeto</a></td> 
+                        <td CLASS="Estilo"><a href="#" onClick="generates_XML();">Gerar XML deste projeto</a></td> 
                     </TR> 
                     <TR> 
-                        <td CLASS="Estilo"><a href="#" onClick="recuperaXML();">Recuperar XML deste projeto</a></td> 
+                        <td CLASS="Estilo"><a href="#" onClick="recuperates_XML();">Recuperar XML deste projeto</a></td> 
                     </TR> 
 
                     <TR> 
@@ -875,13 +875,13 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
                     </TR> 
 
                     <TR> 
-                        <td CLASS="Estilo"><a href="#" onClick="geraOntologia();">Gerar ontologia deste projeto</a></td> 
+                        <td CLASS="Estilo"><a href="#" onClick="generates_Ontology();">Gerar ontologia deste projeto</a></td> 
                     </TR>            
                     <TR> 
-                        <td CLASS="Estilo"><a href="#" onClick="geraDAML();">Gerar DAML da ontologia do projeto</a></td> 
+                        <td CLASS="Estilo"><a href="#" onClick="generates_DAML();">Gerar DAML da ontologia do projeto</a></td> 
                     </TR> 
                     <TR> 
-                        <td CLASS="Estilo"><a href="#" onClick="recuperaDAML();">Hist�rico em DAML da ontologia do projeto</a></td> 
+                        <td CLASS="Estilo"><a href="#" onClick="recuperates_DAML();">Hist�rico em DAML da ontologia do projeto</a></td> 
                     </TR>           
                     <TR> 
                         <td CLASS="Estilo"><a href="http://www.daml.org/validator/" target="new">*Validador de Ontologias na Web</a></td> 
@@ -910,7 +910,7 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
                         <th>Voc� n�o � um administrador deste projeto:</th> 	
                     </tr>	
                     <tr> 
-                        <td CLASS="Estilo"><a href="#" onClick="geraGrafo();" >Gerar grafo deste projeto</a></td>
+                        <td CLASS="Estilo"><a href="#" onClick="generates_grafo();" >Gerar grafo deste projeto</a></td>
                     </tr>  
                 </table>			
                 <?php
