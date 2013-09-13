@@ -4,9 +4,9 @@ session_start();
 include("funcoes_genericas.php");
 include("httprequest.inc");
 
-chkUser("index.php");        // Checa se o usuario foi autenticado
+chechUserAuthentication("index.php");        // Checa se o usuario foi autenticado
 
-$bd_recupera = bd_connect() or die("Erro ao conectar ao SGBD");
+$database_recuperation = database_connect() or die("Erro ao conectar ao SGBD");
 
 //Cen�rio -  Gerar Relat�rios XML 
 //Objetivo:	Permitir ao administrador gerar relat�rios em formato XML de um projeto,
@@ -17,11 +17,11 @@ $bd_recupera = bd_connect() or die("Erro ao conectar ao SGBD");
 //Recursos:	  Sistema, dados do relat�rio, dados cadastrados do projeto, banco de dados.
 //Epis�dios:  Gerando com sucesso o relat�rio a partir dos dados cadastrados do projeto,
 //             o sistema fornece ao administrador a tela de visualiza��o do relat�rio
-//             XML criado.
+//             XML criado
 
 $qq = "select * from publicacao where id_projeto = $id_project AND versao = $versao";
-$qrr = mysql_query($qq) or die("Erro ao enviar a query");
-$row = mysql_fetch_row($qrr);
+$query_r = mysql_query($qq) or die("Erro ao enviar a query");
+$row = mysql_fetch_row($query_r);
 $xml_banco = $row[3];
 
 echo $xml_banco;
