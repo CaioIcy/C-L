@@ -4,7 +4,7 @@ include_once("monta_relacoes.php");
 include_once("coloca_links.php");
 ### MONTA AS RELACOES USADAS NO MENU LATERAL###
 
-function monta_relacoes($id_projeto) {
+function make_relationship($id_projeto) {
     // Apaga todas as rela��es existentes das tabelas centocen, centolex e lextolex
 
     $DB = new PGDB ();
@@ -18,13 +18,13 @@ function monta_relacoes($id_projeto) {
     // Refaz as rela��es das tabelas centocen, centolex e lextolex
     //seleciona todos os cenarios
 
-    $q = "SELECT *
+    $query = "SELECT *
 	          FROM cenario
 	          WHERE id_projeto = $id_projeto
 	          ORDER BY CHAR_LENGTH(titulo) DESC";
-    $qrr = mysql_query($q) or die("Erro ao enviar a query");
+    $query_r = mysql_query($query) or die("Erro ao enviar a query");
 
-    while ($result = mysql_fetch_array($qrr)) { // Para todos os cenarios 
+    while ($result = mysql_fetch_array($query_r)) { // Para todos os cenarios 
         $id_cenario_atual = $result['id_cenario'];
 
         // Monta vetor com titulo dos cenarios
@@ -43,58 +43,58 @@ function monta_relacoes($id_projeto) {
 
         quicksort($vetor_cenarios, 0, count($vetor_cenarios) - 1, 'cenario');
 
-        ## Titulo
+        ## Scene_title
 
-        $titulo = $result['titulo'];
-        $tempTitulo = cenario_para_lexico($id_cenario_atual, $titulo, $vetor_lexicos);
-        adiciona_relacionamento($id_cenario_atual, 'cenario', $tempTitulo);
+        $scene_title = $result['titulo'];
+        $temporary_title = cenario_para_lexico($id_cenario_atual, $scene_title, $vetor_lexicos);
+        add_relationship($id_cenario_atual, 'cenario', $temporary_title);
 
-        ## Objetivo
+        ## Scene_goal
 
-        $objetivo = $result['objetivo'];
-        $tempObjetivo = cenario_para_lexico($id_cenario_atual, $objetivo, $vetor_lexicos);
-        adiciona_relacionamento($id_cenario_atual, 'cenario', $tempObjetivo);
+        $scene_goal = $result['objetivo'];
+        $temporary_scene_goal = cenario_para_lexico($id_cenario_atual, $scene_goal, $vetor_lexicos);
+        add_relationship($id_cenario_atual, 'cenario', $temporary_scene_goal);
 
-        ## Contexto
+        ## Scene_context
 
-        $contexto = $result['contexto'];
-        $tempContexto = cenario_para_lexico_cenario_para_cenario($id_cenario_atual, $contexto, $vetor_lexicos, $vetor_cenarios);
-        adiciona_relacionamento($id_cenario_atual, 'cenario', $tempContexto);
+        $scene_context = $result['contexto'];
+        $temporary_scene_context = cenario_para_lexico_cenario_para_cenario($id_cenario_atual, $$scene_context, $vetor_lexicos, $vetor_cenarios);
+        add_relationship($id_cenario_atual, 'cenario', $$temporary_scene_context);
 
-        ## Atores 
+        ## Scene_performer 
 
-        $atores = $result['atores'];
-        $tempAtores = cenario_para_lexico($id_cenario_atual, $atores, $vetor_lexicos);
-        adiciona_relacionamento($id_cenario_atual, 'cenario', $tempAtores);
+        $scene_performer = $result['atores'];
+        $temporary_scene_performer = cenario_para_lexico($id_cenario_atual, $scene_performer, $vetor_lexicos);
+        add_relationship($id_cenario_atual, 'cenario', $temporary_scene_performer);
 
-        ## Recursos 
+        ## Scene_resource 
 
-        $recursos = $result['recursos'];
-        $tempRecursos = cenario_para_lexico($id_cenario_atual, $recursos, $vetor_lexicos);
-        adiciona_relacionamento($id_cenario_atual, 'cenario', $tempRecursos);
+        $scene_resource = $result['recursos'];
+        $temporary_scene_resource = cenario_para_lexico($id_cenario_atual, $$scene_resource, $vetor_lexicos);
+        add_relationship($id_cenario_atual, 'cenario', $temporary_scene_resource);
 
-        ## Excecao
+        ## Scene_exception
 
-        $excecao = $result['excecao'];
-        $tempExcecao = cenario_para_lexico($id_cenario_atual, $excecao, $vetor_lexicos);
-        adiciona_relacionamento($id_cenario_atual, 'cenario', $tempExcecao);
+        $scene_exception = $result['excecao'];
+        $temporary_scene_exception = cenario_para_lexico($id_cenario_atual, $$scene_exception, $vetor_lexicos);
+        add_relationship($id_cenario_atual, 'cenario', $temporary_scene_exception);
 
-        ## Episodios
+        ## Scene_episode
 
-        $episodios = $result['episodios'];
-        $tempEpisodios = cenario_para_lexico_cenario_para_cenario($id_cenario_atual, $episodios, $vetor_lexicos, $vetor_cenarios);
-        adiciona_relacionamento($id_cenario_atual, 'cenario', $tempEpisodios);
+        $scene_episode = $result['episodios'];
+        $temporary_scene_episode = cenario_para_lexico_cenario_para_cenario($id_cenario_atual, $$scene_episode, $vetor_lexicos, $vetor_cenarios);
+        add_relationship($id_cenario_atual, 'cenario', $temporary_scene_episode);
     }
 
     // Seleciona todos os l�xicos
 
-    $q = "SELECT *
+    $query = "SELECT *
 	          FROM lexico
 	          WHERE id_projeto = $id_projeto
 	          ORDER BY CHAR_LENGTH(nome) DESC";
-    $qrr = mysql_query($q) or die("Erro ao enviar a query");
+    $query_r = mysql_query($query) or die("Erro ao enviar a query");
 
-    while ($result = mysql_fetch_array($qrr)) { // Para todos os lexicos
+    while ($result = mysql_fetch_array($query_r)) { // Para todos os lexicos
         $id_lexico_atual = $result['id_lexico'];
 
         // Monta vetor com nomes e sinonimos de todos os lexicos menos o lexico atual
@@ -107,20 +107,20 @@ function monta_relacoes($id_projeto) {
         ## Nocao
 
         $nocao = $result['nocao'];
-        $tempNocao = lexico_para_lexico($id_lexico, $nocao, $vetor_lexicos);
-        adiciona_relacionamento($id_lexico_atual, 'lexico', $tempNocao);
+        $tempNocao = lexico_to_lexico($id_lexico, $nocao, $vetor_lexicos);
+        add_relationship($id_lexico_atual, 'lexico', $tempNocao);
 
         ## Impacto	
 
         $impacto = $result['impacto'];
-        $tempImpacto = lexico_para_lexico($id_lexico, $impacto, $vetor_lexicos);
-        adiciona_relacionamento($id_lexico_atual, 'lexico', $tempImpacto);
+        $tempImpacto = lexico_to_lexico($id_lexico, $impacto, $vetor_lexicos);
+        add_relationship($id_lexico_atual, 'lexico', $tempImpacto);
     }
 }
 
 // marca as rela��es de l�xicos para l�xicos
 
-function lexico_para_lexico($id_lexico, $texto, $vetor_lexicos) {
+function lexico_to_lexico($id_lexico, $texto, $vetor_lexicos) {
     $i = 0;
     while ($i < count($vetor_lexicos)) {
         $regex = "/(\s|\b)(" . $vetor_lexicos[$i]->nome . ")(\s|\b)/i";
@@ -202,7 +202,7 @@ function cenario_para_lexico_cenario_para_cenario($id_cenario, $texto, $vetor_le
 // id_from id do l�xico ou cen�rio que referencia outro cen�rio ou l�xico
 // $tipo_from tipo de quem esta referenciando ( se � l�xico ou cen�rio)
 
-function adiciona_relacionamento($id_from, $tipo_from, $texto) {
+function add_relationship($id_from, $tipo_from, $texto) {
     $i = 0; // indice do texto com marcadores
     $parser = 0; // verifica quando devem ser adicionadas as tags
 
