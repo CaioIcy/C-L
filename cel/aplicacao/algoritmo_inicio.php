@@ -65,7 +65,7 @@
 	}
 	else
 	{
-		$_SESSION["lista_de_relacoes"]  = get_lista_de_relacoes();
+		$_SESSION["lista_de_relacoes"]  = get_relationList();
 		$_SESSION["lista_de_conceitos"] = get_conceptList();
 		$_SESSION["lista_de_axiomas"]   = get_lista_de_axiomas();
 

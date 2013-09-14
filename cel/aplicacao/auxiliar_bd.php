@@ -222,7 +222,7 @@ function get_conceptList() {
 }
 
 //criar tabela para conceitos (class relacao_entre_conceitos)
-function get_lista_de_relacoes() {
+function get_relationList() {
     $id_projeto = $_SESSION['id_projeto'];
     $aux = array();
 

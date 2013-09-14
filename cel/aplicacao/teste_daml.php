@@ -19,7 +19,7 @@ $i = array("title" => "Ontologia de teste",
     "versionInfo" => "1.1");
 
 $lista_conceitos = get_lista_de_conceitos();
-$lista_relacoes = get_lista_de_relacoes();
+$lista_relacoes = get_relationList();
 $lista_axiomas = get_lista_de_axiomas();
 
 
