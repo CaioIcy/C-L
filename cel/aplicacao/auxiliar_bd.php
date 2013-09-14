@@ -420,7 +420,7 @@ if (isset($_SESSION["tipos"])) {
 
     include_once 'bd.inc';
 
-    $link = bd_connect();
+    $db_conection = bd_connect();
 
     $lexicon_array = verifica_tipo();
 
@@ -432,7 +432,7 @@ if (isset($_SESSION["tipos"])) {
         }
     }
 
-    mysql_close($link);
+    mysql_close($db_conection);
     ?>
     <script>
         document.location = "algoritmo_inicio.php";

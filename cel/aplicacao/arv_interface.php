@@ -5,7 +5,7 @@ include_once("bd.inc");
 session_start();
 
 
-$link = bd_connect();
+$db_conection = bd_connect();
 ?>    
 
 <html> 
@@ -107,7 +107,7 @@ foreach ($arv as $conc) {
 }
 
 
-mysql_close($link);
+mysql_close($db_conection);
 ?>
 
         </script>
