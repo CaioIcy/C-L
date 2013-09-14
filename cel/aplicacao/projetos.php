@@ -12,7 +12,7 @@ include("funcoes_genericas.php");
 <body>
 
 <?php
-$bd_recupera = bd_connect() or die("Erro ao conectar ao SGBD");
+$database_recuperation = database_connect() or die("Erro ao conectar ao SGBD");
 
 //Cen�rio - Escolher Projeto
 //Objetivo:   Permitir ao Administrador/Usu�rio escolher um projeto.
@@ -25,28 +25,28 @@ $bd_recupera = bd_connect() or die("Erro ao conectar ao SGBD");
 //            Caso contr�rio, ver USU�RIO ESCOLHE PROJETO.
 
 $query = "SELECT * FROM publicacao";
-$qrr = mysql_query($query) or die("Erro ao enviar a query de busca");
+$query_r = mysql_query($query) or die("Erro ao enviar a query de busca");
 ?>
 
     <?php
-    while ($result = mysql_fetch_row($qrr)) {
+    while ($result = mysql_fetch_row($query_r))  {
         $id_project = $result[0];
         $data = $result[1];
-        $versao = $result[2];
+        $version = $result[2];
         $XML = $result[3];
 
-        $qProcuraNomeProjeto = "SELECT * FROM projeto WHERE id_projeto = '$id_project'";
-        $qrrProcura = mysql_query($qProcuraNomeProjeto) or die("Erro ao enviar a query de busca de projeto");
-        $resultNome = mysql_fetch_row($qrrProcura);
-        $project_name = $resultNome[1];
+        $query_search_project_name = "SELECT * FROM projeto WHERE id_projeto = '$id_project'";
+        $query_r_search = mysql_query($query_search_project_name) or die("Erro ao enviar a query de busca de projeto");
+        $result_nome = mysql_fetch_row($query_r_search);
+        $project_name = $result_nome[1];
         ?>
         <table border='0'>
 
             <tr>
 
-                <th height="29" width="140"><a href="mostrarProjeto.php?id_projeto=<?= $id_project ?>&versao=<?= $versao ?>"><?= $project_name ?></a></th>
+                <th height="29" width="140"><a href="mostrarProjeto.php?id_projeto=<?= $id_project ?>&versao=<?= $version ?>"><?= $project_name ?></a></th>
                 <th height="29" width="140">Data: <?= $data ?></th>
-                <th height="29" width="100">Vers�o: <?= $versao ?></th>
+                <th height="29" width="100">Vers�o: <?= $version ?></th>
 
             </tr>
 
