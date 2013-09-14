@@ -12,7 +12,7 @@ include_once("CELConfig/CELConfig.inc");
 //                 Pr�-Condi��o: Login, Ser administrador do projeto selecionado, ter selecionado o projeto para remo��o em remove_projeto.php.  
 //Atores:	   Administrador
 //Recursos:	   Sistema, dados do projeto, base de dados
-//Epis�dios:       O sistema apaga todos os dados referentes ao determinado projeto da sua base de dados.
+//Epis�dios:       O sistema apaga todos os dados referentes ao determinado projeto da sua base de dados
 
 
 $id_project = $_SESSION['id_projeto_corrente'];
