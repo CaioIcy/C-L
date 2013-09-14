@@ -3,7 +3,7 @@ session_start();
 
 include_once("bd.inc");
 
-$database_conection = database_connect() or die("Erro ao conectar ao SGBD");
+$database_conection = database_connect() or die("Error while connecting to SGBD");
 
 // Cen�rio - Alterar cadastro
 //
@@ -21,9 +21,9 @@ $database_conection = database_connect() or die("Erro ao conectar ao SGBD");
 $id_user = $_SESSION['id_usuario_corrente'];
 
 
-$q = "SELECT * FROM usuario WHERE id_usuario='$id_user'";
+$query = "SELECT * FROM usuario WHERE id_usuario='$id_user'";
 
-$query_r = mysql_query($q) or die("Erro ao executar a query");
+$query_r = mysql_query($query) or die("Error while executing query");
 
   $row = mysql_fetch_row($query_r);
   $user_name  = $row[1];
@@ -35,7 +35,7 @@ $query_r = mysql_query($q) or die("Erro ao executar a query");
 ?>
 <html>
     <head>
-        <title>Alterar dados de Usu�rio</title>
+        <title>Change user data</title>
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
     </head>
 
@@ -50,29 +50,29 @@ nome       = form.nome.value;
 email      = form.email.value;
 
   if (login == "")
-    { alert ("Por favor, digite o seu Login.")
+    { alert ("Please, insert your Login.")
       form.login.focus()
       return false;
     }
    if ( email == "")
    {
-      alert ( "Por favor, digite o seu e-mail.")
+      alert ( "Please, insert your e-mail.")
       form.email.focus();
       return false;
    }
   if (senha == "")
-    { alert ("Por favor, digite a sua senha.")
+    { alert ("Please, insert your password.")
       form.senha.focus()
       return false;
     }
     if (nome == "")
-    { alert ("Por favor, digite o seu nome.")
+    { alert ("Please, insert your name.")
       form.nome.focus()
       return false;
     }
    if ( senha != senha_conf )
    {
-      alert ( "A senha e a confirmacao nao sao as mesmas!")
+      alert ( "The password and the confirmation aren't the same!")
       form.senha.focus();
       return false;
    }
@@ -87,7 +87,7 @@ function checkEmail(email) {
      {
         return (true)
      }
-   alert("Aten��o: o E-mail digitado n�o � v�lido.")
+   alert("Warning: the inserted e-mail is not valid.")
    email.focus();
    email.select();
    return (false)
@@ -98,11 +98,11 @@ function checkEmail(email) {
 //-->
 </SCRIPT>
     <body>
-    <h3 style="text-align: center">Por favor, preencha os dados abaixo:</h3>
+    <h3 style="text-align: center">Please, fill the data below:</h3>
         <form action="updUser.php" method="post">
         <table>
             <tr>
-                <td>Nome:</td><td colspan="3"><input name="nome" maxlength="255" size="48" type="text" value="<?=$user_name?>"></td>
+                <td>Name:</td><td colspan="3"><input name="nome" maxlength="255" size="48" type="text" value="<?=$user_name?>"></td>
             </tr>
             <tr>
                 <td>E-mail:</td><td colspan="3"><input name="email" maxlength="64" size="48" type="text" value="<?=$user_email?>" OnBlur="checkEmail(this)"></td>
@@ -111,16 +111,16 @@ function checkEmail(email) {
                 <td>Login:</td><td><input name="login" maxlength="32" size="24" type="text" value="<?=$user_login?>"></td>
             </tr>
             <tr>
-                <td>Senha:</td><td><input name="senha" maxlength="32" size="16" type="password" value=""></td>
+                <td>Password:</td><td><input name="senha" maxlength="32" size="16" type="password" value=""></td>
 			</tr>
 			<tr>
-				<td>Senha (confirma��o):</td><td><input name="senha_conf" maxlength="32" size="16" type="password" value=""></td>
+				<td>Password (confirmation):</td><td><input name="senha_conf" maxlength="32" size="16" type="password" value=""></td>
             </tr>
             <tr>
                 <td align="center" colspan="4" height="40" valign="bottom"><input name="submit" onClick="return TestarBranco(this.form);" type="submit" value="Atualizar"></td>
             </tr>
         </table>
         </form>
-        <br><i><a href="showSource.php?file=Call_UpdUser.php">Veja o c�digo fonte!</a></i>
+        <br><i><a href="showSource.php?file=Call_UpdUser.php">See the source code!</a></i>
      </body>
 </html>
