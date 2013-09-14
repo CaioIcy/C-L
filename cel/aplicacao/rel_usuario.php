@@ -4,26 +4,26 @@ session_start();
 include("funcoes_genericas.php");
 include("httprequest.inc");
 
-chkUser("index.php");
+check_user_authentication("index.php");
 
 // Conecta ao SGBD
-$db_conection = bd_connect() or die("Erro ao conectar ao SGBD");
+$database_conection = database_connect() or die("Erro ao conectar ao SGBD");
 
 
 if (isset($submit)) {   // Script chamado pelo submit
     // O procedimento sera remover todos que estao no projeto em questao
-    // (menos o administrador que esta adicionando/removendo usuarios)
+    // (menos o administrador que esta adicionando/removendo users)
     // e depois acrescentar aqueles que tiverem sido selecionados
     $query = "DELETE FROM participa
           WHERE id_usuario != " . $_SESSION['id_usuario_corrente'] . "
           AND id_projeto = " . $_SESSION['id_projeto_corrente'];
     mysql_query($query) or die("Erro ao executar a query de DELETE");
 
-    $n_sel = count($usuarios);  // Numero de usuarios selecionados no <select>
+    $n_sel = count($users);  // Numero de users selecionados no <select>
     for ($i = 0; $i < $n_sel; $i++) {
         // Para cada usuario selecionado
         $query = "INSERT INTO participa (id_usuario, id_projeto)
-              VALUES (" . $usuarios[$i] . ", " . $_SESSION['id_projeto_corrente'] . ")";
+              VALUES (" . $users[$i] . ", " . $_SESSION['id_projeto_corrente'] . ")";
         mysql_query($query) or die("Erro ao cadastrar usuario");
     }
     ?>
@@ -44,7 +44,7 @@ if (isset($submit)) {   // Script chamado pelo submit
             <script language="javascript1.3" src="MSelect.js"></script>
             <script language="javascript1.3">
 
-                function createMSelect() {
+                function create_m_select() {
                     var usr_lselect = document.forms[0].elements['usuarios[]'];
                     var usr_rselect = document.forms[0].usuarios_r;
                     var usr_l2r = document.forms[0].usr_l2r;
@@ -53,9 +53,9 @@ if (isset($submit)) {   // Script chamado pelo submit
                 }
 
                 function selAll() {
-                    var usuarios = document.forms[0].elements['usuarios[]'];
-                    for (var i = 0; i < usuarios.length; i++)
-                        usuarios.options[i].selected = true;
+                    var users = document.forms[0].elements['usuarios[]'];
+                    for (var i = 0; i < users.length; i++)
+                        users.options[i].selected = true;
                 }
 
             </script>
@@ -68,7 +68,7 @@ if (isset($submit)) {   // Script chamado pelo submit
                 -->
             </style>
         </head>
-        <body onLoad="createMSelect();">
+        <body onLoad="create_m_select();">
             <h4>Selecione os usu�rios para participar do projeto "<span style="color: orange"><?= simple_query("nome", "projeto", "id_projeto = " . $_SESSION['id_projeto_corrente']) ?></span>":</h4>
             <p style="color: red">Mantenha <strong>CTRL</strong> pressionado para selecionar m�ltiplas op��es</p>
             <form action="" method="post" onSubmit="selAll();">
@@ -90,7 +90,7 @@ if (isset($submit)) {   // Script chamado pelo submit
 // Atores:    Administrador
 // Recursos:  Usu�rios cadastrados
 // Epis�dios: O Administrador clica no link �Relacionar usu�rio j� existentes com este projeto�.
-    // Selecionar todos os usuarios que participam deste projeto,
+    // Selecionar todos os users que participam deste projeto,
     // menos o administrador que esta executando este script
     $query = "SELECT u.id_usuario, login
           FROM usuario u, participa p
@@ -98,8 +98,8 @@ if (isset($submit)) {   // Script chamado pelo submit
           AND p.id_projeto = " . $_SESSION['id_projeto_corrente'] . "
           AND u.id_usuario != " . $_SESSION['id_usuario_corrente'];
 
-    $qrr = mysql_query($query) or die("Erro ao enviar a query");
-    while ($result = mysql_fetch_array($qrr)) {
+    $query_r = mysql_query($query) or die("Erro ao enviar a query");
+    while ($result = mysql_fetch_array($query_r)) {
         ?>
 
                                     <option value="<?= $result['id_usuario'] ?>"><?= $result['login'] ?></option>
@@ -129,23 +129,23 @@ if (isset($submit)) {   // Script chamado pelo submit
                             <select  multiple name="usuarios_r" size="6">
 
     <?php
-    // Selecionar todos os usuarios que nao participam deste projeto
-    $subq = "SELECT id_usuario FROM participa where participa.id_projeto =" . $_SESSION['id_projeto_corrente'];
-    $subqrr = mysql_query($subq) or die("Erro ao enviar a subquery");
-    $resultadosubq = "(0)";
-    if ($subqrr != 0) {
-        $row = mysql_fetch_row($subqrr);
-        $resultadosubq = "( $row[0]";
-        while ($row = mysql_fetch_row($subqrr))
-            $resultadosubq = "$resultadosubq , $row[0]";
-        $resultadosubq = "$resultadosubq )";
+    // Selecionar todos os users que nao participam deste projeto
+    $subquery = "SELECT id_usuario FROM participa where participa.id_projeto =" . $_SESSION['id_projeto_corrente'];
+    $subquery_r = mysql_query($subquery) or die("Erro ao enviar a subquery");
+    $result_subquery = "(0)";
+    if ($subquery_r != 0) {
+        $row = mysql_fetch_row($subquery_r);
+        $result_subquery = "( $row[0]";
+        while ($row = mysql_fetch_row($subquery_r))
+            $result_subquery = "$result_subquery , $row[0]";
+        $result_subquery = "$result_subquery )";
     }
-    $query = "SELECT usuario.id_usuario, usuario.login FROM usuario where usuario.id_usuario not in " . $resultadosubq;
+    $query = "SELECT usuario.id_usuario, usuario.login FROM usuario where usuario.id_usuario not in " . $result_subquery;
     //$q = "SELECT usuario.id_usuario, usuario.login FROM usuario, participa where usuario.id_usuario=participa.id_usuario and participa.id_projeto<>".$_SESSION['id_projeto_corrente']." and participa.id_usuario not in ".$resultadosubq;
 
     echo($query);
-    $qrr = mysql_query($query) or die("Erro ao enviar a query");
-    while ($result = mysql_fetch_array($qrr)) {
+    $query_r = mysql_query($query) or die("Erro ao enviar a query");
+    while ($result = mysql_fetch_array($query_r)) {
         ?>
 
                                     <option value="<?= $result['id_usuario'] ?>"><?= $result['login'] ?></option>
@@ -182,7 +182,7 @@ if (isset($submit)) {   // Script chamado pelo submit
 //            Pr�-Condi��es: Ser administrador do projeto que deseja relacionar os usu�rios
 // Atores:    Administrador
 // Recursos:  Usu�rios cadastrados
-// Epis�dios: Para atualizar os relacionamentos realizados, o administrador clica no bot�o Atualizar.
+// Epis�dios: Para atualizar os relacionamentos realizados, o administrador clica no bot�o Atualizar
                                 ?>
 
                     <tr>
