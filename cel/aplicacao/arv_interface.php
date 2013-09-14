@@ -65,9 +65,9 @@ $db_conection = bd_connect();
 //Arvore de Conceitos 
 
 if (isset($_SESSION['lista_de_conceitos']))
-    $arv = $_SESSION['lista_de_conceitos'];
+    $concept_list = $_SESSION['lista_de_conceitos'];
 else
-    $arv = array();
+    $concept_list = array();
 //$arv = get_lista_de_conceitos();   
 
 
@@ -85,21 +85,21 @@ else
 
 
 // Conceitos 
-foreach ($arv as $conc) {
-    echo "\nmenu.addItem(\"$conc->nome\");\n";
+foreach ($concept_list as $concept) {
+    echo "\nmenu.addItem(\"$concept->nome\");\n";
     echo " var mC = null;\n";
     echo " mC = new MTMenu();\n";
     echo "menu.makeLastSubmenu(mC);\n";
 
     //Rela��es 
     //Verbos 
-    foreach ($conc->relacoes as $relacao) {
-        echo " mC.addItem(\"$relacao->verbo\",\"\");\n";
+    foreach ($concept->relacoes as $relationship) {
+        echo " mC.addItem(\"$relationship->verbo\",\"\");\n";
         echo " var mV = new MTMenu();\n";
 
         //Predicados 
-        foreach ($relacao->predicados as $predicado) {
-            echo " mV.addItem(\"$predicado\",\"blank.html\",\"enganaarvore\");\n";
+        foreach ($relationship->predicados as $predicate) {
+            echo " mV.addItem(\"$predicate\",\"blank.html\",\"enganaarvore\");\n";
         }
 
         echo " mC.makeLastSubmenu(mV);\n";
@@ -118,7 +118,7 @@ mysql_close($db_conection);
 
 <?php
 print "<font color=black>";
-print_r($arv);
+print_r($concept_list);
 print "</font>";
 ?>
     </body>
