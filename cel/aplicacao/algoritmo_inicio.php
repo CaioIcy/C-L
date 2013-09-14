@@ -10,7 +10,7 @@
 	//mysql_close($link);
         $database_conection = database_connect();
 
-	$lexicon_array = verifica_tipo();
+	$lexicon_array = is_typeDefined();
 
 	if( is_array($lexicon_array))
 	{
@@ -32,10 +32,10 @@
 		exit();
 	}
 
-	$_SESSION["lista_de_sujeito"] = get_lista_de_sujeito();
-	$_SESSION["lista_de_objeto" ] = get_lista_de_objeto();
-	$_SESSION["lista_de_verbo"  ] = get_lista_de_verbo();
-	$_SESSION["lista_de_estado" ] = get_lista_de_estado();
+	$_SESSION["lista_de_sujeito"] = get_subjectList();
+	$_SESSION["lista_de_objeto" ] = get_objectList();
+	$_SESSION["lista_de_verbo"  ] = get_verbList();
+	$_SESSION["lista_de_estado" ] = get_stateList();
 
 	/*print_r($_SESSION["lista_de_sujeito"]);
 	print_r($_SESSION["lista_de_objeto"]);
@@ -66,7 +66,7 @@
 	else
 	{
 		$_SESSION["lista_de_relacoes"]  = get_lista_de_relacoes();
-		$_SESSION["lista_de_conceitos"] = get_lista_de_conceitos();
+		$_SESSION["lista_de_conceitos"] = get_conceptList();
 		$_SESSION["lista_de_axiomas"]   = get_lista_de_axiomas();
 
 		$_SESSION["funcao"] = get_funcao();

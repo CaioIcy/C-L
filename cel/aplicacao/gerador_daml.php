@@ -35,7 +35,7 @@ $i = array("title" => $_POST['title'],
     "versionInfo" => $_POST['versionInfo']);
 
 $_SESSION['id_projeto'] = $_SESSION['id_projeto_corrente'];
-$lista_conceitos = get_lista_de_conceitos();
+$lista_conceitos = get_conceptList();
 $lista_relacoes = get_lista_de_relacoes();
 $lista_axiomas = get_lista_de_axiomas();
 

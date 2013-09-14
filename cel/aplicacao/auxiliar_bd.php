@@ -4,7 +4,7 @@ include_once 'auxiliar_algoritmo.php';
 include_once 'bd.inc';
 session_start();
 
-function get_lista_de_sujeito() {
+function get_subjectList() {
     $id_projeto = $_SESSION['id_projeto'];
     $aux = array();
 
@@ -20,7 +20,7 @@ function get_lista_de_sujeito() {
     return $aux;
 }
 
-function get_lista_de_objeto() {
+function get_objectList() {
     $id_projeto = $_SESSION['id_projeto'];
     $aux = array();
 
@@ -36,7 +36,7 @@ function get_lista_de_objeto() {
     return $aux;
 }
 
-function get_lista_de_verbo() {
+function get_verbList() {
     $id_projeto = $_SESSION['id_projeto'];
     $aux = array();
 
@@ -52,7 +52,7 @@ function get_lista_de_verbo() {
     return $aux;
 }
 
-function get_lista_de_estado() {
+function get_stateList() {
     $id_projeto = $_SESSION['id_projeto'];
     $aux = array();
 
@@ -68,7 +68,7 @@ function get_lista_de_estado() {
     return $aux;
 }
 
-function verifica_tipo() {
+function is_typeDefined() {
     $id_projeto = $_SESSION['id_projeto'];
     //Esta fun��o verifica se todos os membros da tabela de l�xicos tem um tipo definido
     //Caso haja registros na tabela sem tipo defino, a fun��o retorna estes registros
@@ -96,46 +96,46 @@ function verifica_tipo() {
     }
 }
 
-function atualiza_tipo($id_lexico, $tipo) {
-    $id_projeto = $_SESSION['id_projeto'];
+function changes_lexiconType($id_lexicon, $lexicon_type) {
+    $id_project = $_SESSION['id_projeto'];
     // esta fun��o atualiza o tipo do lexico $id_lexico (inteiro) para $tipo (string)
     // esta fun��o s� aceita os tipos: sujeito, objeto, verbo, estado e NULL
 
-    if (!(($tipo != "sujeito") || ($tipo != "objeto") || ($tipo != "verbo") || ($tipo != "estado") || ($tipo != "null"))) {
+    if (!(($lexicon_type != "sujeito") || ($lexicon_type != "objeto") || ($lexicon_type != "verbo") || ($lexicon_type != "estado") || ($lexicon_type != "null"))) {
         return (FALSE);
     }
-    if ($tipo == "null") {
-        $query = "update lexico set tipo = $tipo where id_lexico = '$id_lexico';";
+    if ($lexicon_type == "null") {
+        $query = "update lexico set tipo = $lexicon_type where id_lexico = '$id_lexicon';";
     } else {
-        $query = "update lexico set tipo = '$tipo' where id_lexico = '$id_lexico';";
+        $query = "update lexico set tipo = '$lexicon_type' where id_lexico = '$id_lexicon';";
     }
 
     $result = mysql_query($query) or die("A consulta � BD falhou : " . mysql_error() . __LINE__);
     return(TRUE);
 }
 
-function get_lexicon($id_lexico) {
-    $id_projeto = $_SESSION['id_projeto'];
+function get_lexicon($id_lexicon) {
+    $id_project = $_SESSION['id_projeto'];
     //retorna todos os campos do lexico; cada campo � uma posi��o do
     //array que pode ser indexada pelo nome do campo, ou por um indice
     //inteiro.
-    $query = "select * from lexico where id_lexico = '$id_lexico' AND id_projeto='$id_projeto';";
+    $query = "select * from lexico where id_lexico = '$id_lexicon' AND id_projeto='$id_project';";
     $result = mysql_query($query) or die("A consulta � BD falhou : " . mysql_error() . __LINE__);
     $line = mysql_fetch_array($result, MYSQL_BOTH);
     return($line);
 }
 
-function get_termLexicon($lexico) {
-    $id_projeto = $_SESSION['id_projeto'];
-    $impactos = array();
-    $id_lexico = $lexico['id_lexico'];
-    $query = "select impacto from impacto where id_lexico = '$id_lexico'";
+function get_termLexicon($lexicon) {
+    $id_project = $_SESSION['id_projeto'];
+    $impacts = array();
+    $id_lexicon = $lexicon['id_lexico'];
+    $query = "select impacto from impacto where id_lexico = '$id_lexicon'";
     $result = mysql_query($query) or die("A consulta � BD falhou : " . mysql_error() . __LINE__);
     while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
-        $impactos[] = strtolower($line['impacto']);
+        $impacts[] = strtolower($line['impacto']);
     }
-    $termo_do_lexico = new termo_do_lexico(strtolower($lexico['nome']), strtolower($lexico['nocao']), $impactos);
-    return $termo_do_lexico;
+    $lexicon_terms = new termo_do_lexico(strtolower($lexicon['nome']), strtolower($lexicon['nocao']), $impacts);
+    return $lexicon_terms;
 }
 
 /*
@@ -146,79 +146,79 @@ function get_termLexicon($lexico) {
   }
  */
 
-function cadastra_impacto($id_lexico, $impacto) {
-    $id_projeto = $_SESSION['id_projeto'];
-    $query = "insert into impacto (id_lexico, impacto) values ('$id_lexico', '$impacto');";
+function registers_impacts($id_lexicon, $lexicon_impacts) {
+    $id_project = $_SESSION['id_project'];
+    $query = "insert into impacto (id_lexico, impacto) values ('$id_lexicon', '$lexicon_impacts');";
     $result = mysql_query($query) or die("A consulta � BD falhou : " . mysql_error() . __LINE__);
 
-    $query = "select * from impacto where impacto = '$impacto' and id_lexico = $id_lexico;";
+    $query = "select * from impacto where impacto = '$lexicon_impacts' and id_lexico = $id_lexicon;";
     $result = mysql_query($query) or die("A consulta � BD falhou : " . mysql_error() . __LINE__);
 
     $line = mysql_fetch_array($result, MYSQL_ASSOC);
-    $id_impacto = $line['id_impacto'];
+    $id_impact = $line['id_impacto'];
 
-    return $id_impacto;
+    return $id_impact;
 }
 
 //criar tabela para conceitos (class conceito)
-function get_lista_de_conceitos() {
-    $id_projeto = $_SESSION['id_projeto'];
-    $aux = array();
+function get_conceptList() {
+    $id_project = $_SESSION['id_project'];
+    $concept_array = array();
 
-    $query = "select * from conceito where id_projeto='$id_projeto';";
-    $result1 = mysql_query($query) or die("A consulta � BD falhou : " . mysql_error() . __LINE__);
+    $query = "select * from conceito where id_projeto='$id_project';";
+    $first_result = mysql_query($query) or die("A consulta � BD falhou : " . mysql_error() . __LINE__);
 
-    while ($line = mysql_fetch_array($result1, MYSQL_BOTH)) {
-        $conc = new conceito($line['nome'], $line['descricao']);
-        $conc->namespace = $line['namespace'];
+    while ($first_line = mysql_fetch_array($first_result, MYSQL_BOTH)) {
+        $concept = new conceito($first_line['nome'], $first_line['descricao']);
+        $concept->namespace = $first_line['namespace'];
 
-        $id = $line['id_conceito'];
-        $query = "select * from relacao_conceito where id_conceito = '$id' AND id_projeto='$id_projeto';";
-        $result2 = mysql_query($query) or die("A consulta � BD falhou : " . mysql_error() . __LINE__);
-        while ($line2 = mysql_fetch_array($result2, MYSQL_BOTH)) {
-            $idrel = $line2['id_relacao'];
-            $query = "select * from relacao where id_relacao = '$idrel' AND id_projeto='$id_projeto';";
-            $result3 = mysql_query($query) or die("A consulta � BD falhou : " . mysql_error() . __LINE__);
-            $line3 = mysql_fetch_array($result3, MYSQL_BOTH);
-            $rel = $line3['nome'];
-            $pred = $line2['predicado'];
-            $indice = relation_exists($rel, $conc->relacoes);
-            if ($indice != -1) {
-                $conc->relacoes[$indice]->predicados[] = $pred;
+        $id = $first_line['id_conceito'];
+        $query = "select * from relacao_conceito where id_conceito = '$id' AND id_projeto='$id_project';";
+        $second_result = mysql_query($query) or die("A consulta � BD falhou : " . mysql_error() . __LINE__);
+        while ($second_line = mysql_fetch_array($second_result, MYSQL_BOTH)) {
+            $id_relation = $second_line['id_relacao'];
+            $query = "select * from relacao where id_relacao = '$id_relation' AND id_projeto='$id_project';";
+            $third_result = mysql_query($query) or die("A consulta � BD falhou : " . mysql_error() . __LINE__);
+            $third_line = mysql_fetch_array($third_result, MYSQL_BOTH);
+            $relation = $third_line['nome'];
+            $predicate = $second_line['predicado'];
+            $relation_index = relation_exists($relation, $concept->relacoes);
+            if ($relation_index != -1) {
+                $concept->relacoes[$relation_index]->predicados[] = $predicate;
             } else {
-                $conc->relacoes[] = new relacao_entre_conceitos($pred, $rel);
+                $concept->relacoes[] = new relacao_entre_conceitos($predicate, $relation);
             }
         }
-        $aux[] = $conc;
+        $concept_array[] = $concept;
     }
-    sort($aux);
+    sort($concept_array);
 
-    $query = "select * from hierarquia where id_projeto='$id_projeto';";
-    $result1 = mysql_query($query) or die("A consulta � BD falhou : " . mysql_error() . __LINE__);
-    while ($line = mysql_fetch_array($result1, MYSQL_BOTH)) {
+    $query = "select * from hierarquia where id_projeto='$id_project';";
+    $first_result = mysql_query($query) or die("A consulta � BD falhou : " . mysql_error() . __LINE__);
+    while ($first_line = mysql_fetch_array($first_result, MYSQL_BOTH)) {
 
-        $id_conceito = $line['id_conceito'];
-        $query = "select * from conceito where id_conceito = '$id_conceito' AND id_projeto='$id_projeto';";
-        $result2 = mysql_query($query) or die("A consulta � BD falhou : " . mysql_error() . __LINE__);
-        $line2 = mysql_fetch_array($result2, MYSQL_BOTH);
-        $conceito_nome = $line2['nome'];
+        $id_concept = $first_line['id_conceito'];
+        $query = "select * from conceito where id_conceito = '$id_concept' AND id_projeto='$id_project';";
+        $second_result = mysql_query($query) or die("A consulta � BD falhou : " . mysql_error() . __LINE__);
+        $second_line = mysql_fetch_array($second_result, MYSQL_BOTH);
+        $concept_name = $second_line['nome'];
 
-        $id_subconceito = $line['id_subconceito'];
-        $query = "select * from conceito where id_conceito = '$id_subconceito' AND id_projeto='$id_projeto';";
-        $result2 = mysql_query($query) or die("A consulta � BD falhou : " . mysql_error() . __LINE__);
-        $line2 = mysql_fetch_array($result2, MYSQL_BOTH);
-        $subconceito_nome = $line2['nome'];
+        $id_subConcept = $first_line['id_subconceito'];
+        $query = "select * from conceito where id_conceito = '$id_subConcept' AND id_projeto='$id_project';";
+        $second_result = mysql_query($query) or die("A consulta � BD falhou : " . mysql_error() . __LINE__);
+        $second_line = mysql_fetch_array($second_result, MYSQL_BOTH);
+        $subConcept_name = $second_line['nome'];
 
-        foreach ($aux as $key => $conc1) {
-            if ($conc1->nome == $conceito_nome) {
-                $aux[$key]->sub_concept[] = $subconceito_nome;
+        foreach ($concept_array as $concept_key => $concept) {
+            if ($concept->nome == $concept_name) {
+                $concept_array[$concept_key]->sub_concept[] = $subConcept_name;
             }
         }
     }
 
 
 
-    return $aux;
+    return $concept_array;
 }
 
 //criar tabela para conceitos (class relacao_entre_conceitos)
@@ -422,12 +422,12 @@ if (isset($_SESSION["tipos"])) {
 
     $database_conection = database_connect();
 
-    $lexicon_array = verifica_tipo();
+    $lexicon_array = is_typeDefined();
 
     foreach ($lexicon_array as $key => $termo) {
         $lexicon_newArray = $_POST["type" . $key];
         echo ("$termo, $lexicon_newArray <br>");
-        if (!atualiza_tipo($termo, $lexicon_newArray)) {
+        if (!changes_lexiconType($termo, $lexicon_newArray)) {
             echo "ERRO <br>";
         }
     }
