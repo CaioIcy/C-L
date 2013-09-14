@@ -182,7 +182,7 @@ function get_lista_de_conceitos() {
             $line3 = mysql_fetch_array($result3, MYSQL_BOTH);
             $rel = $line3['nome'];
             $pred = $line2['predicado'];
-            $indice = existe_relacao($rel, $conc->relacoes);
+            $indice = relation_exists($rel, $conc->relacoes);
             if ($indice != -1) {
                 $conc->relacoes[$indice]->predicados[] = $pred;
             } else {

@@ -1,15 +1,15 @@
 <?php
 
-function existe_relacao($relation, $relation_list) {
-    foreach ($relation_list as $relation_key => $relacao) {
-        if (@$relacao->verbo == $relation) {
+function relation_exists($new_relation, $relation_list) {
+    foreach ($relation_list as $relation_key => $relation) {
+        if (@$relation->verbo == $new_relation) {
             return $relation_key;
         }
     }
     return -1;
 }
 
-function existe_conceito($new_concept, $concept_list) {
+function concept_exists($new_concept, $concept_list) {
     foreach ($concept_list as $concept_key => $concept) {
         if ($concept->nome == $new_concept) {
             return $concept_key;

@@ -46,7 +46,7 @@ session_start();
 
         function create_hierarchy($concept, $new_list, $current_list) {
             foreach ($new_list as $sub_concept) {
-                $key = existe_conceito($sub_concept, $current_list);
+                $key = concept_exists($sub_concept, $current_list);
                 $concept->sub_concept[] = $sub_concept;
             }
         }
@@ -186,15 +186,15 @@ session_start();
                                     }
                                     $_SESSION["predicados_selecionados"][] = $conc;
 
-                                    if (existe_conceito($conc, $_SESSION['lista_de_conceitos']) == -1) {
-                                        if (existe_conceito($conc, $lista_de_sujeito_e_objeto) == -1) {
+                                    if (concept_exists($conc, $_SESSION['lista_de_conceitos']) == -1) {
+                                        if (concept_exists($conc, $lista_de_sujeito_e_objeto) == -1) {
                                             $nconc = new conceito($conc, "");
                                             $nconc->namespace = $_POST['namespace'];
                                             $_SESSION['lista_de_conceitos'][] = $nconc;
                                         }
                                     }
 
-                                    $ind_rel = existe_relacao($_SESSION['nome1'], $_SESSION['conceito']->relacoes);
+                                    $ind_rel = relation_exists($_SESSION['nome1'], $_SESSION['conceito']->relacoes);
                                     if ($ind_rel != -1) {
                                         if (array_search($conc, $_SESSION["conceito"]->relacoes[$ind_rel]->predicados) === false)
                                             $_SESSION["conceito"]->relacoes[$ind_rel]->predicados[] = $conc;
@@ -210,7 +210,7 @@ session_start();
 
                                     $_SESSION["predicados_selecionados"][] = $conc;
 
-                                    $ind_rel = existe_relacao($_SESSION['nome1'], $_SESSION['conceito']->relacoes);
+                                    $ind_rel = relation_exists($_SESSION['nome1'], $_SESSION['conceito']->relacoes);
                                     if ($ind_rel != -1) {
                                         if (array_search($conc, $_SESSION["conceito"]->relacoes[$ind_rel]->predicados) === false)
                                             $_SESSION["conceito"]->relacoes[$ind_rel]->predicados[] = $conc;
@@ -489,7 +489,7 @@ session_start();
 
                     if (isset($_POST['pai'])) {
                         $pai_nome = $_POST['pai'];
-                        $key2 = existe_conceito($pai_nome, $conceitos);
+                        $key2 = concept_exists($pai_nome, $conceitos);
                         $filhos = array();
                         foreach ($conceitos as $key3 => $filho) {
                             $filho_nome = trim($filho->nome);
