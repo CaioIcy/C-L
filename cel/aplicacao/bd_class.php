@@ -43,7 +43,7 @@ include_once("CELConfig/CELConfig.inc");
 include_once("bd.inc");
 
 $ipNome = "IpBD =";
-$ipValor = CELConfig_ReadVar("BD_ip");
+$ip_value = CELConfig_ReadVar("BD_ip");
 
 $DBNAME = CELConfig_ReadVar("BD_ip");
 $DBUSER = CELConfig_ReadVar("BD_user");
@@ -87,7 +87,7 @@ class PGDB extends Abstract_DB {
     }
 
     function open($dbname, $user, $passwd, $host, $port) {
-        $this->db_linkid = bd_connect() or die("Erro na conex�o � BD : " . mysql_error());
+        $this->db_linkid = database_connect() or die("Erro na conex�o � BD : " . mysql_error());
 
 //              if( $this->db_linkid && mysql_select_db(CELConfig_ReadVar("BD_database") . "" ) )
         if ($this->db_linkid) {

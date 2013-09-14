@@ -5,7 +5,7 @@
 // l�xico passado na variavel $id_lexico_atual e seus sinonimos
 // Fun��o que carrega vetor com todos os titulos e sinonimos de lexicos menos o de id id_lexico_atual
 
-function carrega_vetor_lexicos($id_projeto, $id_lexico_atual, $semAtual) {
+function load_vetor_lexico($id_projeto, $id_lexico_atual, $semAtual) {
     $vetorDeLexicos = array();
     if ($semAtual) {
         $queryLexicos = "SELECT id_lexico, nome    
@@ -49,7 +49,7 @@ function carrega_vetor_lexicos($id_projeto, $id_lexico_atual, $semAtual) {
 // funcao que carrega o vetor com todos os titulos dos cenarios menos o titulo do cenario
 // passado na variavel $id_cenario_atual 
 
-function carrega_vetor_cenario($id_projeto, $id_cenario_atual, $semAtual) {
+function load_vetor_cenario($id_projeto, $id_cenario_atual, $semAtual) {
     if (!isset($vetorDeCenarios)) {
         $vetorDeCenarios = array();
     }

@@ -5,7 +5,7 @@ include("funcoes_genericas.php");
 include("httprequest.inc");
 include_once("bd.inc");
 
-chkUser("index.php");        // Checa se o usuario foi autenticado
+check_use_authentication("index.php");        // Checa se o usuario foi autenticado
 // Testa se o usuario quer uma visualiza��o formatada ou n�o
 
 if (isset($_POST['flag'])) {
@@ -173,9 +173,9 @@ $data_pesquisa = $data_ano . "-" . $data_mes . "-" . $data_dia;
 $flag_formatado = $flag;
 
 // Abre base de dados.
-$bd_trabalho = bd_connect() or die("Erro ao conectar ao SGBD");
+$bd_trabalho = database_connect() or die("Erro ao conectar ao SGBD");
 
-$qVerifica = "SELECT * FROM publicacao WHERE id_projeto = '$id_project' AND versao = '$versao' ";
+$qVerifica = "SELECT * FROM publicacao WHERE id_projeto = '$id_project' AND versao = '$version' ";
 $qrrVerifica = mysql_query($qVerifica);
 
 if (!mysql_num_rows($qrrVerifica)) {
@@ -185,21 +185,21 @@ if (!mysql_num_rows($qrrVerifica)) {
     $str_xml = "<?xml version='1.0' encoding='ISO-8859-1' ?>\n" . $str_xml;
 
     $query = "INSERT INTO publicacao ( id_projeto, data_publicacao, versao, XML)
-                 VALUES ( '$id_project', '$data_pesquisa', '$versao', '$xml_resultante')";
+                 VALUES ( '$id_project', '$data_pesquisa', '$version', '$xml_resultante')";
 
     //echo $q;
 
     mysql_query($query) or die("Erro ao enviar a query INSERT!");
 
     $qq = "select * from publicacao where id_projeto = $id_project ";
-    $qrr = mysql_query($qq) or die("Erro ao enviar a query");
-    $row = mysql_fetch_row($qrr);
-    $xml_banco = $row[3];
+    $query_r = mysql_query($qq) or die("Erro ao enviar a query");
+    $row = mysql_fetch_row($query_r);
+    $xml_base = $row[3];
 
     // echo $xml_banco;
 
-    $bd_recupera = bd_connect() or die("Erro ao conectar ao SGBD");
-    $qRecupera = "SELECT * FROM publicacao WHERE id_projeto = '$id_project' AND versao = '$versao'";
+    $database_recuperation = database_connect() or die("Erro ao conectar ao SGBD");
+    $qRecupera = "SELECT * FROM publicacao WHERE id_projeto = '$id_project' AND versao = '$version'";
     $qrrRecupera = mysql_query($qRecupera) or die("Erro ao enviar a query de busca!");
     $row = mysql_fetch_row($qrrRecupera);
 
@@ -216,9 +216,9 @@ if (!mysql_num_rows($qrrVerifica)) {
 
         xslt_free($xh);
 
-        $xml_banco = $row[3];
+        $xml_base = $row[3];
 
-        echo $xml_banco;
+        echo $xml_base;
 
         //echo $html ;
     }
@@ -230,7 +230,7 @@ if (!mysql_num_rows($qrrVerifica)) {
         //<html><head><title>Projeto</title></head><body bgcolor="#FFFFFF">
         ?>
         <?
-        echo $xml_banco;
+        echo $xml_base;
         //</body></html>
         ?>
         <?php

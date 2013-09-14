@@ -11,7 +11,7 @@ session_start();
 // Contexto:  Sistema aberto. Usu�rio ter acessado ao sistema. 
 //            Usu�rio deseja sair da aplica��o e manter a integridade do que foi 
 //            realizado 
-//            Pr�-Condi��o: Usu�rio ter acessado ao sistema	
+//Pr�-Condi��o: Usu�rio ter acessado ao sistema	
 // Atores:	  Usu�rio, Sistema.	
 // Recursos:  Interface	
 // Epis�dios: O sistema fecha a sess�o do usu�rio, mantendo a integridade do que foi realizado 
@@ -20,7 +20,7 @@ session_start();
 
 session_destroy();
 session_unset();
-$ipValor = CELConfig_ReadVar("HTTPD_ip");
+$ip_value = CELConfig_ReadVar("HTTPD_ip");
 ?>
 
 <html>

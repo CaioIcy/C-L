@@ -15,14 +15,14 @@ include("funcoes_genericas.php");
 $database_recuperation = database_connect() or die("Erro ao conectar ao SGBD");
 
 //Cen�rio - Escolher Projeto
-//Objetivo:   Permitir ao Administrador/Usu�rio escolher um projeto.
-//Contexto:   O Administrador/Usu�rio deseja escolher um projeto.
-//            Pr�-Condi��es: Login, Ser Administrador
-//Atores:     Administrador, Usu�rio
-//Recursos:   Usu�rios cadastrados
-//Epis�dios:  Caso o Usuario selecione da lista de projetos um projeto da qual ele seja administrador,
-//            ver ADMINISTRADOR ESCOLHE PROJETO.
-//            Caso contr�rio, ver USU�RIO ESCOLHE PROJETO.
+//Objetivo:       Permitir ao Administrador/Usu�rio escolher um projeto.
+//Contexto:       O Administrador/Usu�rio deseja escolher um projeto.
+//Pr�-Condi��es:  Login, Ser Administrador
+//Atores:         Administrador, Usu�rio
+//Recursos:       Usu�rios cadastrados
+//Epis�dios:      Caso o Usuario selecione da lista de projetos um projeto da qual ele seja administrador,
+//                ver ADMINISTRADOR ESCOLHE PROJETO.
+//                Caso contr�rio, ver USU�RIO ESCOLHE PROJETO.
 
 $query = "SELECT * FROM publicacao";
 $query_r = mysql_query($query) or die("Erro ao enviar a query de busca");

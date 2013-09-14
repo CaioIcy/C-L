@@ -19,8 +19,8 @@ if (isset($submit)) {   // Script chamado pelo submit
           AND id_projeto = " . $_SESSION['id_projeto_corrente'];
     mysql_query($query) or die("Erro ao executar a query de DELETE");
 
-    $n_sel = count($users);  // Numero de users selecionados no <select>
-    for ($i = 0; $i < $n_sel; $i++) {
+    $quantity_selected_users = count($users);  
+    for ($i = 0; $i < $quantity_selected_users; $i++) {
         // Para cada usuario selecionado
         $query = "INSERT INTO participa (id_usuario, id_projeto)
               VALUES (" . $users[$i] . ", " . $_SESSION['id_projeto_corrente'] . ")";
@@ -84,12 +84,12 @@ if (isset($submit)) {   // Script chamado pelo submit
 
     <?php
 // Cen�rio - Relacionar usu�rios ao projeto
-// Objetivo:  Permitir ao Administrador relacionar novos usu�rios cadastrados ao projeto selecionado.
-// Contexto:  O Administrador deseja relacionar novos usu�rios cadastrados ao projeto selecionado.
-//            Pr�-Condi��es: Ser administrador do projeto que deseja relacionar os usu�rios
-// Atores:    Administrador
-// Recursos:  Usu�rios cadastrados
-// Epis�dios: O Administrador clica no link �Relacionar usu�rio j� existentes com este projeto�.
+// Objetivo:       Permitir ao Administrador relacionar novos usu�rios cadastrados ao projeto selecionado.
+// Contexto:       O Administrador deseja relacionar novos usu�rios cadastrados ao projeto selecionado.
+// Pr�-Condi��es:  Ser administrador do projeto que deseja relacionar os usu�rios
+// Atores:         Administrador
+// Recursos:       Usu�rios cadastrados
+// Epis�dios:       O Administrador clica no link �Relacionar usu�rio j� existentes com este projeto�.
     // Selecionar todos os users que participam deste projeto,
     // menos o administrador que esta executando este script
     $query = "SELECT u.id_usuario, login
@@ -106,14 +106,14 @@ if (isset($submit)) {   // Script chamado pelo submit
 
                                     <?php
 // Cen�rio - Relacionar usu�rios ao projeto
-// Objetivo:  Permitir ao Administrador relacionar novos usu�rios cadastrados ao projeto selecionado.
-// Contexto:  O Administrador deseja relacionar novos usu�rios cadastrados ao projeto selecionado.
-//            Pr�-Condi��es: Ser administrador do projeto que deseja relacionar os usu�rios
-// Atores:    Administrador
-// Recursos:  Usu�rios cadastrados
-// Epis�dios: Excluindo usu�rio(s) do projeto: o administrador seleciona os usu�rios cadastrados 
-//            (j� existentes) da lista Participantes (usu�rios que pertencem a este projeto) 
-//            e clica no bot�o -> . 
+// Objetivo:       Permitir ao Administrador relacionar novos usu�rios cadastrados ao projeto selecionado.
+// Contexto:       O Administrador deseja relacionar novos usu�rios cadastrados ao projeto selecionado.
+// Pr�-Condi��es:  Ser administrador do projeto que deseja relacionar os usu�rios
+// Atores:         Administrador
+// Recursos:       Usu�rios cadastrados
+// Epis�dios:      Excluindo usu�rio(s) do projeto: o administrador seleciona os usu�rios cadastrados 
+//                (j� existentes) da lista Participantes (usu�rios que pertencem a este projeto) 
+//                e clica no bot�o -> . 
                                     ?>
 
                                     <?php
@@ -141,7 +141,7 @@ if (isset($submit)) {   // Script chamado pelo submit
         $result_subquery = "$result_subquery )";
     }
     $query = "SELECT usuario.id_usuario, usuario.login FROM usuario where usuario.id_usuario not in " . $result_subquery;
-    //$q = "SELECT usuario.id_usuario, usuario.login FROM usuario, participa where usuario.id_usuario=participa.id_usuario and participa.id_projeto<>".$_SESSION['id_projeto_corrente']." and participa.id_usuario not in ".$resultadosubq;
+    //$query = "SELECT usuario.id_usuario, usuario.login FROM usuario, participa where usuario.id_usuario=participa.id_usuario and participa.id_projeto<>".$_SESSION['id_projeto_corrente']." and participa.id_usuario not in ".$resultadosubq;
 
     echo($query);
     $query_r = mysql_query($query) or die("Erro ao enviar a query");
@@ -152,14 +152,14 @@ if (isset($submit)) {   // Script chamado pelo submit
 
                                     <?php
 // Cen�rio - Relacionar usu�rios ao projeto
-// Objetivo:  Permitir ao Administrador relacionar novos usu�rios cadastrados ao projeto selecionado.
-// Contexto:  O Administrador deseja relacionar novos usu�rios cadastrados ao projeto selecionado.
-//            Pr�-Condi��es: Ser administrador do projeto que deseja relacionar os usu�rios
-// Atores:    Administrador
-// Recursos:  Usu�rios cadastrados
-// Epis�dios: Incluindo usu�rio(s) ao projeto: o administrador seleciona os usu�rios cadastrados 
-//           (j� existentes) da lista de usu�rios que n�o pertencem a este projeto e 
-//           clica no bot�o <- . 
+// Objetivo:        Permitir ao Administrador relacionar novos usu�rios cadastrados ao projeto selecionado.
+// Contexto:        O Administrador deseja relacionar novos usu�rios cadastrados ao projeto selecionado.
+// Pr�-Condi��es:   Ser administrador do projeto que deseja relacionar os usu�rios
+// Atores:          Administrador
+// Recursos:        Usu�rios cadastrados
+// Epis�dios:       Incluindo usu�rio(s) ao projeto: o administrador seleciona os usu�rios cadastrados 
+//                  (j� existentes) da lista de usu�rios que n�o pertencem a este projeto e 
+//                  clica no bot�o <- . 
                                     ?>
 
                                     <?php
@@ -177,12 +177,12 @@ if (isset($submit)) {   // Script chamado pelo submit
 
                                 <?php
 // Cen�rio - Relacionar usu�rios ao projeto
-// Objetivo:  Permitir ao Administrador relacionar novos usu�rios cadastrados ao projeto selecionado.
-// Contexto:  O Administrador deseja relacionar novos usu�rios cadastrados ao projeto selecionado.
-//            Pr�-Condi��es: Ser administrador do projeto que deseja relacionar os usu�rios
-// Atores:    Administrador
-// Recursos:  Usu�rios cadastrados
-// Epis�dios: Para atualizar os relacionamentos realizados, o administrador clica no bot�o Atualizar
+// Objetivo:       Permitir ao Administrador relacionar novos usu�rios cadastrados ao projeto selecionado.
+// Contexto:       O Administrador deseja relacionar novos usu�rios cadastrados ao projeto selecionado.
+// Pr�-Condi��es:  Ser administrador do projeto que deseja relacionar os usu�rios
+// Atores:         Administrador
+// Recursos:       Usu�rios cadastrados
+// Epis�dios:      Para atualizar os relacionamentos realizados, o administrador clica no bot�o Atualizar
                                 ?>
 
                     <tr>

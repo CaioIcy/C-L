@@ -12,7 +12,7 @@
         session_start();
 
         function converte_impactos() {
-            $link = bd_connect() or die("Erro na conexão ao BD : " . mysql_error() . __LINE__);
+            $link = database_connect() or die("Erro na conexão ao BD : " . mysql_error() . __LINE__);
 
             $filename = "teste.txt";
 

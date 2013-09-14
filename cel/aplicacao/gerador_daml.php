@@ -6,7 +6,7 @@ include_once("bd.inc");
 session_start();
 
 
-$db_conection = bd_connect();
+$database_conection = database_connect();
 
 if ($_POST['user'] == "") {
 // Recupera nome do usu�rio 
@@ -41,7 +41,7 @@ $lista_axiomas = get_lista_de_axiomas();
 
 $daml = salva_daml($site, $dir, $arquivo, $i, $lista_conceitos, $lista_relacoes, $lista_axiomas);
 
-mysql_close($db_conection);
+mysql_close($database_conection);
 ?>   
 
 <html> 

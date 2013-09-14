@@ -12,7 +12,7 @@ session_start();
 include("funcoes_genericas.php");
 include("httprequest.inc");
 
-chkUser("index.php"); // Checa se o usuario foi autenticado
+check_use_authentication("index.php"); // Checa se o usuario foi autenticado
 if (isset($submit)) {
         $DB = new PGDB () ;
         $select = new QUERY ($DB) ;
@@ -83,11 +83,11 @@ self.close();
                     $record = $select->gofirst () ;
                     
                     while($record != 'LAST_RECORD_REACHED'){
-                            $id_usuario = $record['id_usuario'] ;
+                            $id_user = $record['id_usuario'] ;
                             $id_pedido = $record['id_pedido'] ;
                             $tipo_pedido = $record['tipo_pedido'] ;
                             $aprovado = $record['aprovado'] ;
-                            $select2->execute("SELECT * FROM usuario WHERE id_usuario = $id_usuario") ;
+                            $select2->execute("SELECT * FROM usuario WHERE id_usuario = $id_user") ;
                             $usuario = $select2->gofirst () ;
                             if(strcasecmp($tipo_pedido,'remover')){?>
         

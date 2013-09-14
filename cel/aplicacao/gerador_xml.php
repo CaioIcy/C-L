@@ -7,7 +7,7 @@ include("httprequest.inc");
 include_once("bd.inc");
 include_once("seguranca.php");
 
-chkUser("index.php");        // Checa se o usuario foi autenticado
+check_use_authentication("index.php");        // Checa se o usuario foi autenticado
 
 
 if (isset($_POST['flag'])) {
@@ -81,14 +81,14 @@ if (!(function_exists("gerar_xml"))) {
 
         $id_temp = "";
 
-        $vetor_todos_lexicos = carrega_vetor_lexicos($id_projeto, 0, false);
+        $vetor_todos_lexicos = load_vetor_lexico($id_projeto, 0, false);
 
         // Para cada cen�rio
 
         while ($row = mysql_fetch_row($tb_cenario)) {
             $id_cenario = "<ID>" . $row[0] . "</ID>";
             $id_cenario_atual = $row[0];
-            $vetor_cenarios = carrega_vetor_cenario($id_projeto, $id_cenario_atual, true);
+            $vetor_cenarios = load_vetor_cenario($id_projeto, $id_cenario_atual, true);
 
             // Porque usa $id_temp != $id_cenario ? e a variavel primeiro
 
@@ -151,7 +151,7 @@ if (!(function_exists("gerar_xml"))) {
         // Para cada simbolo do lexico
 
         while ($row = mysql_fetch_row($tb_lexico)) {
-            $vetor_lexicos = carrega_vetor_lexicos($id_projeto, $row[0], true);
+            $vetor_lexicos = load_vetor_lexico($id_projeto, $row[0], true);
             quicksort($vetor_lexicos, 0, count($vetor_lexicos) - 1, 'lexico');
             $id_lexico = "<ID>" . $row[0] . "</ID>";
             if (($id_temp != $id_lexico) or (primeiro)) {
@@ -381,9 +381,9 @@ $data_pesquisa = $data_ano . "-" . $data_mes . "-" . $data_dia;
 $flag_formatado = $flag;
 
 // Abre base de dados.
-$bd_trabalho = bd_connect() or die("Erro ao conectar ao SGBD");
+$bd_trabalho = database_connect() or die("Erro ao conectar ao SGBD");
 
-$qVerifica = "SELECT * FROM publicacao WHERE id_projeto = '$id_project' AND versao = '$versao' ";
+$qVerifica = "SELECT * FROM publicacao WHERE id_projeto = '$id_project' AND versao = '$version' ";
 $qrrVerifica = mysql_query($qVerifica);
 
 // Se n�o existir nenhum XML com o id passado ele cria
@@ -394,10 +394,10 @@ if (!mysql_num_rows($qrrVerifica)) {
     $xml_resultante = "<?xml version='1.0' encoding='ISO-8859-1' ?>\n" . $str_xml;
 
     $query = "INSERT INTO publicacao ( id_projeto, data_publicacao, versao, XML)
-                 VALUES ( '$id_project', '$data_pesquisa', '$versao', '" . mysql_real_escape_string($xml_resultante) . "')";
+                 VALUES ( '$id_project', '$data_pesquisa', '$version', '" . mysql_real_escape_string($xml_resultante) . "')";
 
     mysql_query($query) or die("Erro ao enviar a query INSERT do XML no banco de dados! ");
-    recarrega("http://pes.inf.puc-rio.br/cel/aplicacao/mostraXML.php?id_projeto=" . $id_project . "&versao=" . $versao);
+    recarrega("http://pes.inf.puc-rio.br/cel/aplicacao/mostraXML.php?id_projeto=" . $id_project . "&versao=" . $version);
 } else {
     ?>
     <html><head><title>Projeto</title></head><body bgcolor="#FFFFFF">

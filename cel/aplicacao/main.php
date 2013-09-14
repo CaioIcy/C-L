@@ -17,7 +17,7 @@ include("httprequest.inc");
 include_once("coloca_links.php");
 
 
-// Checa se o usu�rio foi autenticado
+
 chechUserAuthentication("index.php");
 
 //Recebe parametro da heading.php. Sem isso vai travar ja que a variavel nao foi inicializada 
@@ -48,14 +48,14 @@ if (!isset($_SESSION['id_projeto_corrente'])) {
 
 <?php
 // Cen�rio - Atualizar Cen�rio 
-//Objetivo:    Permitir Inclus�o, Altera��o e Exclus�o de um Cen�rio por um usu�rio 
-//Contexto:    Usu�rio deseja incluir um cen�rio ainda n�o cadastrado, alterar e/ou excluir 
+//Objetivo:     Permitir Inclus�o, Altera��o e Exclus�o de um Cen�rio por um usu�rio 
+//Contexto:     Usu�rio deseja incluir um cen�rio ainda n�o cadastrado, alterar e/ou excluir 
 //              um cen�rio previamente cadastrados. 
-//              Pr�-Condi��o: Login 
-//Atores:    Usu�rio, Gerente do projeto 
-//Recursos:    Sistema, menu superior, objeto a ser modificado 
+//Pr�-Condi��o: Login 
+//Atores:       Usu�rio, Gerente do projeto 
+//Recursos:     Sistema, menu superior, objeto a ser modificado 
 //Epis�dios:    O usu�rio clica no menu superior na op��o: 
-//                Se usu�rio clica em Alterar ent�o ALTERAR CEN�RIO 
+//              Se usu�rio clica em Alterar ent�o ALTERAR CEN�RIO 
 ?>    
 
     function changes_scene(cenario) { 
@@ -67,12 +67,12 @@ if (!isset($_SESSION['id_projeto_corrente'])) {
 
 <?php
 // Cen�rio - Atualizar Cen�rio 
-//Objetivo:    Permitir Inclus�o, Altera��o e Exclus�o de um Cen�rio por um usu�rio 
-//Contexto:    Usu�rio deseja incluir um cen�rio ainda n�o cadastrado, alterar e/ou excluir 
+//Objetivo:     Permitir Inclus�o, Altera��o e Exclus�o de um Cen�rio por um usu�rio 
+//Contexto:     Usu�rio deseja incluir um cen�rio ainda n�o cadastrado, alterar e/ou excluir 
 //              um cen�rio previamente cadastrados. 
-//              Pr�-Condi��o: Login 
-//Atores:    Usu�rio, Gerente do projeto 
-//Recursos:    Sistema, menu superior, objeto a ser modificado 
+//Pr�-Condi��o: Login 
+//Atores:       Usu�rio, Gerente do projeto 
+//Recursos:     Sistema, menu superior, objeto a ser modificado 
 //Epis�dios:    O usu�rio clica no menu superior na op��o: 
 //                Se usu�rio clica em Excluir ent�o EXCLUIR CEN�RIO 
 ?>    
@@ -86,12 +86,12 @@ if (!isset($_SESSION['id_projeto_corrente'])) {
 
 <?php
 //Cen�rios -  Atualizar L�xico 
-//Objetivo:    Permitir Inclus�o, Altera��o e Exclus�o de um L�xico por um usu�rio 
-//Contexto:    Usu�rio deseja incluir um lexico ainda n�o cadastrado, alterar e/ou 
+//Objetivo:     Permitir Inclus�o, Altera��o e Exclus�o de um L�xico por um usu�rio 
+//Contexto:     Usu�rio deseja incluir um lexico ainda n�o cadastrado, alterar e/ou 
 //              excluir um cen�rio/l�xico previamente cadastrados. 
-//              Pr�-Condi��o: Login 
-//Atores:    Usu�rio, Gerente do projeto 
-//Recursos:    Sistema, menu superior, objeto a ser modificado 
+//Pr�-Condi��o: Login 
+//Atores:       Usu�rio, Gerente do projeto 
+//Recursos:     Sistema, menu superior, objeto a ser modificado 
 //Epis�dios:    O usu�rio clica no menu superior na op��o: 
 //                Se usu�rio clica em Alterar ent�o ALTERAR L�XICO 
 ?>    
@@ -105,12 +105,12 @@ if (!isset($_SESSION['id_projeto_corrente'])) {
 
 <?php
 //Cen�rios -  Atualizar L�xico 
-//Objetivo:    Permitir Inclus�o, Altera��o e Exclus�o de um L�xico por um usu�rio 
-//Contexto:    Usu�rio deseja incluir um lexico ainda n�o cadastrado, alterar e/ou 
+//Objetivo:     Permitir Inclus�o, Altera��o e Exclus�o de um L�xico por um usu�rio 
+//Contexto:     Usu�rio deseja incluir um lexico ainda n�o cadastrado, alterar e/ou 
 //              excluir um cen�rio/l�xico previamente cadastrados. 
-//              Pr�-Condi��o: Login 
-//Atores:    Usu�rio, Gerente do projeto 
-//Recursos:    Sistema, menu superior, objeto a ser modificado 
+//Pr�-Condi��o: Login 
+//Atores:       Usu�rio, Gerente do projeto 
+//Recursos:     Sistema, menu superior, objeto a ser modificado 
 //Epis�dios:    O usu�rio clica no menu superior na op��o: 
 //                Se usu�rio clica em Excluir ent�o EXCLUIR L�XICO 
 ?>    
@@ -127,12 +127,12 @@ if (!isset($_SESSION['id_projeto_corrente'])) {
 
 <?php
 // Cen�rio - Atualizar Cen�rio 
-//Objetivo:    Permitir Inclus�o, Altera��o e Exclus�o de um Cen�rio por um usu�rio 
-//Contexto:    Usu�rio deseja incluir um cen�rio ainda n�o cadastrado, alterar e/ou excluir 
+//Objetivo:     Permitir Inclus�o, Altera��o e Exclus�o de um Cen�rio por um usu�rio 
+//Contexto:     Usu�rio deseja incluir um cen�rio ainda n�o cadastrado, alterar e/ou excluir 
 //              um cen�rio previamente cadastrados. 
 //              Pr�-Condi��o: Login 
-//Atores:    Usu�rio, Gerente do projeto 
-//Recursos:    Sistema, menu superior, objeto a ser modificado 
+//Atores:       Usu�rio, Gerente do projeto 
+//Recursos:     Sistema, menu superior, objeto a ser modificado 
 //Epis�dios:    O usu�rio clica no menu superior na op��o: 
 //                Se usu�rio clica em Alterar ent�o ALTERAR CEN�RIO 
 ?>    
@@ -147,11 +147,11 @@ if (!isset($_SESSION['id_projeto_corrente'])) {
 <?php
 // Cen�rio - Atualizar Conceito
 //Objetivo:    Permitir Inclus�o, Altera��o e Exclus�o de um Cen�rio por um usu�rio 
-//Contexto:    Usu�rio deseja incluir um cen�rio ainda n�o cadastrado, alterar e/ou excluir 
+//Contexto:     Usu�rio deseja incluir um cen�rio ainda n�o cadastrado, alterar e/ou excluir 
 //              um cen�rio previamente cadastrados. 
-//              Pr�-Condi��o: Login 
-//Atores:    Usu�rio, Gerente do projeto 
-//Recursos:    Sistema, menu superior, objeto a ser modificado 
+//Pr�-Condi��o: Login 
+//Atores:       Usu�rio, Gerente do projeto 
+//Recursos:     Sistema, menu superior, objeto a ser modificado 
 //Epis�dios:    O usu�rio clica no menu superior na op��o: 
 //                Se usu�rio clica em Excluir ent�o EXCLUIR CEN�RIO 
 ?>    
@@ -173,16 +173,16 @@ if (!isset($_SESSION['id_projeto_corrente'])) {
 
 <?php
 // Cen�rio - Administrador escolhe Projeto 
-// Objetivo:  Permitir ao Administrador escolher um projeto. 
-// Contexto:  O Administrador deseja escolher um projeto. 
-//            Pr�-Condi��es: Login, Ser administrador do projeto selecionado. 
-// Atores:    Administrador 
-// Recursos:  Projetos doAdministrador 
-// Epis�dios: O Administrador seleciona da lista de projetos um projeto da qual ele seja 
-//            administrador. 
-//            Aparecendo na tela as op��es de: 
-//            -Verificar pedidos de altera��o de cen�rio (ver Verificar pedidos de altera��o 
-//            de cen�rio); 
+// Objetivo:      Permitir ao Administrador escolher um projeto. 
+// Contexto:      O Administrador deseja escolher um projeto. 
+// Pr�-Condi��es: Login, Ser administrador do projeto selecionado. 
+// Atores:        Administrador 
+// Recursos:      Projetos doAdministrador 
+// Epis�dios:     O Administrador seleciona da lista de projetos um projeto da qual ele seja 
+//                administrador. 
+//                Aparecendo na tela as op��es de: 
+//                -Verificar pedidos de altera��o de cen�rio (ver Verificar pedidos de altera��o 
+//                de cen�rio); 
 ?>    
 
     function request_scene() { 
@@ -207,7 +207,7 @@ if (isset($id_project)) {
 // Cen�rio - Administrador escolhe Projeto 
 // Objetivo:  Permitir ao Administrador escolher um projeto. 
 // Contexto:  O Administrador deseja escolher um projeto. 
-//            Pr�-Condi��es: Login, Ser administrador do projeto selecionado. 
+// Pr�-Condi��es: Login, Ser administrador do projeto selecionado. 
 // Atores:    Administrador 
 // Recursos:  Projetos doAdministrador 
 // Epis�dios: O Administrador seleciona da lista de projetos um projeto da qual ele seja 
@@ -240,7 +240,7 @@ if (isset($id_project)) {
 // Cen�rio - Administrador escolhe Projeto 
 // Objetivo:  Permitir ao Administrador escolher um projeto. 
 // Contexto:  O Administrador deseja escolher um projeto. 
-//            Pr�-Condi��es: Login, Ser administrador do projeto selecionado. 
+// Pr�-Condi��es: Login, Ser administrador do projeto selecionado. 
 // Atores:    Administrador 
 // Recursos:  Projetos doAdministrador 
 // Epis�dios: O Administrador seleciona da lista de projetos um projeto da qual ele seja 
@@ -292,7 +292,7 @@ if (isset($id_project)) {
 // Cen�rio - Administrador escolhe Projeto 
 // Objetivo:  Permitir ao Administrador escolher um projeto. 
 // Contexto:  O Administrador deseja escolher um projeto. 
-//            Pr�-Condi��es: Login, Ser administrador do projeto selecionado. 
+// Pr�-Condi��es: Login, Ser administrador do projeto selecionado. 
 // Atores:    Administrador 
 // Recursos:  Projetos doAdministrador 
 // Epis�dios: O Administrador seleciona da lista de projetos um projeto da qual ele seja 
@@ -312,7 +312,7 @@ if (isset($id_project)) {
 // Cen�rio - Administrador escolhe Projeto 
 // Objetivo:  Permitir ao Administrador escolher um projeto. 
 // Contexto:  O Administrador deseja escolher um projeto. 
-//            Pr�-Condi��es: Login, Ser administrador do projeto selecionado. 
+// Pr�-Condi��es: Login, Ser administrador do projeto selecionado. 
 // Atores:    Administrador 
 // Recursos:  Projetos doAdministrador 
 // Epis�dios: O Administrador seleciona da lista de projetos um projeto da qual ele seja 
@@ -333,7 +333,7 @@ if (isset($id_project)) {
 // Cen�rio - Administrador escolhe Projeto 
 // Objetivo:  Permitir ao Administrador escolher um projeto. 
 // Contexto:  O Administrador deseja escolher um projeto. 
-//            Pr�-Condi��es: Login, Ser administrador do projeto selecionado. 
+// Pr�-Condi��es: Login, Ser administrador do projeto selecionado. 
 // Atores:    Administrador 
 // Recursos:  Projetos doAdministrador 
 // Epis�dios: O Administrador seleciona da lista de projetos um projeto da qual ele seja 
@@ -404,7 +404,7 @@ if (isset($id_project)) {
 
 		
 <?php
-// Ontologia 
+
 // Objetivo:  Gerar ontologia do projeto 
 ?>    
                     function generates_Ontology() 
@@ -506,11 +506,9 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
 
 
 
-                <!--                     SEGUNDA PARTE                                     --> 
-
 
     <?php
-    $conexaoComBanco = bd_connect() or die("Erro ao conectar ao SGBD");
+    $conexaoComBanco = database_connect() or die("Erro ao conectar ao SGBD");
     ?>   
 
 
@@ -518,7 +516,7 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
                 <!-- CEN�RIO --> 
 
     <?php
-    if ($t == "c") {        // se for cenario 
+    if ($t == "c") {       
         $query = "SELECT id_cenario, titulo, objetivo, contexto, atores, recursos, excecao, episodios, id_projeto    
               FROM cenario    
               WHERE id_cenario = $id";
@@ -528,10 +526,10 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
 
         $c_id_projeto = $result['id_projeto'];
 
-        $vetorDeCenarios = carrega_vetor_cenario($c_id_projeto, $id, true); // carrega vetor de cenario
-        quicksort($vetorDeCenarios, 0, count($vetorDeCenarios) - 1, 'cenario');
+        $vetor_of_cenarios = load_vetor_cenario($c_id_projeto, $id, true); 
+        quicksort($vetor_of_cenarios, 0, count($vetor_of_cenarios) - 1, 'cenario');
 
-        $vetor_of_lexicos = carrega_vetor_lexicos($c_id_projeto, 0, false); // carrega vetor de l�xicos 
+        $vetor_of_lexicos = load_vetor_lexico($c_id_projeto, 0, false); 
         quicksort($vetor_of_lexicos, 0, count($vetor_of_lexicos) - 1, 'lexico');
         ?>    
 
@@ -548,7 +546,7 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
                     </tr> 
                     <tr> 
                         <th>Contexto:</th><td CLASS="Estilo">
-        <?php echo nl2br(monta_links($result['contexto'], $vetor_of_lexicos, $vetorDeCenarios)); ?>		 
+        <?php echo nl2br(monta_links($result['contexto'], $vetor_of_lexicos, $vetor_of_cenarios)); ?>		 
                         </td> 
                     </tr> 
                     <tr> 
@@ -568,7 +566,7 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
                     </tr> 
                     <tr> 
                         <th>Epis�dios:</th><td CLASS="Estilo">
-        <?php echo nl2br(monta_links($result['episodios'], $vetor_of_lexicos, $vetorDeCenarios)); ?>
+        <?php echo nl2br(monta_links($result['episodios'], $vetor_of_lexicos, $vetor_of_cenarios)); ?>
 
                         </td> 
                     </tr> 
@@ -599,7 +597,7 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
 
                 $l_id_projeto = $result['id_projeto'];
 
-                $vetor_of_lexicos = carrega_vetor_lexicos($l_id_projeto, $id, true);
+                $vetor_of_lexicos = load_vetor_lexico($l_id_projeto, $id, true);
 
                 quicksort($vetor_of_lexicos, 0, count($vetor_of_lexicos) - 1, 'lexico');
                 ?>    
@@ -734,7 +732,7 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
             <br> 
 
 
-            <!--                     TERCEIRA PARTE                                     --> 
+           
 
 
                         <?php
@@ -755,7 +753,7 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
 
 
 
-            <!--                     QUARTA PARTE                                     --> 
+        
 
 
     <?php
@@ -793,14 +791,14 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
 
     <?php
 // Cen�rio - Escolher Projeto 
-// Objetivo:  Permitir ao Administrador/Usu�rio escolher um projeto. 
-// Contexto:  O Administrador/Usu�rio deseja escolher um projeto. 
-//            Pr�-Condi��es: Login, Ser Administrador 
-// Atores:    Administrador, Usu�rio 
-// Recursos:  Usu�rios cadastrados 
-// Epis�dios: Caso o Usuario selecione da lista de projetos um projeto da qual ele seja 
-//            administrador, ver Administrador escolhe Projeto. 
-//            Caso contr�rio, ver Usu�rio escolhe Projeto. 
+// Objetivo:      Permitir ao Administrador/Usu�rio escolher um projeto. 
+// Contexto:      O Administrador/Usu�rio deseja escolher um projeto. 
+// Pr�-Condi��es: Login, Ser Administrador 
+// Atores:        Administrador, Usu�rio 
+// Recursos:      Usu�rios cadastrados 
+// Epis�dios:     Caso o Usuario selecione da lista de projetos um projeto da qual ele seja 
+//                administrador, ver Administrador escolhe Projeto. 
+//                Caso contr�rio, ver Usu�rio escolhe Projeto. 
     // Verifica se o usuario eh administrador deste projeto 
     if (is_admin($_SESSION['id_usuario_corrente'], $id_project)) {
         ?>    
@@ -814,7 +812,7 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
 // Cen�rio - Administrador escolhe Projeto 
 // Objetivo:  Permitir ao Administrador escolher um projeto. 
 // Contexto:  O Administrador deseja escolher um projeto. 
-//            Pr�-Condi��es: Login, Ser administrador do projeto selecionado. 
+// Pr�-Condi��es: Login, Ser administrador do projeto selecionado. 
 // Atores:    Administrador 
 // Recursos:  Projetos doAdministrador 
 // Epis�dios: O Administrador seleciona da lista de projetos um projeto da qual ele seja 

@@ -8,11 +8,11 @@
         <H2>Hist�rico de Arquivos DAML</H2> 
         <?PHP
         include_once( "CELConfig/CELConfig.inc" );
-        /*
-          Arquivo   : recuperaDAML.php
-          Vers�o       : 1.0
-          Coment�rio: Este programa lista todos os arquivos DAML    gerados    em $_SESSION['diretorio']
-         */
+        
+         // Arquivo   : recuperaDAML.php
+         // Vers�o       : 1.0
+         // Coment�rio: Este programa lista todos os arquivos DAML    gerados    em $_SESSION['diretorio']
+         
 
         function extract_data($file_name) {
             list($project, $rest) = split("__", $file_name);
@@ -73,7 +73,7 @@
             }
         }
 
-        /* Monta a tabela    de arquivos    DAML */
+        // Monta a tabela    de arquivos    DAML 
         print( "<CENTER><TABLE WIDTH=\"80%\">\n");
         print( "<TR>\n\t<Th><STRONG>Projeto</STRONG></Th>\n\t<Th><STRONG>Gerado em</STRONG></Th>\n</TR>\n");
         if ($directory_handle = @opendir($directory)) {

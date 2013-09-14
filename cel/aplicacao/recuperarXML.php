@@ -4,7 +4,7 @@ session_start();
 include("funcoes_genericas.php");
 include("httprequest.inc");
 
-check_user_authentication("index.php");        // Checa se o usuario foi autenticado
+check_user_authentication("index.php");        
 
 $XML = "";
 ?>
@@ -16,14 +16,15 @@ $XML = "";
     </head>
 
 <?php
+
 //Cen�rio -  Gerar Relat�rios XML 
-//Objetivo:   Permitir ao administrador gerar relat�rios em formato XML de um projeto,
-//             identificados por data.
-//Contexto:   Gerente deseja gerar um relat�rio para um dos projetos da qual � administrador.
-//              Pr�-Condi��o: Login, projeto cadastrado.
-//Atores:     Administrador
-//Recursos:   Sistema, dados do relat�rio, dados cadastrados do projeto, banco de dados.
-//Epis�dios:  Restri��o: Recuperar os dados em XML do Banco de dados e os transformar
+//Objetivo:     Permitir ao administrador gerar relat�rios em formato XML de um projeto,
+//              identificados por data.
+//Contexto:     Gerente deseja gerar um relat�rio para um dos projetos da qual � administrador.
+//Pr�-Condi��o: Login, projeto cadastrado.
+//Atores:       Administrador
+//Recursos:     Sistema, dados do relat�rio, dados cadastrados do projeto, banco de dados.
+//Epis�dios:    Restri��o: Recuperar os dados em XML do Banco de dados e os transformar
 //                       por uma XSL para a exibi��o
 
 $database_recuperation = database_connect() or die("Erro ao conectar ao SGBD");

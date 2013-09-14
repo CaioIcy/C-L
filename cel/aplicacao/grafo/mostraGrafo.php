@@ -6,16 +6,16 @@ session_start();
 include("../bd_class.php");
 include("../funcoes_genericas.php");
 
-chkUser("index.php");        // Checa se o usuario foi autenticado
+check_use_authentication("index.php");        // Checa se o usuario foi autenticado
 
 extract($_GET);
    
-$bd_recupera = bd_connect() or die("Erro ao conectar ao SGBD");
+$database_recuperation = database_connect() or die("Erro ao conectar ao SGBD");
 
-$qq = "select * from publicacao where id_projeto = $id_project AND versao = $versao";
-$qrr = mysql_query($qq) or die("Erro ao enviar a query ao BD");
-$row = mysql_fetch_row($qrr);
-$xml_banco = $row[3];
+$qq = "select * from publicacao where id_projeto = $id_project AND versao = $version";
+$query_r = mysql_query($qq) or die("Erro ao enviar a query ao BD");
+$row = mysql_fetch_row($query_r);
+$xml_base = $row[3];
 
 $i = 1;
 // If the file exists and isn't older than 5 minutes, then create another one
@@ -35,7 +35,7 @@ if (!($out = fopen($xml_banco_file , "w"))) {
 }
 
 // Salva o XML gerado pelo CEL em um arquivo
-fwrite( $out , $xml_banco );
+fwrite( $out , $xml_base );
 
 // Move to the PHP converter
 header('Location: convertXML.php?file='.$xml_banco_file);

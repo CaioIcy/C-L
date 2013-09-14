@@ -4,7 +4,7 @@ session_start();
 include("funcoes_genericas.php");
 include("httprequest.inc");
 
-chkUser("index.php");        // Checa se o usuario foi autenticado
+check_use_authentication("index.php");        
 
 $XML = "";
 ?>
@@ -23,23 +23,23 @@ $XML = "";
 //Recursos:   Sistema, XML, dados cadastrados do projeto, banco de dados.
 //Epis�dios:  Restri��o: Possuir um XML gerado do projeto
 
-$bd_recupera = bd_connect() or die("Erro ao conectar ao SGBD");
+$database_recuperation = database_connect() or die("Erro ao conectar ao SGBD");
 $query = "SELECT * FROM publicacao WHERE id_projeto = '$id_project'";
-$qrr = mysql_query($query) or die("Erro ao enviar a query");
+$query_r = mysql_query($query) or die("Erro ao enviar a query");
 ?>
     <h2>Gerar Grafo</h2><br>
     <?php
-    while ($result = mysql_fetch_row($qrr)) {
+    while ($result = mysql_fetch_row($query_r)) {
         $data = $result[1];
-        $versao = $result[2];
+        $version = $result[2];
         $XML = $result[3];
         ?>
         <table>
             <tr>
-                <th>Vers�o:</th><td><?= $versao ?></td>
+                <th>Vers�o:</th><td><?= $version ?></td>
                 <th>Data:</th><td><?= $data ?></td>
-                <th><a href="mostraXML.php?id_projeto=<?= $id_project ?>&versao=<?= $versao ?>">XML</a></th>
-                <th><a href="grafo\mostraGrafo.php?versao=<?= $versao ?>&id_projeto=<?= $id_project ?>">Gerar Grafo</a></th>
+                <th><a href="mostraXML.php?id_projeto=<?= $id_project ?>&versao=<?= $version ?>">XML</a></th>
+                <th><a href="grafo\mostraGrafo.php?versao=<?= $version ?>&id_projeto=<?= $id_project ?>">Gerar Grafo</a></th>
 
             </tr>
         </table>

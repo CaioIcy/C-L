@@ -14,10 +14,10 @@ if (!isset($sucesso)) {
 }
 
 // Checa se o usu�rio foi autenticado
-chkUser("index.php");
+check_use_authentication("index.php");
 
 // Conecta ao SGBD
-$db_conection = bd_connect() or die("Erro ao conectar ao SGBD");
+$database_conection = database_connect() or die("Erro ao conectar ao SGBD");
 
 //Script chamado atrav�s do submit do formul�rio
 if (isset($submit)) {
@@ -42,7 +42,7 @@ if (isset($submit)) {
         <?php
         return;
     }
-    $ipValor = CELConfig_ReadVar("HTTPD_ip");
+    $ip_value = CELConfig_ReadVar("HTTPD_ip");
     ?>
 
     <script language="javascript1.2">
@@ -56,8 +56,8 @@ if (isset($submit)) {
 // Script chamado atrav�s do menu superior
 } else {
     $query = "SELECT nome FROM projeto WHERE id_projeto = $id_project";
-    $qrr = mysql_query($query) or die("Erro ao executar a query");
-    $result = mysql_fetch_array($qrr);
+    $query_r = mysql_query($query) or die("Erro ao executar a query");
+    $result = mysql_fetch_array($query_r);
     $project_name = $result['nome'];
     ?>
 

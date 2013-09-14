@@ -281,7 +281,7 @@ function get_indices() {
 
 function salvar_algoritmo() {
     $id_projeto = $_SESSION['id_projeto'];
-    $link = bd_connect();
+    $link = database_connect();
 
     foreach ($_SESSION["lista_de_conceitos"] as $conceit) {
         print($conceit->nome);
@@ -420,7 +420,7 @@ if (isset($_SESSION["tipos"])) {
 
     include_once 'bd.inc';
 
-    $db_conection = bd_connect();
+    $database_conection = database_connect();
 
     $lexicon_array = verifica_tipo();
 
@@ -432,7 +432,7 @@ if (isset($_SESSION["tipos"])) {
         }
     }
 
-    mysql_close($db_conection);
+    mysql_close($database_conection);
     ?>
     <script>
         document.location = "algoritmo_inicio.php";

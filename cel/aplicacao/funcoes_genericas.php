@@ -15,7 +15,7 @@ include_once("seguranca.php");
   script. Caso contr�rio, abre-se uma janela de logon. */
 if (!(function_exists("chkUser"))) {
 
-    function chkUser($url) {
+    function check_use_authentication($url) {
         if (!session_is_registered("id_usuario_corrente")) {
             ?>
 
@@ -44,7 +44,7 @@ if (!(function_exists("inclui_cenario"))) {
 
     function inclui_cenario($id_projeto, $titulo, $objetivo, $contexto, $atores, $recursos, $excecao, $episodios) {
         //global $r;      // Conexao com a base de dados
-        $r = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+        $r = database_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
         $data = date("Y-m-d");
 
         $q = "INSERT INTO cenario (id_projeto,data, titulo, objetivo, contexto, atores, recursos, excecao, episodios) 
@@ -71,7 +71,7 @@ if (!(function_exists("inclui_cenario"))) {
 if (!(function_exists("inclui_lexico"))) {
 
     function inclui_lexico($id_projeto, $nome, $nocao, $impacto, $sinonimos, $classificacao) {
-        $r = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+        $r = database_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
         $data = date("Y-m-d");
 
 
@@ -112,7 +112,7 @@ if (!(function_exists("inclui_lexico"))) {
 if (!(function_exists("inclui_projeto"))) {
 
     function inclui_projeto($nome, $descricao) {
-        $r = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+        $r = database_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
         //verifica se usuario ja existe
         $qv = "SELECT * FROM projeto WHERE nome = '$nome'";
         $qvr = mysql_query($qv) or die("Erro ao enviar a query de select<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
@@ -195,7 +195,7 @@ if (!(function_exists("breakpoint"))) {
 if (!(function_exists("simple_query"))) {
 
     funcTion simple_query($field, $table, $where) {
-        $r = bd_connect() or die("Erro ao conectar ao SGBD");
+        $r = database_connect() or die("Erro ao conectar ao SGBD");
         $q = "SELECT $field FROM $table WHERE $where";
         $qrr = mysql_query($q) or die("Erro ao enviar a query");
         $result = mysql_fetch_row($qrr);
@@ -228,7 +228,7 @@ if (!(function_exists("adicionar_cenario"))) {
 
     function adicionar_cenario($id_projeto, $titulo, $objetivo, $contexto, $atores, $recursos, $excecao, $episodios) {
         // Conecta ao SGBD
-        $r = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+        $r = database_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
         // Inclui o cenario na base de dados (sem transformar os campos, sem criar os relacionamentos)
         $id_incluido = inclui_cenario($id_projeto, $titulo, $objetivo, $contexto, $atores, $recursos, $excecao, $episodios);
 
@@ -367,7 +367,7 @@ if (!(function_exists("adicionar_cenario"))) {
 if (!(function_exists("adicionar_lexico"))) {
 
     function adicionar_lexico($id_projeto, $nome, $nocao, $impacto, $sinonimos, $classificacao) {
-        $r = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+        $r = database_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
 
         $id_incluido = inclui_lexico($id_projeto, $nome, $nocao, $impacto, $sinonimos, $classificacao); // (1)
 
@@ -581,7 +581,7 @@ if (!(function_exists("alteraCenario"))) {
 
         // monta_relacoes($id_projeto);
         // Conecta ao SGBD
-        $r = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+        $r = database_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
 
         $q = "SELECT id_cenario, titulo, contexto, episodios
               FROM cenario
@@ -740,7 +740,7 @@ if (!(function_exists("alteraLexico"))) {
 		tipo = '$classificacao' 
 		where id_lexico = $id_lexico");
 
-        $r = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+        $r = database_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
 
         # Fim altera lexico escolhido
         ### VERIFICACAO DE OCORRENCIA EM CENARIOS ###
@@ -1024,7 +1024,7 @@ if (!(function_exists("removeRelacao"))) {
 function checarLexicoExistente($projeto, $nome) {
     $naoexiste = false;
 
-    $r = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+    $r = database_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
     $q = "SELECT * FROM lexico WHERE id_projeto = $projeto AND nome = '$nome' ";
     $qr = mysql_query($q) or die("Erro ao enviar a query de select no lexico<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
     $resultArray = mysql_fetch_array($qr);
@@ -1055,7 +1055,7 @@ function checarLexicoExistente($projeto, $nome) {
 function checarSinonimo($projeto, $listSinonimo) {
     $naoexiste = true;
 
-    $r = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+    $r = database_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
 
     foreach ($listSinonimo as $sinonimo) {
 
@@ -1091,7 +1091,7 @@ function checarSinonimo($projeto, $listSinonimo) {
 function checarCenarioExistente($projeto, $titulo) {
     $naoexiste = false;
 
-    $r = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+    $r = database_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
     $q = "SELECT * FROM cenario WHERE id_projeto = $projeto AND titulo = '$titulo' ";
     $qr = mysql_query($q) or die("Erro ao enviar a query de select no cenario<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
     $resultArray = mysql_fetch_array($qr);
@@ -1793,7 +1793,7 @@ if (!(function_exists("formataData"))) {
 if (!(function_exists("is_admin"))) {
 
     function is_admin($id_usuario, $id_projeto) {
-        $r = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+        $r = database_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
         $q = "SELECT *
               FROM participa
               WHERE id_usuario = $id_usuario
@@ -1809,7 +1809,7 @@ if (!(function_exists("is_admin"))) {
 if (!(function_exists("check_proj_perm"))) {
 
     function check_proj_perm($id_usuario, $id_projeto) {
-        $r = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+        $r = database_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
         $q = "SELECT *
               FROM participa
               WHERE id_usuario = $id_usuario
@@ -1862,7 +1862,7 @@ function verificaGerente($id_usuario, $id_projeto) {
 ###################################################################
 
 function removeProjeto($id_projeto) {
-    $r = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+    $r = database_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
 
     //Remove os pedidos de cenario
     $qv = "Delete FROM pedidocen WHERE id_projeto = '$id_projeto' ";

@@ -11,9 +11,9 @@ include("funcoes_genericas.php");
 include("httprequest.inc");
 include_once("bd.inc");
 
-chkUser("index.php"); // Checa se o usuario foi autenticado
+check_use_authentication("index.php"); // Checa se o usuario foi autenticado
 // Conecta ao SGBD
-$db_conection = bd_connect() or die("Erro ao conectar ao SGBD");
+$database_conection = database_connect() or die("Erro ao conectar ao SGBD");
 
 if (isset($submit)) {       // Script chamado atraves do submit do formulario
     inserirPedidoAlterarCenario($_SESSION['id_projeto_corrente'], $id_cenario, $scene_title, $scene_goal, $scene_context, $scene_performer, $scene_resource, $scene_exception, $scene_episode, $justificativa, $_SESSION['id_usuario_corrente']);
@@ -39,8 +39,8 @@ if (isset($submit)) {       // Script chamado atraves do submit do formulario
     $project_name = simple_query("nome", "projeto", "id_projeto = " . $_SESSION['id_projeto_corrente']);
 
     $query = "SELECT * FROM cenario WHERE id_cenario = $id_cenario";
-    $qrr = mysql_query($query) or die("Erro ao executar a query");
-    $result = mysql_fetch_array($qrr);
+    $query_r = mysql_query($query) or die("Erro ao executar a query");
+    $result = mysql_fetch_array($query_r);
 
 // Cen�rio -    Alterar Cen�rio 
 //Objetivo:	    Permitir a altera��o de um cen�rio por um usu�rio

@@ -4,17 +4,16 @@ session_start();
 include("funcoes_genericas.php");
 include("httprequest.inc");
 
-//chkUser("index.php");        // Cenario: controle de acesso
 //Cen�rio  -  Remover Projeto 
 //Objetivo:	   Permitir ao Administrador do projeto remover um projeto
 //Contexto:	   Um Administrador de projeto deseja remover um determinado projeto da base de dados
-//                 Pr�-Condi��o: Login, Ser administrador do projeto selecionado.  
+//Pr�-Condi��o:    Login, Ser administrador do projeto selecionado.  
 //Atores:	   Administrador
 //Recursos:	   Sistema, dados do projeto, base de dados
-//Epis�dios:   O Administrador clica na op��o �remover projeto� encontrada no menu superior.
-//             O sistema disponibiliza uma tela para o administrador ter certeza de que esta removendo o projeto correto
-//             O Administrador clica no link de remo��o.
-//             O sistema chama a p�gina que remover� o projeto do banco de dados.
+//Epis�dios:       O Administrador clica na op��o �remover projeto� encontrada no menu superior.
+//                 O sistema disponibiliza uma tela para o administrador ter certeza de que esta removendo o projeto correto
+//                 O Administrador clica no link de remo��o.
+//                 O sistema chama a p�gina que remover� o projeto do banco de dados.
 ?>
 <html>
     <head>
@@ -24,7 +23,7 @@ include("httprequest.inc");
 $id_project = $_SESSION['id_projeto_corrente'];
 $id_user = $_SESSION['id_usuario_corrente'];
 
-$database_conection = bd_connect() or die("Erro ao conectar ao SGBD");
+$database_conection = database_connect() or die("Erro ao conectar ao SGBD");
 $qv = "SELECT * FROM projeto WHERE id_projeto = '$id_project' ";
 $qvr = mysql_query($qv) or die("Erro ao enviar a query de select no projeto");
 $result_array_projecto = mysql_fetch_array($qvr);

@@ -11,14 +11,14 @@ include("funcoes_genericas.php");
 include("httprequest.inc");
 include_once("bd.inc");
 
-chkUser("index.php");        // Checa se o usuario foi autenticado
+check_use_authentication("index.php");        // Checa se o usuario foi autenticado
 
 if (!isset($sucesso)) {
     $sucesso = "n";
 }
 
 // Conecta ao SGBD
-$db_conection = bd_connect() or die("Erro ao conectar ao SGBD");
+$database_conection = database_connect() or die("Erro ao conectar ao SGBD");
 
 if (isset($submit)) {
     $is_existingScenario = checarCenarioExistente($_SESSION['id_projeto_corrente'], $scene_title);

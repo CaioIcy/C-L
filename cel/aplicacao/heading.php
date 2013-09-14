@@ -4,11 +4,11 @@ session_start();
 include("funcoes_genericas.php");
 
 
-chechUserAuthentication("index.php");        // Cenario: controle de acesso
+chechUserAuthentication("index.php");       
 // Cen�rio - Usu�rio escolhe Projeto
 // Objetivo:  Permitir ao Usu�rio escolher um projeto.
 // Contexto:  O usu�rio deseja escoher um projeto.
-//            Pr�-Condi��es: Login
+//Pr�-Condi��es: Login
 // Atores:    Usu�rio
 // Recursos:  Projetos
 // Epis�dios: O Usu�rio seleciona da lista de projetos um projeto da qual ele n�o seja 
@@ -161,9 +161,9 @@ if (isset($id_project)) {
                                 <td align="right" valign="top"> <?php
 if (isset($id_project)) {
 
-    $id_usuario = $_SESSION['id_usuario_corrente'];
+    $id_user = $_SESSION['id_usuario_corrente'];
 
-    $is_existingScenario = verificaGerente($id_usuario, $id_project);
+    $is_existingScenario = verificaGerente($id_user, $id_project);
 
     if ($is_existingScenario != 0) {
         ?>
@@ -193,7 +193,7 @@ if (isset($id_project)) {
 // O sistema d� ao usu�rio a op��o de cadastrar um novo projeto
 // ou utilizar um projeto em que ele fa�a parte.
 // conecta ao SGBD
-                                    $db_conection = bd_connect() or die("Erro ao conectar ao SGBD");
+                                    $database_conection = database_connect() or die("Erro ao conectar ao SGBD");
 
 // define a consulta
                                     $query = "SELECT p.id_projeto, p.nome, pa.gerente
@@ -204,9 +204,9 @@ if (isset($id_project)) {
       ORDER BY p.nome";
 
 // executa a consulta
-                                    $qrr = mysql_query($query) or die("Erro ao executar query");
+                                    $query_r = mysql_query($query) or die("Erro ao executar query");
 
-                                    while ($result = mysql_fetch_array($qrr)) {    // enquanto houver projetos
+                                    while ($result = mysql_fetch_array($query_r)) {    // enquanto houver projetos
                                         ?>
                                             <option value="<?= $result['id_projeto'] ?>"><?= ($result['gerente'] == 1) ? "*" : "" ?>  <?= $result['nome'] ?></option>
 
@@ -264,9 +264,9 @@ if (isset($id_project)) {    // Se o usuario ja tiver escolhido um projeto,
 
                                     if (isset($id_project)) {
 
-                                        $id_usuario = $_SESSION['id_usuario_corrente'];
+                                        $id_user = $_SESSION['id_usuario_corrente'];
 
-                                        $is_existingScenario = verificaGerente($id_usuario, $id_project);
+                                        $is_existingScenario = verificaGerente($id_user, $id_project);
 
                                         if ($is_existingScenario != 0) {
         ?> <a href="#" onClick="window.open('remove_projeto.php', '_blank', 'dependent,height=300,width=550,resizable,scrollbars,titlebar');">Remover 

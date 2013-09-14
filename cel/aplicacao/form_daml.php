@@ -3,7 +3,7 @@ session_start();
 
 include_once("bd.inc");
 
-$db_conection = bd_connect();
+$database_conection = database_connect();
 ?> 
 
 <html> 
@@ -29,7 +29,7 @@ $db_conection = bd_connect();
         $result = mysql_fetch_array($query_user);
         $usuario = $result[0];
 
-        mysql_close($db_conection);
+        mysql_close($database_conection);
         ?> 
 
         &nbsp;Data da Vers�o: <?= $today['mday']; ?>/<?= $today['mon']; ?>/<?= $today['year']; ?> 

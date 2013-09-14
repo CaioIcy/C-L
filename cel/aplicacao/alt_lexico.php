@@ -13,9 +13,9 @@ include("funcoes_genericas.php");
 include("httprequest.inc");
 include_once("bd.inc");
 
-chkUser("index.php");        // Checa se o usuario foi autenticado
+check_use_authentication("index.php");        // Checa se o usuario foi autenticado
 // Conecta ao SGBD
-$db_conection = bd_connect() or die("Erro ao conectar ao SGBD");
+$database_conection = database_connect() or die("Erro ao conectar ao SGBD");
 
 if (isset($submit)) {       // Script chamado atraves do submit do formulario
     if (!isset($list_ofSynonyms))
@@ -61,8 +61,8 @@ if (isset($submit)) {       // Script chamado atraves do submit do formulario
 } else {        // Script chamado atraves do link do lexico corrente
     $project_name = simple_query("nome", "projeto", "id_projeto = " . $_SESSION['id_projeto_corrente']);
     $query = "SELECT * FROM lexico WHERE id_lexico = $id_lexico";
-    $qrr = mysql_query($query) or die("Erro ao executar a query");
-    $result = mysql_fetch_array($qrr);
+    $query_r = mysql_query($query) or die("Erro ao executar a query");
+    $result = mysql_fetch_array($query_r);
 
     //sinonimos
     // $DB = new PGDB () ;

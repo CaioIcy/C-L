@@ -3,7 +3,7 @@ session_start();
 
 include_once("bd.inc");
 
-$db_conection = bd_connect() or die("Erro ao conectar ao SGBD");
+$database_conection = database_connect() or die("Erro ao conectar ao SGBD");
 
 // Cen�rio - Alterar cadastro
 //
@@ -18,14 +18,14 @@ $db_conection = bd_connect() or die("Erro ao conectar ao SGBD");
 //           nome, email, login, senha e confirma��o da senha; e um bot�o de atualizar
 //           as informa��es fornecidas
 
-$id_usuario = $_SESSION['id_usuario_corrente'];
+$id_user = $_SESSION['id_usuario_corrente'];
 
 
-$q = "SELECT * FROM usuario WHERE id_usuario='$id_usuario'";
+$q = "SELECT * FROM usuario WHERE id_usuario='$id_user'";
 
-$qrr = mysql_query($q) or die("Erro ao executar a query");
+$query_r = mysql_query($q) or die("Erro ao executar a query");
 
-  $row = mysql_fetch_row($qrr);
+  $row = mysql_fetch_row($query_r);
   $user_name  = $row[1];
   $user_email = $row[2];
   $user_login = $row[3];

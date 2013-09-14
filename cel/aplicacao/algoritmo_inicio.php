@@ -8,7 +8,7 @@
 	include_once "script_bd2.php" ;
 
 	//mysql_close($link);
-        $db_conection = bd_connect();
+        $database_conection = database_connect();
 
 	$lexicon_array = verifica_tipo();
 
@@ -94,7 +94,7 @@
 
 	}
 
-	mysql_close($db_conection);
+	mysql_close($database_conection);
 
 
 ?>

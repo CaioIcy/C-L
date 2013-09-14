@@ -5,7 +5,7 @@ include_once("bd.inc");
 session_start();
 
 
-$db_conection = bd_connect();
+$database_conection = database_connect();
 ?>    
 
 <html> 
@@ -107,7 +107,7 @@ foreach ($concept_list as $concept) {
 }
 
 
-mysql_close($db_conection);
+mysql_close($database_conection);
 ?>
 
         </script>

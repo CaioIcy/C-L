@@ -10,8 +10,8 @@
         include_once("bd.inc");
         include_once("CELConfig/CELConfig.inc");
 
-        $db_conection = bd_connect() or die("Erro na conexão à BD : " . mysql_error() . __LINE__);
-        if ($db_conection && mysql_select_db(CELConfig_ReadVar("BD_database")))
+        $database_conection = database_connect() or die("Erro na conexão à BD : " . mysql_error() . __LINE__);
+        if ($database_conection && mysql_select_db(CELConfig_ReadVar("BD_database")))
             echo "SUCESSO NA CONEXÃO À BD <br>";
         else
             echo "ERRO NA CONEXÃO À BD <br>";
@@ -54,7 +54,7 @@
                                         );";
         $result = mysql_query($query) or die("A consulta à BD falhou : " . mysql_error() . __LINE__);
 
-        mysql_close($db_conection);
+        mysql_close($database_conection);
         ?>
 
     </body>

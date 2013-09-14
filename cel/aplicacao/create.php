@@ -10,7 +10,7 @@
         include_once( "bd.inc" );
         include 'auxiliar_bd.php';
 
-        $db_conection = bd_connect() or die("Erro na conex�o � BD : " . mysql_error());
+        $database_conection = database_connect() or die("Erro na conex�o � BD : " . mysql_error());
 
 
         /*
@@ -136,7 +136,7 @@
         echo "<br>FIM !!!";
 
 
-        mysql_close($db_conection);
+        mysql_close($database_conection);
         ?>
 
     </body>

@@ -11,9 +11,9 @@ include("funcoes_genericas.php");
 include("httprequest.inc");
 include_once("bd.inc");
 
-chkUser("index.php"); // Checa se o usuario foi autenticado
+check_use_authentication("index.php"); // Checa se o usuario foi autenticado
 // Conecta ao SGBD
-$db_conection = bd_connect() or die("Erro ao conectar ao SGBD");
+$database_conection = database_connect() or die("Erro ao conectar ao SGBD");
 
 if (isset($submit)) {       // Script chamado atraves do submit do formulario
     inserirPedidoAlterarConceito($_SESSION['id_currentUser'], $id_concept, $concept_name, $concept_description, $namespace, $concept_justification, $_SESSION['id_currentUser']);
@@ -39,8 +39,8 @@ if (isset($submit)) {       // Script chamado atraves do submit do formulario
     $project_name = simple_query("nome", "projeto", "id_project = " . $_SESSION['id_projeto_corrente']);
 
     $query = "SELECT * FROM conceito WHERE id_conceito = $id_concept";
-    $qrr = mysql_query($query) or die("Erro ao executar a query");
-    $result = mysql_fetch_array($qrr);
+    $query_r = mysql_query($query) or die("Erro ao executar a query");
+    $result = mysql_fetch_array($query_r);
 
 // Cen�rio -    Alterar Conceito 
 //Objetivo:	Permitir a altera��o de um conceito por um usu�rio

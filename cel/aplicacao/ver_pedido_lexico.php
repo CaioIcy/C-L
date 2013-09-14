@@ -13,7 +13,7 @@ session_start();
 include("funcoes_genericas.php");
 include("httprequest.inc");
 
-chkUser("index.php");// Checa se o usuario foi autenticado
+check_use_authentication("index.php");// Checa se o usuario foi autenticado
 
 if (isset($submit)) {
 
@@ -83,7 +83,7 @@ if (isset($submit)) {
 			 		$i = 0 ;
 					$record = $select->gofirst () ;
 					while($record != 'LAST_RECORD_REACHED'){
-						$id_usuario = $record['id_usuario'] ;
+						$id_user = $record['id_usuario'] ;
 						$id_pedido = $record['id_pedido'] ;
 						$tipo_pedido = $record['tipo_pedido'] ;
 						$aprovado = $record['aprovado'] ;
@@ -91,7 +91,7 @@ if (isset($submit)) {
 						//pega sinonimos
 						$select3->execute("SELECT nome FROM sinonimo WHERE id_pedidolex = $id_pedido");
 						
-						$select2->execute("SELECT * FROM usuario WHERE id_usuario = $id_usuario") ;
+						$select2->execute("SELECT * FROM usuario WHERE id_usuario = $id_user") ;
 						$usuario = $select2->gofirst () ;
 						if(strcasecmp($tipo_pedido,'remover')){?>
 						<h3>O usu�rio <a  href="mailto:<?=$usuario['email']?>" ><?=$usuario['nome']?></a> pede para <?=$tipo_pedido?> o l�xico <font color="#ff0000"><?=$record['nome']?></font> <?  if(!strcasecmp($tipo_pedido,'alterar')){echo"para l�xico abaixo:</h3>" ;}else{echo"</h3>" ;}?>

@@ -4,7 +4,7 @@ session_start();
 
 include("funcoes_genericas.php");
 
-chkUser("index.php");        // Checa se o usuario foi autenticado
+check_use_authentication("index.php");        // Checa se o usuario foi autenticado
 
 ?>
 
@@ -112,14 +112,14 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
         <table>
 
 <?php
-    $c = bd_connect() or die("Erro ao conectar ao SGBD");
+    $c = database_connect() or die("Erro ao conectar ao SGBD");
 
     if ($t == "c") {        // se for cenario
         $query = "SELECT id_cenario, titulo, objetivo, contexto, atores, recursos, episodios
               FROM cenario
               WHERE id_cenario = $id";
-        $qrr = mysql_query($query) or die("Erro ao enviar a query de selecao");
-        $result = mysql_fetch_array($qrr);
+        $query_r = mysql_query($query) or die("Erro ao enviar a query de selecao");
+        $result = mysql_fetch_array($query_r);
 ?>
 
             <tr>
@@ -154,8 +154,8 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
         $query = "SELECT id_lexico, nome, nocao, impacto
               FROM lexico
               WHERE id_lexico = $id";
-        $qrr = mysql_query($query) or die("Erro ao enviar a query de selecao");
-        $result = mysql_fetch_array($qrr);
+        $query_r = mysql_query($query) or die("Erro ao enviar a query de selecao");
+        $result = mysql_fetch_array($query_r);
 ?>
 
             <tr>

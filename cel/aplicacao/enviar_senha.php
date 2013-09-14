@@ -13,11 +13,11 @@ include("httprequest.inc");
 //           Se o login informado for cadastrado, sistema consulta no banco de dados qual 
 //           o email e senha do login informado.           
 
-$db_conection = bd_connect() or die("Erro ao conectar ao SGBD");
+$database_conection = database_connect() or die("Erro ao conectar ao SGBD");
 
 $query = "SELECT * FROM usuario WHERE login='$user_login'";
 
-$qrr = mysql_query($query) or die("Erro ao executar a query");
+$query_r = mysql_query($query) or die("Erro ao executar a query");
 ?>
 
 <html>
@@ -28,13 +28,13 @@ $qrr = mysql_query($query) or die("Erro ao executar a query");
 
     <body bgcolor="#FFFFFF">
         <?php
-        if (!mysql_num_rows($qrr)) {
+        if (!mysql_num_rows($query_r)) {
             ?>
             <p style="color: red; font-weight: bold; text-align: center">Login inexistente!</p>
         <center><a href="JavaScript:window.history.go(-1)">Voltar</a></center>
         <?php
     } else {
-        $row = mysql_fetch_row($qrr);
+        $row = mysql_fetch_row($query_r);
         $user_name = $row[1];
         $mail = $row[2];
         $user_login = $row[3];

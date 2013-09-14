@@ -2,7 +2,7 @@
 
 include_once("bd.inc");
 
-$db_conection = bd_connect();
+$database_conection = database_connect();
 
 $query = "show tables";
 $result = mysql_query($query) or die("A consulta � BD falhou : " . mysql_error() . __LINE__);
@@ -234,5 +234,5 @@ print "</table>";
 
 
 
-mysql_close($db_conection);
+mysql_close($database_conection);
 ?>
