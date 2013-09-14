@@ -12,7 +12,7 @@ function get_lista_de_sujeito() {
     $result = mysql_query($query) or die("A consulta � BD falhou : " . mysql_error() . __LINE__);
 
     while ($line = mysql_fetch_array($result, MYSQL_BOTH)) {
-        $aux[] = obter_termo_do_lexico($line);
+        $aux[] = get_termLexicon($line);
     }
 
     sort($aux);
@@ -28,7 +28,7 @@ function get_lista_de_objeto() {
     $result = mysql_query($query) or die("A consulta � BD falhou : " . mysql_error() . __LINE__);
 
     while ($line = mysql_fetch_array($result, MYSQL_BOTH)) {
-        $aux[] = obter_termo_do_lexico($line);
+        $aux[] = get_termLexicon($line);
     }
 
     sort($aux);
@@ -44,7 +44,7 @@ function get_lista_de_verbo() {
     $result = mysql_query($query) or die("A consulta � BD falhou : " . mysql_error() . __LINE__);
 
     while ($line = mysql_fetch_array($result, MYSQL_BOTH)) {
-        $aux[] = obter_termo_do_lexico($line);
+        $aux[] = get_termLexicon($line);
     }
 
     sort($aux);
@@ -60,7 +60,7 @@ function get_lista_de_estado() {
     $result = mysql_query($query) or die("A consulta � BD falhou : " . mysql_error() . __LINE__);
 
     while ($line = mysql_fetch_array($result, MYSQL_BOTH)) {
-        $aux[] = obter_termo_do_lexico($line);
+        $aux[] = get_termLexicon($line);
     }
 
     sort($aux);
@@ -114,7 +114,7 @@ function atualiza_tipo($id_lexico, $tipo) {
     return(TRUE);
 }
 
-function obter_lexico($id_lexico) {
+function get_lexicon($id_lexico) {
     $id_projeto = $_SESSION['id_projeto'];
     //retorna todos os campos do lexico; cada campo � uma posi��o do
     //array que pode ser indexada pelo nome do campo, ou por um indice
@@ -125,7 +125,7 @@ function obter_lexico($id_lexico) {
     return($line);
 }
 
-function obter_termo_do_lexico($lexico) {
+function get_termLexicon($lexico) {
     $id_projeto = $_SESSION['id_projeto'];
     $impactos = array();
     $id_lexico = $lexico['id_lexico'];
@@ -422,12 +422,12 @@ if (isset($_SESSION["tipos"])) {
 
     $link = bd_connect();
 
-    $list = verifica_tipo();
+    $lexicon_array = verifica_tipo();
 
-    foreach ($list as $key => $termo) {
-        $aux = $_POST["type" . $key];
-        echo ("$termo, $aux <br>");
-        if (!atualiza_tipo($termo, $aux)) {
+    foreach ($lexicon_array as $key => $termo) {
+        $lexicon_newArray = $_POST["type" . $key];
+        echo ("$termo, $lexicon_newArray <br>");
+        if (!atualiza_tipo($termo, $lexicon_newArray)) {
             echo "ERRO <br>";
         }
     }

@@ -10,17 +10,17 @@
 	//mysql_close($link);
         $link = bd_connect();
 
-	$list = verifica_tipo();
+	$lexicon_array = verifica_tipo();
 
-	if( is_array($list) )
+	if( is_array($lexicon_array))
 	{
-		foreach( $list as $id )
+		foreach( $lexicon_array as $id_lexicon )
 		{
-			$lex = obter_lexico($id);
-			$aux[] = $lex["nome"];
+			$lexicon_unit = obter_lexico($id_lexicon);
+			$lexicon_newArray[] = $lexicon_unit["nome"];
 		}
 
-		$_SESSION["lista"] = $aux;
+		$_SESSION["lista"] = $lexicon_newArray;
 		$_SESSION["job"] = "type";
 		$_SESSION["nome1"] = 1;
 		?>
