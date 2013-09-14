@@ -18,14 +18,14 @@ if (isset($submit)) {
         $select = new QUERY ($DB) ;
         $update = new QUERY ($DB) ;
         $delete = new QUERY ($DB) ;
-        for($count = 0; $count < sizeof($pedidos); $count++)
+        for($counter = 0; $counter < sizeof($pedidos); $counter++)
         {
-                 $update->execute("update pedidorel set aprovado= 1 where id_pedido = $pedidos[$count]") ;
-                 tratarPedidoRelacao($pedidos[$count]) ;
+                 $update->execute("update pedidorel set aprovado= 1 where id_pedido = $pedidos[$counter]") ;
+                 tratarPedidoRelacao($pedidos[$counter]) ;
         }
-      for($count = 0; $count < sizeof($remover); $count++)
+      for($counter = 0; $counter < sizeof($remover); $counter++)
          {
-                  $delete->execute("delete from pedidorel where id_pedido = $remover[$count]") ;
+                  $delete->execute("delete from pedidorel where id_pedido = $remover[$counter]") ;
          }
 ?>
 

@@ -17,12 +17,12 @@ if (isset($submit)) {
     $select = new QUERY($DB);
     $update = new QUERY($DB);
     $delete = new QUERY($DB);
-    for ($count = 0; $count < sizeof($pedidos); $count++) {
-        $update->execute("update pedidocon set aprovado= 1 where id_pedido = $pedidos[$count]");
-        tratarPedidoConceito($pedidos[$count]);
+    for ($counter = 0; $counter < sizeof($pedidos); $counter++) {
+        $update->execute("update pedidocon set aprovado= 1 where id_pedido = $pedidos[$counter]");
+        tratarPedidoConceito($pedidos[$counter]);
     }
-    for ($count = 0; $count < sizeof($remover); $count++) {
-        $delete->execute("delete from pedidocon where id_pedido = $remover[$count]");
+    for ($counter = 0; $counter < sizeof($remover); $counter++) {
+        $delete->execute("delete from pedidocon where id_pedido = $remover[$counter]");
     }
     ?>
 

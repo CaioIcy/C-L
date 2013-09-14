@@ -22,8 +22,8 @@ if (isset($submit)) {       // Script chamado atraves do submit do formulario
         $list_ofSynonyms = array();
 
     //tira os sinonimos caso aja um nulo.
-    $count = count($list_ofSynonyms);
-    for ($i = 0; $i < $count; $i++) {
+    $counter = count($list_ofSynonyms);
+    for ($i = 0; $i < $counter; $i++) {
         if ($list_ofSynonyms[$i] == "") {
             $list_ofSynonyms = null;
         }
