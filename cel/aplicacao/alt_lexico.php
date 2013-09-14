@@ -30,8 +30,8 @@ if (isset($submit)) {       // Script chamado atraves do submit do formulario
     }
     //$count = count($listSinonimo);
 
-    foreach ($list_ofSynonyms as $key => $sinonimo) {
-        $list_ofSynonyms[$key] = str_replace(">", " ", str_replace("<", " ", $sinonimo));
+    foreach ($list_ofSynonyms as $synonyms_key => $sinonimo) {
+        $list_ofSynonyms[$synonyms_key] = str_replace(">", " ", str_replace("<", " ", $sinonimo));
     }
 
 
@@ -79,7 +79,7 @@ if (isset($submit)) {       // Script chamado atraves do submit do formulario
             <body>
                 <script language="JavaScript">
                 <!--
-                    function TestarBranco(form)
+                    function checks_textArea(form)
                     {
                         nocao = form.nocao.value;
 
@@ -91,14 +91,14 @@ if (isset($submit)) {       // Script chamado atraves do submit do formulario
                         }
 
                     }
-                    function addSinonimo()
+                    function adds_synonyms()
                     {
-                        listSinonimo = document.forms[0].elements['listSinonimo[]'];
+                        synonyms_list = document.forms[0].elements['listSinonimo[]'];
 
                         if (document.forms[0].sinonimo.value == "")
                             return;
 
-                        listSinonimo.options[listSinonimo.length] = new Option(document.forms[0].sinonimo.value, document.forms[0].sinonimo.value);
+                        synonyms_list.options[synonyms_list.length] = new Option(document.forms[0].sinonimo.value, document.forms[0].sinonimo.value);
 
                         document.forms[0].sinonimo.value = "";
 
@@ -106,24 +106,24 @@ if (isset($submit)) {       // Script chamado atraves do submit do formulario
 
                     }
 
-                    function delSinonimo()
+                    function deletes_synonyms()
                     {
-                        listSinonimo = document.forms[0].elements['listSinonimo[]'];
+                        synonyms_list = document.forms[0].elements['listSinonimo[]'];
 
-                        if (listSinonimo.selectedIndex == -1)
+                        if (synonyms_list.selectedIndex == -1)
                             return;
                         else
-                            listSinonimo.options[listSinonimo.selectedIndex] = null;
+                            synonyms_list.options[synonyms_list.selectedIndex] = null;
 
-                        delSinonimo();
+                        deletes_synonyms();
                     }
 
                     function doSubmit()
                     {
-                        listSinonimo = document.forms[0].elements['listSinonimo[]'];
+                        synonyms_list = document.forms[0].elements['listSinonimo[]'];
 
-                        for (var i = 0; i < listSinonimo.length; i++)
-                            listSinonimo.options[i].selected = true;
+                        for (var i = 0; i < synonyms_list.length; i++)
+                            synonyms_list.options[i].selected = true;
 
                         return true;
                     }
@@ -171,8 +171,8 @@ if (isset($submit)) {       // Script chamado atraves do submit do formulario
                             <td>Sin�nimos:</td>
                             <td width="0%">
                                 <input name="sinonimo" size="15" type="text" maxlength="50">             
-                                &nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Adicionar" onclick="addSinonimo()">
-                                &nbsp;&nbsp;<input type="button" value="Remover" onclick="delSinonimo()">&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Adicionar" onclick="adds_synonyms()">
+                                &nbsp;&nbsp;<input type="button" value="Remover" onclick="deletes_synonyms()">&nbsp;
                             </td>
                         </tr>
 
@@ -220,7 +220,7 @@ if (isset($submit)) {       // Script chamado atraves do submit do formulario
                                     </tr>
                                     <tr>
                                         <td align="center" colspan="2" height="60">
-                                            <input name="submit" type="submit" onClick="return TestarBranco(this.form);" value="Alterar S�mbolo">
+                                            <input name="submit" type="submit" onClick="return checks_textArea(this.form);" value="Alterar S�mbolo">
                                         </td>
                                     </tr>
                                     </table>
