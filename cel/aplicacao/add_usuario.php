@@ -7,32 +7,10 @@ session_start();
 <?php
 include("funcoes_genericas.php");
 include_once("bd.inc");
+include("httprequest.inc");
 
 $first_access = "true";
 
-include("httprequest.inc");
-
-if (isset($submit)) {   // Se chamado pelo botao de submit
-    $first_access = "false";
-    // ** Cenario "Inclusao de Usuario Independente" **
-    // O sistema checa se todos os campos estao preenchidos. Se algum nao estiver, o
-    // sistema avisa pro usuario que todos os campos devem ser preenchidos.
-    if ($user_name == "" || $user_email == "" || $user_login == "" || $user_password == "" || $password_check == "") {
-        $p_style = "color: red; font-weight: bold";
-        $p_text = "Por favor, preencha todos os campos.";
-        recarrega("?p_style=$p_style&p_text=$p_text&nome=$user_name&email=$user_email&login=$user_login&senha=$user_password&senha_conf=$password_check&novo=$novo");
-    } else {
-
-        // Testa se as senhas fornecidas pelo usuario sao iguais.
-        if ($user_password != $password_check) {
-            $p_style = "color: red; font-weight: bold";
-            $p_text = "Senhas diferentes. Favor preencher novamente as senhas.";
-            recarrega("?p_style=$p_style&p_text=$p_text&nome=$user_name&email=$user_email&login=$user_login&novo=$novo");
-        } else {
-
-            // ** Cenario "Inclusao de Usuario Independente" **
-            // Todos os campos estao preenchidos. O sistema deve agora verificar
-            // se ja nao existe alguem cadastrado com o mesmo login informado pelo usuario.
 // Cen�rio - Incluir usu�rio independente 
 // Objetivo:  Permitir um usu�rio, que n�o esteja cadastrado como administrador, se cadastrar 
 //            com o perfil de administrador	
@@ -52,10 +30,36 @@ if (isset($submit)) {   // Se chamado pelo botao de submit
 //              Caso aquele login digitado j� exista, o sistema retorna a mesma p�gina
 //               para o usu�rio avisando que o usu�rio deve escolher outro login,.
 
-            $database_conection = database_connect() or die("Erro ao conectar ao SGBD");
+if (isset($submit)) {   //if called by the submit button
+    $first_access = "false";
+
+    /*
+     * The system checks if all the fields are filled. If some is not, it
+     * warns the user.
+     */
+    if ($user_name == "" || $user_email == "" || $user_login == "" || $user_password == "" || $password_check == "") {
+        $p_style = "color: red; font-weight: bold";
+        $p_text = "Please, fill in all the fields.";
+        recarrega("?p_style=$p_style&p_text=$p_text&nome=$user_name&email=$user_email&login=$user_login&senha=$user_password&senha_conf=$password_check&novo=$novo");
+    } else {
+
+        // Testa se as senhas fornecidas pelo usuario sao iguais.
+        if ($user_password != $password_check) {
+            $p_style = "color: red; font-weight: bold";
+            $p_text = "The password and the confirmation are different! Please retry.";
+            recarrega("?p_style=$p_style&p_text=$p_text&nome=$user_name&email=$user_email&login=$user_login&novo=$novo");
+        } else {
+
+            /*
+             * Now all the fields are filled in. The system must check if there
+             * isn't already someone registered with the same login
+             */
+            $database_conection = database_connect() or die("Error while connecting to SGBD");
             $query = "SELECT id_usuario FROM usuario WHERE login = '$user_login'";
-            $query_r = mysql_query($query) or die("Erro ao enviar a query");
-            if (mysql_num_rows($query_r)) {        // Se ja existe algum usuario com este login
+            $query_r = mysql_query($query) or die("Error while sending query");
+
+            // If there is someone with the same login
+            if (mysql_num_rows($query_r)) {
 //                $p_style = "color: red; font-weight: bold";
 //                $p_text = "Login j� existente no sistema. Favor escolher outro login.";
 //                recarrega("?p_style=$p_style&p_text=$p_text&nome=$nome&email=$email&senha=$senha&senha_conf=$senha_conf&novo=$novo");
@@ -72,53 +76,58 @@ if (isset($submit)) {   // Se chamado pelo botao de submit
 //            este login j� existe.
                 ?>
                 <script language="JavaScript">
-                    alert("Login j� existente no sistema. Favor escolher outro login.")
+                    alert("Login already exists. Please choose another one.")
                 </script>
 
                 <?php
                 recarrega("?novo=$novo");
-            } else {    // Cadastro passou por todos os testes -- ja pode ser incluido na BD
-                /* Substitui todas as ocorrencias de ">" e "<" por " " */
+                // Registering passed through all the tests (can be included in the database)
+            } else {
+                /* Substitutes all the occurences of ">" and "<" for " " */
                 $user_name = str_replace(">", " ", str_replace("<", " ", $user_name));
                 $user_login = str_replace(">", " ", str_replace("<", " ", $user_login));
                 $user_email = str_replace(">", " ", str_replace("<", " ", $user_email));
 
-                // Criptografando a senha
+                // Encrypting the password
                 $user_password = md5($user_password);
                 $query = "INSERT INTO usuario (nome, login, email, senha) VALUES ('$user_name', '$user_login', '$user_email', '$user_password')";
-                mysql_query($query) or die("Erro ao cadastrar o usuario");
+                mysql_query($query) or die("Error while registering the user");
                 recarrega("?cadastrado=&novo=$novo&login=$user_login");
             }
-        }   // else
-    }   // else
+        }
+    }
 } elseif (isset($cadastrado)) {
 
-    // Cadastro concluido. Dependendo de onde o usuario veio,
-    // devemos manda-lo para um lugar diferente.
+    /*
+     * Registering complete. Depending on where the user came from, 
+     * send him to a different place.
+     */
 
-    if ($novo == "true") {      // Veio da tela inicial de login
-        // ** Cenario "Inclusao de Usuario Independente" **
-        // O usuario acabou de cadastrar-se no sistema, devemos
-        // redireciona-lo para a parte de inclusao de projetos
-        // Registra que o usuario esta logado com o login recem-cadastrado
-// Cen�rio - Incluir usu�rio independente 
-// Objetivo:  Permitir um usu�rio, que n�o esteja cadastrado como administrador, se cadastrar 
-//            com o perfil de administrador	
-// Contexto:  Sistema aberto Usu�rio deseja cadastrar-se ao sistema como administrador. 
-//            Usu�rio na tela de cadastro de usu�rio 
-//            Pr�-Condi��o: Usu�rio ter acessado ao sistema	
-// Atores:    Usu�rio, Sistema	
-// Recursos:  Interface, Banco de Dados	
-// Epis�dios:  Caso aquele login digitado n�o exista, o sistema cadastra esse usu�rio 
-//               como administrador no banco de dados,  possibilitando:
-//              - Redirecion�-lo  para a interface de CADASTRAR NOVO PROJETO; 
+
+    /*
+     * Came from the inicial login screen.
+     * Registers that the recently registered user is logged in
+     */
+    if ($novo == "true") {
+
+        // Cen�rio - Incluir usu�rio independente 
+        // Objetivo:  Permitir um usu�rio, que n�o esteja cadastrado como administrador, se cadastrar 
+        //            com o perfil de administrador	
+        // Contexto:  Sistema aberto Usu�rio deseja cadastrar-se ao sistema como administrador. 
+        //            Usu�rio na tela de cadastro de usu�rio 
+        //            Pr�-Condi��o: Usu�rio ter acessado ao sistema	
+        // Atores:    Usu�rio, Sistema	
+        // Recursos:  Interface, Banco de Dados	
+        // Epis�dios:  Caso aquele login digitado n�o exista, o sistema cadastra esse usu�rio 
+        //               como administrador no banco de dados,  possibilitando:
+        //              - Redirecion�-lo  para a interface de CADASTRAR NOVO PROJETO; 
         $id_currentUser = simple_query("id_usuario", "usuario", "login = '$user_login'");
         session_register("id_currentUser");
         ?>
 
         <script language="javascript1.3">
 
-        // Redireciona o usuario para a parte de inclusao de projetos
+            // Redirect him to the project inclusion screen
             opener.location.replace('index.php');
             open('add_projeto.php', '', 'dependent,height=300,width=550,resizable,scrollbars,titlebar');
             self.close();
@@ -129,17 +138,26 @@ if (isset($submit)) {   // Se chamado pelo botao de submit
         <?php
     } else {
 
-        // ** Cenario "Edicao de Usuario" **
-        // O administrador do projeto acabou de incluir o usuario.
-        // Devemos agora adicionar o usuario incluido no projeto
-        // do administrador.
-        // Conexao com a base de dados
-        $database_conection = database_connect() or die("Erro ao conectar ao SGBD");
-        // $login eh o login do usuario incluido, passado na URL
+        // Cen�rio - Adicionar Usu�rio
+        // Objetivo:  Permitir ao Administrador criar novos usu�rios.
+        // Contexto:  O Administrador deseja adicionar novos usu�rios (n�o cadastrados) criando novos
+        //              usu�rios ao projeto selecionado.
+        //            Pr�-Condi��es: Login
+        // Atores:    Administrador
+        // Recursos:  Dados do usu�rio
+        // Epis�dios: Clicando no bot�o Cadastrar para confirmar a adi��o do novo
+        //             usu�rio ao projeto selecionado.
+        //            O novo usu�rio criado receber� uma mensagem via email com seu login e senha.
+
+        /*
+         * The administrator of the project just included the user.
+         * Must now add the user to the project
+         */
+        $database_conection = database_connect() or die("Error while connecting to SGBD");
         $id_includedUser = simple_query("id_usuario", "usuario", "login = '$user_login'");
         $query = "INSERT INTO participa (id_usuario, id_projeto)
           VALUES ($id_includedUser, " . $_SESSION['id_projeto_corrente'] . ")";
-        mysql_query($query) or die("Erro ao inserir na tabela participa");
+        mysql_query($query) or die("Error while inserting in the main table");
 
         $user_name = simple_query("nome", "usuario", "id_usuario = $id_includedUser");
         $project_name = simple_query("nome", "projeto", "id_projeto = " . $_SESSION['id_projeto_corrente']);
@@ -147,17 +165,17 @@ if (isset($submit)) {   // Se chamado pelo botao de submit
 
         <script language="javascript1.3">
 
-            document.writeln('<p style="color: blue; font-weight: bold; text-align: center">Usu�rio <b><?= $user_name ?></b> cadastrado e inclu�do no projeto <b><?= $project_name ?></b></p>');
+            document.writeln('<p style="color: blue; font-weight: bold; text-align: center"> User <b><?= $user_name ?></b> registered and included in the project <b><?= $project_name ?></b></p>');
             document.writeln('<p align="center"><a href="javascript:self.close();">Fechar</a></p>');
 
         </script>
 
         <?php
     }
-} else {    // Script chamado normalmente
+} else {
     if (empty($p_style)) {
         $p_style = "color: green; font-weight: bold";
-        $p_text = "Favor preencher os dados abaixo:";
+        $p_text = "Please fill the data below:";
     }
 
     if ($first_access) {
@@ -171,7 +189,7 @@ if (isset($submit)) {   // Se chamado pelo botao de submit
 
     <html>
         <head>
-            <title>Cadastro de Usu�rio</title>
+            <title>User registration</title>
             <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
         </head>
         <body>
@@ -180,11 +198,10 @@ if (isset($submit)) {   // Se chamado pelo botao de submit
                 function verifyEmail(form)
                 {
                     email = form.email.value;
-                    //verifica se o email contem um @
                     i = email.indexOf("@");
                     if (i == -1)
                     {
-                        alert('Aten��o: o E-mail digitado n�o � v�lido.');
+                        alert('Warning: the inserted e-mail is not valid.');
                         return false;
                     }
                 }
@@ -196,7 +213,7 @@ if (isset($submit)) {   // Se chamado pelo botao de submit
                         {
                             return (true)
                         }
-                        alert("Aten��o: o E-mail digitado n�o � v�lido.")
+                        alert("Warning: the inserted e-mail is not valid.")
                         email.focus();
                         email.select();
                         return (false)
@@ -213,7 +230,7 @@ if (isset($submit)) {   // Se chamado pelo botao de submit
             <form action="?novo=<?= $novo ?>" method="post">
                 <table>
                     <tr>
-                        <td>Nome:</td><td colspan="3"><input name="nome" maxlength="255" size="48" type="text" value="<?= $user_name ?>"></td>
+                        <td>Name:</td><td colspan="3"><input name="nome" maxlength="255" size="48" type="text" value="<?= $user_name ?>"></td>
                     </tr>
                     <tr>
                         <td>E-mail:</td><td colspan="3"><input name="email" maxlength="64" size="48" type="text" value="<?= $user_email ?>" OnBlur="checkEmail(this)"></td>
@@ -222,29 +239,16 @@ if (isset($submit)) {   // Se chamado pelo botao de submit
                         <td>Login:</td><td><input name="login" maxlength="32" size="24" type="text" value="<?= $user_login ?>"></td>
                     </tr>
                     <tr>
-                        <td>Senha:</td><td><input name="senha" maxlength="32" size="16" type="password" value="<?= $user_password ?>"></td>
-                        <td>Senha (confirma��o):</td><td><input name="senha_conf" maxlength="32" size="16" type="password" value=""></td>
+                        <td>Password:</td><td><input name="senha" maxlength="32" size="16" type="password" value="<?= $user_password ?>"></td>
+                        <td>Password (confirmation):</td><td><input name="senha_conf" maxlength="32" size="16" type="password" value=""></td>
                     </tr>
                     <tr>
-
-                        <?php
-// Cen�rio - Adicionar Usu�rio
-// Objetivo:  Permitir ao Administrador criar novos usu�rios.
-// Contexto:  O Administrador deseja adicionar novos usu�rios (n�o cadastrados) criando novos
-//              usu�rios ao projeto selecionado.
-//            Pr�-Condi��es: Login
-// Atores:    Administrador
-// Recursos:  Dados do usu�rio
-// Epis�dios: Clicando no bot�o Cadastrar para confirmar a adi��o do novo
-//             usu�rio ao projeto selecionado.
-//            O novo usu�rio criado receber� uma mensagem via email com seu login e senha.
-                        ?>
 
                         <td align="center" colspan="4" height="40" valign="bottom"><input name="submit" onClick="return verifyEmail(this.form);" type="submit" value="Cadastrar"></td>
                     </tr>
                 </table>
             </form>
-            <br><i><a href="showSource.php?file=add_usuario.php">Veja o c�digo fonte!</a></i>
+            <br><i><a href="showSource.php?file=add_usuario.php">See the source code!</a></i>
         </body>
     </html>
 
