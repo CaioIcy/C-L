@@ -3,14 +3,16 @@ include("funcoes_genericas.php");
 include("httprequest.inc");
 include_once("bd.inc");
 
-// add_lexico.php: Este script cadastra um novo termo no lexico do projeto. 
-//                 � passada, atraves da URL, uma variavel $id_projeto, que
-//                 indica em que projeto deve ser inserido o novo termo.
+/*
+ * This script registers a new term in the lexicon of the project.
+ * A variable &id_project is recieved through a URL, and indicates in which
+ * project the new scenario will be inserted in.
+ */
 
 session_start();
 
-if (!isset($sucesso)) {
-    $sucesso = 'n';
+if (!isset($success)) {
+    $success = 'n';
 }
 
 // Checa se o usu�rio foi autenticado
@@ -33,11 +35,11 @@ if (isset($submit)) {
         inserirPedidoAdicionarLexico($id_project, $nome, $nocao, $impacto, $id_currentUser, $list_ofSynonyms, $classificacao);
     } else {
         ?>
-        <html><head><title>Projeto</title></head><body bgcolor="#FFFFFF">
-                <p style="color: red; font-weight: bold; text-align: center">Este s�mbolo ou sin�nimo j� existe!</p>
+        <html><head><title>Project</title></head><body bgcolor="#FFFFFF">
+                <p style="color: red; font-weight: bold; text-align: center">This symbol or synonym already exists!</p>
                 <br>
                 <br>
-            <center><a href="JavaScript:window.history.go(-1)">Voltar</a></center>
+            <center><a href="JavaScript:window.history.go(-1)">Return</a></center>
         </body></html>
         <?php
         return;
@@ -53,8 +55,8 @@ if (isset($submit)) {
 
     </script>   
     <?php
-// Script chamado atrav�s do menu superior
-} else {
+
+} else {    // script called through the superior menu
     $query = "SELECT nome FROM projeto WHERE id_projeto = $id_project";
     $query_r = mysql_query($query) or die("Erro ao executar a query");
     $result = mysql_fetch_array($query_r);
@@ -63,7 +65,7 @@ if (isset($submit)) {
 
     <html>
         <head>
-            <title>Adicionar L�xico</title>
+            <title>Add lexicon</title>
         </head>
         <body>
             <script language="JavaScript">
@@ -75,7 +77,7 @@ if (isset($submit)) {
 
                     if (nome == "")
                     {
-                        alert(" Por favor, forne�a o NOME do l�xico.\n O campo NOME � de preenchimento obrigat�rio.");
+                        alert(" Please insert the NAME of the lexicon.\n The field NAME is mandatory to be filled.");
                         form.nome.focus();
                         return false;
                     } else {
@@ -83,7 +85,7 @@ if (isset($submit)) {
                         nOK = padrao.exec(nome);
                         if (nOK)
                         {
-                            window.alert("O nome do l�xico n�o pode conter nenhum dos seguintes caracteres:   / \\ : ? \" < > |");
+                            window.alert("The name of the lexicon must not contain any of the following characteres:   / \\ : ? \" < > |");
                             form.nome.focus();
                             return false;
                         }
@@ -91,7 +93,7 @@ if (isset($submit)) {
 
                     if (nocao == "")
                     {
-                        alert(" Por favor, forne�a a NO��O do l�xico.\n O campo NO��O � de preenchimento obrigat�rio.");
+                        alert(" Please, insert the NOTION of the lexicon.\n The field NOTION if mandatory to be filled.");
                         form.nocao.focus();
                         return false;
                     }
@@ -109,7 +111,7 @@ if (isset($submit)) {
                     nOK = padrao.exec(sinonimo);
                     if (nOK)
                     {
-                        window.alert("O sin�nimo do l�xico n�o pode conter nenhum dos seguintes caracteres:   / \\ : ? \" < > |");
+                        window.alert("The synonyms of the lexicon must not contain any of the following characters:   / \\ : ? \" < > |");
                         document.forms[0].sinonimo.focus();
                         return;
                     }
@@ -166,27 +168,27 @@ if (isset($submit)) {
 
             </SCRIPT>
 
-            <h4>Adicionar S�mbolo</h4>
+            <h4>Add symbol</h4>
             <br>
     <?php
-    if ($sucesso == "s") {
+    if ($success == "s") {
         ?>
-                <p style="color: blue; font-weight: bold; text-align: center">S�mbolo inserido com sucesso!</p>
+                <p style="color: blue; font-weight: bold; text-align: center">Symbol inserted with success!</p>
         <?php
     }
     ?>       
             <form action="?id_project=<?= $id_project ?>" method="post" onSubmit="return(doSubmit());">
                 <table>
                     <tr>
-                        <td>Projeto:</td>
+                        <td>Project:</td>
                         <td><input disabled size="48" type="text" value="<?= $project_name ?>"></td>
                     </tr>
                     <tr>
-                        <td>Nome:</td>
+                        <td>Name:</td>
                         <td><input size="48" name="nome" type="text" value=""></td>
                     </tr>    
                     <tr valign="top">
-                        <td>Sin�nimos:</td>
+                        <td>Synonyms:</td>
                         <td width="0%">
                             <input name="sinonimo" size="15" type="text" maxlength="50">             
                             &nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Adicionar" onclick="adds_synonymou()">
@@ -203,21 +205,21 @@ if (isset($submit)) {
                     </tr>
                     </tr>
                     <tr>
-                        <td>No��o:</td>
+                        <td>Notion:</td>
                         <td><textarea cols="51" name="nocao" rows="3" WRAP="SOFT"></textarea></td>
                     </tr>
                     <tr>
-                        <td>Impacto:</td>
+                        <td>Impact:</td>
                         <td><textarea  cols="51" name="impacto" rows="3" WRAP="SOFT"></textarea></td>
                     </tr>
                     <tr>
-                        <td>Classifica�ao:</td>
+                        <td>Classification:</td>
                         <td>
                             <SELECT id='classificacao' name='classificacao' size=1 width="300">
-                                <OPTION value='sujeito' selected>Sujeito</OPTION>
-                                <OPTION value='objeto'>Objeto</OPTION>
-                                <OPTION value='verbo'>Verbo</OPTION>
-                                <OPTION value='estado'>Estado</OPTION>
+                                <OPTION value='sujeito' selected>Subject</OPTION>
+                                <OPTION value='objeto'>Object</OPTION>
+                                <OPTION value='verbo'>Verb</OPTION>
+                                <OPTION value='estado'>State</OPTION>
                             </SELECT>
                         </td>
                     </tr>
@@ -225,14 +227,13 @@ if (isset($submit)) {
                         <td align="center" colspan="2" height="60">
                             <input name="submit" type="submit" onClick="return checks_textArea(this.form);" value="Adicionar S�mbolo"><BR><BR>
                             </script>
-                            <!--            <A HREF="RegrasLAL.html" TARGET="new">Ver Regras do LAL</A><BR>   -->
-                            <A HREF="#" OnClick="javascript:open('RegrasLAL.html', '_blank', 'dependent,height=380,width=520,titlebar');"> Veja as regras do <i>LAL</i></A>
+                            <A HREF="#" OnClick="javascript:open('RegrasLAL.html', '_blank', 'dependent,height=380,width=520,titlebar');"> See <i>LAL</i> rules</A>
                         </td>
                     </tr>
                 </table>
             </form>
-        <center><a href="javascript:self.close();">Fechar</a></center>            
-        <br><i><a href="showSource.php?file=add_lexico.php">Veja o c�digo fonte!</a></i>
+        <center><a href="javascript:self.close();">Close</a></center>            
+        <br><i><a href="showSource.php?file=add_lexico.php">See the source code!</a></i>
     </body>
 
     </html>
