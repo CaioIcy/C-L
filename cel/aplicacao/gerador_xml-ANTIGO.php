@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("coloca_tags_xml.php");
+include("puts_XML_tags.php");
 include("funcoes_genericas.php");
 include("httprequest.inc");
 include_once("bd.inc");
