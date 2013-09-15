@@ -55,6 +55,6 @@
             <br>
             <br>
             <center><a href="JavaScript:window.history.go(-1)">Return</a></center>
-        </form<i><a href="showSource.php?file=esqueciSenha.php">See the source code!</a></i>
+        </form<i><a href="showSource.php?file=forgotten_password.php">See the source code!</a></i>
     </body>
 </html>

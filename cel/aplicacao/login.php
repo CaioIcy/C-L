@@ -8,7 +8,7 @@
 
   @Atores: usu�rio, aplica��o
 
-  @Recursos: URL de acesso ao sistema,  login, senha, bd.inc, httprequest.inc, $wrong, $url, showSource.php?file=login.php, esqueciSenha.php, add_usuario.php?novo=true
+  @Recursos: URL de acesso ao sistema,  login, senha, bd.inc, httprequest.inc, $wrong, $url, showSource.php?file=login.php, forgotten_password.php, add_usuario.php?novo=true
  * */
 /** @Episodio 1: Iniciar sess�o * */
 session_start();
@@ -105,7 +105,7 @@ if ($submit == 'Entrar') {
                     <p><a href="add_usuario.php?novo=true">Cadastrar-se</a>&nbsp;&nbsp;
 
     <?php /** @Episodio 7: [LEMBRAR SENHA] * */ ?>
-                        <a href="esqueciSenha.php">Esqueci senha</a></p>
+                        <a href="forgotten_password.php">Esqueci senha</a></p>
                 </div>
             </form>
         </body>
