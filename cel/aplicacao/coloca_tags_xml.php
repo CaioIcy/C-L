@@ -15,7 +15,7 @@
   /******************************************************** */
 
 
-include ("coloca_links.php");
+include ("puts_links.php");
 
 function poe_tag_xml($str) {
 

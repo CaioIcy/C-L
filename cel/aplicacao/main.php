@@ -14,7 +14,7 @@ $_SESSION['diretorio'] = CELConfig_ReadVar("DAML_dir_relativo_ao_CEL");
 
 include("funcoes_genericas.php");
 include("httprequest.inc");
-include_once("coloca_links.php");
+include_once("puts_links.php");
 
 
 
