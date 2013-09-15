@@ -45,7 +45,7 @@ Utilidade:
 - É chamada no corpo do arquivo</TEXTO></SENTENCA></IMPACTO>
 </LEXICO>
 <LEXICO>
-<NOME_SIMBOLO ID="class.phpmailer.php">Class.phpmailer.php</NOME_SIMBOLO>
+<NOME_SIMBOLO ID="PHPMailer.php">PHPMailer.php</NOME_SIMBOLO>
 <SINONIMOS></SINONIMOS>
 <NOCAO><SENTENCA><TEXTO>Classe para mandar email usando tanto sendmail, PHP mail() ou SMTP. Métodos são baseados nas classes do AspEmail(tm) padrão.
 Número de linhas de código: 1499</TEXTO></SENTENCA></NOCAO>
@@ -120,67 +120,67 @@ Número de linhas de código: 1499</TEXTO></SENTENCA></NOCAO>
 <LEXICO>
 <NOME_SIMBOLO ID="ishtml">Ishtml</NOME_SIMBOLO>
 <SINONIMOS></SINONIMOS>
-<NOCAO><SENTENCA><TEXTO>Localização: class.phpmailer.php
+<NOCAO><SENTENCA><TEXTO>Localização: PHPMailer.php
 Parâmetros: 
 - $bool - Boolean
 Números de linha de código: 5
 Utilidade:
-- Define o tipo da menssagem para HTML se o parâmetro for verdadeiro.</TEXTO><REFERENCIA TO="class.phpmailer.php">class.phpmailer.php</REFERENCIA></SENTENCA></NOCAO>
+- Define o tipo da menssagem para HTML se o parâmetro for verdadeiro.</TEXTO><REFERENCIA TO="PHPMailer.php">PHPMailer.php</REFERENCIA></SENTENCA></NOCAO>
 <IMPACTO><SENTENCA><TEXTO>- É chamada pela função
 - É chamada no corpo do arquivo</TEXTO></SENTENCA></IMPACTO>
 </LEXICO>
 <LEXICO>
 <NOME_SIMBOLO ID="issmtp">Issmtp</NOME_SIMBOLO>
 <SINONIMOS></SINONIMOS>
-<NOCAO><SENTENCA><TEXTO>Localização: class.phpmailer.php
+<NOCAO><SENTENCA><TEXTO>Localização: PHPMailer.php
 Parâmetros: 
 - nenhum
 Números de linha de código: 2
 Utilidade:
-- Definir o "Mailer" para enviar mensagem via SMTP</TEXTO><REFERENCIA TO="class.phpmailer.php">class.phpmailer.php</REFERENCIA></SENTENCA></NOCAO>
+- Definir o "Mailer" para enviar mensagem via SMTP</TEXTO><REFERENCIA TO="PHPMailer.php">PHPMailer.php</REFERENCIA></SENTENCA></NOCAO>
 <IMPACTO><SENTENCA><TEXTO>- É chamada pela função
 - É chamada no corpo do arquivo </TEXTO></SENTENCA></IMPACTO>
 </LEXICO>
 <LEXICO>
 <NOME_SIMBOLO ID="ismail">Ismail</NOME_SIMBOLO>
 <SINONIMOS></SINONIMOS>
-<NOCAO><SENTENCA><TEXTO>Localização: class.phpmailer.php
+<NOCAO><SENTENCA><TEXTO>Localização: PHPMailer.php
 Números de linha de código: 2
 Utilidade:
-- Definir o "Mailer" para enviar mensagem usando a função PHP mail(). </TEXTO><REFERENCIA TO="class.phpmailer.php">class.phpmailer.php</REFERENCIA></SENTENCA></NOCAO>
+- Definir o "Mailer" para enviar mensagem usando a função PHP mail(). </TEXTO><REFERENCIA TO="PHPMailer.php">PHPMailer.php</REFERENCIA></SENTENCA></NOCAO>
 <IMPACTO><SENTENCA><TEXTO>- É chamada pela função
 - É chamada no corpo do arquivo </TEXTO></SENTENCA></IMPACTO>
 </LEXICO>
 <LEXICO>
 <NOME_SIMBOLO ID="issendmail">Issendmail</NOME_SIMBOLO>
 <SINONIMOS></SINONIMOS>
-<NOCAO><SENTENCA><TEXTO>Localização: class.phpmailer.php
+<NOCAO><SENTENCA><TEXTO>Localização: PHPMailer.php
 Números de linha de código: 2
 Utilidade:
-- Definir o "Mailer" para enviar mensagem usando  o programa $Sendmail.</TEXTO><REFERENCIA TO="class.phpmailer.php">class.phpmailer.php</REFERENCIA></SENTENCA></NOCAO>
+- Definir o "Mailer" para enviar mensagem usando  o programa $Sendmail.</TEXTO><REFERENCIA TO="PHPMailer.php">PHPMailer.php</REFERENCIA></SENTENCA></NOCAO>
 <IMPACTO><SENTENCA><TEXTO>- É chamada pela função
 - É chamada no corpo do arquivo </TEXTO></SENTENCA></IMPACTO>
 </LEXICO>
 <LEXICO>
 <NOME_SIMBOLO ID="isqmail">Isqmail</NOME_SIMBOLO>
 <SINONIMOS></SINONIMOS>
-<NOCAO><SENTENCA><TEXTO>Localização: class.phpmailer.php
+<NOCAO><SENTENCA><TEXTO>Localização: PHPMailer.php
 Números de linha de código: 3
 Utilidade:
-- Definir o "Mailer" para enviar mensagem usando o qmail MTA.</TEXTO><REFERENCIA TO="class.phpmailer.php">class.phpmailer.php</REFERENCIA></SENTENCA></NOCAO>
+- Definir o "Mailer" para enviar mensagem usando o qmail MTA.</TEXTO><REFERENCIA TO="PHPMailer.php">PHPMailer.php</REFERENCIA></SENTENCA></NOCAO>
 <IMPACTO><SENTENCA><TEXTO>- É chamada pela função
 - É chamada no corpo do arquivo </TEXTO></SENTENCA></IMPACTO>
 </LEXICO>
 <LEXICO>
 <NOME_SIMBOLO ID="addaddress">Addaddress</NOME_SIMBOLO>
 <SINONIMOS></SINONIMOS>
-<NOCAO><SENTENCA><TEXTO>Localização: class.phpmailer.php
+<NOCAO><SENTENCA><TEXTO>Localização: PHPMailer.php
 Pârametros:
 - $address - String
 - $name - String
 Número de linhas de código: 4
 Utilidade:
-- Adicionar um endereço "To".</TEXTO><REFERENCIA TO="class.phpmailer.php">class.phpmailer.php</REFERENCIA></SENTENCA></NOCAO>
+- Adicionar um endereço "To".</TEXTO><REFERENCIA TO="PHPMailer.php">PHPMailer.php</REFERENCIA></SENTENCA></NOCAO>
 <IMPACTO><SENTENCA><TEXTO>É chamada na função
 É chamada no corpo do arquivo
 Chama a função 
@@ -192,13 +192,13 @@ Dentro da função são criadas as variáveis:
 <LEXICO>
 <NOME_SIMBOLO ID="addcc">Addcc</NOME_SIMBOLO>
 <SINONIMOS></SINONIMOS>
-<NOCAO><SENTENCA><TEXTO>Localização: class.phpmailer.php
+<NOCAO><SENTENCA><TEXTO>Localização: PHPMailer.php
 Parâmetros:
 - $address - String
 - $name - String
 Número de linhas de código: 4
 Utilidade:
-- Adicionar um endereço "Cc".</TEXTO><REFERENCIA TO="class.phpmailer.php">class.phpmailer.php</REFERENCIA></SENTENCA></NOCAO>
+- Adicionar um endereço "Cc".</TEXTO><REFERENCIA TO="PHPMailer.php">PHPMailer.php</REFERENCIA></SENTENCA></NOCAO>
 <IMPACTO><SENTENCA><TEXTO>É chamada pela função
 É chamada no corpo do arquivo
 Chama a função 
@@ -465,13 +465,13 @@ Utilidade: cria uma variável de índices.</TEXTO><REFERENCIA TO="auxiliar_bd.php"
 <LEXICO>
 <NOME_SIMBOLO ID="addbcc">Addbcc</NOME_SIMBOLO>
 <SINONIMOS></SINONIMOS>
-<NOCAO><SENTENCA><TEXTO>Localização: class.phpmailer.php
+<NOCAO><SENTENCA><TEXTO>Localização: PHPMailer.php
 Parâmetros: 
 - $address - String
 - $name - String
 Número de linhas de código: 4
 Utilidade: 
-- Adicionar um endereço "Bcc"</TEXTO><REFERENCIA TO="class.phpmailer.php">class.phpmailer.php</REFERENCIA></SENTENCA></NOCAO>
+- Adicionar um endereço "Bcc"</TEXTO><REFERENCIA TO="PHPMailer.php">PHPMailer.php</REFERENCIA></SENTENCA></NOCAO>
 <IMPACTO><SENTENCA><TEXTO>É chamada pela função
 É chamada no corpo do arquivo
 São criadas as variáveis 
@@ -676,13 +676,13 @@ Utilidade: armazena link para conexão com o bando de dados.</TEXTO><REFERENCIA T
 <LEXICO>
 <NOME_SIMBOLO ID="addreplyto">Addreplyto</NOME_SIMBOLO>
 <SINONIMOS></SINONIMOS>
-<NOCAO><SENTENCA><TEXTO>Localização: class.phpmailer.php
+<NOCAO><SENTENCA><TEXTO>Localização: PHPMailer.php
 Parâmetros: 
 - $address - String
 - $name - String
 Número de linhas de código: 4
 Utilidade:
-- Adicionar um endereço "Reply-to"</TEXTO><REFERENCIA TO="class.phpmailer.php">class.phpmailer.php</REFERENCIA></SENTENCA></NOCAO>
+- Adicionar um endereço "Reply-to"</TEXTO><REFERENCIA TO="PHPMailer.php">PHPMailer.php</REFERENCIA></SENTENCA></NOCAO>
 <IMPACTO><SENTENCA><TEXTO>É chamada pela função
 É chamada no corpo do arquivo 
 Chama a função
@@ -694,12 +694,12 @@ Dentro da função são criadas as variáveis:
 <LEXICO>
 <NOME_SIMBOLO ID="send">Send</NOME_SIMBOLO>
 <SINONIMOS></SINONIMOS>
-<NOCAO><SENTENCA><TEXTO>Localização: class.phpmailer.php
+<NOCAO><SENTENCA><TEXTO>Localização: PHPMailer.php
 Retorno da função: 
 - boolean
 Número de linhas de código: 40
 Utilidade:
-- Cria mensagem e atribui o Mailer. Se a mensagem não é enviada com sucesso então é retornado falso</TEXTO><REFERENCIA TO="class.phpmailer.php">class.phpmailer.php</REFERENCIA></SENTENCA></NOCAO>
+- Cria mensagem e atribui o Mailer. Se a mensagem não é enviada com sucesso então é retornado falso</TEXTO><REFERENCIA TO="PHPMailer.php">PHPMailer.php</REFERENCIA></SENTENCA></NOCAO>
 <IMPACTO><SENTENCA><TEXTO>É chamada pela função
 É chamada no corpo do arquivo 
 Chama a função:
@@ -719,14 +719,14 @@ Dentro da função são criadas as variáveis:
 <LEXICO>
 <NOME_SIMBOLO ID="sendmailsend">Sendmailsend</NOME_SIMBOLO>
 <SINONIMOS></SINONIMOS>
-<NOCAO><SENTENCA><TEXTO>Localização: class.phpmailer.php
+<NOCAO><SENTENCA><TEXTO>Localização: PHPMailer.php
 Parâmetros: 
 - $header - String
 - $body - String
 Retorno da função: boolean
 Número de linhas de código: 22
 Utilidade:
-- Enviar email utilizando o programa Sendmail</TEXTO><REFERENCIA TO="class.phpmailer.php">class.phpmailer.php</REFERENCIA></SENTENCA></NOCAO>
+- Enviar email utilizando o programa Sendmail</TEXTO><REFERENCIA TO="PHPMailer.php">PHPMailer.php</REFERENCIA></SENTENCA></NOCAO>
 <IMPACTO><SENTENCA><TEXTO>É chamada pela função
 É chamada no corpo do arquivo 
 Chama a função
@@ -742,14 +742,14 @@ Dentro da função são criadas as variáveis:
 <LEXICO>
 <NOME_SIMBOLO ID="mailsend">Mailsend</NOME_SIMBOLO>
 <SINONIMOS></SINONIMOS>
-<NOCAO><SENTENCA><TEXTO>Localização: class.phpmailer.php
+<NOCAO><SENTENCA><TEXTO>Localização: PHPMailer.php
 Parâmetros:
 - $header - String
 - $body - String
 Retorno da função: boolean
 Número de linhas de código: 28
 Utilidade:
-- Enviar e-mail usando a função PHP mail()</TEXTO><REFERENCIA TO="class.phpmailer.php">class.phpmailer.php</REFERENCIA></SENTENCA></NOCAO>
+- Enviar e-mail usando a função PHP mail()</TEXTO><REFERENCIA TO="PHPMailer.php">PHPMailer.php</REFERENCIA></SENTENCA></NOCAO>
 <IMPACTO><SENTENCA><TEXTO>É chamada pela função:
 É chamada no corpo do arquivo: 
 Chama a função:
@@ -771,14 +771,14 @@ Dentro da função são criadas as variáveis:
 <LEXICO>
 <NOME_SIMBOLO ID="smtpsend">Smtpsend</NOME_SIMBOLO>
 <SINONIMOS></SINONIMOS>
-<NOCAO><SENTENCA><TEXTO>Localização: class.phpmailer.php
+<NOCAO><SENTENCA><TEXTO>Localização: PHPMailer.php
 Parâmetros: 
 - $header - String
 - $body - String
 Retorno da função: boolean
 Número de linhas de código: 58
 Utilidade:
-- Enviar email via SMTP usando PhpSMTP.</TEXTO><REFERENCIA TO="class.phpmailer.php">class.phpmailer.php</REFERENCIA></SENTENCA></NOCAO>
+- Enviar email via SMTP usando PhpSMTP.</TEXTO><REFERENCIA TO="PHPMailer.php">PHPMailer.php</REFERENCIA></SENTENCA></NOCAO>
 <IMPACTO><SENTENCA><TEXTO>É chamada pela função:
 É chamada no corpo do arquivo: 
 Chama a função: 
@@ -802,12 +802,12 @@ Dentro da função são criadas as variáveis:
 <LEXICO>
 <NOME_SIMBOLO ID="smtpconnect">Smtpconnect</NOME_SIMBOLO>
 <SINONIMOS></SINONIMOS>
-<NOCAO><SENTENCA><TEXTO>Localização: class.phpmailer.php
+<NOCAO><SENTENCA><TEXTO>Localização: PHPMailer.php
 Retorno da função: boolean
 Número de linhas de código: 43
 Utilidade:
 - Iniciar uma conexão com um servidor SMTP.
-- Retornar falso se a operação falhar.</TEXTO><REFERENCIA TO="class.phpmailer.php">class.phpmailer.php</REFERENCIA></SENTENCA></NOCAO>
+- Retornar falso se a operação falhar.</TEXTO><REFERENCIA TO="PHPMailer.php">PHPMailer.php</REFERENCIA></SENTENCA></NOCAO>
 <IMPACTO><SENTENCA><TEXTO>É chamada pela função:
 É chamada no corpo do arquivo: 
 Chama a função:
@@ -832,10 +832,10 @@ Dentro da função são criadas as variáveis:
 <LEXICO>
 <NOME_SIMBOLO ID="smtpclose">Smtpclose</NOME_SIMBOLO>
 <SINONIMOS></SINONIMOS>
-<NOCAO><SENTENCA><TEXTO>Localização: class.phpmailer.php
+<NOCAO><SENTENCA><TEXTO>Localização: PHPMailer.php
 Número de linhas de código: 9
 Utilidade:
-- Fecha uma sessão SMTP se exitir uma.</TEXTO><REFERENCIA TO="class.phpmailer.php">class.phpmailer.php</REFERENCIA></SENTENCA></NOCAO>
+- Fecha uma sessão SMTP se exitir uma.</TEXTO><REFERENCIA TO="PHPMailer.php">PHPMailer.php</REFERENCIA></SENTENCA></NOCAO>
 <IMPACTO><SENTENCA><TEXTO>É chamada pela função:
 É chamada no corpo do arquivo: 
 Chama a função: 
@@ -846,7 +846,7 @@ Chama a função:
 <LEXICO>
 <NOME_SIMBOLO ID="setlanguage">Setlanguage</NOME_SIMBOLO>
 <SINONIMOS></SINONIMOS>
-<NOCAO><SENTENCA><TEXTO>Localização: class.phpmailer.php
+<NOCAO><SENTENCA><TEXTO>Localização: PHPMailer.php
 Parâmetros: 
 - $lang_type - String
 - $lang_path - String
@@ -855,7 +855,7 @@ Número de linhas de código: 13
 Utilidade:
 - Configurar a linguagem de todas as mensagens de classes de erro.
 - Retorna falso se não conseguir carregar o arquivo de linguagem.
-- A linguagem padrão é Inglês.</TEXTO><REFERENCIA TO="class.phpmailer.php">class.phpmailer.php</REFERENCIA></SENTENCA></NOCAO>
+- A linguagem padrão é Inglês.</TEXTO><REFERENCIA TO="PHPMailer.php">PHPMailer.php</REFERENCIA></SENTENCA></NOCAO>
 <IMPACTO><SENTENCA><TEXTO>É chamada pela função:
 É chamada no corpo do arquivo: 
 Chama a função:
@@ -865,14 +865,14 @@ Chama a função:
 <LEXICO>
 <NOME_SIMBOLO ID="addrappend">Addrappend</NOME_SIMBOLO>
 <SINONIMOS></SINONIMOS>
-<NOCAO><SENTENCA><TEXTO>Localização: class.phpmailer.php
+<NOCAO><SENTENCA><TEXTO>Localização: PHPMailer.php
 Parâmetros:
 - $type - String
 - $addr - String
 Retorno da função: String
 Número de linhas de código: 11
 Utilidade:
-- Criar cabeçalhos de recipiente.</TEXTO><REFERENCIA TO="class.phpmailer.php">class.phpmailer.php</REFERENCIA></SENTENCA></NOCAO>
+- Criar cabeçalhos de recipiente.</TEXTO><REFERENCIA TO="PHPMailer.php">PHPMailer.php</REFERENCIA></SENTENCA></NOCAO>
 <IMPACTO><SENTENCA><TEXTO>É chamada pela função:
 É chamada no corpo do arquivo:
 Chama a função:
@@ -884,13 +884,13 @@ Dentro da função são criadas as variáveis:
 <LEXICO>
 <NOME_SIMBOLO ID="addrformat">Addrformat</NOME_SIMBOLO>
 <SINONIMOS></SINONIMOS>
-<NOCAO><SENTENCA><TEXTO>Localização: class.phpmailer.php
+<NOCAO><SENTENCA><TEXTO>Localização: PHPMailer.php
 Parâmetros: 
 - $addr - String
 Retorno da função: String
 Número de linhas de código: 10
 Utilidade:
-- Formatar um endereço corretamente.</TEXTO><REFERENCIA TO="class.phpmailer.php">class.phpmailer.php</REFERENCIA></SENTENCA></NOCAO>
+- Formatar um endereço corretamente.</TEXTO><REFERENCIA TO="PHPMailer.php">PHPMailer.php</REFERENCIA></SENTENCA></NOCAO>
 <IMPACTO><SENTENCA><TEXTO>É chamada pela função:
 É chamada no corpo do arquivo:
 Chama a função:
@@ -901,7 +901,7 @@ Dentro da função são criadas as variáveis:
 <LEXICO>
 <NOME_SIMBOLO ID="wraptext">Wraptext</NOME_SIMBOLO>
 <SINONIMOS></SINONIMOS>
-<NOCAO><SENTENCA><TEXTO>Localização: class.phpmailer.php
+<NOCAO><SENTENCA><TEXTO>Localização: PHPMailer.php
 Parâmetros:
 - $message - String
 - $length - Integer
@@ -909,7 +909,7 @@ Parâmetros:
 Retorno da função: String
 Número de linhas de código: 70
 Utilidade:
-- Juntar mensagen para o uso de mailers que não fazem a junção automática e para imprimíveis citados.</TEXTO><REFERENCIA TO="class.phpmailer.php">class.phpmailer.php</REFERENCIA></SENTENCA></NOCAO>
+- Juntar mensagen para o uso de mailers que não fazem a junção automática e para imprimíveis citados.</TEXTO><REFERENCIA TO="PHPMailer.php">PHPMailer.php</REFERENCIA></SENTENCA></NOCAO>
 <IMPACTO><SENTENCA><TEXTO>É chamada pela função:
 É chamada no corpo do arquivo:
 Chama a função:
@@ -933,10 +933,10 @@ Dentro da função são criadas as variáveis:
 <LEXICO>
 <NOME_SIMBOLO ID="setwordwrap">Setwordwrap</NOME_SIMBOLO>
 <SINONIMOS></SINONIMOS>
-<NOCAO><SENTENCA><TEXTO>Localização: class.phpmailer.php
+<NOCAO><SENTENCA><TEXTO>Localização: PHPMailer.php
 Número de linhas de código: 15
 Utilidade:
-- Configurar o embrulho do corpo.</TEXTO><REFERENCIA TO="class.phpmailer.php">class.phpmailer.php</REFERENCIA></SENTENCA></NOCAO>
+- Configurar o embrulho do corpo.</TEXTO><REFERENCIA TO="PHPMailer.php">PHPMailer.php</REFERENCIA></SENTENCA></NOCAO>
 <IMPACTO><SENTENCA><TEXTO>É chamada pela função:
 É chamada no corpo do arquivo:
 Chama a função:
@@ -945,11 +945,11 @@ Chama a função:
 <LEXICO>
 <NOME_SIMBOLO ID="createheader">Createheader</NOME_SIMBOLO>
 <SINONIMOS></SINONIMOS>
-<NOCAO><SENTENCA><TEXTO>Localização: class.phpmailer.php
+<NOCAO><SENTENCA><TEXTO>Localização: PHPMailer.php
 Retorno da função: String
 Número de linhas de código: 90
 Utilidade:
-- Montar o cabeçalho da mensagem.</TEXTO><REFERENCIA TO="class.phpmailer.php">class.phpmailer.php</REFERENCIA></SENTENCA></NOCAO>
+- Montar o cabeçalho da mensagem.</TEXTO><REFERENCIA TO="PHPMailer.php">PHPMailer.php</REFERENCIA></SENTENCA></NOCAO>
 <IMPACTO><SENTENCA><TEXTO>É chamada pela função:
 É chamada no corpo do arquivo:
 Chama a função:
@@ -973,12 +973,12 @@ Dentro da função são criadas as variáveis:
 <LEXICO>
 <NOME_SIMBOLO ID="createbody">Createbody</NOME_SIMBOLO>
 <SINONIMOS></SINONIMOS>
-<NOCAO><SENTENCA><TEXTO>Localização: class.phpmailer.php
+<NOCAO><SENTENCA><TEXTO>Localização: PHPMailer.php
 Retorno da função: String
 Número de linhas de código: 59
 Utilidade:
 - Montar o corpo da mensagem.
-- Retorna uma string vazia em caso de erro.</TEXTO><REFERENCIA TO="class.phpmailer.php">class.phpmailer.php</REFERENCIA></SENTENCA></NOCAO>
+- Retorna uma string vazia em caso de erro.</TEXTO><REFERENCIA TO="PHPMailer.php">PHPMailer.php</REFERENCIA></SENTENCA></NOCAO>
 <IMPACTO><SENTENCA><TEXTO>É chamada pela função:
 É chamada no corpo do arquivo:
 Chama a função:
@@ -995,7 +995,7 @@ Dentro da função são criadas as variáveis:
 <LEXICO>
 <NOME_SIMBOLO ID="getboundary">Getboundary</NOME_SIMBOLO>
 <SINONIMOS></SINONIMOS>
-<NOCAO><SENTENCA><TEXTO>Localização: class.phpmailer.php
+<NOCAO><SENTENCA><TEXTO>Localização: PHPMailer.php
 Parâmetros: 
 - $boundary - String
 - $charset - String
@@ -1004,7 +1004,7 @@ Parâmetros:
 Retorno da função: String
 Número de linhas de código: 14
 Utilidade:
-- Retorna o começo da fronteira de uma mensagem.</TEXTO><REFERENCIA TO="class.phpmailer.php">class.phpmailer.php</REFERENCIA></SENTENCA></NOCAO>
+- Retorna o começo da fronteira de uma mensagem.</TEXTO><REFERENCIA TO="PHPMailer.php">PHPMailer.php</REFERENCIA></SENTENCA></NOCAO>
 <IMPACTO><SENTENCA><TEXTO>É chamada pela função:
 É chamada no corpo do arquivo:
 Chama a função:
@@ -1017,22 +1017,22 @@ Dentro da função são criadas as variáveis:
 <LEXICO>
 <NOME_SIMBOLO ID="endboundary">Endboundary</NOME_SIMBOLO>
 <SINONIMOS></SINONIMOS>
-<NOCAO><SENTENCA><TEXTO>Localização: class.phpmailer.php
+<NOCAO><SENTENCA><TEXTO>Localização: PHPMailer.php
 Parâmetros:
 - $boundary - String
 Número de linhas de código: 2
 Utilidade:
-- Retorna o fim da fronteira da mensagem.</TEXTO><REFERENCIA TO="class.phpmailer.php">class.phpmailer.php</REFERENCIA></SENTENCA></NOCAO>
+- Retorna o fim da fronteira da mensagem.</TEXTO><REFERENCIA TO="PHPMailer.php">PHPMailer.php</REFERENCIA></SENTENCA></NOCAO>
 <IMPACTO><SENTENCA><TEXTO>É chamada pela função:
 É chamada no corpo do arquivo:</TEXTO></SENTENCA></IMPACTO>
 </LEXICO>
 <LEXICO>
 <NOME_SIMBOLO ID="setmessagetype">Setmessagetype</NOME_SIMBOLO>
 <SINONIMOS></SINONIMOS>
-<NOCAO><SENTENCA><TEXTO>Localização: class.phpmailer.php
+<NOCAO><SENTENCA><TEXTO>Localização: PHPMailer.php
 Número de linhas de código: 12
 Utilidade:
-- Configura o tipo da mensagem.</TEXTO><REFERENCIA TO="class.phpmailer.php">class.phpmailer.php</REFERENCIA></SENTENCA></NOCAO>
+- Configura o tipo da mensagem.</TEXTO><REFERENCIA TO="PHPMailer.php">PHPMailer.php</REFERENCIA></SENTENCA></NOCAO>
 <IMPACTO><SENTENCA><TEXTO>É chamada pela função:
 É chamada no corpo do arquivo:
 Chama a função:
@@ -1042,34 +1042,34 @@ Chama a função:
 <LEXICO>
 <NOME_SIMBOLO ID="headerline">Headerline</NOME_SIMBOLO>
 <SINONIMOS></SINONIMOS>
-<NOCAO><SENTENCA><TEXTO>Localização: class.phpmailer.php
+<NOCAO><SENTENCA><TEXTO>Localização: PHPMailer.php
 Parâmetros:
 - $name - String
 - $value - Integer
 Retorno da função: String
 Número de linhas de código: 2
 Utilidade:
-- Retorna uma linha de cabeçalho formatada.</TEXTO><REFERENCIA TO="class.phpmailer.php">class.phpmailer.php</REFERENCIA></SENTENCA></NOCAO>
+- Retorna uma linha de cabeçalho formatada.</TEXTO><REFERENCIA TO="PHPMailer.php">PHPMailer.php</REFERENCIA></SENTENCA></NOCAO>
 <IMPACTO><SENTENCA><TEXTO>É chamada pela função:
 É chamada no corpo do arquivo:</TEXTO></SENTENCA></IMPACTO>
 </LEXICO>
 <LEXICO>
 <NOME_SIMBOLO ID="textline">Textline</NOME_SIMBOLO>
 <SINONIMOS></SINONIMOS>
-<NOCAO><SENTENCA><TEXTO>Localização: class.phpmailer.php
+<NOCAO><SENTENCA><TEXTO>Localização: PHPMailer.php
 Parâmetros:
 - $value - Interger
 Retorno da função: String
 Número de linhas de código: 2
 Utilidade:
-- Retorna uma linha de email formatada.</TEXTO><REFERENCIA TO="class.phpmailer.php">class.phpmailer.php</REFERENCIA></SENTENCA></NOCAO>
+- Retorna uma linha de email formatada.</TEXTO><REFERENCIA TO="PHPMailer.php">PHPMailer.php</REFERENCIA></SENTENCA></NOCAO>
 <IMPACTO><SENTENCA><TEXTO>É chamada pela função:
 É chamada no corpo do arquivo:</TEXTO></SENTENCA></IMPACTO>
 </LEXICO>
 <LEXICO>
 <NOME_SIMBOLO ID="addattachment">Addattachment</NOME_SIMBOLO>
 <SINONIMOS></SINONIMOS>
-<NOCAO><SENTENCA><TEXTO>Localização: class.phpmailer.php
+<NOCAO><SENTENCA><TEXTO>Localização: PHPMailer.php
 Parâmetros:
 - $path - String
 - $name - String
@@ -1079,7 +1079,7 @@ Retorno da função: Boolean
 Número de linhas de código: 22
 Utilidade:
 - Adiciona um anexo de um caminho no sistema de arquivos.
-- Retorna falso se não encontrar o arquivo.</TEXTO><REFERENCIA TO="class.phpmailer.php">class.phpmailer.php</REFERENCIA></SENTENCA></NOCAO>
+- Retorna falso se não encontrar o arquivo.</TEXTO><REFERENCIA TO="PHPMailer.php">PHPMailer.php</REFERENCIA></SENTENCA></NOCAO>
 <IMPACTO><SENTENCA><TEXTO>
 É chamada pela função:
 É chamada no corpo do arquivo:

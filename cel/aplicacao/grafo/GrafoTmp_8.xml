@@ -47,7 +47,7 @@ Utilidade:
 - É chamada no corpo do arquivo</texto><PT/></sentenca></impacto>
 </lexico>
 <lexico>
-<nome_simbolo id="class.phpmailer.php"><texto>Class.phpmailer.php</texto></nome_simbolo>
+<nome_simbolo id="PHPMailer.php"><texto>PHPMailer.php</texto></nome_simbolo>
 <sinonimos></sinonimos>
 <nocao><sentenca><texto>Classe para mandar email usando tanto sendmail, PHP mail() ou SMTP. Métodos são baseados nas classes do AspEmail(tm) padrão.
 Número de linhas de código: 1499</texto><PT/></sentenca></nocao>
@@ -122,7 +122,7 @@ Número de linhas de código: 1499</texto><PT/></sentenca></nocao>
 <lexico>
 <nome_simbolo id="ishtml"><texto>Ishtml</texto></nome_simbolo>
 <sinonimos></sinonimos>
-<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="PHPMailer.php">PHPMailer.php</texto><texto>
 Parâmetros: 
 - $bool - Boolean
 Números de linha de código: 5
@@ -134,7 +134,7 @@ Utilidade:
 <lexico>
 <nome_simbolo id="issmtp"><texto>Issmtp</texto></nome_simbolo>
 <sinonimos></sinonimos>
-<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="PHPMailer.php">PHPMailer.php</texto><texto>
 Parâmetros: 
 - nenhum
 Números de linha de código: 2
@@ -146,7 +146,7 @@ Utilidade:
 <lexico>
 <nome_simbolo id="ismail"><texto>Ismail</texto></nome_simbolo>
 <sinonimos></sinonimos>
-<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="PHPMailer.php">PHPMailer.php</texto><texto>
 Números de linha de código: 2
 Utilidade:
 - Definir o "Mailer" para enviar mensagem usando a função PHP mail(). </texto><PT/></sentenca></nocao>
@@ -156,7 +156,7 @@ Utilidade:
 <lexico>
 <nome_simbolo id="issendmail"><texto>Issendmail</texto></nome_simbolo>
 <sinonimos></sinonimos>
-<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="PHPMailer.php">PHPMailer.php</texto><texto>
 Números de linha de código: 2
 Utilidade:
 - Definir o "Mailer" para enviar mensagem usando  o programa $Sendmail.</texto><PT/></sentenca></nocao>
@@ -166,7 +166,7 @@ Utilidade:
 <lexico>
 <nome_simbolo id="isqmail"><texto>Isqmail</texto></nome_simbolo>
 <sinonimos></sinonimos>
-<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="PHPMailer.php">PHPMailer.php</texto><texto>
 Números de linha de código: 3
 Utilidade:
 - Definir o "Mailer" para enviar mensagem usando o qmail MTA.</texto><PT/></sentenca></nocao>
@@ -176,7 +176,7 @@ Utilidade:
 <lexico>
 <nome_simbolo id="addaddress"><texto>Addaddress</texto></nome_simbolo>
 <sinonimos></sinonimos>
-<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="PHPMailer.php">PHPMailer.php</texto><texto>
 Pârametros:
 - $address - String
 - $name - String
@@ -194,7 +194,7 @@ Dentro da função são criadas as variáveis:
 <lexico>
 <nome_simbolo id="addcc"><texto>Addcc</texto></nome_simbolo>
 <sinonimos></sinonimos>
-<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="PHPMailer.php">PHPMailer.php</texto><texto>
 Parâmetros:
 - $address - String
 - $name - String
@@ -467,7 +467,7 @@ Utilidade: cria uma variável de índices.</texto><PT/></sentenca></nocao>
 <lexico>
 <nome_simbolo id="addbcc"><texto>Addbcc</texto></nome_simbolo>
 <sinonimos></sinonimos>
-<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="PHPMailer.php">PHPMailer.php</texto><texto>
 Parâmetros: 
 - $address - String
 - $name - String
@@ -678,7 +678,7 @@ Utilidade: armazena link para conexão com o bando de dados.</texto><PT/></senten
 <lexico>
 <nome_simbolo id="addreplyto"><texto>Addreplyto</texto></nome_simbolo>
 <sinonimos></sinonimos>
-<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="PHPMailer.php">PHPMailer.php</texto><texto>
 Parâmetros: 
 - $address - String
 - $name - String
@@ -696,7 +696,7 @@ Dentro da função são criadas as variáveis:
 <lexico>
 <nome_simbolo id="send"><texto>Send</texto></nome_simbolo>
 <sinonimos></sinonimos>
-<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="PHPMailer.php">PHPMailer.php</texto><texto>
 Retorno da função: 
 - boolean
 Número de linhas de código: 40
@@ -721,7 +721,7 @@ Dentro da função são criadas as variáveis:
 <lexico>
 <nome_simbolo id="sendmailsend"><texto>Sendmailsend</texto></nome_simbolo>
 <sinonimos></sinonimos>
-<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="PHPMailer.php">PHPMailer.php</texto><texto>
 Parâmetros: 
 - $header - String
 - $body - String
@@ -744,7 +744,7 @@ Dentro da função são criadas as variáveis:
 <lexico>
 <nome_simbolo id="mailsend"><texto>Mailsend</texto></nome_simbolo>
 <sinonimos></sinonimos>
-<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="PHPMailer.php">PHPMailer.php</texto><texto>
 Parâmetros:
 - $header - String
 - $body - String
@@ -773,7 +773,7 @@ Dentro da função são criadas as variáveis:
 <lexico>
 <nome_simbolo id="smtpsend"><texto>Smtpsend</texto></nome_simbolo>
 <sinonimos></sinonimos>
-<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="PHPMailer.php">PHPMailer.php</texto><texto>
 Parâmetros: 
 - $header - String
 - $body - String
@@ -804,7 +804,7 @@ Dentro da função são criadas as variáveis:
 <lexico>
 <nome_simbolo id="smtpconnect"><texto>Smtpconnect</texto></nome_simbolo>
 <sinonimos></sinonimos>
-<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="PHPMailer.php">PHPMailer.php</texto><texto>
 Retorno da função: boolean
 Número de linhas de código: 43
 Utilidade:
@@ -834,7 +834,7 @@ Dentro da função são criadas as variáveis:
 <lexico>
 <nome_simbolo id="smtpclose"><texto>Smtpclose</texto></nome_simbolo>
 <sinonimos></sinonimos>
-<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="PHPMailer.php">PHPMailer.php</texto><texto>
 Número de linhas de código: 9
 Utilidade:
 - Fecha uma sessão SMTP se exitir uma.</texto><PT/></sentenca></nocao>
@@ -848,7 +848,7 @@ Chama a função:
 <lexico>
 <nome_simbolo id="setlanguage"><texto>Setlanguage</texto></nome_simbolo>
 <sinonimos></sinonimos>
-<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="PHPMailer.php">PHPMailer.php</texto><texto>
 Parâmetros: 
 - $lang_type - String
 - $lang_path - String
@@ -867,7 +867,7 @@ Chama a função:
 <lexico>
 <nome_simbolo id="addrappend"><texto>Addrappend</texto></nome_simbolo>
 <sinonimos></sinonimos>
-<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="PHPMailer.php">PHPMailer.php</texto><texto>
 Parâmetros:
 - $type - String
 - $addr - String
@@ -886,7 +886,7 @@ Dentro da função são criadas as variáveis:
 <lexico>
 <nome_simbolo id="addrformat"><texto>Addrformat</texto></nome_simbolo>
 <sinonimos></sinonimos>
-<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="PHPMailer.php">PHPMailer.php</texto><texto>
 Parâmetros: 
 - $addr - String
 Retorno da função: String
@@ -903,7 +903,7 @@ Dentro da função são criadas as variáveis:
 <lexico>
 <nome_simbolo id="wraptext"><texto>Wraptext</texto></nome_simbolo>
 <sinonimos></sinonimos>
-<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="PHPMailer.php">PHPMailer.php</texto><texto>
 Parâmetros:
 - $message - String
 - $length - Integer
@@ -935,7 +935,7 @@ Dentro da função são criadas as variáveis:
 <lexico>
 <nome_simbolo id="setwordwrap"><texto>Setwordwrap</texto></nome_simbolo>
 <sinonimos></sinonimos>
-<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="PHPMailer.php">PHPMailer.php</texto><texto>
 Número de linhas de código: 15
 Utilidade:
 - Configurar o embrulho do corpo.</texto><PT/></sentenca></nocao>
@@ -947,7 +947,7 @@ Chama a função:
 <lexico>
 <nome_simbolo id="createheader"><texto>Createheader</texto></nome_simbolo>
 <sinonimos></sinonimos>
-<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="PHPMailer.php">PHPMailer.php</texto><texto>
 Retorno da função: String
 Número de linhas de código: 90
 Utilidade:
@@ -975,7 +975,7 @@ Dentro da função são criadas as variáveis:
 <lexico>
 <nome_simbolo id="createbody"><texto>Createbody</texto></nome_simbolo>
 <sinonimos></sinonimos>
-<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="PHPMailer.php">PHPMailer.php</texto><texto>
 Retorno da função: String
 Número de linhas de código: 59
 Utilidade:
@@ -997,7 +997,7 @@ Dentro da função são criadas as variáveis:
 <lexico>
 <nome_simbolo id="getboundary"><texto>Getboundary</texto></nome_simbolo>
 <sinonimos></sinonimos>
-<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="PHPMailer.php">PHPMailer.php</texto><texto>
 Parâmetros: 
 - $boundary - String
 - $charset - String
@@ -1019,7 +1019,7 @@ Dentro da função são criadas as variáveis:
 <lexico>
 <nome_simbolo id="endboundary"><texto>Endboundary</texto></nome_simbolo>
 <sinonimos></sinonimos>
-<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="PHPMailer.php">PHPMailer.php</texto><texto>
 Parâmetros:
 - $boundary - String
 Número de linhas de código: 2
@@ -1031,7 +1031,7 @@ Utilidade:
 <lexico>
 <nome_simbolo id="setmessagetype"><texto>Setmessagetype</texto></nome_simbolo>
 <sinonimos></sinonimos>
-<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="PHPMailer.php">PHPMailer.php</texto><texto>
 Número de linhas de código: 12
 Utilidade:
 - Configura o tipo da mensagem.</texto><PT/></sentenca></nocao>
@@ -1044,7 +1044,7 @@ Chama a função:
 <lexico>
 <nome_simbolo id="headerline"><texto>Headerline</texto></nome_simbolo>
 <sinonimos></sinonimos>
-<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="PHPMailer.php">PHPMailer.php</texto><texto>
 Parâmetros:
 - $name - String
 - $value - Integer
@@ -1058,7 +1058,7 @@ Utilidade:
 <lexico>
 <nome_simbolo id="textline"><texto>Textline</texto></nome_simbolo>
 <sinonimos></sinonimos>
-<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="PHPMailer.php">PHPMailer.php</texto><texto>
 Parâmetros:
 - $value - Interger
 Retorno da função: String
@@ -1071,7 +1071,7 @@ Utilidade:
 <lexico>
 <nome_simbolo id="addattachment"><texto>Addattachment</texto></nome_simbolo>
 <sinonimos></sinonimos>
-<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="PHPMailer.php">PHPMailer.php</texto><texto>
 Parâmetros:
 - $path - String
 - $name - String
