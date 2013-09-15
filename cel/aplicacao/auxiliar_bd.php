@@ -134,7 +134,7 @@ function get_termLexicon($lexicon) {
     while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
         $impacts[] = strtolower($line['impacto']);
     }
-    $lexicon_terms = new termo_do_lexico(strtolower($lexicon['nome']), strtolower($lexicon['nocao']), $impacts);
+    $lexicon_terms = new LexiconTerm(strtolower($lexicon['nome']), strtolower($lexicon['nocao']), $impacts);
     return $lexicon_terms;
 }
 
@@ -169,7 +169,7 @@ function get_conceptList() {
     $first_result = mysql_query($query) or die("A consulta � BD falhou : " . mysql_error() . __LINE__);
 
     while ($first_line = mysql_fetch_array($first_result, MYSQL_BOTH)) {
-        $concept = new conceito($first_line['nome'], $first_line['descricao']);
+        $concept = new Concept($first_line['nome'], $first_line['descricao']);
         $concept->namespace = $first_line['namespace'];
 
         $id = $first_line['id_conceito'];
@@ -186,7 +186,7 @@ function get_conceptList() {
             if ($relation_index != -1) {
                 $concept->relacoes[$relation_index]->predicados[] = $predicate;
             } else {
-                $concept->relacoes[] = new relacao_entre_conceitos($predicate, $relation);
+                $concept->relacoes[] = new RelationBetweenConcepts($predicate, $relation);
             }
         }
         $concept_array[] = $concept;

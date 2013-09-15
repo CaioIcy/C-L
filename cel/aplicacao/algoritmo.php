@@ -77,7 +77,7 @@ session_start();
 
                 if (!isset($_SESSION["conceito"])) {
                     $_SESSION["salvar"] = "TRUE";
-                    $_SESSION["conceito"] = new conceito($suj->nome, $suj->nocao);
+                    $_SESSION["conceito"] = new Concept($suj->nome, $suj->nocao);
                     $_SESSION["conceito"]->namespace = "proprio";
                 } else {
                     $_SESSION["salvar"] = "FALSE";
@@ -188,7 +188,7 @@ session_start();
 
                                     if (concept_exists($conc, $_SESSION['lista_de_conceitos']) == -1) {
                                         if (concept_exists($conc, $lista_de_sujeito_e_objeto) == -1) {
-                                            $nconc = new conceito($conc, "");
+                                            $nconc = new Concept($conc, "");
                                             $nconc->namespace = $_POST['namespace'];
                                             $_SESSION['lista_de_conceitos'][] = $nconc;
                                         }
@@ -200,7 +200,7 @@ session_start();
                                             $_SESSION["conceito"]->relacoes[$ind_rel]->predicados[] = $conc;
                                     }
                                     else {
-                                        $_SESSION["conceito"]->relacoes[] = new relacao_entre_conceitos($conc, $_SESSION["nome1"]);
+                                        $_SESSION["conceito"]->relacoes[] = new RelationBetweenConcepts($conc, $_SESSION["nome1"]);
                                     }
                                 } else if ($_POST["indice"] != "-1") {
                                     $conc = $concept[$_POST["indice"]]->nome;
@@ -216,7 +216,7 @@ session_start();
                                             $_SESSION["conceito"]->relacoes[$ind_rel]->predicados[] = $conc;
                                     }
                                     else {
-                                        $_SESSION["conceito"]->relacoes[] = new relacao_entre_conceitos($conc, $_SESSION["nome1"]);
+                                        $_SESSION["conceito"]->relacoes[] = new RelationBetweenConcepts($conc, $_SESSION["nome1"]);
                                     }
                                 } else {
                                     $_SESSION["finish_relation"] = TRUE;

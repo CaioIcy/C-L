@@ -2,7 +2,7 @@
 
 $_SESSION["estruturas"] = 1;
 
-class conceito {
+class Concept {
 
     var $nome;
     var $descricao;
@@ -10,7 +10,7 @@ class conceito {
     var $sub_concept;
     var $namespace;
 
-    function conceito($n, $d) {
+    function Concept($n, $d) {
         $this->nome = $n;
         $this->descricao = $d;
         $this->relacoes = array();
@@ -20,25 +20,25 @@ class conceito {
 
 }
 
-class relacao_entre_conceitos {
+class RelationBetweenConcepts {
 
     var $predicados;
     var $verbo;
 
-    function relacao_entre_conceitos($p, $v) {
+    function RelationBetweenConcepts($p, $v) {
         $this->predicados[] = $p;
         $this->verbo = $v;
     }
 
 }
 
-class termo_do_lexico {
+class LexiconTerm {
 
     var $nome;
     var $nocao;
     var $impacto;
 
-    function termo_do_lexico($name, $notion, $i) {
+    function LexiconTerm($name, $notion, $i) {
         $this->nome = $name;
         $this->nocao = $notion;
         $this->impacto = $i;
