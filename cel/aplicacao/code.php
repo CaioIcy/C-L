@@ -15,20 +15,21 @@ check_use_authentication("index.php");   //Checks if user is authenticated
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"> 
 
 <?php
-// Connets to SGBD 
-$database_conection = database_connect() or die("Erro ao conectar ao SGBD");
+// Connects to SGBD 
+$database_conection = database_connect() or die("Error while connecting to SGBD");
 
-// A variavel $id_projeto, se estiver setada, corresponde ao id do projeto que 
-// devera ser mostrado. Se ela nao estiver setada entao, por default, 
-// nao mostraremos projeto algum (esperaremos o usuario escolher um projeto). 
-// Como a passagem eh feita usando JavaScript (no heading.php), devemos checar 
-// se este id realmente corresponde a um projeto que o usuario tenha acesso 
-// (seguranca). 
 
+/*
+ * If &id_project is set, it corresponds to the ID of the project that is
+ * to be shown. If not set, then, by default, we will not show any project.
+ * Instead, we will wait for the user to choose a project (through JavaScript)
+ * in heading.php. We should check if the ID is actually corresponding to a
+ * project that the user has access to
+ */
 if (isset($id_project)) {
-    check_proj_perm($_SESSION['id_usuario_corrente'], $id_project) or die("Permissao negada");
+    check_proj_perm($_SESSION['id_usuario_corrente'], $id_project) or die("Permission denied");
     $query = "SELECT nome FROM projeto WHERE id_projeto = $id_project";
-    $query_r = mysql_query($query) or die("Erro ao enviar a query");
+    $query_r = mysql_query($query) or die("Error while sending the query");
     $result = mysql_fetch_array($query_r);
     $project_name = $result['nome'];
 } else {
@@ -36,7 +37,7 @@ if (isset($id_project)) {
 
     <script language="javascript1.3">
 
-        top.frames['menu'].document.writeln('<font color="red">Nenhum projeto selecionado</font>');
+        top.frames['menu'].document.writeln('<font color="red">No project selected</font>');
 
     </script> 
 
@@ -47,11 +48,14 @@ if (isset($id_project)) {
 
 <html> 
     <head> 
-
+        <!--figure out if this script should be used or not-->
         <script type="text/javascript">
-            // Framebuster script to relocate browser when MSIE bookmarks this 
-            // page instead of the parent frameset.  Set variable relocateURL to 
-            // the index document of your website (relative URLs are ok): 
+            /*
+             * Framebuster script to relocate browser when MSIE bookmarks this
+             * page instead of the parent frameset.  Set variable relocateURL
+             * to the index document of your website (relative URLs are ok)
+             */
+
             /*var relocateURL = "/"; 
              
              if (parent.frames.length == 0) { 
@@ -111,15 +115,17 @@ $query = "SELECT id_cenario, titulo
                   WHERE id_projeto = $id_project  
                   ORDER BY titulo";
 
-$query_r = mysql_query($query) or die("Erro ao enviar a query de selecao");
-// Devemos retirar todas as tags HTML do titulo do cenario. Possivelmente 
-// havera tags de links (<a> </a>). Caso nao tiremos, havera erro ao 
-// mostra-lo no menu. Este search & replace retira qualquer coisa que 
-// seja da forma <qualquer_coisa_aqui>. Pode, inclusive, retirar trechos 
-// que nao sao tags HTML. 
+$query_r = mysql_query($query) or die("Error while sending the selection query");
+
+/*
+ * We should remove all the HTML tags from the title of the scenario.
+ * If we do not, an error will happen while displaying it on the menu.
+ * This search and replace removes anything that is potentially dangerous.
+ * It can also, remove parts that are not HTML tags.
+ */
 $search = "'<[\/\!]*?[^<>]*?>'si";
 $replace = "";
-while ($row = mysql_fetch_row($query_r)) {    // para cada cenario do projeto 
+while ($row = mysql_fetch_row($query_r)) {    // for each scenario of the project 
     $row[1] = preg_replace($search, $replace, $row[1]);
     ?>
 
@@ -128,7 +134,7 @@ while ($row = mysql_fetch_row($query_r)) {    // para cada cenario do projeto
                 // + submenu 
                 var mcs_<?= $row[0] ?> = null;
                 mcs_<?= $row[0] ?> = new MTMenu();
-                mcs_<?= $row[0] ?>.addItem("Sub-cen�rios", "", null, "Cen�rios que este cen�rio referencia");
+                mcs_<?= $row[0] ?>.addItem("Sub-scenarios", "", null, "Scenarios that this scenario references");
                 // + submenu 
                 var mcsrc_<?= $row[0] ?> = null;
                 mcsrc_<?= $row[0] ?> = new MTMenu();
@@ -136,7 +142,7 @@ while ($row = mysql_fetch_row($query_r)) {    // para cada cenario do projeto
     <?php
     $query = "SELECT c.id_cenario_to, cen.titulo FROM centocen c, cenario cen WHERE c.id_cenario_from = " . $row[0];
     $query = $query . " AND c.id_cenario_to = cen.id_cenario";
-    $qrr_2 = mysql_query($query) or die("Erro ao enviar a query de selecao");
+    $qrr_2 = mysql_query($query) or die("Error while sending the selection query");
     while ($row_2 = mysql_fetch_row($qrr_2)) {
         $row_2[1] = preg_replace($search, $replace, $row_2[1]);
         ?>
@@ -159,7 +165,7 @@ while ($row = mysql_fetch_row($query_r)) {    // para cada cenario do projeto
 
             // - submenu 
             menu.makeLastSubmenu(mc);
-            menu.addItem("L�xico");
+            menu.addItem("Lexicon");
             // + submenu 
             var ml = null;
             ml = new MTMenu();
@@ -170,15 +176,15 @@ $query = "SELECT id_lexico, nome
                   WHERE id_projeto = $id_project  
                   ORDER BY nome";
 
-$query_r = mysql_query($query) or die("Erro ao enviar a query de selecao");
-while ($row = mysql_fetch_row($query_r)) {   // para cada lexico do projeto 
+$query_r = mysql_query($query) or die("Error while sending the selection query");
+while ($row = mysql_fetch_row($query_r)) {   // for each lexicon of the project 
     ?>
 
                 ml.addItem("<?= $row[1] ?>", "main.php?id=<?= $row[0] ?>&t=l");
                 // + submenu 
                 var mls_<?= $row[0] ?> = null;
                 mls_<?= $row[0] ?> = new MTMenu();
-                // mls_<?= $row[0] ?>.addItem("L�xico", "", null, "Termos do l�xico que este termo referencia"); 
+                // mls_<?= $row[0] ?>.addItem("L�xico", "", null, "Terms of the lexicon this term references"); 
                 // + submenu 
                 // var mlsrl_<?= $row[0] ?> = null; 
                 // mlsrl_<?= $row[0] ?> = new MTMenu(); 
@@ -186,7 +192,7 @@ while ($row = mysql_fetch_row($query_r)) {   // para cada lexico do projeto
     <?php
     $query = "SELECT l.id_lexico_to, lex.nome FROM lextolex l, lexico lex WHERE l.id_lexico_from = " . $row[0];
     $query = $query . " AND l.id_lexico_to = lex.id_lexico";
-    $qrr_2 = mysql_query($query) or die("Erro ao enviar a query de selecao");
+    $qrr_2 = mysql_query($query) or die("Error while sending the selection query");
     while ($row_2 = mysql_fetch_row($qrr_2)) {
         ?>
 
@@ -209,9 +215,9 @@ while ($row = mysql_fetch_row($query_r)) {   // para cada lexico do projeto
             // -submenu 
             menu.makeLastSubmenu(ml);
 
-            // ONTOLGIA 
+            // ONTOLOGY 
             // + submenu 
-            menu.addItem("Ontologia");
+            menu.addItem("Ontology");
             var mo = null;
             mo = new MTMenu();
 
@@ -219,9 +225,9 @@ while ($row = mysql_fetch_row($query_r)) {   // para cada lexico do projeto
             menu.makeLastSubmenu(mo);
 
 
-            // CONCEITO 
+            // CONCEPT 
             // ++ submenu 
-            mo.addItem("Conceitos");
+            mo.addItem("Concepts");
             var moc = null;
             moc = new MTMenu();
 
@@ -231,8 +237,8 @@ $query = "SELECT id_conceito, nome
                   WHERE id_projeto = $id_project  
                   ORDER BY nome";
 
-$query_r = mysql_query($query) or die("Erro ao enviar a query de selecao");
-while ($row = mysql_fetch_row($query_r)) {  // para cada conceito do projeto 
+$query_r = mysql_query($query) or die("Error while sending the selection query");
+while ($row = mysql_fetch_row($query_r)) {  // for each concept of the project 
     print "moc.addItem(\"$row[1]\", \"main.php?id=$row[0]&t=oc\");";
 }
 ?>
@@ -240,9 +246,9 @@ while ($row = mysql_fetch_row($query_r)) {  // para cada conceito do projeto
             // --submenu 
             mo.makeLastSubmenu(moc);
 
-            // RELA��ES 
+            // RELATIONS 
             // ++ submenu 
-            mo.addItem("Rela��es");
+            mo.addItem("Relations");
             var mor = null;
             mor = new MTMenu();
 
@@ -252,8 +258,8 @@ $query = "SELECT   id_relacao, nome
                   WHERE    id_projeto = $id_project  
                   ORDER BY nome";
 
-$query_r = mysql_query($query) or die("Erro ao enviar a query de selecao");
-while ($row = mysql_fetch_row($query_r)) {   // para cada rela��o do projeto 
+$query_r = mysql_query($query) or die("Error while sending the selection query");
+while ($row = mysql_fetch_row($query_r)) {   // for each relation of the project 
     print "mor.addItem(\"$row[1]\", \"main.php?id=$row[0]&t=or\");";
 }
 ?>
@@ -261,9 +267,9 @@ while ($row = mysql_fetch_row($query_r)) {   // para cada rela��o do projeto
             // --submenu    
             mo.makeLastSubmenu(mor);
 
-            // AXIOMAS 
+            // AXIOM 
             // ++ submenu 
-            mo.addItem("Axiomas");
+            mo.addItem("Axioms");
             var moa = null;
             moa = new MTMenu();
 
@@ -273,9 +279,9 @@ $query = "SELECT   id_axioma, axioma
                  WHERE    id_projeto = $id_project  
                  ORDER BY axioma";
 
-$query_r = mysql_query($query) or die("Erro ao enviar a query de selecao");
+$query_r = mysql_query($query) or die("Error while sending the selection query");
 
-while ($row = mysql_fetch_row($query_r)) {  // para cada axioma do projeto 
+while ($row = mysql_fetch_row($query_r)) {  // for each axiom of the project 
     $axi = explode(" disjoint ", $row[1]);
     print "moa.addItem(\"$axi[0]\", \"main.php?id=$row[0]&t=oa\");";
 }
@@ -283,7 +289,7 @@ while ($row = mysql_fetch_row($query_r)) {  // para cada axioma do projeto
 
             // --submenu    
             mo.makeLastSubmenu(moa);
-            
+
         </script> 
     </head> 
     <body onload="MTMStartMenu(true)" bgcolor="#000033" text="#ffffcc" link="yellow" vlink="lime" alink="red"> 

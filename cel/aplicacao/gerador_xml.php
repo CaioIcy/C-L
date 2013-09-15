@@ -2,7 +2,7 @@
 session_start();
 
 include("funcoes_genericas.php");
-include_once("coloca_links.php");
+include_once("puts_links.php");
 include("httprequest.inc");
 include_once("bd.inc");
 include_once("seguranca.php");
@@ -87,8 +87,8 @@ if (!(function_exists("gerar_xml"))) {
 
         while ($row = mysql_fetch_row($tb_cenario)) {
             $id_cenario = "<ID>" . $row[0] . "</ID>";
-            $id_cenario_atual = $row[0];
-            $vetor_cenarios = load_vetor_cenario($id_projeto, $id_cenario_atual, true);
+            $id_current_scenario = $row[0];
+            $vetor_cenarios = load_vetor_cenario($id_projeto, $id_current_scenario, true);
 
             // Porque usa $id_temp != $id_cenario ? e a variavel primeiro
 

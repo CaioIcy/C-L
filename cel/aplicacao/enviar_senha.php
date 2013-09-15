@@ -53,7 +53,7 @@ $query_r = mysql_query($query) or die("Erro ao executar a query");
 //           sistema exibe mensagem de erro na tela dizendo que login � inexistente, e 
 //           exibe um bot�o voltar, que redireciona o usu�rio para a tela de login novamente.
         //$Vemail = ini_set("SMTP","mail.gmail.com");  
-        //require("class.phpmailer.php");
+        //require("PHPMailer.php");
         // Seta o SMTP sem alterar o config
         //ini_set("SMTP","mail.hotpop.com");
         //Funcao que gera uma senha randomica de 6 caracteres
