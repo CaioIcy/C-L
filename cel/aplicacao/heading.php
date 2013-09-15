@@ -163,9 +163,9 @@ if (isset($id_project)) {
 
     $id_user = $_SESSION['id_usuario_corrente'];
 
-    $is_existingScenario = verificaGerente($id_user, $id_project);
+    $exists_scenario = verificaGerente($id_user, $id_project);
 
-    if ($is_existingScenario != 0) {
+    if ($exists_scenario != 0) {
         ?>
                                             <font color="#FF0033">Administrador</font>
 
@@ -266,9 +266,9 @@ if (isset($id_project)) {    // Se o usuario ja tiver escolhido um projeto,
 
                                         $id_user = $_SESSION['id_usuario_corrente'];
 
-                                        $is_existingScenario = verificaGerente($id_user, $id_project);
+                                        $exists_scenario = verificaGerente($id_user, $id_project);
 
-                                        if ($is_existingScenario != 0) {
+                                        if ($exists_scenario != 0) {
         ?> <a href="#" onClick="window.open('remove_projeto.php', '_blank', 'dependent,height=300,width=550,resizable,scrollbars,titlebar');">Remover 
                                                 Projeto</a>&nbsp;&nbsp;&nbsp; <?php
                                 }

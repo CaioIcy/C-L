@@ -35,7 +35,7 @@ if (isset($submit)) {       // Script chamado atraves do submit do formulario
     }
 
 
-    inserirPedidoAlterarLexico($id_project, $id_lexico, $nome, $nocao, $impacto, $justificativa, $_SESSION['id_usuario_corrente'], $list_ofSynonyms, $classificacao);
+    inserirPedidoAlterarLexico($id_project, $id_lexico, $lexicon_name, $lexicon_notion, $lexicon_impacts, $justificativa, $_SESSION['id_usuario_corrente'], $list_ofSynonyms, $lexicon_classification);
     ?>
     <html>
         <head>

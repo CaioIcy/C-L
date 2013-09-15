@@ -23,19 +23,19 @@ if (!isset($success)) {
 $database_conection = database_connect() or die("Erro ao conectar ao SGBD");
 
 if (isset($submit)) {
-    $is_existingScenario = checarCenarioExistente($_SESSION['id_projeto_corrente'], $scene_title);
+    $exists_scenario = checarCenarioExistente($_SESSION['id_projeto_corrente'], $scene_title);
     ?>  
 
     <!-- find out if this interferes in the functionality of C-L -->
     <!-- ADICIONEI ISTO PARA TESTES -->
     <!--
-       RET = <?= $is_existingScenario ?> => RET = <?PHP $is_existingScenario ? print("TRUE")  : print("FALSE") ; ?><BR>
+       RET = <?= $exists_scenario ?> => RET = <?PHP $exists_scenario ? print("TRUE")  : print("FALSE") ; ?><BR>
     $sucesso        = <?= $success ?><BR>
     _GET["sucesso"] = <?= $_GET["sucesso"] ?><BR>   
     -->
 
     <?PHP
-    if ($is_existingScenario == true) {
+    if ($exists_scenario == true) {
         print("<!-- Trying to insert scenario --><BR>");
 
         /* Substitui todas as ocorrencias de ">" e "<" por " " */

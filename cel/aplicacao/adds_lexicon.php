@@ -22,15 +22,17 @@ $database_conection = database_connect() or die("Erro ao conectar ao SGBD");
 // Script called from submit button
 if (isset($submit)) {
 
-    $is_existingScenario = checarLexicoExistente($_SESSION['id_projeto_corrente'], $nome);
-    if (!isset($list_ofSynonyms))
+    $exists_scenario = checarLexicoExistente($_SESSION['id_currentProject'], $lexicon_name);
+    
+    if (!isset($list_ofSynonyms)){
         $list_ofSynonyms = array();
+    }
+    
+    $exists_synonyms = checarSinonimo($_SESSION['id_currentProject'], $list_ofSynonyms);
 
-    $retSin = checarSinonimo($_SESSION['id_projeto_corrente'], $list_ofSynonyms);
-
-    if (($is_existingScenario == true) AND ($retSin == true )) {
-        $id_currentUser = $_SESSION['id_usuario_corrente'];
-        inserirPedidoAdicionarLexico($id_project, $nome, $nocao, $impacto, $id_currentUser, $list_ofSynonyms, $classificacao);
+    if (($exists_scenario == true) AND ($exists_synonyms == true )) {
+        $id_currentUser = $_SESSION['id_currentUser'];
+        inserirPedidoAdicionarLexico($id_project, $lexicon_name, $lexicon_notion, $lexicon_impacts, $id_currentUser, $list_ofSynonyms, $lexicon_classification);
     } else {
         ?>
         <html><head><title>Project</title></head><body bgcolor="#FFFFFF">
