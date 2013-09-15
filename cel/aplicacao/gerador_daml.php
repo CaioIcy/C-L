@@ -1,5 +1,5 @@
 <?php
-include("daml.php");
+include("save_ontology_to_daml.php");
 include("auxiliar_bd.php");
 include_once("bd.inc");
 
