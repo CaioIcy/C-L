@@ -1,13 +1,13 @@
 <?php
+
+/* File: adds_lexicon.php
+ * Purpose: This script registers a new term in the lexicon of the project.
+ * A variable &id_project is recieved through a URL, and indicates in which project the new scenario will be inserted in.
+ */
+
 include("funcoes_genericas.php");
 include("httprequest.inc");
 include_once("bd.inc");
-
-/*
- * This script registers a new term in the lexicon of the project.
- * A variable &id_project is recieved through a URL, and indicates in which
- * project the new scenario will be inserted in.
- */
 
 session_start();
 
@@ -15,13 +15,11 @@ if (!isset($success)) {
     $success = 'n';
 }
 
-// Checa se o usu�rio foi autenticado
 check_use_authentication("index.php");
 
-// Conecta ao SGBD
 $database_conection = database_connect() or die("Erro ao conectar ao SGBD");
 
-//Script chamado atrav�s do submit do formul�rio
+// Script called from submit button
 if (isset($submit)) {
 
     $is_existingScenario = checarLexicoExistente($_SESSION['id_projeto_corrente'], $nome);
