@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Esqueci minha senha</title>
+        <title>Forgot my password</title>
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
     </head>
 
@@ -8,12 +8,11 @@
         <!--
         function TestarBranco(form)
         {
-            login = form.login.value
+            login = form.login.value;
 
-            if ((login == ""))
-            {
-                alert("Por favor, digite o seu Login.")
-                form.login.focus()
+            if ((login == "")){
+                alert("Please, insert your Login.");
+                form.login.focus();
                 return false;
             }
 
@@ -44,7 +43,7 @@
 //            O usu�rio digita o seu login e clica no bot�o Enviar. 
                 ?>
 
-                <p style="color: green; font-weight: bold; text-align: center">Entre com seu Login:</p>
+                <p style="color: green; font-weight: bold; text-align: center">Enter with your Login:</p>
 
                 <table cellpadding="5">
                     <tr><td>Login:</td><td><input maxlength="12" name="login" size="24" type="text"></td></tr>
@@ -55,7 +54,7 @@
             </div>
             <br>
             <br>
-            <center><a href="JavaScript:window.history.go(-1)">Voltar</a></center>
-        </form<i><a href="showSource.php?file=esqueciSenha.php">Veja o c�digo fonte!</a></i>
+            <center><a href="JavaScript:window.history.go(-1)">Return</a></center>
+        </form<i><a href="showSource.php?file=esqueciSenha.php">See the source code!</a></i>
     </body>
 </html>
