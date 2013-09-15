@@ -32,7 +32,7 @@ if (isset($submit)) {
 
     if (($exists_scenario == true) AND ($exists_synonyms == true )) {
         $id_currentUser = $_SESSION['id_currentUser'];
-        inserirPedidoAdicionarLexico($id_project, $lexicon_name, $lexicon_notion, $lexicon_impacts, $id_currentUser, $list_ofSynonyms, $lexicon_classification);
+        adds_requestLexicon($id_project, $lexicon_name, $lexicon_notion, $lexicon_impacts, $id_currentUser, $list_ofSynonyms, $lexicon_classification);
     } else {
         ?>
         <html><head><title>Project</title></head><body bgcolor="#FFFFFF">

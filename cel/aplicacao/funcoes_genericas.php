@@ -1250,7 +1250,7 @@ if (!(function_exists("inserirPedidoRemoverCenario"))) {
 ###################################################################
 if (!(function_exists("inserirPedidoAdicionarLexico"))) {
 
-    function inserirPedidoAdicionarLexico($id_projeto, $nome, $nocao, $impacto, $id_usuario, $sinonimos, $classificacao) {
+    function adds_requestLexicon($id_projeto, $nome, $nocao, $impacto, $id_usuario, $sinonimos, $classificacao) {
 
         $DB = new PGDB();
         $insere = new QUERY($DB);
