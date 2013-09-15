@@ -1,0 +1,5 @@
+==================================
+Coding style
+==================================
+
+Default formatter options from NetBeans (7.3.1)
