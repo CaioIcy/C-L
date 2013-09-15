@@ -26,7 +26,7 @@
     </p>
 
     <body bgcolor="#FFFFFF">
-        <form action="enviar_senha.php" method="post">
+        <form action="send_new_password.php" method="post">
             <div align="center">
 
                 <?php

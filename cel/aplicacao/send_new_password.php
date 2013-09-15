@@ -13,16 +13,16 @@ include("httprequest.inc");
 //           Se o login informado for cadastrado, sistema consulta no banco de dados qual 
 //           o email e senha do login informado.           
 
-$database_conection = database_connect() or die("Erro ao conectar ao SGBD");
+$database_conection = database_connect() or die("Error while connecting to SGBD");
 
 $query = "SELECT * FROM usuario WHERE login='$user_login'";
 
-$query_r = mysql_query($query) or die("Erro ao executar a query");
+$query_r = mysql_query($query) or die("Error while executing the query");
 ?>
 
 <html>
     <head>
-        <title>Enviar senha</title>
+        <title>Send password</title>
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
     </head>
 
@@ -30,8 +30,8 @@ $query_r = mysql_query($query) or die("Erro ao executar a query");
         <?php
         if (!mysql_num_rows($query_r)) {
             ?>
-            <p style="color: red; font-weight: bold; text-align: center">Login inexistente!</p>
-        <center><a href="JavaScript:window.history.go(-1)">Voltar</a></center>
+            <p style="color: red; font-weight: bold; text-align: center">Login does not exist!</p>
+        <center><a href="JavaScript:window.history.go(-1)">Return</a></center>
         <?php
     } else {
         $row = mysql_fetch_row($query_r);
@@ -52,49 +52,45 @@ $query_r = mysql_query($query) or die("Erro ao executar a query");
 //           Caso n�o exista nenhum login cadastrado igual ao informado pelo usu�rio, 
 //           sistema exibe mensagem de erro na tela dizendo que login � inexistente, e 
 //           exibe um bot�o voltar, que redireciona o usu�rio para a tela de login novamente.
+                     
         //$Vemail = ini_set("SMTP","mail.gmail.com");  
         //require("PHPMailer.php");
         // Seta o SMTP sem alterar o config
         //ini_set("SMTP","mail.hotpop.com");
-        //Funcao que gera uma senha randomica de 6 caracteres
 
-        function gerarandonstring($n) {
+        //Generates a random string with string_size characters
+        function generateRandomString($string_size) {
             $str = "ABCDEFGHIJKLMNOPQRSTUVXYWZabcdefghijklmnopqrstuvxywz0123456789";
             $cod = "";
-            for ($a = 0; $a < $n; $a++) {
+            for ($a = 0; $a < $string_size; $a++) {
                 $rand = rand(0, 61);
                 $cod .= substr($str, $rand, 1);
             }
             return $cod;
         }
 
-// Chamando a fun��o: gerarandonstring([quantidadedecaracteres])echo gerarandonstring(20);
-        // Gera uma nova senha rand�mica	
-        $nova_senha = gerarandonstring(6);
-        //Criptografa senha
-        $nova_senha_cript = md5($nova_senha);
+        $new_password = generateRandomString(6);
+        $encrypted_new_password = md5($new_password);
 
-        // Substitui senha antiga pela nova senha no banco de dados
+        // Substitutes old password for the new one in the database
+        $query_up = "update usuario set senha = '$encrypted_new_password' where login = '$user_login'";
+        $query_r_up = mysql_query($query_up) or die("Error while executing the update query in the user table");
 
-        $qUp = "update usuario set senha = '$nova_senha_cript' where login = '$user_login'";
-        $qrrUp = mysql_query($qUp) or die("Erro ao executar a query de update na tabela usuario");
-
-        $corpo_email = "Caro $user_name,\n Como solicitado, estamos enviando sua nova senha para acesso ao sistema C&L.\n\n login: $user_login \n senha: $nova_senha \n\n Para evitar futuros transtornos altere sua senha o mais breve poss�vel. \n Obrigado! \n Equipe de Suporte do C&L.";
+        $corpo_email = "Dear $user_name,\n As requested, we are sending you your new password to access the C&L system.\n\n Login: $user_login \n Password: $new_password \n\n To avoid future troubles, change your password as soon as you can. \n Thank you! \n C&L support team.";
         $headers = "";
-        if (mail("$mail", "Nova senha do C&L", "$corpo_email", $headers)) {
+        if (mail("$mail", "New C&L password", "$corpo_email", $headers)) {
             ?>
-            <p style="color: red; font-weight: bold; text-align: center">Uma nova senha foi criada e enviada para seu e-mail cadastrado.</p>
-            <center><a href="JavaScript:window.history.go(-2)">Voltar</a></center>
+            <p style="color: red; font-weight: bold; text-align: center">A new password was created and sent to your registered e-mail.</p>
+            <center><a href="JavaScript:window.history.go(-2)">Return</a></center>
             <?php
         } else {
             ?>
-            <p style="color: red; font-weight: bold; text-align: center">Ocorreu um erro durante o envio do e-mail!</p>
-            <center><a href="JavaScript:window.history.go(-2)">Voltar</a></center>
+            <p style="color: red; font-weight: bold; text-align: center">An error occurred while sending the e-mail!</p>
+            <center><a href="JavaScript:window.history.go(-2)">Return</a></center>
             <?php
         }
     }
     ?>
-
 
 </body>
 </html>
