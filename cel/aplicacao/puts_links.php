@@ -1,21 +1,21 @@
 <?php
 
-// $id_lexico_atual = id do lexico atual, para que ele n�o crie um link para si mesmo
+// $id_current_lexicon = id do lexico atual, para que ele n�o crie um link para si mesmo
 // funcao que carrega o vetor com todos os titulos dos lexicos e seus sinonimos menos o titulo do
-// l�xico passado na variavel $id_lexico_atual e seus sinonimos
-// Fun��o que carrega vetor com todos os titulos e sinonimos de lexicos menos o de id id_lexico_atual
+// l�xico passado na variavel $id_current_lexicon e seus sinonimos
+// Fun��o que carrega vetor com todos os titulos e sinonimos de lexicos menos o de id id_current_lexicon
 
-function load_vetor_lexico($id_projeto, $id_lexico_atual, $semAtual) {
+function load_vetor_lexico($id_projeto, $id_current_lexicon, $semAtual) {
     $vetorDeLexicos = array();
     if ($semAtual) {
         $queryLexicos = "SELECT id_lexico, nome    
 							FROM lexico    
-							WHERE id_projeto = '$id_projeto' AND id_lexico <> '$id_lexico_atual' 
+							WHERE id_projeto = '$id_projeto' AND id_lexico <> '$id_current_lexicon' 
 							ORDER BY nome DESC";
 
         $querySinonimos = "SELECT id_lexico, nome 
 							FROM sinonimo
-							WHERE id_projeto = '$id_projeto' AND id_lexico <> '$id_lexico_atual' 
+							WHERE id_projeto = '$id_projeto' AND id_lexico <> '$id_current_lexicon' 
 							ORDER BY nome DESC";
     } else {
 

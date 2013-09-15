@@ -95,11 +95,11 @@ function make_relationship($id_projeto) {
     $query_r = mysql_query($query) or die("Erro ao enviar a query");
 
     while ($result = mysql_fetch_array($query_r)) { // Para todos os lexicos
-        $id_lexico_atual = $result['id_lexico'];
+        $id_current_lexicon = $result['id_lexico'];
 
         // Monta vetor com nomes e sinonimos de todos os lexicos menos o lexico atual
 
-        $vetor_lexicos = carrega_vetor($id_projeto, $id_lexico_atual);
+        $vetor_lexicos = carrega_vetor($id_projeto, $id_current_lexicon);
 
         // Ordena o vetor de lexicos pela quantidade de palavaras do nome ou sinonimo
         quicksort($vetor_lexicos, 0, count($vetor_lexicos) - 1, 'lexico');
@@ -108,13 +108,13 @@ function make_relationship($id_projeto) {
 
         $notion = $result['nocao'];
         $temporary_notion = lexico_to_lexico($id_lexico, $notion, $vetor_lexicos);
-        add_relationship($id_lexico_atual, 'lexico', $temporary_notion);
+        add_relationship($id_current_lexicon, 'lexico', $temporary_notion);
 
     	
 
         $impact = $result['impacto'];
         $temporary_impact = lexico_to_lexico($id_lexico, $impact, $vetor_lexicos);
-        add_relationship($id_lexico_atual, 'lexico', $temporary_impact);
+        add_relationship($id_current_lexicon, 'lexico', $temporary_impact);
     }
 }
 
