@@ -8,10 +8,13 @@ include("funcoes_genericas.php");
 include("httprequest.inc");
 include_once("bd.inc");
 
+define("NEGATIVE", 'n');
+define("POSITIVE", 's');
+
 session_start();
 
 if (!isset($success)) {
-    $success = 'n';
+    $success = NEGATIVE;
 }
 
 check_use_authentication("index.php");
@@ -175,7 +178,7 @@ if (isset($submit)) {
             <h4>Add symbol</h4>
             <br>
     <?php
-    if ($success == "s") {
+    if ($success == POSITIVE) {
         ?>
                 <p style="color: blue; font-weight: bold; text-align: center">Symbol inserted with success!</p>
                 <?php
