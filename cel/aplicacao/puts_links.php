@@ -45,18 +45,18 @@ function load_vetor_lexico($id_projeto, $id_current_lexicon, $semAtual) {
     return $vetorDeLexicos;
 }
 
-// $id_cenario_atual = id do cenario atual, para que ele n�o crie um link para si mesmo
+// $id_current_scenario = id do cenario atual, para que ele n�o crie um link para si mesmo
 // funcao que carrega o vetor com todos os titulos dos cenarios menos o titulo do cenario
-// passado na variavel $id_cenario_atual 
+// passado na variavel $id_current_scenario 
 
-function load_vetor_cenario($id_projeto, $id_cenario_atual, $semAtual) {
+function load_vetor_cenario($id_projeto, $id_current_scenario, $semAtual) {
     if (!isset($vetorDeCenarios)) {
         $vetorDeCenarios = array();
     }
     if ($semAtual) {
         $queryCenarios = "SELECT id_cenario, titulo    
 							FROM cenario    
-							WHERE id_projeto = '$id_projeto' AND id_cenario <> '$id_cenario_atual' 
+							WHERE id_projeto = '$id_projeto' AND id_cenario <> '$id_current_scenario' 
 							ORDER BY titulo DESC";
     } else {
         $queryCenarios = "SELECT id_cenario, titulo    

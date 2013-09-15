@@ -87,8 +87,8 @@ if (!(function_exists("gerar_xml"))) {
 
         while ($row = mysql_fetch_row($tb_cenario)) {
             $id_cenario = "<ID>" . $row[0] . "</ID>";
-            $id_cenario_atual = $row[0];
-            $vetor_cenarios = load_vetor_cenario($id_projeto, $id_cenario_atual, true);
+            $id_current_scenario = $row[0];
+            $vetor_cenarios = load_vetor_cenario($id_projeto, $id_current_scenario, true);
 
             // Porque usa $id_temp != $id_cenario ? e a variavel primeiro
 

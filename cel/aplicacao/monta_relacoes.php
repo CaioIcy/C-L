@@ -25,11 +25,11 @@ function make_relationship($id_projeto) {
     $query_r = mysql_query($query) or die("Erro ao enviar a query");
 
     while ($result = mysql_fetch_array($query_r)) { // Para todos os cenarios 
-        $id_cenario_atual = $result['id_cenario'];
+        $id_current_scenario = $result['id_cenario'];
 
         // Monta vetor com titulo dos cenarios
 
-        $vetor_cenarios = load_vetor_cenario($id_projeto, $id_cenario_atual);
+        $vetor_cenarios = load_vetor_cenario($id_projeto, $id_current_scenario);
 
         // Monta vetor com nome e sinonimos de todos os lexicos
 
@@ -46,44 +46,44 @@ function make_relationship($id_projeto) {
         
 
         $scene_title = $result['titulo'];
-        $temporary_title = cenario_para_lexico($id_cenario_atual, $scene_title, $vetor_lexicos);
-        add_relationship($id_cenario_atual, 'cenario', $temporary_title);
+        $temporary_title = cenario_para_lexico($id_current_scenario, $scene_title, $vetor_lexicos);
+        add_relationship($id_current_scenario, 'cenario', $temporary_title);
 
        
 
         $scene_goal = $result['objetivo'];
-        $temporary_scene_goal = cenario_para_lexico($id_cenario_atual, $scene_goal, $vetor_lexicos);
-        add_relationship($id_cenario_atual, 'cenario', $temporary_scene_goal);
+        $temporary_scene_goal = cenario_para_lexico($id_current_scenario, $scene_goal, $vetor_lexicos);
+        add_relationship($id_current_scenario, 'cenario', $temporary_scene_goal);
 
 
 
         $scene_context = $result['contexto'];
-        $temporary_scene_context = cenario_para_lexico_cenario_para_cenario($id_cenario_atual, $$scene_context, $vetor_lexicos, $vetor_cenarios);
-        add_relationship($id_cenario_atual, 'cenario', $$temporary_scene_context);
+        $temporary_scene_context = cenario_para_lexico_cenario_para_cenario($id_current_scenario, $$scene_context, $vetor_lexicos, $vetor_cenarios);
+        add_relationship($id_current_scenario, 'cenario', $$temporary_scene_context);
 
         
 
         $scene_performer = $result['atores'];
-        $temporary_scene_performer = cenario_para_lexico($id_cenario_atual, $scene_performer, $vetor_lexicos);
-        add_relationship($id_cenario_atual, 'cenario', $temporary_scene_performer);
+        $temporary_scene_performer = cenario_para_lexico($id_current_scenario, $scene_performer, $vetor_lexicos);
+        add_relationship($id_current_scenario, 'cenario', $temporary_scene_performer);
 
         
 
         $scene_resource = $result['recursos'];
-        $temporary_scene_resource = cenario_para_lexico($id_cenario_atual, $$scene_resource, $vetor_lexicos);
-        add_relationship($id_cenario_atual, 'cenario', $temporary_scene_resource);
+        $temporary_scene_resource = cenario_para_lexico($id_current_scenario, $$scene_resource, $vetor_lexicos);
+        add_relationship($id_current_scenario, 'cenario', $temporary_scene_resource);
 
        
 
         $scene_exception = $result['excecao'];
-        $temporary_scene_exception = cenario_para_lexico($id_cenario_atual, $$scene_exception, $vetor_lexicos);
-        add_relationship($id_cenario_atual, 'cenario', $temporary_scene_exception);
+        $temporary_scene_exception = cenario_para_lexico($id_current_scenario, $$scene_exception, $vetor_lexicos);
+        add_relationship($id_current_scenario, 'cenario', $temporary_scene_exception);
 
        
 
         $scene_episode = $result['episodios'];
-        $temporary_scene_episode = cenario_para_lexico_cenario_para_cenario($id_cenario_atual, $$scene_episode, $vetor_lexicos, $vetor_cenarios);
-        add_relationship($id_cenario_atual, 'cenario', $temporary_scene_episode);
+        $temporary_scene_episode = cenario_para_lexico_cenario_para_cenario($id_current_scenario, $$scene_episode, $vetor_lexicos, $vetor_cenarios);
+        add_relationship($id_current_scenario, 'cenario', $temporary_scene_episode);
     }
 
     // Seleciona todos os l�xicos
