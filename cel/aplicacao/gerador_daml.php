@@ -39,7 +39,7 @@ $lista_conceitos = get_conceptList();
 $lista_relacoes = get_relationList();
 $lista_axiomas = get_lista_de_axiomas();
 
-$daml = salva_daml($site, $dir, $arquivo, $i, $lista_conceitos, $lista_relacoes, $lista_axiomas);
+$daml = save_daml($site, $dir, $arquivo, $i, $lista_conceitos, $lista_relacoes, $lista_axiomas);
 
 mysql_close($database_conection);
 ?>   
