@@ -1,5 +1,4 @@
 <?php
-
 /* File: adds_lexicon.php
  * Purpose: This script registers a new term in the lexicon of the project.
  * A variable &id_project is recieved through a URL, and indicates in which project the new scenario will be inserted in.
@@ -23,27 +22,31 @@ $database_conection = database_connect() or die("Erro ao conectar ao SGBD");
 if (isset($submit)) {
 
     $exists_scenario = checarLexicoExistente($_SESSION['id_currentProject'], $lexicon_name);
-    
-    if (!isset($list_ofSynonyms)){
+
+    if (!isset($list_ofSynonyms)) {
         $list_ofSynonyms = array();
     }
-    
+
     $exists_synonyms = checarSinonimo($_SESSION['id_currentProject'], $list_ofSynonyms);
 
     if (($exists_scenario == true) AND ($exists_synonyms == true )) {
+
         $id_currentUser = $_SESSION['id_currentUser'];
         adds_requestLexicon($id_project, $lexicon_name, $lexicon_notion, $lexicon_impacts, $id_currentUser, $list_ofSynonyms, $lexicon_classification);
     } else {
         ?>
+
         <html><head><title>Project</title></head><body bgcolor="#FFFFFF">
                 <p style="color: red; font-weight: bold; text-align: center">This symbol or synonym already exists!</p>
                 <br>
                 <br>
             <center><a href="JavaScript:window.history.go(-1)">Return</a></center>
         </body></html>
+
         <?php
         return;
     }
+
     $ip_value = CELConfig_ReadVar("HTTPD_ip");
     ?>
 
@@ -54,8 +57,8 @@ if (isset($submit)) {
         location.href = "add_lexico.php?id_projeto=<?= $id_project ?>&sucesso=s";
 
     </script>   
-    <?php
 
+    <?php
 } else {    // script called through the superior menu
     $query = "SELECT nome FROM projeto WHERE id_projeto = $id_project";
     $query_r = mysql_query($query) or die("Erro ao executar a query");
@@ -69,7 +72,7 @@ if (isset($submit)) {
         </head>
         <body>
             <script language="JavaScript">
-            <!--
+                <!--
                 function checks_textArea(form)
                 {
                     nome = form.nome.value;
@@ -146,24 +149,25 @@ if (isset($submit)) {
                     return true;
                 }
 
-            //-->
+                //-->
 
     <?php
-    //Cen�rios -  Incluir L�xico 
-    //Objetivo:    Permitir ao usu�rio a inclus�o de uma nova palavra do l�xico
-    //Contexto:    Usu�rio deseja incluir uma nova palavra no l�xico.
-    //                     Pr�-Condi��o: Login, palavra do l�xico ainda n�o cadastrada
-    //Atores:         Usu�rio, Sistema
-    //Recursos:    Dados a serem cadastrados
-    //Epis�dios:    O sistema fornecer� para o usu�rio uma tela com os seguintes campos de texto:
-    //               - Entrada L�xico.
-    //               - No��o.   Restri��o: Caixa de texto com pelo menos 5 linhas de escrita vis�veis
-    //               - Impacto. Restri��o: Caixa de texto com pelo menos 5 linhas de escrita vis�veis
-    //              Bot�o para confirmar a inclus�o da nova entrada do l�xico
-    //              Restri��es: Depois de clicar no bot�o de confirma��o, o sistema verifica se todos
-    //              os campos foram preenchidos. 
-    //Exce��o:    Se todos os campos n�o foram preenchidos, retorna para o usu�rio uma mensagem
-    //              avisando que todos os campos devem ser preenchidos e um bot�o de voltar para a pagina anterior.
+// Scene: Adds Lexicon
+// Goals: Allow user to include a new lexicon word
+// Context: User want to add a new word to the lexicon
+//      Pro_Condition: Login, a not registered word to the lexicon
+// Atores: User, System
+// Resource: Data to be registered
+// Episode: The system provides to the user a screen with the following items:
+//      Lexicon enter;
+//      Notion - Text field with at less 5 visible lines;
+//      Impact - Text field with at less 5 visible lines;
+//      Confirm Button;
+//      
+//      Restrictions: Checks blank fields;
+// Exceptions: Warning message when there is an empty field and a Back Button;
+// 
+// O sistema fornecer� para o usu�rio uma tela com os seguintes campos de texto:
     ?>
 
             </SCRIPT>
@@ -174,9 +178,9 @@ if (isset($submit)) {
     if ($success == "s") {
         ?>
                 <p style="color: blue; font-weight: bold; text-align: center">Symbol inserted with success!</p>
-        <?php
-    }
-    ?>       
+                <?php
+            }
+            ?>       
             <form action="?id_project=<?= $id_project ?>" method="post" onSubmit="return(doSubmit());">
                 <table>
                     <tr>
