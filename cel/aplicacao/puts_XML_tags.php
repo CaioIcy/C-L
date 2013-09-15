@@ -1,34 +1,23 @@
 <?php
 
-/* * ******************************************************
- * Modulo criado em 05/07/07
- * Grupo PES_07_1_1
- * Autores:
- *   BVF
- *   DFS
- *   TVD
- *   EMC
- * ****************************************************** */
-
-/* * ******************************************************* 
-  /* Modulo que poe as tags dos links no arquivo XML
-  /******************************************************** */
-
+/*
+ * Module that puts the tags of the links in the XML files
+ */
 
 include ("puts_links.php");
 
-function poe_tag_xml($str) {
+function puts_XML_tag($string) {
 
-    $r = "<link ref=\"$str\">$str </link>";
+    $r = "<link ref=\"$string\">$string </link>";
     return $r;
 }
 
-function pega_id_xml($str) {
+function get_XML_id($string) {
 
     $j = 0;
     $i = 0;
-    while ($str[$i] != '*') {
-        $buffer[$j] = $str[$i];
+    while ($string[$i] != '*') {
+        $buffer[$j] = $string[$i];
         $i++;
         $j++;
     }
@@ -36,72 +25,76 @@ function pega_id_xml($str) {
     return implode('', $buffer);
 }
 
-function troca_chaves_xml($str) {
-    $conta_abertos = 0;
-    $conta_fehados = 0;
-    $comeco;
-    $fim;
+function changes_XML_brackets($string) {
+    $open_count = 0;
+    $close_count = 0;
+    $beginning;
+    $end;
     $x = 0;
     $y = 0;
-    $vet_id;
+    $vector_id;
     $link_original;
-    $link_novo;
+    $link_new;
     $buffer3 = '';
     $buffer = 0;
     $i = 0;
-    $tam_str = strlen($str);
+    $string_size = strlen($string);
 
-    while ($i <= $tam_str) {
-        if ($str[$i] == '}') {
-            $conta_abertos = $conta_abertos + 1;
+    while ($i <= $string_size) {
+        if ($string[$i] == '}') {
+            $open_count = $open_count + 1;
         }
         $i++;
     } // FIM WHILE 1
+
     $i = 0;
-    while ($i <= $tam_str) {
-        if ($str[$i] == '}') {
-            $conta_fechados = $conta_fechados + 1;
+    while ($i <= $string_size) {
+        if ($string[$i] == '}') {
+            $close_count = $close_count + 1;
         }
         $i++;
     } // FIM WHILE 2
+
     $i = 0;
-    if ($conta_abertos == 0) {
-        return $str;
+    if ($open_count == 0) {
+        return $string;
     }
+
     $i = 0;
-    while ($i <= $tam_str) {
-        if ($str[$i] == '{') {
+    while ($i <= $string_size) {
+        if ($string[$i] == '{') {
             $buffer = $buffer + 1;
             if ($buffer == 1) {
-                $comeco[$x] = $i;
+                $beginning[$x] = $i;
                 $x++;
             }
         }
-        if ($str[$i] == '}') {
+
+        if ($string[$i] == '}') {
             $buffer = $buffer - 1;
             if ($buffer == 0) {
-                $fim[$y] = $i + 1;
+                $end[$y] = $i + 1;
                 $y++;
             }
         }
         $i++;
     };
-    $i = 0;
 
+    $i = 0;
     while ($i < $x) { //x = numero de links reais - 1    
-        $link = substr($str, $comeco[$i], $fim[$i] - $comeco[$i]);
+        $link = substr($string, $beginning[$i], $end[$i] - $beginning[$i]);
         $link_original[$i] = $link;
         $link = str_replace('{', '', $link);
         $link = str_replace('}', '', $link);
         $buffer2 = 0;
         $conta = 0;
         $n = 0;
-        //echo('aki - >'."$link".'<br>');
-        $vet_id[$i] = pega_id_xml($link);
+        
+        $vector_id[$i] = get_XML_id($link);
         $link = '**' . $link;
         $marcador = 0;
 
-        while ($n < $fim[$i] - $comeco[$i]) {
+        while ($n < $end[$i] - $beginning[$i]) {
             if ($link[$n] == '*' && $link[$n + 1] == '*' && $marcador == 1) {
                 $marcador = 0;
                 $link[$n] = '{';
@@ -124,26 +117,25 @@ function troca_chaves_xml($str) {
             $n++;
         }
         $link = str_replace('{', '', $link);
-        $link = poe_tag_xml($link, $vet_id[$i]);
-        $link_novo[$i] = $link;
+        $link = puts_XML_tag($link, $vector_id[$i]);
+        $link_new[$i] = $link;
         $i++;
     }
+
     $i = 0;
-    //echo("STRING INICAL -> $str<br/>");
     while ($i < $x) {
-        $str = str_replace($link_original[$i], $link_novo[$i], $str);
+        $string = str_replace($link_original[$i], $link_new[$i], $string);
         $i++;
     }
-    //echo("STRING FINAL -> $str<br/>");
-    return $str;
+    return $string;
 }
 
-function faz_links_XML($texto, $vetor_lex, $vetor_cen) {
+function make_links_XML($text, $lexicon_vector, $scenario_vector) {
 
-    marca_texto($texto, $vetor_cen, "cenario");
-    marca_texto_cenario($texto, $vetor_lex, $vetor_cen);
+    marca_texto($text, $scenario_vector, "cenario");
+    marca_texto_cenario($text, $lexicon_vector, $scenario_vector);
 
-    $str = troca_chaves_xml($texto);
+    $str = changes_XML_brackets($text);
     return $str;
 }
 ?> 
