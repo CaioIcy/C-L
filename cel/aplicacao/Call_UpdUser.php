@@ -1,4 +1,7 @@
 <?php
+/* File: Call_UpdUser.php
+ * Purpose: This  script updates an existing user
+ */
 session_start();
 
 include_once("bd.inc");
