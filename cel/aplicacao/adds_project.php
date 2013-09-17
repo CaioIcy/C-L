@@ -1,4 +1,7 @@
 <?php
+/* File: adds_project.php
+ * Purpose: This script registers a new project
+ */
 session_start();
 
 include("funcoes_genericas.php");
