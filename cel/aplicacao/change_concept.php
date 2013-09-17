@@ -1,7 +1,9 @@
 <?php
-/* vim: set expandtab tabstop=4 shiftwidth=4: */
+/* File: change_concept.php
+ * Purpose: This script makes a request for modification of a
+ * concept in the project
+ */
 
-// alt_conceito.php: Este script faz um pedido de alteracao de um conceito do projeto.
 // O usuario recebe um form com o conceito corrente (ou seja com seus campos preenchidos)
 // e podera fazer	alteracoes em todos os campos menos no nome.Ao final a tela principal
 // retorna para a tela de inicio e a arvore e fechada.O form de alteracao tb e fechado.
