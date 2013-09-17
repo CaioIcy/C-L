@@ -1,5 +1,9 @@
 <?php
 
+/* File: algorithm_support.php
+ * Purpose: This script is responsible for supporting the algorithm.php file
+ */
+
 function relation_exists($new_relation, $relation_list) {
     foreach ($relation_list as $relation_key => $relation) {
         if (@$relation->verbo == $new_relation) {
