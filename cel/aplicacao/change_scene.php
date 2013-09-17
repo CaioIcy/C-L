@@ -1,7 +1,9 @@
 <?php
-/* vim: set expandtab tabstop=4 shiftwidth=4: */
+/* File: change_scene.php
+ * Purpose: This  script make a request for modification of a
+ * scene in the project
+ */
 
-// alt_cenario.php: Este script faz um pedido de alteracao de um cenario do projeto.
 // O usuario recebe um form com o cenario corrente (ou seja com seus campos preenchidos)
 // e podera fazer	alteracoes em todos os campos menos no titulo.Ao final a tela principal
 // retorna para a tela de inicio e a arvore e fechada.O form de alteracao tb e fechado.
