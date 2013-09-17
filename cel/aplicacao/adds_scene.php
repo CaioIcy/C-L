@@ -1,4 +1,7 @@
 <?php
+/* File: adds_scene.php
+ * Purpose: This script registers a new scene in the project
+ */
 session_start();
 
 // vim: set expandtab tabstop=4 shiftwidth=4:
