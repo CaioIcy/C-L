@@ -1,7 +1,9 @@
 <?php
-/* vim: set expandtab tabstop=4 shiftwidth=4: */
+/* File: change_lexicon.php
+ * Purpose: This  script make a request for modification of a 
+ * lexicon in the project
+ */
 
-// alt_lexico.php: Este script faz um pedido de alteracao de um lexico do projeto.
 //                 O usuario recebe um form com o lexico corrente (ou seja, com seus campos preenchidos)
 //                 e podera fazer alteracoes em todos os campos menos no nome. Ao final a tela principal
 //                 retorna para a tela de inicio e a arvore e fechada. O form de alteracao tb e fechado.
