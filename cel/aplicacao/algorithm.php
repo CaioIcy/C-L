@@ -1,4 +1,8 @@
 <?php
+/* File: algorithm.php
+ * Purpose: This script is responsible for the algorithms
+ * used in the system.
+ */
 include 'estruturas.php';
 include_once 'auxiliar_algoritmo.php';
 session_start();
