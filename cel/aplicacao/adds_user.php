@@ -1,4 +1,7 @@
 <?php
+/* File: adds_user.php
+ * Purpose: This script registers a new user in the system
+ */
 session_start();
 ?>
 
