@@ -1,4 +1,8 @@
 <?php
+/* File: class_database.php
+ * Purpose: This script make an abstraction of the 
+ * database. Adapted to MySQL
+ */
 
 /*
   ##   Simple PostgreSQL Abstraction Layer v1.0
