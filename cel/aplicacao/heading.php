@@ -4,7 +4,7 @@ session_start();
 include("funcoes_genericas.php");
 
 
-chechUserAuthentication("index.php");       
+chechUserAuthentication("index.php");
 // Cen�rio - Usu�rio escolhe Projeto
 // Objetivo:  Permitir ao Usu�rio escolher um projeto.
 // Contexto:  O usu�rio deseja escoher um projeto.
@@ -83,22 +83,22 @@ if (isset($id_project)) {   // $id_projeto soh nao estara setada caso seja a pri
 
 if (isset($id_project)) {
     ?>
-                                                         var url = 'add_cenario.php?id_projeto=' + '<?= $id_project ?>';
+            var url = 'add_cenario.php?id_projeto=' + '<?= $id_project ?>';
     <?php
 } else {
     ?>
-                                                         var url = 'add_cenario.php?'
+            var url = 'add_cenario.php?'
     <?php
 }
 ?>
 
 
-                    var where = '_blank';
-                    var window_spec = 'dependent,height=600,width=550,resizable,scrollbars,titlebar';
-                    open(url, where, window_spec);
-                }
+        var where = '_blank';
+        var window_spec = 'dependent,height=600,width=550,resizable,scrollbars,titlebar';
+        open(url, where, window_spec);
+    }
 
-                function novoLexico() {
+    function novoLexico() {
 <?php
 //Cen�rios - Atualizar L�xico
 //Objetivo:	Permitir Inclus�o, Altera��o e Exclus�o de um L�xico por um usu�rio
@@ -112,23 +112,23 @@ if (isset($id_project)) {
 
 if (isset($id_project)) {
     ?>
-                                                         var url = 'add_lexico.php?id_projeto=' + '<?= $id_project ?>';
+            var url = 'add_lexico.php?id_projeto=' + '<?= $id_project ?>';
     <?php
 } else {
     ?>
-                                                         var url = 'add_lexico.php';
+            var url = 'add_lexico.php';
     <?php
 }
 ?>
 
-                    var where = '_blank';
-                    var window_spec = 'dependent,height=573,width=570,resizable,scrollbars,titlebar';
-                    open(url, where, window_spec);
-                }
+        var where = '_blank';
+        var window_spec = 'dependent,height=573,width=570,resizable,scrollbars,titlebar';
+        open(url, where, window_spec);
+    }
 
-                function projectInformation(idprojeto) {
-                    top.frames['text'].location.replace('main.php?id_projeto=' + idprojeto);
-                }
+    function projectInformation(idprojeto) {
+        top.frames['text'].location.replace('main.php?id_projeto=' + idprojeto);
+    }
 
 </script>
 
@@ -159,26 +159,26 @@ if (isset($id_project)) {
                         <table>
                             <tr>
                                 <td align="right" valign="top"> <?php
-if (isset($id_project)) {
+                                    if (isset($id_project)) {
 
-    $id_user = $_SESSION['id_usuario_corrente'];
+                                        $id_user = $_SESSION['id_usuario_corrente'];
 
-    $exists_scenario = verificaGerente($id_user, $id_project);
+                                        $exists_scenario = verificaGerente($id_user, $id_project);
 
-    if ($exists_scenario != 0) {
-        ?>
+                                        if ($exists_scenario != 0) {
+                                            ?>
                                             <font color="#FF0033">Administrador</font>
 
 
-        <?php
-    } else {
-        ?>                               <font color="#FF0033">Usu�rio normal</font>
+                                            <?php
+                                        } else {
+                                            ?>                               <font color="#FF0033">Usu�rio normal</font>
 
 
-        <?php
-    }
-} else {
-    ?>        
+                                            <?php
+                                        }
+                                    } else {
+                                        ?>        
 
                                         <?php
                                     }
@@ -188,15 +188,15 @@ if (isset($id_project)) {
                                         <option>-- Selecione um Projeto --</option>
 
 
-                                    <?php
+                                        <?php
 // ** Cenario "Login" **
 // O sistema d� ao usu�rio a op��o de cadastrar um novo projeto
 // ou utilizar um projeto em que ele fa�a parte.
 // conecta ao SGBD
-                                    $database_conection = database_connect() or die("Erro ao conectar ao SGBD");
+                                        $database_conection = database_connect() or die("Erro ao conectar ao SGBD");
 
 // define a consulta
-                                    $query = "SELECT p.id_projeto, p.nome, pa.gerente
+                                        $query = "SELECT p.id_projeto, p.nome, pa.gerente
       FROM usuario u, participa pa, projeto p
       WHERE u.id_usuario = pa.id_usuario
       AND pa.id_projeto = p.id_projeto
@@ -204,15 +204,15 @@ if (isset($id_project)) {
       ORDER BY p.nome";
 
 // executa a consulta
-                                    $query_r = mysql_query($query) or die("Erro ao executar query");
+                                        $query_r = mysql_query($query) or die("Erro ao executar query");
 
-                                    while ($result = mysql_fetch_array($query_r)) {    // enquanto houver projetos
-                                        ?>
+                                        while ($result = mysql_fetch_array($query_r)) {    // enquanto houver projetos
+                                            ?>
                                             <option value="<?= $result['id_projeto'] ?>"><?= ($result['gerente'] == 1) ? "*" : "" ?>  <?= $result['nome'] ?></option>
 
-    <?php
-}
-?>          
+                                            <?php
+                                        }
+                                        ?>          
 
                                     </select>&nbsp;&nbsp;
                                     <input type="submit" value="Atualizar">
@@ -223,9 +223,9 @@ if (isset($id_project)) {
                             <tr bgcolor="#E0FFFF" height="30">
 
                                 <td align="right" valign=MIDDLE> <?php
-if (isset($id_project)) {    // Se o usuario ja tiver escolhido um projeto,
-    // entao podemos mostrar os links de adicionar cen/lex
-    // e de informacoes (pagina principal) do projeto
+                                    if (isset($id_project)) {    // Se o usuario ja tiver escolhido um projeto,
+                                        // entao podemos mostrar os links de adicionar cen/lex
+                                        // e de informacoes (pagina principal) do projeto
 // Cen�rio - Administrador escolhe Projeto
 // Objetivo:  Permitir ao Administrador escolher um projeto.
 // Contexto:  O Administrador deseja escolher um projeto.
@@ -238,12 +238,12 @@ if (isset($id_project)) {    // Se o usuario ja tiver escolhido um projeto,
 //            -Info; 
 //            -Adicionar Projeto; 
 //            -Alterar Cadastro.
-    ?> <a href="#" onClick="novoCenario();">Adicionar Cen�rio</a>&nbsp;&nbsp;&nbsp; 
+                                        ?> <a href="#" onClick="novoCenario();">Adicionar Cen�rio</a>&nbsp;&nbsp;&nbsp; 
                                         <a href="#" onClick="novoLexico();">Adicionar S�mbolo</a>&nbsp;&nbsp;&nbsp; 
                                         <a href="#" title="Informa��es sobre o Projeto" onClick="projectInformation(<?= $id_project ?>);">Info</a>&nbsp;&nbsp;&nbsp; 
-    <?php
-}
-?> <?php
+                                        <?php
+                                    }
+                                    ?> <?php
 //Cen�rio  -  Cadastrar Novo Projeto 
 //Objetivo:    Permitir ao usu�rio cadastrar um novo projeto
 //Contexto:    Usu�rio deseja incluir um novo projeto na base de dados
@@ -251,7 +251,7 @@ if (isset($id_project)) {    // Se o usuario ja tiver escolhido um projeto,
 //Atores:      Usu�rio
 //Recursos:    Sistema, dados do projeto, base de dados
 //Epis�dios:   O Usu�rio clica na op��o �adicionar projeto� encontrada no menu superior.
-?> <a href="#" onClick="window.open('add_projeto.php', '_blank', 'dependent,height=313,width=550,resizable,scrollbars,titlebar');">Adicionar 
+                                    ?> <a href="#" onClick="window.open('add_projeto.php', '_blank', 'dependent,height=313,width=550,resizable,scrollbars,titlebar');">Adicionar 
                                         Projeto</a>&nbsp;&nbsp;&nbsp; <?php
 //Cen�rio  -   Remover Novo Projeto 
 //Objetivo:    Permitir ao Administrador do projeto remover um projeto
@@ -269,10 +269,10 @@ if (isset($id_project)) {    // Se o usuario ja tiver escolhido um projeto,
                                         $exists_scenario = verificaGerente($id_user, $id_project);
 
                                         if ($exists_scenario != 0) {
-        ?> <a href="#" onClick="window.open('remove_projeto.php', '_blank', 'dependent,height=300,width=550,resizable,scrollbars,titlebar');">Remover 
+                                            ?> <a href="#" onClick="window.open('remove_projeto.php', '_blank', 'dependent,height=300,width=550,resizable,scrollbars,titlebar');">Remover 
                                                 Projeto</a>&nbsp;&nbsp;&nbsp; <?php
-                                }
-                            }
+                                        }
+                                    }
 
 // Cen�rio - Logar no sistema
 // Objetivo:  Permitir ao usu�rio entrar no sistema e escolher um projeto que ele esteja 
@@ -294,7 +294,7 @@ if (isset($id_project)) {    // Se o usuario ja tiver escolhido um projeto,
 //Atores:    Usu�rio, Sistema.	
 //Recursos:  Interface	
 //Epis�dios: O usu�rio clica na op��o de alterar cadastro da interface
-?> <a href="#" onClick="window.open('Call_UpdUser.php', '_blank', 'dependent,height=300,width=550,resizable,scrollbars,titlebar');">Alterar 
+                                    ?> <a href="#" onClick="window.open('Call_UpdUser.php', '_blank', 'dependent,height=300,width=550,resizable,scrollbars,titlebar');">Alterar 
                                         Cadastro</a>&nbsp;&nbsp;&nbsp; 
 
 
@@ -324,7 +324,7 @@ if (isset($id_project)) {    // Se o usuario ja tiver escolhido um projeto,
 // Atores:	  Usu�rio, Sistema.	
 // Recursos:  Interface	
 // Epis�dios: O usu�rio clica na op��o de logout
-                                    ?> <a href="logout.php" target="_parent");">Sair</a>&nbsp;&nbsp;&nbsp; <a href="ajuda.htm" target="_blank"> 
+                                    ?> <a href="logout.php" target="_parent");">Sair</a>&nbsp;&nbsp;&nbsp; <a href="help.htm" target="_blank"> 
                                         Ajuda</a></td>
                             </tr>
                         </table>

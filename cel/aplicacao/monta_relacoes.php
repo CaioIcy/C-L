@@ -43,13 +43,13 @@ function make_relationship($id_projeto) {
 
         quicksort($vetor_cenarios, 0, count($vetor_cenarios) - 1, 'cenario');
 
-        
+
 
         $scene_title = $result['titulo'];
         $temporary_title = cenario_para_lexico($id_current_scenario, $scene_title, $vetor_lexicos);
         add_relationship($id_current_scenario, 'cenario', $temporary_title);
 
-       
+
 
         $scene_goal = $result['objetivo'];
         $temporary_scene_goal = cenario_para_lexico($id_current_scenario, $scene_goal, $vetor_lexicos);
@@ -61,25 +61,25 @@ function make_relationship($id_projeto) {
         $temporary_scene_context = cenario_para_lexico_cenario_para_cenario($id_current_scenario, $$scene_context, $vetor_lexicos, $vetor_cenarios);
         add_relationship($id_current_scenario, 'cenario', $$temporary_scene_context);
 
-        
+
 
         $scene_performer = $result['atores'];
         $temporary_scene_performer = cenario_para_lexico($id_current_scenario, $scene_performer, $vetor_lexicos);
         add_relationship($id_current_scenario, 'cenario', $temporary_scene_performer);
 
-        
+
 
         $scene_resource = $result['recursos'];
         $temporary_scene_resource = cenario_para_lexico($id_current_scenario, $$scene_resource, $vetor_lexicos);
         add_relationship($id_current_scenario, 'cenario', $temporary_scene_resource);
 
-       
+
 
         $scene_exception = $result['excecao'];
         $temporary_scene_exception = cenario_para_lexico($id_current_scenario, $$scene_exception, $vetor_lexicos);
         add_relationship($id_current_scenario, 'cenario', $temporary_scene_exception);
 
-       
+
 
         $scene_episode = $result['episodios'];
         $temporary_scene_episode = cenario_para_lexico_cenario_para_cenario($id_current_scenario, $$scene_episode, $vetor_lexicos, $vetor_cenarios);
@@ -104,13 +104,13 @@ function make_relationship($id_projeto) {
         // Ordena o vetor de lexicos pela quantidade de palavaras do nome ou sinonimo
         quicksort($vetor_lexicos, 0, count($vetor_lexicos) - 1, 'lexico');
 
-       
+
 
         $notion = $result['nocao'];
         $temporary_notion = lexico_to_lexico($id_lexico, $notion, $vetor_lexicos);
         add_relationship($id_current_lexicon, 'lexico', $temporary_notion);
 
-    	
+
 
         $impact = $result['impacto'];
         $temporary_impact = lexico_to_lexico($id_lexico, $impact, $vetor_lexicos);

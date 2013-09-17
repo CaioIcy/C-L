@@ -17,20 +17,20 @@ $database_conection = database_connect();
 
 
         <script language="javascript">
-        // Morten's JavaScript Tree Menu 
-        // version 2.3.2, dated 2002-02-24 
-        // http://www.treemenu.com/ 
+            // Morten's JavaScript Tree Menu 
+            // version 2.3.2, dated 2002-02-24 
+            // http://www.treemenu.com/ 
 
-        // Copyright (c) 2001-2002, Morten Wang & contributors 
-        // All rights reserved. 
+            // Copyright (c) 2001-2002, Morten Wang & contributors 
+            // All rights reserved. 
 
-        // This software is released under the BSD License which should accompany 
-        // it in the file "COPYING".  If you do not have this file you can access 
-        // the license through the WWW at http://www.treemenu.com/license.txt 
+            // This software is released under the BSD License which should accompany 
+            // it in the file "COPYING".  If you do not have this file you can access 
+            // the license through the WWW at http://www.treemenu.com/license.txt 
 
-        // Nearly all user-configurable options are set to their default values. 
-        // Have a look at the section "Setting options" in the installation guide 
-        // for description of each option and their possible values. 
+            // Nearly all user-configurable options are set to their default values. 
+            // Have a look at the section "Setting options" in the installation guide 
+            // for description of each option and their possible values. 
 
             MTMDefaultTarget = "text";
             MTMenuText = "Ontologia";
@@ -116,10 +116,10 @@ mysql_close($database_conection);
     </head>
     <body onload="MTMStartMenu(true);" bgcolor="#FFFFFF" text="#ffffcc" link="yellow" vlink="lime" alink="red">
 
-<?php
-print "<font color=black>";
-print_r($concept_list);
-print "</font>";
-?>
+        <?php
+        print "<font color=black>";
+        print_r($concept_list);
+        print "</font>";
+        ?>
     </body>
 </html>

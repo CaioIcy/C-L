@@ -57,28 +57,28 @@ if (isset($submit)) {       // Script chamado atraves do submit do formulario
 
             </script>
 
-    <?php
-} else {        // Script chamado atraves do link do lexico corrente
-    $project_name = simple_query("nome", "projeto", "id_projeto = " . $_SESSION['id_projeto_corrente']);
-    $query = "SELECT * FROM lexico WHERE id_lexico = $id_lexico";
-    $query_r = mysql_query($query) or die("Erro ao executar a query");
-    $result = mysql_fetch_array($query_r);
+            <?php
+        } else {        // Script chamado atraves do link do lexico corrente
+            $project_name = simple_query("nome", "projeto", "id_projeto = " . $_SESSION['id_projeto_corrente']);
+            $query = "SELECT * FROM lexico WHERE id_lexico = $id_lexico";
+            $query_r = mysql_query($query) or die("Erro ao executar a query");
+            $result = mysql_fetch_array($query_r);
 
-    //sinonimos
-    // $DB = new PGDB () ;
-    // $selectSin = new QUERY ($DB) ;
-    // $selectSin->execute("SELECT nome FROM sinonimo WHERE id_lexico = $id_lexico");
-    $qSin = "SELECT nome FROM sinonimo WHERE id_lexico = $id_lexico";
-    $qrrSin = mysql_query($qSin) or die("Erro ao executar a query");
-    //$resultSin = mysql_fetch_array($qrrSin);
-    ?>
+            //sinonimos
+            // $DB = new PGDB () ;
+            // $selectSin = new QUERY ($DB) ;
+            // $selectSin->execute("SELECT nome FROM sinonimo WHERE id_lexico = $id_lexico");
+            $qSin = "SELECT nome FROM sinonimo WHERE id_lexico = $id_lexico";
+            $qrrSin = mysql_query($qSin) or die("Erro ao executar a query");
+            //$resultSin = mysql_fetch_array($qrrSin);
+            ?>
         <html>
             <head>
                 <title>Alterar L�xico</title>
             </head>
             <body>
                 <script language="JavaScript">
-                <!--
+                    <!--
                     function checks_textArea(form)
                     {
                         nocao = form.nocao.value;
@@ -128,24 +128,24 @@ if (isset($submit)) {       // Script chamado atraves do submit do formulario
                         return true;
                     }
 
-                //-->
+                    //-->
 
 
 
 
     <?php
-    //Cen�rios -  Alterar L�xico 
-    //Objetivo:	Permitir a altera��o de uma entrada do dicion�rio l�xico por um usu�rio	
-    //Contexto:	Usu�rio deseja alterar um l�xico previamente cadastrado
-    //              Pr�-Condi��o: Login, l�xico cadastrado no sistema
-    //Atores:	Usu�rio
-    //Recursos:	Sistema, dados cadastrados
-    //Epis�dios:	O sistema fornecer� para o usu�rio a mesma tela de INCLUIR L�XICO,
-    //              por�m com os seguintes dados do l�xico a ser alterado preenchidos
-    //              e edit�veis nos seus respectivos campos: No��o e Impacto.
-    //              Os campos Projeto e Nome estar�o preenchidos, mas n�o edit�veis.
-    //              Ser� exibido um campo Justificativa para o usu�rio colocar uma
-    //              justificativa para a altera��o feita.	
+//Cen�rios -  Alterar L�xico 
+//Objetivo:	Permitir a altera��o de uma entrada do dicion�rio l�xico por um usu�rio	
+//Contexto:	Usu�rio deseja alterar um l�xico previamente cadastrado
+//              Pr�-Condi��o: Login, l�xico cadastrado no sistema
+//Atores:	Usu�rio
+//Recursos:	Sistema, dados cadastrados
+//Epis�dios:	O sistema fornecer� para o usu�rio a mesma tela de INCLUIR L�XICO,
+//              por�m com os seguintes dados do l�xico a ser alterado preenchidos
+//              e edit�veis nos seus respectivos campos: No��o e Impacto.
+//              Os campos Projeto e Nome estar�o preenchidos, mas n�o edit�veis.
+//              Ser� exibido um campo Justificativa para o usu�rio colocar uma
+//              justificativa para a altera��o feita.	
     ?>
 
                 </SCRIPT>
@@ -181,12 +181,12 @@ if (isset($submit)) {       // Script chamado atraves do submit do formulario
                             </td>   
                             <td width="100%">
                         <left><select multiple name="listSinonimo[]"  style="width: 400px;"  size="5"><?php
-    while ($rowSin = mysql_fetch_array($qrrSin)) {
-        ?>
+                                while ($rowSin = mysql_fetch_array($qrrSin)) {
+                                    ?>
                                     <option value="<?= $rowSin["nome"] ?>"><?= $rowSin["nome"] ?></option>
-        <?php
-    }
-    ?>
+                                    <?php
+                                }
+                                ?>
                                 <select></left><br> 
                                     </td>
                                     </tr>
@@ -230,6 +230,6 @@ if (isset($submit)) {       // Script chamado atraves do submit do formulario
                                     </body>
                                     </html>
 
-    <?php
-}
-?>
+                                    <?php
+                                }
+                                ?>

@@ -90,12 +90,12 @@ check_use_authentication("index.php"); // Checks if the user was authenticated
     </head>
     <body>
 
-<?php
-include("frame_inferior.php");
+        <?php
+        include("frame_inferior.php");
 
-if (isset($id) && isset($t)) {      // script called by main.php (or the tree)
-    if ($t == "c") {
-        ?>
+        if (isset($id) && isset($t)) {      // script called by main.php (or the tree)
+            if ($t == "c") {
+                ?>
 
                 <h3>Information about the scenario</h3>
 
@@ -111,16 +111,16 @@ if (isset($id) && isset($t)) {      // script called by main.php (or the tree)
 
             <table>
 
-            <?php
-            $database_connection = database_connect() or die("Erro ao conectar ao SGBD");
+                <?php
+                $database_connection = database_connect() or die("Erro ao conectar ao SGBD");
 
-            if ($t == "c") {        // if it's a scenario
-                $query = "SELECT id_cenario, titulo, objetivo, contexto, atores, recursos, episodios
+                if ($t == "c") {        // if it's a scenario
+                    $query = "SELECT id_cenario, titulo, objetivo, contexto, atores, recursos, episodios
               FROM cenario
               WHERE id_cenario = $id";
-                $query_r = mysql_query($query) or die("Error while sending selection query");
-                $result = mysql_fetch_array($query_r);
-                ?>
+                    $query_r = mysql_query($query) or die("Error while sending selection query");
+                    $result = mysql_fetch_array($query_r);
+                    ?>
 
                     <tr>
                         <td>Title:</td><td><?= $result['titulo'] ?></td>
@@ -149,14 +149,14 @@ if (isset($id) && isset($t)) {      // script called by main.php (or the tree)
                         </td>
                     </tr>
 
-        <?php
-    } else {
-        $query = "SELECT id_lexico, nome, nocao, impacto
+                    <?php
+                } else {
+                    $query = "SELECT id_lexico, nome, nocao, impacto
               FROM lexico
               WHERE id_lexico = $id";
-        $query_r = mysql_query($query) or die("Error while sending seleciton query");
-        $result = mysql_fetch_array($query_r);
-        ?>
+                    $query_r = mysql_query($query) or die("Error while sending seleciton query");
+                    $result = mysql_fetch_array($query_r);
+                    ?>
 
                     <tr>
                         <td>Name:</td><td><?= $result['nome'] ?></td>
@@ -176,18 +176,18 @@ if (isset($id) && isset($t)) {      // script called by main.php (or the tree)
                         </td>
                     </tr>
 
-        <?php
-    }
-    ?>
+                    <?php
+                }
+                ?>
 
             </table>
             <br>
             <br>
             <br>
 
-    <?php
-    if ($t == "c") {
-        ?>
+            <?php
+            if ($t == "c") {
+                ?>
 
                 <h3>Scenarios that reference this scenario</h3>
 
@@ -230,10 +230,10 @@ if (isset($id) && isset($t)) {      // script called by main.php (or the tree)
                 </tr>
             </table>
 
-    <?php
-    // Checks if the user is this projects administrator
-    if (is_admin($_SESSION['id_usuario_corrente'], $id_project)) {
-        ?>
+            <?php
+            // Checks if the user is this projects administrator
+            if (is_admin($_SESSION['id_usuario_corrente'], $id_project)) {
+                ?>
 
                 <br>
                 <p><b>You are an administrator of this project</b></p>
@@ -243,10 +243,10 @@ if (isset($id) && isset($t)) {      // script called by main.php (or the tree)
                 <p><a href="#" onClick="relUsuario();">Relate users (already existing) to this project</a></p>
                 <p><a href="#" onClick="generates_XML();">Generate XML of this project</a></p>
 
-        <?php
-    }
-} else {        // script called by index.php
-    ?>
+                <?php
+            }
+        } else {        // script called by index.php
+            ?>
 
             <p>Select a project above, or create a new one.</p>
 

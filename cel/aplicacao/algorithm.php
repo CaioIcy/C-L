@@ -372,107 +372,107 @@ session_start();
                         <SCRIPT language='javascript'>
                             document.location = "auxiliar_interface.php";
                         </SCRIPT>
-                    <?php
-                    exit();
+                        <?php
+                        exit();
 
-                    //$rel = exist($verbo->nome, $lista_de_relacoes);
-                }
+                        //$rel = exist($verbo->nome, $lista_de_relacoes);
+                    }
 
 
-                if (!isset($_SESSION["translate"])) {
-                    if ($_POST["main_subject"] == "TRUE") {
-                        $_SESSION["translate"] = 1;
-                        traduz_sujeito_objeto($aux, &$conceitos, &$relacoes, &$axiomas);
-                    } else {
-                        $_SESSION["translate"] = 2;
+                    if (!isset($_SESSION["translate"])) {
+                        if ($_POST["main_subject"] == "TRUE") {
+                            $_SESSION["translate"] = 1;
+                            traduz_sujeito_objeto($aux, &$conceitos, &$relacoes, &$axiomas);
+                        } else {
+                            $_SESSION["translate"] = 2;
+                            traduz_verbos($aux, &$relacoes);
+                        }
+                    } else if ($_SESSION["translate"] == 1) {
+                        traduz_sujeito_objeto($aux, &$conceitos, &$relacoes);
+                    } else if ($_SESSION["translate"] == 2) {
                         traduz_verbos($aux, &$relacoes);
                     }
-                } else if ($_SESSION["translate"] == 1) {
-                    traduz_sujeito_objeto($aux, &$conceitos, &$relacoes);
-                } else if ($_SESSION["translate"] == 2) {
-                    traduz_verbos($aux, &$relacoes);
+
+
+
+                    if (!checks_consistence()) {
+                        exit();
+                    }
+
+                    session_unregister("main_subject");
+                    session_unregister("translate");
                 }
-
-
-
-                if (!checks_consistence()) {
-                    exit();
-                }
-
-                session_unregister("main_subject");
-                session_unregister("translate");
+                $_SESSION["index4"] = 0;
             }
-            $_SESSION["index4"] = 0;
-        }
 
-        /*
-          Cenario:	Organizar ontologia.
-          Objetivo:	Organizar ontologia.
-          Contexto:	Listas de conceitos, relacoes e axiomas prontas.
-          Atores:		Usuario.
-          Recursos:	Sistema, lista de conceitos, lista de relacoes, lista de axiomas.
-          Episodios:
-          - Faz-se uma copia da lista de conceitos.
-          - Para cada elemento x da lista de conceitos
-         * Cria-se uma nova lista contendo o elemento x.
-         * Para cada elemento subsequente y
-          . Compara as relacoes dos elementos x e y.
-          . Caso possuam as mesmas relacoes, adiciona-se o elemento y a nova lista que ja contem x.
-          . Retira-se y da lista de conceitos.
-         * Retira-se x da lista de conceitos.
-         * Caso a nova lista tenha mais de dois elementos, ou seja, caso x compartilhe as mesmas
-          relacoes com outro termo
-          . Procura por um elemento na lista de conceitos que faca referencia a todos os elementos
-          da nova lista.
-          . Caso exista tal elemento, montar hierarquia.
-          . Caso nao exista, descobrir.
-         * Verificar consistencia.
-          - Restaurar lista de conceitos.
-         */
-
-        function organizar_ontologia($conceitos, $relacoes, $axiomas) {
-            $_SESSION["salvar"] = "TRUE";
-            /* for( ; $_SESSION["index5"] < count($conceitos); ++$_SESSION["index5"] )
-              {
-              $_SESSION["salvar"] = "TRUE";
-
-              $conc = $conceitos[$_SESSION["index5"]];
-
-              if( count($conc->subconceitos) > 0 )
-              {
-              if( $conc->subconceitos[0] == -1 )
-              {
-              array_splice($conc->subconceitos, 0, 1);
-              continue;
-              }
-              }
-
-              $conc->subconceitos[0] = -1;
-              $key = $_SESSION["index5"];
-
-              $nova_lista_de_conceitos = array($conc);
-
-              for( $i = $key+1; $i < count($conceitos); ++$i )
-              {
-              if (compara_arrays($conc->relacoes, $conceitos[$i]->relacoes))
-              {
-              $conceitos[$i]->subconceitos[0] = -1;
-              $nova_lista_de_conceitos[] = $conceitos[$i];
-              }
-              }
+            /*
+              Cenario:	Organizar ontologia.
+              Objetivo:	Organizar ontologia.
+              Contexto:	Listas de conceitos, relacoes e axiomas prontas.
+              Atores:		Usuario.
+              Recursos:	Sistema, lista de conceitos, lista de relacoes, lista de axiomas.
+              Episodios:
+              - Faz-se uma copia da lista de conceitos.
+              - Para cada elemento x da lista de conceitos
+             * Cria-se uma nova lista contendo o elemento x.
+             * Para cada elemento subsequente y
+              . Compara as relacoes dos elementos x e y.
+              . Caso possuam as mesmas relacoes, adiciona-se o elemento y a nova lista que ja contem x.
+              . Retira-se y da lista de conceitos.
+             * Retira-se x da lista de conceitos.
+             * Caso a nova lista tenha mais de dois elementos, ou seja, caso x compartilhe as mesmas
+              relacoes com outro termo
+              . Procura por um elemento na lista de conceitos que faca referencia a todos os elementos
+              da nova lista.
+              . Caso exista tal elemento, montar hierarquia.
+              . Caso nao exista, descobrir.
+             * Verificar consistencia.
+              - Restaurar lista de conceitos.
              */
-            //if( count($nova_lista_de_conceitos) >= 2 )
 
-            $finish_relation = FALSE;
-            while (!$finish_relation) {
-                $indice = 0;
+            function organizar_ontologia($conceitos, $relacoes, $axiomas) {
+                $_SESSION["salvar"] = "TRUE";
+                /* for( ; $_SESSION["index5"] < count($conceitos); ++$_SESSION["index5"] )
+                  {
+                  $_SESSION["salvar"] = "TRUE";
 
-                if (!isset($_SESSION["reference"])) {
+                  $conc = $conceitos[$_SESSION["index5"]];
 
-                    $_SESSION["lista"] = $conceitos; //array($conc1, $nconc);
-                    //$_SESSION['nome1'] = $nova_lista_de_conceitos;//
-                    $_SESSION["job"] = "reference";
-                    ?>
+                  if( count($conc->subconceitos) > 0 )
+                  {
+                  if( $conc->subconceitos[0] == -1 )
+                  {
+                  array_splice($conc->subconceitos, 0, 1);
+                  continue;
+                  }
+                  }
+
+                  $conc->subconceitos[0] = -1;
+                  $key = $_SESSION["index5"];
+
+                  $nova_lista_de_conceitos = array($conc);
+
+                  for( $i = $key+1; $i < count($conceitos); ++$i )
+                  {
+                  if (compara_arrays($conc->relacoes, $conceitos[$i]->relacoes))
+                  {
+                  $conceitos[$i]->subconceitos[0] = -1;
+                  $nova_lista_de_conceitos[] = $conceitos[$i];
+                  }
+                  }
+                 */
+                //if( count($nova_lista_de_conceitos) >= 2 )
+
+                $finish_relation = FALSE;
+                while (!$finish_relation) {
+                    $indice = 0;
+
+                    if (!isset($_SESSION["reference"])) {
+
+                        $_SESSION["lista"] = $conceitos; //array($conc1, $nconc);
+                        //$_SESSION['nome1'] = $nova_lista_de_conceitos;//
+                        $_SESSION["job"] = "reference";
+                        ?>
                         <a href="auxiliar_interface.php">auxiliar_interface</a>
                         <SCRIPT language='javascript'>
                             document.location = "auxiliar_interface.php";
@@ -609,11 +609,11 @@ session_start();
                 <input type="submit" value="SALVAR">
             </form>
         </p>
-                <?php
-            }
+        <?php
+    }
 
-            traduz();
-            ?>
+    traduz();
+    ?>
 
 
 </body>

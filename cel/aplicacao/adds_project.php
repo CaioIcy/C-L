@@ -26,8 +26,6 @@ check_use_authentication("index.php");
 //              para este novo projeto.
 //Exce��o:	   Se for especificado um nome de projeto j� existente e que perten�a ou tenha a participa��o
 //                 deste usu�rio, o sistema exibe uma mensagem de erro.
-
-
 // Called through the submit button
 if (isset($submit)) {
 

@@ -10,7 +10,7 @@
         {
             login = form.login.value;
 
-            if ((login == "")){
+            if ((login == "")) {
                 alert("Please, insert your Login.");
                 form.login.focus();
                 return false;

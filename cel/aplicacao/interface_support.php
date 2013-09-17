@@ -45,24 +45,24 @@ session_start();
                         ?>
                         <form method="POST" action="algoritmo.php" id="exist_form">
 
-                        <?php
-                        if (count($_SESSION["verbos_selecionados"]) != 0) {
-                            echo "Propriedades j� cadastradas para esse impacto:<p>";
-                            foreach ($_SESSION["verbos_selecionados"] as $verbo) {
-                                echo "   - " . $verbo . "<br>";
+                            <?php
+                            if (count($_SESSION["verbos_selecionados"]) != 0) {
+                                echo "Propriedades j� cadastradas para esse impacto:<p>";
+                                foreach ($_SESSION["verbos_selecionados"] as $verbo) {
+                                    echo "   - " . $verbo . "<br>";
+                                }
                             }
-                        }
-                        ?>
+                            ?>
                             <b>Impacto:</b> <code>"<?= $name ?>"</code><br><br>
                             <b>A propriedade j� est� cadastrada na lista abaixo?</b><br>
                             <SELECT id='indice' name='indice' size=10 width="300">
-                            <?php
-                            foreach ($list as $key => $termo) {
-                                ?>
+                                <?php
+                                foreach ($list as $key => $termo) {
+                                    ?>
                                     <OPTION value='<?= $key ?>' <?php if ($indice == $key) echo "selected" ?> > <?php echo $termo ?></OPTION>
-        <?php
-    }
-    ?>
+                                    <?php
+                                }
+                                ?>
                                 <OPTION value="-1"></OPTION>
                             </SELECT><br>
                             <input type="radio" onClick="seExiste('TRUE')" value="TRUE" id="existe" name="existe" size="20" <?php if ($indice != -1) echo"checked" ?>> sim
@@ -72,21 +72,21 @@ session_start();
                             <INPUT type="button" value="Pr�ximo Passo >>" name="B2" onClick="fim()">
                             </p>
                             <script language="JavaScript">
-                                            function seExiste(valor)
-                                            {
-                                                var nome = document.all.nome;
-                                                var indice = document.all.indice;
-                                                if (valor == 'TRUE')
-                                                {
-                                                    nome.disabled = true;
-                                                    indice.disabled = false;
-                                                }
-                                                else
-                                                {
-                                                    nome.disabled = false;
-                                                    indice.disabled = true;
-                                                }
-                                            }
+                                function seExiste(valor)
+                                {
+                                    var nome = document.all.nome;
+                                    var indice = document.all.indice;
+                                    if (valor == 'TRUE')
+                                    {
+                                        nome.disabled = true;
+                                        indice.disabled = false;
+                                    }
+                                    else
+                                    {
+                                        nome.disabled = false;
+                                        indice.disabled = true;
+                                    }
+                                }
     <?php
     if ($indice != -1)
         echo "seExiste('TRUE');";
@@ -94,20 +94,20 @@ session_start();
         echo "seExiste('FALSE');";
     ?>
 
-                                            function fim()
-                                            {
-                                                if (<?= count($_SESSION["verbos_selecionados"]) ?> != 0)
-                                                {
-                                                    document.all.indice.disabled = false;
-                                                    document.all.indice.selectedIndex =<?= count($list) ?>;
-                                                    document.all.existe[0].checked = true;
-                                                    var form = document.getElementById("exist_form");
-                                                    form.submit();
-                                                }
-                                                else
-                                                    alert("� necessario ao menos um verbo para cada impacto.");
+                                function fim()
+                                {
+                                    if (<?= count($_SESSION["verbos_selecionados"]) ?> != 0)
+                                    {
+                                        document.all.indice.disabled = false;
+                                        document.all.indice.selectedIndex =<?= count($list) ?>;
+                                        document.all.existe[0].checked = true;
+                                        var form = document.getElementById("exist_form");
+                                        form.submit();
+                                    }
+                                    else
+                                        alert("� necessario ao menos um verbo para cada impacto.");
 
-                                            }
+                                }
 
 
                             </script>
@@ -116,23 +116,23 @@ session_start();
                                 form.B1.disabled = false;
                             </SCRIPT>
                         </form>
-    <?php
-    //Registra a variavel de controle.
-    $_SESSION["exist"] = 1;
-}
+                        <?php
+                        //Registra a variavel de controle.
+                        $_SESSION["exist"] = 1;
+                    }
 
-/*
-  Cenario:    Verificar a importancia de um termo com ajuda do usuario.
-  Objetivo:    Verificar a importancia de um termo com ajuda do usuario.
-  Contexto:    Algoritmo de traduc�o iniciado.
-  Atores:        Usuario.
-  Recursos:    Sistema, termo.
-  Episodios:
-  - Retorna TRUE se a importancia e central.
- */
+                    /*
+                      Cenario:    Verificar a importancia de um termo com ajuda do usuario.
+                      Objetivo:    Verificar a importancia de um termo com ajuda do usuario.
+                      Contexto:    Algoritmo de traduc�o iniciado.
+                      Atores:        Usuario.
+                      Recursos:    Sistema, termo.
+                      Episodios:
+                      - Retorna TRUE se a importancia e central.
+                     */
 
-function importancia_central($termo, $impactos) {
-    ?>
+                    function importancia_central($termo, $impactos) {
+                        ?>
                         <h3>Termo: <?= $termo ?></h3><br>
                         <?php
                         print("Impactos:<br>");
@@ -177,15 +177,15 @@ function importancia_central($termo, $impactos) {
                                 </tr>
                                 <tr>
                                     <td width="50%">
-                        <?php
-                        foreach ($conceitos as $conc) {
-                            $concsel = $conc; //trocar
-                            print("<INPUT type='radio' name='pai' id='pai' value='$conc->nome' onFocus='Salvar()'> <b> $conc->nome </b> <br>\n");
-                            foreach ($conc->sub_concept as $subc) {
-                                print("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-$subc<br>");
-                            }
-                        }
-                        ?>
+                                        <?php
+                                        foreach ($conceitos as $conc) {
+                                            $concsel = $conc; //trocar
+                                            print("<INPUT type='radio' name='pai' id='pai' value='$conc->nome' onFocus='Salvar()'> <b> $conc->nome </b> <br>\n");
+                                            foreach ($conc->sub_concept as $subc) {
+                                                print("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-$subc<br>");
+                                            }
+                                        }
+                                        ?>
                                     </td>
                                     <td width="50%" align="left" valign="top">
                                         <?php
@@ -206,94 +206,94 @@ function importancia_central($termo, $impactos) {
                         </FORM>
 
                         <script>
-                            document.reference_form.pai[0].checked = true;
-                            function Sair()
-                            {
-                                var salvar = window.confirm("Voce deseja salvar os subconceitos selecionados?");
-                                if (!salvar)
+                                document.reference_form.pai[0].checked = true;
+                                function Sair()
                                 {
-                                    for (var i = 0; i < document.reference_form.pai.length; i++)
+                                    var salvar = window.confirm("Voce deseja salvar os subconceitos selecionados?");
+                                    if (!salvar)
                                     {
-                                        if (document.reference_form.pai[i].checked)
+                                        for (var i = 0; i < document.reference_form.pai.length; i++)
                                         {
-                                            document.reference_form.pai[i].checked = false;
+                                            if (document.reference_form.pai[i].checked)
+                                            {
+                                                document.reference_form.pai[i].checked = false;
+                                            }
                                         }
+                                        var form = document.getElementById("reference_form");
+                                        form.submit();
                                     }
-                                    var form = document.getElementById("reference_form");
-                                    form.submit();
                                 }
-                            }
 
-                            function Salvar()
-                            {
-                                /*
-                                 var radio = document.getElementById('pai');
-                                 var i = 0;
-                                 var checked = false;
-                                 alert(radio.checked);
-                             
-                                 for( i = 0; i < radio.length; ++i )
-                                 {
-                                 if( radio[i].selected == true )
-                                 {
-                                 checked = true;
-                                 }
-                                 }
-                             
-                                 if( checked )
-                                 {
-                                 var salvar = window.confirm("Voce deseja salvar os subconceitos selecionados?");
-                                 if(salvar)
-                                 {
-                                 var form = document.getElementById("reference_form");
-                                 form.submit();
-                                 }
-                                 else
-                                 {*/
+                                function Salvar()
+                                {
+                                    /*
+                                     var radio = document.getElementById('pai');
+                                     var i = 0;
+                                     var checked = false;
+                                     alert(radio.checked);
+                                     
+                                     for( i = 0; i < radio.length; ++i )
+                                     {
+                                     if( radio[i].selected == true )
+                                     {
+                                     checked = true;
+                                     }
+                                     }
+                                     
+                                     if( checked )
+                                     {
+                                     var salvar = window.confirm("Voce deseja salvar os subconceitos selecionados?");
+                                     if(salvar)
+                                     {
+                                     var form = document.getElementById("reference_form");
+                                     form.submit();
+                                     }
+                                     else
+                                     {*/
     <?php
     foreach ($conceitos as $key => $conc) {
         print("var check = document.getElementById('$key');\n");
         print("check.checked = false;\n");
     }
     ?>
-                                /*}
-                                 }
-                                 */
-                            }
+                                    /*}
+                                     }
+                                     */
+                                }
                         </script>
 
-    <?php
-    $_SESSION["reference"] = 1;
-}
+                        <?php
+                        $_SESSION["reference"] = 1;
+                    }
 
-/* -------- INCERTO --------
-  Cenario:    Insere tipo.
-  Objetivo:    Deixar o bd consistente.
-  Contexto:    .
-  Atores:        Usuario.
-  Recursos:    lista de termos sem tipo.
-  Episodios:
-  - .
- */
+                    /* -------- INCERTO --------
+                      Cenario:    Insere tipo.
+                      Objetivo:    Deixar o bd consistente.
+                      Contexto:    .
+                      Atores:        Usuario.
+                      Recursos:    lista de termos sem tipo.
+                      Episodios:
+                      - .
+                     */
 
-function insere_tipo($list) {
-    $_SESSION["tipos"] = 2;
-    ?>
+                    function insere_tipo($list) {
+                        $_SESSION["tipos"] = 2;
+                        ?>
                         <form method="POST" action="auxiliar_bd.php">
                             <p>
-                        <?php
-                        foreach ($list as $key => $termo) {
-                            echo ("<br> $termo <br>");
-                            ?>
+                                <?php
+                                foreach ($list as $key => $termo) {
+                                    echo ("<br> $termo <br>");
+                                    ?>
 
                                     Sujeito <input type="radio" value="sujeito" name="type<?php echo $key ?>" size="20" checked>
                                     Objeto <input type="radio" value="objeto" name="type<?php echo $key ?>" size="20">
                                     Verbo <input type="radio" value="verbo" name="type<?php echo $key ?>" size="20">
                                     Estado <input type="radio" value="estado" name="type<?php echo $key ?>" size="20">
 
-                            <?php
-                        }
-                        ?>
+                                    <?php
+                                }
+                                ?>
                                 <input type="submit" value="Enviar" name="B1" size="20">
                             </p>
                         </form>
@@ -338,16 +338,16 @@ function insere_tipo($list) {
                         }
                         ?>
                         <form method="POST" nome="rel_form" id="rel_form" action="algoritmo.php">
-                        <?php
-                        print "<H3>Conceito: $conc</H3>";
-                        print "<H4>Propriedade:	 $rel </H4><BR>";
-                        if (count($_SESSION["predicados_selecionados"]) != 0) {
-                            echo "Predicados j� cadastrados para essa propriedade:<p>";
-                            foreach ($_SESSION["predicados_selecionados"] as $verbo) {
-                                echo "- " . $verbo . "<br>";
+                            <?php
+                            print "<H3>Conceito: $conc</H3>";
+                            print "<H4>Propriedade:	 $rel </H4><BR>";
+                            if (count($_SESSION["predicados_selecionados"]) != 0) {
+                                echo "Predicados j� cadastrados para essa propriedade:<p>";
+                                foreach ($_SESSION["predicados_selecionados"] as $verbo) {
+                                    echo "- " . $verbo . "<br>";
+                                }
                             }
-                        }
-                        ?>
+                            ?>
 
                             <B>Impacto:</B><CODE> <?= $imp ?></CODE><br>
 
@@ -355,13 +355,13 @@ function insere_tipo($list) {
                             <b>O predicado da rela��o j� est� cadastrado na lista abaixo?</b><br>
 
                             <SELECT id='indice' name='indice' size=10 width="300">
-                        <?php
-                        foreach ($list as $key => $termo) {
-                            ?>
+                                <?php
+                                foreach ($list as $key => $termo) {
+                                    ?>
                                     <OPTION value='<?= $key ?>' <?php if ($indice2 === $key) echo "selected" ?> > <?php echo $termo->nome ?></OPTION>
-                            <?php
-                        }
-                        ?>
+                                    <?php
+                                }
+                                ?>
                                 <OPTION value="-1"></OPTION>
                             </SELECT><br>
 
@@ -372,17 +372,19 @@ function insere_tipo($list) {
                                 <BR>
                                 <b>Se n�o existe, ele pertence � lista de elementos do nosso namespace(abaixo)?</b><br>
                                 <SELECT onChange='seleciona(this[this.selectedIndex].text)' size=10 width="300">
-                            <?php
-                            $selected = false;
-                            foreach ($_SESSION["lista_de_sujeito_e_objeto"] as $key => $termo) {
-                                ?>
-                                        <OPTION value='<?= $termo->nome ?>' <?php if ($indice3 === $key) {
-                            echo "selected";
-                            $selected = $termo->nome;
-                        } ?> ><?php echo $termo->nome ?></OPTION>
-                                <?php
-                            }
-                            ?>
+                                    <?php
+                                    $selected = false;
+                                    foreach ($_SESSION["lista_de_sujeito_e_objeto"] as $key => $termo) {
+                                        ?>
+                                        <OPTION value='<?= $termo->nome ?>' <?php
+                                        if ($indice3 === $key) {
+                                            echo "selected";
+                                            $selected = $termo->nome;
+                                        }
+                                        ?> ><?php echo $termo->nome ?></OPTION>
+                                                <?php
+                                            }
+                                            ?>
                                 </SELECT><br>
 
                                 <table>
@@ -399,41 +401,41 @@ function insere_tipo($list) {
                             <INPUT type="button" value="Pr�ximo Passo >>" name="B2" onClick="fim()">
                             </p>
                             <script language='javascript'>
-                                    function seleciona(valor)
-                                    {
-                                        document.all.nome.value = valor;
-                                        document.all.namespace.value = 'proprio';
-                                    }
+                                function seleciona(valor)
+                                {
+                                    document.all.nome.value = valor;
+                                    document.all.namespace.value = 'proprio';
+                                }
 
-                                    function fim()
+                                function fim()
+                                {
+                                    if (<?= count($_SESSION["predicados_selecionados"]) ?> != 0)
                                     {
-                                        if (<?= count($_SESSION["predicados_selecionados"]) ?> != 0)
-                                        {
-                                            document.all.indice.disabled = false;
-                                            document.all.indice.selectedIndex =<?= count($list) ?>;
-                                            document.all.existe[0].checked = true;
-                                            var form = document.getElementById("rel_form");
-                                            form.submit();
-                                        }
-                                        else
-                                            alert('� necess�rio ao menos um predicado para cada verbo');
+                                        document.all.indice.disabled = false;
+                                        document.all.indice.selectedIndex =<?= count($list) ?>;
+                                        document.all.existe[0].checked = true;
+                                        var form = document.getElementById("rel_form");
+                                        form.submit();
                                     }
+                                    else
+                                        alert('� necess�rio ao menos um predicado para cada verbo');
+                                }
 
-                                    function seExiste(valor)
+                                function seExiste(valor)
+                                {
+                                    var indice = document.all.indice;
+                                    var naoExiste = document.all.naoExiste;
+                                    if (valor == 'TRUE')
                                     {
-                                        var indice = document.all.indice;
-                                        var naoExiste = document.all.naoExiste;
-                                        if (valor == 'TRUE')
-                                        {
-                                            indice.disabled = false;
-                                            naoExiste.style.display = 'none';
-                                        }
-                                        else
-                                        {
-                                            indice.disabled = true;
-                                            naoExiste.style.display = 'block';
-                                        }
+                                        indice.disabled = false;
+                                        naoExiste.style.display = 'none';
                                     }
+                                    else
+                                    {
+                                        indice.disabled = true;
+                                        naoExiste.style.display = 'block';
+                                    }
+                                }
 
     <?php
     if ($indice2 !== -1)
@@ -446,35 +448,35 @@ function insere_tipo($list) {
     ?>
                             </script>
                         </form>
-    <?php
-    $_SESSION['insert_relation'] = 1;
-}
+                        <?php
+                        $_SESSION['insert_relation'] = 1;
+                    }
 
-function disjuncao($nome, $list) {
-    $_SESSION["disjoint"] = 1;
+                    function disjuncao($nome, $list) {
+                        $_SESSION["disjoint"] = 1;
 
-    if (count($_SESSION["axiomas_selecionados"]) != 0) {
-        echo "Termos disjunos j� discriminados para esse conceito:<p>";
-        foreach ($_SESSION["axiomas_selecionados"] as $axioma) {
-            echo "- " . $axioma . "<br>";
-        }
-        echo "</p>";
-    }
+                        if (count($_SESSION["axiomas_selecionados"]) != 0) {
+                            echo "Termos disjunos j� discriminados para esse conceito:<p>";
+                            foreach ($_SESSION["axiomas_selecionados"] as $axioma) {
+                                echo "- " . $axioma . "<br>";
+                            }
+                            echo "</p>";
+                        }
 
-    print "Existe algum termo disjunto do conceito <b>$nome</b> na lista abaixo ou no vocabul�rio m�nimo?";
-    ?>
+                        print "Existe algum termo disjunto do conceito <b>$nome</b> na lista abaixo ou no vocabul�rio m�nimo?";
+                        ?>
                         <form id='rel_form' name='rel_form'  method="POST" action="algoritmo.php">
                             <p>
                                 <SELECT onChange='seleciona(this[this.selectedIndex].text)' name="indice" size=10 width="300">
-    <?php
-    foreach ($_SESSION["lista_de_sujeito_e_objeto"] as $key => $termo) {
-        if (strcmp($termo->nome, $nome) != 0) {
-            ?>
+                                    <?php
+                                    foreach ($_SESSION["lista_de_sujeito_e_objeto"] as $key => $termo) {
+                                        if (strcmp($termo->nome, $nome) != 0) {
+                                            ?>
                                             <OPTION value='<?= $termo->nome ?>'><?php echo $termo->nome ?></OPTION>
-            <?php
-        }
-    }
-    ?>
+                                            <?php
+                                        }
+                                    }
+                                    ?>
                                 </SELECT><br>
 
                             <table>
@@ -491,94 +493,94 @@ function disjuncao($nome, $list) {
                             <INPUT type="button" value="Pr�ximo Passo >>" name="B2" onClick="fim()">
                             </p>
                             <script language='javascript'>
-                                    function seleciona(valor)
-                                    {
-                                        document.all.nome.value = valor;
-                                        document.all.namespace.value = 'proprio';
-                                    }
+                                function seleciona(valor)
+                                {
+                                    document.all.nome.value = valor;
+                                    document.all.namespace.value = 'proprio';
+                                }
 
-                                    function insere()
+                                function insere()
+                                {
+                                    if (document.all.nome.value == '')
                                     {
-                                        if (document.all.nome.value == '')
-                                        {
-                                            alert('Se existe, favor defina o conceito.');
-                                        } else
-                                        {
-                                            var form = document.getElementById("rel_form");
-                                            form.submit();
-                                        }
-                                    }
-
-                                    function fim()
+                                        alert('Se existe, favor defina o conceito.');
+                                    } else
                                     {
-                                        document.all.existe[1].checked = true;
                                         var form = document.getElementById("rel_form");
                                         form.submit();
                                     }
+                                }
+
+                                function fim()
+                                {
+                                    document.all.existe[1].checked = true;
+                                    var form = document.getElementById("rel_form");
+                                    form.submit();
+                                }
 
 
-                                    function seExiste(valor)
+                                function seExiste(valor)
+                                {
+                                    var nome = document.all.nome;
+                                    var indice = document.all.indice;
+                                    var B1 = document.all.B1;
+                                    if (valor == 'FALSE')
                                     {
-                                        var nome = document.all.nome;
-                                        var indice = document.all.indice;
-                                        var B1 = document.all.B1;
-                                        if (valor == 'FALSE')
-                                        {
-                                            nome.disabled = true;
-                                            indice.disabled = true;
-                                            B1.disabled = true;
-                                        }
-                                        else
-                                        {
-                                            nome.disabled = false;
-                                            indice.disabled = false;
-                                            B1.disabled = false;
-                                        }
+                                        nome.disabled = true;
+                                        indice.disabled = true;
+                                        B1.disabled = true;
                                     }
+                                    else
+                                    {
+                                        nome.disabled = false;
+                                        indice.disabled = false;
+                                        B1.disabled = false;
+                                    }
+                                }
 
-                                    seExiste('FALSE');
+                                seExiste('FALSE');
                             </script>
                         </form>
-    <?php
-}
+                        <?php
+                    }
 
-if (isset($_SESSION["job"])) {
-    if ($_SESSION["job"] == "exist") {
-        if ($_SESSION['funcao'] == 'sujeito_objeto') {
-            ?>
+                    if (isset($_SESSION["job"])) {
+                        if ($_SESSION["job"] == "exist") {
+                            if ($_SESSION['funcao'] == 'sujeito_objeto') {
+                                ?>
                                 <h3>Conceito: <?= $_SESSION["nome2"]->nome ?></h3><br>
-            <?php
-        } else if ($_SESSION['funcao'] == 'verbo') {
-            ?>
+                                <?php
+                            } else if ($_SESSION['funcao'] == 'verbo') {
+                                ?>
                                 <h3>Verbo: <?= $_SESSION["nome2"]->nome ?></h3><br>
-            <?php
-        } else if (isset($_SESSION["translate"])) {
-            if ($_SESSION["translate"] == 1) {
-                ?>
+                                <?php
+                            } else if (isset($_SESSION["translate"])) {
+                                if ($_SESSION["translate"] == 1) {
+                                    ?>
                                     <h3>Conceito: <?= $_SESSION["nome2"]->nome ?></h3><br>
-                <?php
-            } else {
-                ?>
+                                    <?php
+                                } else {
+                                    ?>
                                     <h3>Verbo: <?= $_SESSION["nome2"]->nome ?></h3><br>
-                <?php
-            }
-        }
-        exist($_SESSION["nome1"], &$_SESSION["lista"]);
-    } else if ($_SESSION["job"] == "insert") {
-        insert($_SESSION["nome1"], &$_SESSION["lista"]);
-    } else if ($_SESSION["job"] == "main_subject") {
-        importancia_central($_SESSION["nome1"], $_SESSION['nome2']->impacto);
-    } else if ($_SESSION["job"] == "reference") {
-        //faz_referencia($_SESSION["lista"][0], $_SESSION["lista"][1]);
-        faz_referencia($_SESSION["lista"], $_SESSION["nome1"]);
-    } else if ($_SESSION["job"] == "type") {
-        insere_tipo($_SESSION["lista"]);
-    } else if (isset($_SESSION["nome2"]) && $_SESSION["job"] == "insert_relation") {
-        insere_relacao($_SESSION["nome1"], $_SESSION["nome2"], $_SESSION["nome3"], $_SESSION["lista"]);
-    } else if ($_SESSION["job"] == "disjoint") {
-        disjuncao($_SESSION["nome1"], $_SESSION["lista"]);
-    }
-    ?>
+                                    <?php
+                                }
+                            }
+                            exist($_SESSION["nome1"], &$_SESSION["lista"]);
+                        } else if ($_SESSION["job"] == "insert") {
+                            insert($_SESSION["nome1"], &$_SESSION["lista"]);
+                        } else if ($_SESSION["job"] == "main_subject") {
+                            importancia_central($_SESSION["nome1"], $_SESSION['nome2']->impacto);
+                        } else if ($_SESSION["job"] == "reference") {
+                            //faz_referencia($_SESSION["lista"][0], $_SESSION["lista"][1]);
+                            faz_referencia($_SESSION["lista"], $_SESSION["nome1"]);
+                        } else if ($_SESSION["job"] == "type") {
+                            insere_tipo($_SESSION["lista"]);
+                        } else if (isset($_SESSION["nome2"]) && $_SESSION["job"] == "insert_relation") {
+                            insere_relacao($_SESSION["nome1"], $_SESSION["nome2"], $_SESSION["nome3"], $_SESSION["lista"]);
+                        } else if ($_SESSION["job"] == "disjoint") {
+                            disjuncao($_SESSION["nome1"], $_SESSION["lista"]);
+                        }
+                        ?>
                         <p>
                         <form method="POST" action="auxiliar_bd.php" id="salvar_form">
                             <input type="hidden" value="TRUE" name="save" size="20" >

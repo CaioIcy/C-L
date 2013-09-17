@@ -70,10 +70,10 @@ if ($submit == 'Entrar') {
         </head>
         <body>
 
-    <?php
-    /** @Episodio 4: Se wrong = true ent�o mostrar a mensagem Login ou Senha incorreto . * */
-    if ($wrong == "true") {
-        ?>
+            <?php
+            /** @Episodio 4: Se wrong = true ent�o mostrar a mensagem Login ou Senha incorreto . * */
+            if ($wrong == "true") {
+                ?>
 
                 <p style="color: red; font-weight: bold; text-align: center">
                     <img src="Images/Logo_CEL.jpg" width="180" height="180"><br/><br/>
@@ -101,16 +101,16 @@ if ($submit == 'Entrar') {
                         <tr><td align="center" colspan="2"><input name="submit" type="submit" value="Entrar"></td></tr>
                     </table>
 
-    <?php /** @Episodio 6: [CADASTRAR NOVO USU�RIO] * */ ?>
+                    <?php /** @Episodio 6: [CADASTRAR NOVO USU�RIO] * */ ?>
                     <p><a href="add_usuario.php?novo=true">Cadastrar-se</a>&nbsp;&nbsp;
 
-    <?php /** @Episodio 7: [LEMBRAR SENHA] * */ ?>
+                        <?php /** @Episodio 7: [LEMBRAR SENHA] * */ ?>
                         <a href="forgotten_password.php">Esqueci senha</a></p>
                 </div>
             </form>
         </body>
 
-                    <?php /** @Episodio 8: [MOSTRAR O C�DIGO FONTE] * */ ?>
+        <?php /** @Episodio 8: [MOSTRAR O C�DIGO FONTE] * */ ?>
 
         <i><a href="showSource.php?file=login.php">Veja o c�digo fonte!</a></i>    
     </html>
