@@ -1,4 +1,7 @@
 <?php
+/* File: code.php
+ * Purpose: This script does something
+ */
 session_start();
 
 if (isset($_GET['id_projeto'])) {
