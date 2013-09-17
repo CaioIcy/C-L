@@ -1,3 +1,8 @@
+<?php
+/* File: create.php
+ * Purpose: This  script does something
+ */
+?>
 <html>
 
     <head>
