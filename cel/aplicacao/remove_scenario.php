@@ -1,6 +1,6 @@
 <?php
 /*
- * This script requests from the project that a scenario be removed
+ * This script requests a scenario removal from the project
  * Called by main.php
  */
 
