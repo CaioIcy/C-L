@@ -1088,7 +1088,7 @@ function checarSinonimo($projeto, $listSinonimo) {
 # retorna true caso nao exista ou false caso exista (1.3)
 ###################################################################
 
-function checarCenarioExistente($projeto, $titulo) {
+function checkIfScenarioExists($projeto, $titulo) {
     $naoexiste = false;
 
     $r = database_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
@@ -1113,7 +1113,7 @@ function checarCenarioExistente($projeto, $titulo) {
 ###################################################################
 if (!(function_exists("inserirPedidoAdicionarCenario"))) {
 
-    function inserirPedidoAdicionarCenario($id_projeto, $titulo, $objetivo, $contexto, $atores, $recursos, $excecao, $episodios, $id_usuario) {
+    function insertRequestToAddScenario($id_projeto, $titulo, $objetivo, $contexto, $atores, $recursos, $excecao, $episodios, $id_usuario) {
         $DB = new PGDB();
         $insere = new QUERY($DB);
         $select = new QUERY($DB);

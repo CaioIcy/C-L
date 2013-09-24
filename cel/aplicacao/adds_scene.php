@@ -4,7 +4,6 @@
  */
 session_start();
 
-// vim: set expandtab tabstop=4 shiftwidth=4:
 
 /*
  * This script registers a new scenario of the project.
@@ -16,7 +15,7 @@ include("funcoes_genericas.php");
 include("httprequest.inc");
 include_once("bd.inc");
 
-check_user_authentication("index.php");        // Checks if the user was authenticated
+check_user_authentication("index.php"); // Checks if the user was authenticated
 
 if (!isset($success)) {
     $success = 'n';
@@ -27,7 +26,7 @@ if (!isset($success)) {
 $database_conection = database_connect() or die("Error while connecting to the SGBD");
 
 if (isset($submit)) {
-    $exists_scenario = checarCenarioExistente($_SESSION['id_projeto_corrente'], $scene_title);
+    $exists_scenario = checkIfScenarioExists($_SESSION['id_projeto_corrente'], $scene_title);
     
     if ($exists_scenario == true) {
         print("<!-- Trying to insert scenario --><BR>");
@@ -40,7 +39,7 @@ if (isset($submit)) {
         $scene_resource = str_replace(">", " ", str_replace("<", " ", $scene_resource));
         $scene_exception = str_replace(">", " ", str_replace("<", " ", $scene_exception));
         $scene_episode = str_replace(">", " ", str_replace("<", " ", $scene_episode));
-        inserirPedidoAdicionarCenario($_SESSION['id_projeto_corrente'], $scene_title, $scene_goal, $scene_context, $scene_performer, $scene_resource, $scene_exception, $scene_episode, $_SESSION['id_usuario_corrente']);
+        insertRequestToAddScenario($_SESSION['id_projeto_corrente'], $scene_title, $scene_goal, $scene_context, $scene_performer, $scene_resource, $scene_exception, $scene_episode, $_SESSION['id_usuario_corrente']);
         print("<!-- Scenario inserted with success! --><BR>");
     } else {
         ?>
