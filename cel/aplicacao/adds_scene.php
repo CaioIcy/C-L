@@ -79,7 +79,7 @@ if (isset($submit)) {
                     goal_area = form.objetivo.value;
                     context_area = form.contexto.value;
 
-                    if ((title_area == ""))
+                    if ((title_area === ""))
                     {
                         alert("Please, insert the title of the scenario.")
                         form.titulo.focus()
@@ -87,26 +87,29 @@ if (isset($submit)) {
                     } else {
                         padrao = /[\\\/\?"<>:|]/;
                         OK = padrao.exec(title_area);
-                        if (OK)
-                        {
+                        if (OK) {
                             window.alert("The title of the scneario must not contain any of the follwing characters:   / \\ : ? \" < > |");
                             form.titulo.focus();
                             return false;
+                        } else {
+                            //do nothing
                         }
                     }
 
-                    if ((goal_area == ""))
-                    {
+                    if ((goal_area === "")) {
                         alert("Please, insert the objective of the scenario.")
                         form.objetivo.focus()
                         return false;
+                    } else {
+                        //do nothing
                     }
 
-                    if ((context_area == ""))
-                    {
+                    if ((context_area === "")) {
                         alert("Please, insert the context of the scenario.")
                         form.contexto.focus()
                         return false;
+                    } else {
+                        //do nothing
                     }
                 }
                 //-->
