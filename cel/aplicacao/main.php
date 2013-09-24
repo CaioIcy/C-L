@@ -157,7 +157,7 @@ if (!isset($_SESSION['id_projeto_corrente'])) {
 ?>
 
             function remove_conceito(concept) {
-                var url = 'rmv_conceito.php?id_projeto=' + '<?= $_SESSION['id_projeto_corrente'] ?>' + '&id_conceito=' + concept;
+                var url = 'remove_concept.php?id_projeto=' + '<?= $_SESSION['id_projeto_corrente'] ?>' + '&id_conceito=' + concept;
                 var where = '_blank';
                 var window_spec = 'dependent,height=300,width=550,resizable,scrollbars,titlebar';
                 open(url, where, window_spec);

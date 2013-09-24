@@ -1,6 +1,8 @@
 <?php
-// rmv_conceito.php: Este script faz um pedido de remover um conceito do projeto.
-// Arquivo chamador: main.php
+/*
+ * This script requests a concept removal from the project
+ * Called by main.php
+ */
 
 session_start();
 
@@ -33,7 +35,7 @@ inserirPedidoRemoverConceito($_SESSION['id_projeto_corrente'], $id_concept, $_SE
 
 </script>
 
-<h4>Operação efetuada com sucesso!</h4>
+<h4>Operation completed with success!</h4>
 
 <script language="javascript1.3">
 

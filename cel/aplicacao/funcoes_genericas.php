@@ -1470,7 +1470,7 @@ if (!(function_exists("inserirPedidoAlterarCenario"))) {
 # Ao final ela manda um e-mail para o gerente do projeto
 # referente a este conceito.(2.1)
 # Arquivos que utilizam essa funcao:
-# rmv_conceito.php
+# remove_concept.php
 ###################################################################
 if (!(function_exists("inserirPedidoRemoverConceito"))) {
 
