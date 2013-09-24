@@ -20,24 +20,15 @@ check_user_authentication("index.php");        // Checks if the user was authent
 
 if (!isset($success)) {
     $success = 'n';
+} else{
+    //do nothing
 }
 
-// Conecta ao SGBD
-$database_conection = database_connect() or die("Erro ao conectar ao SGBD");
+$database_conection = database_connect() or die("Error while connecting to the SGBD");
 
 if (isset($submit)) {
     $exists_scenario = checarCenarioExistente($_SESSION['id_projeto_corrente'], $scene_title);
-    ?>  
-
-    <!-- find out if this interferes in the functionality of C-L -->
-    <!-- ADICIONEI ISTO PARA TESTES -->
-    <!--
-       RET = <?= $exists_scenario ?> => RET = <?PHP $exists_scenario ? print("TRUE")  : print("FALSE") ; ?><BR>
-    $sucesso        = <?= $success ?><BR>
-    _GET["sucesso"] = <?= $_GET["sucesso"] ?><BR>   
-    -->
-
-    <?PHP
+    
     if ($exists_scenario == true) {
         print("<!-- Trying to insert scenario --><BR>");
 
