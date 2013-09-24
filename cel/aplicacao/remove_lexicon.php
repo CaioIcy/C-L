@@ -1,7 +1,8 @@
 <?php
-// rmv_lexico.php: Este script faz um pedido de remover um lexico do projeto.
-//                 Remove o lexico corrente.
-// Arquivo chamador: main.php
+/*
+ * This script requests a lexicon removal from the project
+ * Called by main.php
+ */
 
 session_start();
 
@@ -32,7 +33,7 @@ inserirPedidoRemoverLexico($id_project, $id_lexico, $_SESSION['id_usuario_corren
 
 </script>
 
-<h4>Operação efetuada com sucesso!</h4>
+<h4>Operation completed with success!</h4>
 
 <script language="javascript1.3">
 

@@ -1371,7 +1371,7 @@ if (!(function_exists("inserirPedidoAlterarLexico"))) {
 # Ao final ela manda um e-mail para o gerente do projeto
 # referente a este lexico.(2.1)
 # Arquivos que utilizam essa funcao:
-# rmv_lexico.php
+# remove_lexicon.php
 ###################################################################
 if (!(function_exists("inserirPedidoRemoverLexico"))) {
 
