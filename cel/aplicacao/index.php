@@ -1,7 +1,7 @@
 <?php
 session_start();
 include("funcoes_genericas.php");
-check_use_authentication("index.php");        // Cenario: controle de acesso 
+check_user_authentication("index.php");        // Cenario: controle de acesso 
 ?> 
 
 <title>C&L - Cen�rios e L�xico</title> 

@@ -7,7 +7,7 @@ include("httprequest.inc");
 include_once("bd.inc");
 include_once("seguranca.php");
 
-check_use_authentication("index.php");        // Checa se o usuario foi autenticado
+check_user_authentication("index.php");        // Checa se o usuario foi autenticado
 
 
 if (isset($_POST['flag'])) {

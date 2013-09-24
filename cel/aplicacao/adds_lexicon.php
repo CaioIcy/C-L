@@ -17,7 +17,7 @@ if (!isset($success)) {
     $success = NEGATIVE;
 }
 
-check_use_authentication("index.php");
+check_user_authentication("index.php");
 
 $database_conection = database_connect() or die("Erro ao conectar ao SGBD");
 

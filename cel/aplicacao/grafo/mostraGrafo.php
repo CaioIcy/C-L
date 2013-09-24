@@ -6,7 +6,7 @@ session_start();
 include("../bd_class.php");
 include("../funcoes_genericas.php");
 
-check_use_authentication("index.php");        // Checa se o usuario foi autenticado
+check_user_authentication("index.php");        // Checa se o usuario foi autenticado
 
 extract($_GET);
    

@@ -2,7 +2,7 @@
 //session_start(); 
 //include("funcoes_genericas.php"); 
 
-check_use_authentication("index.php");        // Cenario: controle de acesso 
+check_user_authentication("index.php");        // Cenario: controle de acesso 
 // frame_inferior.php 
 // Dada a base, o tipo "c", "l", "oc", "or" e "oa" e o 
 // id do respectivo, mostra os dados necess�rios 

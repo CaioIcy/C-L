@@ -8,7 +8,7 @@ session_start();
 
 include("funcoes_genericas.php");
 include("httprequest.inc");
-check_use_authentication("index.php");        
+check_user_authentication("index.php");        
 //Cenários -  Excluir Léxico 
 //Objetivo:	Permitir ao Usuário Excluir uma palavra do léxico que esteja ativa
 //Contexto:	Usuário deseja excluir uma palavra do léxico

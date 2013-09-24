@@ -16,10 +16,10 @@ include("funcoes_genericas.php");
 include("httprequest.inc");
 include_once("bd.inc");
 
-check_use_authentication("index.php");        // Checks if the user was authenticated
+check_user_authentication("index.php");        // Checks if the user was authenticated
 
 if (!isset($success)) {
-    $success = "n";
+    $success = 'n';
 }
 
 // Conecta ao SGBD

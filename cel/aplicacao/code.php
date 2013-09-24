@@ -11,7 +11,7 @@ if (isset($_GET['id_projeto'])) {
 include("funcoes_genericas.php");
 include_once("bd.inc");
 
-check_use_authentication("index.php");   //Checks if user is authenticated
+check_user_authentication("index.php");   //Checks if user is authenticated
 //$id_projeto = 2; 
 ?>  
 

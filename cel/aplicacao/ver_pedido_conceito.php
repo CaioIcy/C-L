@@ -11,7 +11,7 @@ session_start();
 include("funcoes_genericas.php");
 include("httprequest.inc");
 
-check_use_authentication("index.php"); // Checa se o usuario foi autenticado
+check_user_authentication("index.php"); // Checa se o usuario foi autenticado
 if (isset($submit)) {
     $DB = new PGDB ();
     $select = new QUERY($DB);

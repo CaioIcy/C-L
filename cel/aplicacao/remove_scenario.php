@@ -8,7 +8,7 @@ session_start();
 
 include("funcoes_genericas.php");
 include("httprequest.inc");
-check_use_authentication("index.php");        
+check_user_authentication("index.php");        
 
 inserirPedidoRemoverCenario($_SESSION['id_projeto_corrente'], $id_cenario, $_SESSION['id_usuario_corrente']);
 ?>  

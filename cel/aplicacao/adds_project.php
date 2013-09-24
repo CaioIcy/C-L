@@ -8,7 +8,7 @@ include("funcoes_genericas.php");
 include("httprequest.inc");
 
 // Access control scenario
-check_use_authentication("index.php");
+check_user_authentication("index.php");
 
 /*
  * This script is called when there is an inclusion solicitation of a new
