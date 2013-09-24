@@ -76,7 +76,7 @@ if (isset($submit)) {
         <body>
             <script language="JavaScript">
                 <!--
-                function checks_textArea(form)
+                function checks_form_values(form)
                 {
                     nome = form.nome.value;
                     nocao = form.nocao.value;
@@ -232,7 +232,7 @@ if (isset($submit)) {
                     </tr>
                     <tr>
                         <td align="center" colspan="2" height="60">
-                            <input name="submit" type="submit" onClick="return checks_textArea(this.form);" value="Adicionar S�mbolo"><BR><BR>
+                            <input name="submit" type="submit" onClick="return checks_form_values(this.form);" value="Adicionar S�mbolo"><BR><BR>
                             </script>
                             <A HREF="#" OnClick="javascript:open('RegrasLAL.html', '_blank', 'dependent,height=380,width=520,titlebar');"> See <i>LAL</i> rules</A>
                         </td>

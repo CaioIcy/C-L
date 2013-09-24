@@ -81,7 +81,7 @@ if (isset($submit)) {       // Script chamado atraves do submit do formulario
             <body>
                 <script language="JavaScript">
                     <!--
-                    function checks_textArea(form)
+                    function checks_form_values(form)
                     {
                         nocao = form.nocao.value;
 
@@ -222,7 +222,7 @@ if (isset($submit)) {       // Script chamado atraves do submit do formulario
                                     </tr>
                                     <tr>
                                         <td align="center" colspan="2" height="60">
-                                            <input name="submit" type="submit" onClick="return checks_textArea(this.form);" value="Alterar S�mbolo">
+                                            <input name="submit" type="submit" onClick="return checks_form_values(this.form);" value="Alterar S�mbolo">
                                         </td>
                                     </tr>
                                     </table>

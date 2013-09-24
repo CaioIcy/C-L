@@ -72,7 +72,7 @@ if (isset($submit)) {
             <title>Add project</title>
             <script language="javascript1.3">
 
-                function checks_textArea() {
+                function checks_form_values() {
                     if (document.forms[0].nome.value == "") {
                         alert('Fill the field "Name"');
                         document.forms[0].nome.focus();
@@ -95,7 +95,7 @@ if (isset($submit)) {
         <body>
             <h4>Add project:</h4>
             <br>
-            <form action="" method="post" onSubmit="return checks_textArea();">
+            <form action="" method="post" onSubmit="return checks_form_values();">
                 <table>
                     <tr>
                         <td>Name:</td>

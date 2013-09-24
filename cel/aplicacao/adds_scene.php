@@ -19,7 +19,7 @@ check_user_authentication("index.php"); // Checks if the user was authenticated
 
 if (!isset($success)) {
     $success = 'n';
-} else{
+} else {
     //do nothing
 }
 
@@ -27,11 +27,11 @@ $database_conection = database_connect() or die("Error while connecting to the S
 
 if (isset($submit)) {
     $exists_scenario = checkIfScenarioExists($_SESSION['id_projeto_corrente'], $scene_title);
-    
+
     if ($exists_scenario == true) {
         print("<!-- Trying to insert scenario --><BR>");
 
-        /* Substitui todas as ocorrencias de ">" e "<" por " " */
+        //Replaces all the occurrences of ">" and "<" by " "
         $scene_title = str_replace(">", " ", str_replace("<", " ", $scene_title));
         $scene_goal = str_replace(">", " ", str_replace("<", " ", $scene_goal));
         $scene_context = str_replace(">", " ", str_replace("<", " ", $scene_context));
@@ -58,10 +58,7 @@ if (isset($submit)) {
 
         opener.parent.frames['code'].location.reload();
         opener.parent.frames['text'].location.replace('main.php?id_projeto=<?= $_SESSION['id_projeto_corrente'] ?>');
-    <?php print( CELConfig_ReadVar("HTTPD_ip") . "/" . CELConfig_ReadVar("CEL_dir_relativo")); ?>add_cenario.php?id_projeto =<?= $id_project ?> & sucesso = s" ;
-
-
-                location.href = "add_cenario.php?id_projeto=<?= $id_project ?>&sucesso=s";
+        location.href = "adds_scene.php?id_projeto=<?= $id_project ?>&sucesso=s";
 
     </script>
 
@@ -77,8 +74,7 @@ if (isset($submit)) {
         <body>
             <script language="JavaScript">
                 <!--
-                function checks_textArea(form)
-                {
+                function checks_form_values(form) {
                     title_area = form.titulo.value;
                     goal_area = form.objetivo.value;
                     context_area = form.contexto.value;
@@ -181,7 +177,7 @@ if (isset($submit)) {
                         <td><textarea cols="51" name="episodios" rows="5" WRAP="SOFT"></textarea></td>
                     </tr>
                     <tr>
-                        <td align="center" colspan="2" height="60"><input name="submit" type="submit" onClick="return checks_textArea(this.form);" value="Adicionar Cen�rio"></td>
+                        <td align="center" colspan="2" height="60"><input name="submit" type="submit" onClick="return checks_form_values(this.form);" value="Adicionar Cen�rio"></td>
                     </tr>
                 </table>
             </form>
