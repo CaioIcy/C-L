@@ -1,6 +1,8 @@
 <?php
-// rmv_cenario.php: Este script faz um pedido de remover um cenario do projeto.
-// Arquivo chamador: main.php
+/*
+ * This script requests from the project that a scenario be removed
+ * Called by main.php
+ */
 
 session_start();
 
@@ -33,7 +35,7 @@ inserirPedidoRemoverCenario($_SESSION['id_projeto_corrente'], $id_cenario, $_SES
 
 </script>
 
-<h4>Operação efetuada com sucesso!</h4>
+<h4>Operation completed with success!</h4>
 
 <script language="javascript1.3">
 

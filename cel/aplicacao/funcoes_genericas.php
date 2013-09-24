@@ -1199,7 +1199,7 @@ if (!(function_exists("inserirPedidoAlterarCenario"))) {
 # Ao final ela manda um e-mail para o gerente do projeto
 # referente a este lexico.(2.1)
 # Arquivos que utilizam essa funcao:
-# rmv_cenario.php
+# remove_scenario.php
 ###################################################################
 if (!(function_exists("inserirPedidoRemoverCenario"))) {
 
