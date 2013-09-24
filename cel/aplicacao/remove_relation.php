@@ -1,6 +1,8 @@
 <?php
-// rmv_relacao.php: Este script faz um pedido de remover uma relacao do projeto.
-// Arquivo chamador: main.php
+/*
+ * This script requests a relation removal from the project
+ * Called by main.php
+ */
 
 session_start();
 
@@ -17,9 +19,9 @@ inserirPedidoRemoverRelacao($_SESSION['id_projeto_corrente'], $id_relacao, $_SES
     opener.parent.frames['text'].location.replace('main.php?id_projeto=<?= $_SESSION['id_projeto_corrente'] ?>');
 
 <?php
-// Cenário -  Excluir Conceito 
-//Objetivo:	Permitir ao Usuário Excluir um conceito que esteja ativo
-//Contexto:	Usuário deseja excluir um conceito
+// Cenário -  Excluir Relacao 
+//Objetivo:	Permitir ao Usuário Excluir uma relacao que esteja ativa
+//Contexto:	Usuário deseja excluir uma relacao
 //              Pré-Condição: Login, cenário cadastrado no sistema
 //Atores:	Usuário, Sistema
 //Recursos:	Dados informados
@@ -33,7 +35,7 @@ inserirPedidoRemoverRelacao($_SESSION['id_projeto_corrente'], $id_relacao, $_SES
 
 </script>
 
-<h4>Operação efetuada com sucesso!</h4>
+<h4>Operation completed with success!</h4>
 
 <script language="javascript1.3">
 

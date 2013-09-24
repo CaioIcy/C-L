@@ -1514,7 +1514,7 @@ if (!(function_exists("inserirPedidoRemoverConceito"))) {
 # Ao final ela manda um e-mail para o gerente do projeto
 # referente a este relacao.(2.1)
 # Arquivos que utilizam essa funcao:
-# rmv_relacao.php
+# remove_relation.php
 ###################################################################
 if (!(function_exists("inserirPedidoRemoverRelacao"))) {
 

@@ -165,7 +165,7 @@ if (!isset($_SESSION['id_projeto_corrente'])) {
 
             function remove_relationship(relationship) {
 
-                var url = 'rmv_relacao.php?id_projeto=' + '<?= $_SESSION['id_projeto_corrente'] ?>' + '&id_relacao=' + relationship;
+                var url = 'remove_relation.php?id_projeto=' + '<?= $_SESSION['id_projeto_corrente'] ?>' + '&id_relacao=' + relationship;
                 var where = '_blank';
                 var window_spec = 'dependent,height=300,width=550,resizable,scrollbars,titlebar';
                 open(url, where, window_spec);
