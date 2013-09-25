@@ -3,10 +3,6 @@
 include_once "CELConfig/CELConfig.inc";
 
 function database_connect() {
-    /* $ipValor    = CELConfig_ReadVar("BD_ip") ;
-      $BDuser     = CELConfig_ReadVar("BD_user") ;
-      $BDpassword = CELConfig_ReadVar("BD_password") ;
-      $BDdatabase = CELConfig_ReadVar("BD_database") ; */
 
     $ipValor = "localhost";
     $BDuser = "";
