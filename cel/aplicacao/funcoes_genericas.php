@@ -1,18 +1,7 @@
 <?php
 include_once("bd.inc");
-include_once("bd_class.php");
 include_once("seguranca.php");
 
-
-/*
-  if (!(class_exists("PGDB"))) {
-  include("bd_class.php");
-  }
- */
-
-/* chkUser(): checa se o usu�rio acessando foi autenticado (presen�a da vari�vel de sess�o
-  $id_usuario_corrente). Caso ele j� tenha sido autenticado, continua-se com a execu��o do
-  script. Caso contr�rio, abre-se uma janela de logon. */
 if (!(function_exists("chkUser"))) {
 
     function check_user_authentication($url) {
