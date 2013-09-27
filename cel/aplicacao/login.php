@@ -14,6 +14,7 @@
 session_start();
 
 include("bd.inc");
+include("httprequest.inc");
 
 $url = '';
 $submit = '';
@@ -21,12 +22,11 @@ $user_login = '';
 $user_password = '';
 $wrong = "false";
 
-include("httprequest.inc");
 
 /** @Episodio 2: Conectar o SGBD * */
 /** @Restri��o: a fun��o bd_connect definida em bd.inc � utilizada * */
 /** @Exce��o: Erro ao conectar banco de dados * */
-$database_conection = database_connect() or die("Erro ao conectar ao SGBD");
+//$database_conection = database_connect() or die("Error while connecting to SGBD");
 
 /** @Episodio 9: Se o formul�rio tiver sido submetido ent�o verificar se o login e senha est�o corretos. * */
 if ($submit == 'Entrar') {
@@ -102,7 +102,7 @@ if ($submit == 'Entrar') {
                     </table>
 
                     <?php /** @Episodio 6: [CADASTRAR NOVO USU�RIO] * */ ?>
-                    <p><a href="add_usuario.php?novo=true">Cadastrar-se</a>&nbsp;&nbsp;
+                    <p><a href="add_user.php">Cadastrar-se</a>&nbsp;&nbsp;
 
                         <?php /** @Episodio 7: [LEMBRAR SENHA] * */ ?>
                         <a href="forgotten_password.php">Esqueci senha</a></p>

@@ -1,13 +1,13 @@
 <?php
 
-include_once "CELConfig/CELConfig.inc";
+//include_once "CELConfig/CELConfig.inc";
 
 function database_connect() {
 
-    $ipValor = "localhost";
-    $BDuser = "";
+    $ipValor = "127.0.0.1";
+    $BDuser = "root@localhost";
     $BDpassword = "";
-    $BDdatabase = "test_holding";
+    $BDdatabase = "cel";
 
     $r = mysql_connect($ipValor, $BDuser, $BDpassword) or die("Erro na conex�o ao BD : " . mysql_error());
 
