@@ -4,8 +4,8 @@
 
 function database_connect() {
 
-    $ipValor = "127.0.0.1";
-    $BDuser = "root@localhost";
+    $ipValor = "localhost:3306";
+    $BDuser = "root";
     $BDpassword = "";
     $BDdatabase = "cel";
 

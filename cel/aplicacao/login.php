@@ -102,7 +102,7 @@ if ($submit == 'Entrar') {
                     </table>
 
                     <?php /** @Episodio 6: [CADASTRAR NOVO USU�RIO] * */ ?>
-                    <p><a href="add_user.php">Cadastrar-se</a>&nbsp;&nbsp;
+                    <p><a href="adds_user.php">Cadastrar-se</a>&nbsp;&nbsp;
 
                         <?php /** @Episodio 7: [LEMBRAR SENHA] * */ ?>
                         <a href="forgotten_password.php">Esqueci senha</a></p>
