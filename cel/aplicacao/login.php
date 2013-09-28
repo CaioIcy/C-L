@@ -15,7 +15,10 @@
 
   @Recursos: URL de acesso ao sistema,  login, senha, bd.inc, httprequest.inc, $wrong, $url, showSource.php?file=login.php, forgotten_password.php, add_usuario.php?novo=true
  * */
-/** @Episodio 1: Iniciar sess�o * */
+/** @Episodio 1: Iniciar sess�o **/
+
+define("SELECT_USER","SELECT * FROM usuario WHERE login='%s' AND senha='%s'");
+
 session_start();
 
 include("bd.inc");
@@ -23,12 +26,12 @@ include("httprequest.inc");
 
 $submit = false;
 $url = '';
-$user_login = '';
-$user_password = '';
+$current_userLogin = "NAME";
+$current_userPassword = "PASSWORD";
 $wrong = "false";
 
-function shows_loginForm(){
-?>
+function shows_loginForm() {
+    ?>
 
     <html>
         <head>
@@ -36,27 +39,26 @@ function shows_loginForm(){
         </head>
         <body>
 
-    <?php
-    /** @Episodio 4: Se wrong = true ent�o mostrar a mensagem Login ou Senha incorreto . * */
-    if ($wrong == "Entrar") {
-    ?>
+            <?php
+            /** @Episodio 4: Se wrong = true ent�o mostrar a mensagem Login ou Senha incorreto . * */
+            if ($wrong == 'Entrar') {
+                ?>
 
-                    <p style="color: red; font-weight: bold; text-align: center">
-                        <img src="Images/Logo_CEL.jpg" width="180" height="180"><br/><br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;Login ou Senha Incorreto</p>
+                <p style="color: red; font-weight: bold; text-align: center">
+                    <img src="Images/Logo_CEL.jpg" width="180" height="180"><br/><br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Login ou Senha Incorreto</p>
 
-        <?php
-    }
-    /** @Episodio 5: Se wrong != true ent�o mostrar a mensagem Entre com seu login e senha. * */ else {
-        ?>
+                <?php
+            } else {/** @Episodio 5: Se wrong != true ent�o mostrar a mensagem Entre com seu login e senha. **/
+                ?>
 
-                    <p style="color: green; font-weight: bold; text-align: center">
-                        <img src="Images/Logo_CEL.jpg" width="100" height="100"><br/><br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;Entre com seu Login e Senha:</p>
+                <p style="color: green; font-weight: bold; text-align: center">
+                    <img src="Images/Logo_CEL.jpg" width="100" height="100"><br/><br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Entre com seu Login e Senha:</p>
 
-        <?php
-    }
-        ?>
+                <?php
+            }
+            ?>
 
             <form action="?url=<?= $url ?>" method="post">
                 <div align="center">
@@ -67,22 +69,38 @@ function shows_loginForm(){
                         <tr><td align="center" colspan="2"><input name="submit" type="submit" value="Entrar"></td></tr>
                     </table>
 
-    <?php /** @Episodio 6: [CADASTRAR NOVO USU�RIO] * */ ?>
+                    <?php /** @Episodio 6: [CADASTRAR NOVO USU�RIO] * */ ?>
                     <p><a href="adds_user.php">Cadastrar-se</a>&nbsp;&nbsp;
 
-    <?php /** @Episodio 7: [LEMBRAR SENHA] * */ ?>
+                        <?php /** @Episodio 7: [LEMBRAR SENHA] * */ ?>
                         <a href="forgotten_password.php">Esqueci senha</a></p>
                 </div>
             </form>
         </body>
 
-    <?php /** @Episodio 8: [MOSTRAR O C�DIGO FONTE] * */ ?>
+        <?php /** @Episodio 8: [MOSTRAR O C�DIGO FONTE] * */ ?>
 
         <i><a href="showSource.php?file=login.php">Veja o c�digo fonte!</a></i>    
     </html>
 
     <?php
+}
+
+function authenticate_user($userName,$userPassword){
     
+    $database = database_connect();
+    $result = false;
+    
+    $query_user = sprintf(SELECT_USER,  mysql_real_escape_string($userName),mysql_real_escape_string($userPassword));
+    $authenticated = mysql_query($query_user,$database);
+    
+    if($authenticated){
+        $result = true;
+    }  else {
+        $result = false;
+    }
+    
+    return ($result);
 }
 
 /** @Episodio 2: Conectar o SGBD * */
