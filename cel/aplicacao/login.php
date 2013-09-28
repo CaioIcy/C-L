@@ -1,4 +1,9 @@
 <?php
+/*
+ * File: login.php
+ * Purpose: View of the login screen with their scenarios
+ */
+
 /**
   @Titulo: Acessar o sistema
 
@@ -9,15 +14,16 @@
   @Atores: usu�rio, aplica��o
 
   @Recursos: URL de acesso ao sistema,  login, senha, bd.inc, httprequest.inc, $wrong, $url, showSource.php?file=login.php, forgotten_password.php, add_usuario.php?novo=true
- * */
-/** @Episodio 1: Iniciar sess�o * */
+ **/
+
+/** @Episodio 1: Iniciar sess�o **/
 session_start();
 
 include("bd.inc");
 include("httprequest.inc");
 
+$submit = false;
 $url = '';
-$submit = '';
 $user_login = '';
 $user_password = '';
 $wrong = "false";
@@ -29,7 +35,7 @@ $wrong = "false";
 //$database_conection = database_connect() or die("Error while connecting to SGBD");
 
 /** @Episodio 9: Se o formul�rio tiver sido submetido ent�o verificar se o login e senha est�o corretos. * */
-if ($submit == 'Entrar') {
+if ($submit) {
     $senha_cript = md5($user_password);
     $query = "SELECT id_usuario FROM usuario WHERE login='$user_login' AND senha='$senha_cript'";
     $query_r = mysql_query($query) or die("Erro ao executar a query");
@@ -42,7 +48,7 @@ if ($submit == 'Entrar') {
         </script>
 
         <?php
-        $wrong = $_get["wrong"];
+        $wrong = $_GET["wrong"];
     }
 
     /** @Episodio 11: Se o login e senha estiverem corretos ent�o registrar sess�o para o usu�rio, fechar login.php e abrir aplica��o . * */ else {
@@ -50,7 +56,7 @@ if ($submit == 'Entrar') {
         $row = mysql_fetch_row($query_r);
         $id_currentUser = $row[0];
 
-        session_register("id_usuario_corrente");
+        session_register("id_currentUser");
         ?>
         <script language="javascript1.3">
             opener.document.location.replace('<?= $url ?>');
@@ -98,7 +104,7 @@ if ($submit == 'Entrar') {
                         <tr><td>Login:</td><td><input maxlength="32" name="login" size="24" type="text"></td></tr>
                         <tr><td>Senha:</td><td><input maxlength="32" name="senha" size="24" type="password"></td></tr>
                         <tr><td height="10"></td></tr>
-                        <tr><td align="center" colspan="2"><input name="submit" type="submit" value="Entrar"></td></tr>
+                        <tr><td align="center" colspan="2"><input name="submit" type="submit" value="true"></td></tr>
                     </table>
 
                     <?php /** @Episodio 6: [CADASTRAR NOVO USU�RIO] * */ ?>

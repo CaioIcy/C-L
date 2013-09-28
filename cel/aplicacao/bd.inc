@@ -12,14 +12,12 @@ function database_connect() {
     $connection_serverMySQL = mysql_connect($ip_Value, $user_db, $password_db); //FALSE in case of connection failure
     $database_select = mysql_select_db($database); //Boolean
 
-    // Indicates server MySQL connection
     if (!$connection_serverMySQL) {
 
         die("Error! No connection to Database: " . mysql_error());
         
     } else {
 
-        // Indicates if database is selected
         if ($database_select) {
             $result = $connection_serverMySQL;
         } else {
