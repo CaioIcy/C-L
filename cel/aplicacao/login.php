@@ -26,60 +26,65 @@ $url = '';
 $user_login = '';
 $user_password = '';
 $wrong = "false";
+
+function shows_loginForm(){
 ?>
 
-<html>
-    <head>
-        <title>Entre com seu Login e Senha</title>
-    </head>
-    <body>
+    <html>
+        <head>
+            <title>Entre com seu Login e Senha</title>
+        </head>
+        <body>
+
+    <?php
+    /** @Episodio 4: Se wrong = true ent�o mostrar a mensagem Login ou Senha incorreto . * */
+    if ($wrong == "Entrar") {
+    ?>
+
+                    <p style="color: red; font-weight: bold; text-align: center">
+                        <img src="Images/Logo_CEL.jpg" width="180" height="180"><br/><br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;Login ou Senha Incorreto</p>
 
         <?php
-        /** @Episodio 4: Se wrong = true ent�o mostrar a mensagem Login ou Senha incorreto . * */
-        if ($wrong == "true") {
-            ?>
-
-            <p style="color: red; font-weight: bold; text-align: center">
-                <img src="Images/Logo_CEL.jpg" width="180" height="180"><br/><br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;Login ou Senha Incorreto</p>
-
-            <?php
-        }
-        /** @Episodio 5: Se wrong != true ent�o mostrar a mensagem Entre com seu login e senha. * */ else {
-            ?>
-
-            <p style="color: green; font-weight: bold; text-align: center">
-                <img src="Images/Logo_CEL.jpg" width="100" height="100"><br/><br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;Entre com seu Login e Senha:</p>
-
-            <?php
-        }
+    }
+    /** @Episodio 5: Se wrong != true ent�o mostrar a mensagem Entre com seu login e senha. * */ else {
         ?>
 
-        <form action="?url=<?= $url ?>" method="post">
-            <div align="center">
-                <table cellpadding="5">
-                    <tr><td>Login:</td><td><input maxlength="32" name="login" size="24" type="text"></td></tr>
-                    <tr><td>Senha:</td><td><input maxlength="32" name="senha" size="24" type="password"></td></tr>
-                    <tr><td height="10"></td></tr>
-                    <tr><td align="center" colspan="2"><input name="submit" type="submit" value="Entrar"></td></tr>
-                </table>
+                    <p style="color: green; font-weight: bold; text-align: center">
+                        <img src="Images/Logo_CEL.jpg" width="100" height="100"><br/><br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;Entre com seu Login e Senha:</p>
 
-                <?php /** @Episodio 6: [CADASTRAR NOVO USU�RIO] * */ ?>
-                <p><a href="adds_user.php">Cadastrar-se</a>&nbsp;&nbsp;
+        <?php
+    }
+        ?>
 
-                    <?php /** @Episodio 7: [LEMBRAR SENHA] * */ ?>
-                    <a href="forgotten_password.php">Esqueci senha</a></p>
-            </div>
-        </form>
-    </body>
+            <form action="?url=<?= $url ?>" method="post">
+                <div align="center">
+                    <table cellpadding="5">
+                        <tr><td>Login:</td><td><input maxlength="32" name="login" size="24" type="text"></td></tr>
+                        <tr><td>Senha:</td><td><input maxlength="32" name="senha" size="24" type="password"></td></tr>
+                        <tr><td height="10"></td></tr>
+                        <tr><td align="center" colspan="2"><input name="submit" type="submit" value="Entrar"></td></tr>
+                    </table>
+
+    <?php /** @Episodio 6: [CADASTRAR NOVO USU�RIO] * */ ?>
+                    <p><a href="adds_user.php">Cadastrar-se</a>&nbsp;&nbsp;
+
+    <?php /** @Episodio 7: [LEMBRAR SENHA] * */ ?>
+                        <a href="forgotten_password.php">Esqueci senha</a></p>
+                </div>
+            </form>
+        </body>
 
     <?php /** @Episodio 8: [MOSTRAR O C�DIGO FONTE] * */ ?>
 
-    <i><a href="showSource.php?file=login.php">Veja o c�digo fonte!</a></i>    
-</html>
+        <i><a href="showSource.php?file=login.php">Veja o c�digo fonte!</a></i>    
+    </html>
 
-<?php
+    <?php
+    
+}
+
 /** @Episodio 2: Conectar o SGBD * */
 /** @Restri��o: a fun��o bd_connect definida em bd.inc � utilizada * */
 /** @Exce��o: Erro ao conectar banco de dados * */
@@ -115,5 +120,6 @@ if ($submit == 'Entrar') {
         <?php
     }
 } else {/** @Episodio 3: Mostrar o formul�rio de login para usu�rio. * */
+    shows_loginForm();
 }
 ?>
