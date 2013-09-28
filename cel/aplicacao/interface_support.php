@@ -65,11 +65,11 @@ session_start();
                                 ?>
                                 <OPTION value="-1"></OPTION>
                             </SELECT><br>
-                            <input type="radio" onClick="seExiste('TRUE')" value="TRUE" id="existe" name="existe" size="20" <?php if ($indice != -1) echo"checked" ?>> sim
-                            <input type="radio" onClick="seExiste('FALSE')" value="FALSE" id="existe" name="existe" size="20" <?php if ($indice == -1) echo"checked" ?> > n�o <BR>
+                            <input type="radio" onClick="seExiste('TRUE');" value="TRUE" id="existe" name="existe" size="20" <?php if ($indice != -1) echo"checked" ?>> sim
+                            <input type="radio" onClick="seExiste('FALSE');" value="FALSE" id="existe" name="existe" size="20" <?php if ($indice == -1) echo"checked" ?> > n�o <BR>
                             <input type="text" value="<?php print strip_tags($name) ?>" id="nome" name="nome" size="20">
                             <input type="submit" value="Inserir Propriedade" id="B1" name="B1" disabled><BR>
-                            <INPUT type="button" value="Pr�ximo Passo >>" name="B2" onClick="fim()">
+                            <INPUT type="button" value="Pr�ximo Passo >>" name="B2" onClick="fim();">
                             </p>
                             <script language="JavaScript">
                                 function seExiste(valor)
@@ -202,7 +202,7 @@ session_start();
                                 </tr>
                             </table>
                             <input type="submit" value="Incluir Relacao" name="B1" size="20">
-                            <input type="button" value="Finalizar Algoritmo" name="B2" onClick='Sair()'>
+                            <input type="button" value="Finalizar Algoritmo" name="B2" onClick='Sair();'>
                         </FORM>
 
                         <script>
@@ -365,13 +365,13 @@ session_start();
                                 <OPTION value="-1"></OPTION>
                             </SELECT><br>
 
-                            <input type="radio" onClick="seExiste('TRUE')" value="TRUE" id="existe" name="existe" size="20" <?php if ($indice2 !== -1) echo"checked" ?>> sim
-                            <input type="radio" onClick="seExiste('FALSE')" value="FALSE" id="existe" name="existe" size="20" <?php if ($indice2 === -1) echo"checked" ?> > n�o <BR>
+                            <input type="radio" onClick="seExiste('TRUE');" value="TRUE" id="existe" name="existe" size="20" <?php if ($indice2 !== -1) echo"checked" ?>> sim
+                            <input type="radio" onClick="seExiste('FALSE');" value="FALSE" id="existe" name="existe" size="20" <?php if ($indice2 === -1) echo"checked" ?> > n�o <BR>
 
                             <DIV id=naoExiste>
                                 <BR>
                                 <b>Se n�o existe, ele pertence � lista de elementos do nosso namespace(abaixo)?</b><br>
-                                <SELECT onChange='seleciona(this[this.selectedIndex].text)' size=10 width="300">
+                                <SELECT onChange='seleciona(this[this.selectedIndex].text);' size=10 width="300">
                                     <?php
                                     $selected = false;
                                     foreach ($_SESSION["lista_de_sujeito_e_objeto"] as $key => $termo) {
@@ -398,7 +398,7 @@ session_start();
 
                             </div>
                             <input type="submit" value="Inserir Predicado" id="B1" name="B1" size="20">
-                            <INPUT type="button" value="Pr�ximo Passo >>" name="B2" onClick="fim()">
+                            <INPUT type="button" value="Pr�ximo Passo >>" name="B2" onClick="fim();">
                             </p>
                             <script language='javascript'>
                                 function seleciona(valor)
@@ -467,7 +467,7 @@ session_start();
                         ?>
                         <form id='rel_form' name='rel_form'  method="POST" action="algoritmo.php">
                             <p>
-                                <SELECT onChange='seleciona(this[this.selectedIndex].text)' name="indice" size=10 width="300">
+                                <SELECT onChange='seleciona(this[this.selectedIndex].text);' name="indice" size=10 width="300">
                                     <?php
                                     foreach ($_SESSION["lista_de_sujeito_e_objeto"] as $key => $termo) {
                                         if (strcmp($termo->nome, $nome) != 0) {
@@ -481,16 +481,16 @@ session_start();
 
                             <table>
                                 <tr>
-                                    <td>conceito:</td><td><input type="text" value="<?php print strip_tags($pred) ?>" id="nome" name="nome" size="20"></td>
+                                    <td>conceito:</td><td><input type="text" value="<?php print strip_tags($pred); ?>" id="nome" name="nome" size="20"></td>
                                 </tr>
                                 <tr>
                                     <td>namespace:</td><td><input type="text" value="proprio" id="namespace" name="namespace" size="20"></td>
                                 </tr>
                             </table>
-                            <input type="radio" onClick="seExiste('TRUE')" value="TRUE" name="existe" size="20"> sim
-                            <input type="radio" onClick="seExiste('FALSE')" value="FALSE" name="existe" size="20" checked> n�o<br>
-                            <input type="button" value="Inserir Axioma" id="B1" name="B1" onClick="insere()">
-                            <INPUT type="button" value="Pr�ximo Passo >>" name="B2" onClick="fim()">
+                            <input type="radio" onClick="seExiste('TRUE');" value="TRUE" name="existe" size="20"> sim
+                            <input type="radio" onClick="seExiste('FALSE');" value="FALSE" name="existe" size="20" checked> n�o<br>
+                            <input type="button" value="Inserir Axioma" id="B1" name="B1" onClick="insere();">
+                            <INPUT type="button" value="Pr�ximo Passo >>" name="B2" onClick="fim();">
                             </p>
                             <script language='javascript'>
                                 function seleciona(valor)

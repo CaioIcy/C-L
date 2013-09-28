@@ -79,7 +79,7 @@ if (isset($submit)) {   //if called by the submit button
 //            este login j� existe.
                 ?>
                 <script language="JavaScript">
-                    alert("Login already exists. Please choose another one.")
+                    alert("Login already exists. Please choose another one.");
                 </script>
 
                 <?php

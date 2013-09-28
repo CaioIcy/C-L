@@ -52,31 +52,31 @@ $user_password = $row[4];
 
             if (login == "")
             {
-                alert("Please, insert your Login.")
-                form.login.focus()
+                alert("Please, insert your Login.");
+                form.login.focus();
                 return false;
             }
             if (email == "")
             {
-                alert("Please, insert your e-mail.")
+                alert("Please, insert your e-mail.");
                 form.email.focus();
                 return false;
             }
             if (senha == "")
             {
-                alert("Please, insert your password.")
-                form.senha.focus()
+                alert("Please, insert your password.");
+                form.senha.focus();
                 return false;
             }
             if (nome == "")
             {
-                alert("Please, insert your name.")
-                form.nome.focus()
+                alert("Please, insert your name.");
+                form.nome.focus();
                 return false;
             }
             if (senha != senha_conf)
             {
-                alert("The password and the confirmation aren't the same!")
+                alert("The password and the confirmation aren't the same!");
                 form.senha.focus();
                 return false;
             }
@@ -89,12 +89,12 @@ $user_password = $row[4];
             {
                 if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.value))
                 {
-                    return (true)
+                    return (true);
                 }
-                alert("Warning: the inserted e-mail is not valid.")
+                alert("Warning: the inserted e-mail is not valid.");
                 email.focus();
                 email.select();
-                return (false)
+                return (false);
             }
         }
 

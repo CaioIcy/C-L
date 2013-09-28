@@ -81,8 +81,8 @@ if (isset($submit)) {
 
                     if ((title_area === ""))
                     {
-                        alert("Please, insert the title of the scenario.")
-                        form.titulo.focus()
+                        alert("Please, insert the title of the scenario.");
+                        form.titulo.focus();
                         return false;
                     } else {
                         padrao = /[\\\/\?"<>:|]/;
@@ -97,16 +97,16 @@ if (isset($submit)) {
                     }
 
                     if ((goal_area === "")) {
-                        alert("Please, insert the objective of the scenario.")
-                        form.objetivo.focus()
+                        alert("Please, insert the objective of the scenario.");
+                        form.objetivo.focus();
                         return false;
                     } else {
                         //do nothing
                     }
 
                     if ((context_area === "")) {
-                        alert("Please, insert the context of the scenario.")
-                        form.contexto.focus()
+                        alert("Please, insert the context of the scenario.");
+                        form.contexto.focus();
                         return false;
                     } else {
                         //do nothing

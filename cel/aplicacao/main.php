@@ -226,7 +226,7 @@ if (isset($id_project)) {
     <?php
 } else {
     ?>
-                    var url = 'ver_pedido_lexico.php?'
+                    var url = 'ver_pedido_lexico.php?';
     <?php
 }
 ?>
@@ -259,7 +259,7 @@ if (isset($id_project)) {
     <?php
 } else {
     ?>
-                    var url = 'ver_pedido_conceito.php?'
+                    var url = 'ver_pedido_conceito.php?';
     <?php
 }
 ?>
@@ -278,7 +278,7 @@ if (isset($id_project)) {
     <?php
 } else {
     ?>
-                    var url = 'ver_pedido_relacao.php?'
+                    var url = 'ver_pedido_relacao.php?';
     <?php
 }
 ?>
@@ -352,7 +352,7 @@ if (isset($id_project)) {
     <?php
 } else {
     ?>
-                    var url = 'form_xml.php?'
+                    var url = 'form_xml.php?';
     <?php
 }
 ?>
@@ -372,7 +372,7 @@ if (isset($id_project)) {
     <?php
 } else {
     ?>
-                    var url = 'recuperarXML.php?'
+                    var url = 'recuperarXML.php?';
     <?php
 }
 ?>
@@ -416,7 +416,7 @@ if (isset($id_project)) {
     <?php
 } else {
     ?>
-                    var url = 'inicio.php?'
+                    var url = 'inicio.php?';
     <?php
 }
 ?>
@@ -440,7 +440,7 @@ if (isset($id_project)) {
     <?php
 } else {
     ?>
-                    var url = 'form_daml.php?'
+                    var url = 'form_daml.php?';
     <?php
 }
 ?>
@@ -463,7 +463,7 @@ if (isset($id_project)) {
     <?php
 } else {
     ?>
-                    var url = 'recuperaDAML.php?'
+                    var url = 'recuperaDAML.php?';
     <?php
 }
 ?>

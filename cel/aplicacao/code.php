@@ -295,6 +295,6 @@ while ($row = mysql_fetch_row($query_r)) {  // for each axiom of the project
 
         </script> 
     </head> 
-    <body onload="MTMStartMenu(true)" bgcolor="#000033" text="#ffffcc" link="yellow" vlink="lime" alink="red"> 
+    <body onload="MTMStartMenu(true);" bgcolor="#000033" text="#ffffcc" link="yellow" vlink="lime" alink="red"> 
     </body> 
 </html> 

@@ -92,7 +92,7 @@ if (isset($submit)) {       // Script chamado atraves do submit do formulario
                         <td><textarea name="justificativa" cols="48" rows="2"></textarea></td>
                     </tr>
                     <tr>
-                        <td align="center" colspan="2" height="60"><input name="submit" type="submit" value="Alterar Cen�rio" onClick="updateOpener()"></td>
+                        <td align="center" colspan="2" height="60"><input name="submit" type="submit" value="Alterar Cen�rio" onClick="updateOpener();"></td>
                     </tr>
                 </table>
             </form>
