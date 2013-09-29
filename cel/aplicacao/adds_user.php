@@ -63,6 +63,19 @@ function checks_equalsLogin($current_login){
     return ($result);
 }
 
+function checks_equalsPassword($user_password,$check_password){
+    
+    $result = false;
+    
+    if($user_password == $check_password){
+        $result = true;
+    }else{
+        $result = false;
+    }
+    
+    return ($result);
+}
+
 if (isset($submit)) {   //if called by the submit button
     
     $first_access = "false";
