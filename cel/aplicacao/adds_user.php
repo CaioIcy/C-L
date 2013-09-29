@@ -2,38 +2,42 @@
 /* File: adds_user.php
  * Purpose: This script registers a new user in the system
  */
-session_start();
 ?>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
 <?php
+session_start();
+
 include("funcoes_genericas.php");
 include_once("bd.inc");
 include("httprequest.inc");
 
 $first_access = "true";
 
-// Cen�rio - Incluir usu�rio independente 
-// Objetivo:  Permitir um usu�rio, que n�o esteja cadastrado como administrador, se cadastrar 
-//            com o perfil de administrador	
-// Contexto:  Sistema aberto Usu�rio deseja cadastrar-se ao sistema como administrador. 
-//            Usu�rio na tela de cadastro de usu�rio 
-//            Pr�-Condi��o: Usu�rio ter acessado ao sistema	
-// Atores:    Usu�rio, Sistema	
-// Recursos:  Interface, Banco de Dados	
-// Epis�dios: O sistema retorna para o usu�rio uma interface com campos para entrada de
-//            um Nome, email, login, uma senha e a confirma��o da senha.
-//            O usu�rio preenche os campos e clica em cadastrar 
-//            O sistema ent�o checa para ver se todos os campos est�o preenchidos.
-//              Caso algum campo deixar de ser preenchido, o sistema avisa que todos
-//               os campos devem ser preenchidos.
-//              Caso todos os campos estiverem preenchidos, o sistema checa no banco
-//               de dados para ver se esse login j� existe..
-//              Caso aquele login digitado j� exista, o sistema retorna a mesma p�gina
-//               para o usu�rio avisando que o usu�rio deve escolher outro login,.
+/*
+  // Cen�rio - Incluir usu�rio independente
+  // Objetivo:  Permitir um usu�rio, que n�o esteja cadastrado como administrador, se cadastrar
+  //            com o perfil de administrador
+  // Contexto:  Sistema aberto Usu�rio deseja cadastrar-se ao sistema como administrador.
+  //            Usu�rio na tela de cadastro de usu�rio
+  //            Pr�-Condi��o: Usu�rio ter acessado ao sistema
+  // Atores:    Usu�rio, Sistema
+  // Recursos:  Interface, Banco de Dados
+  // Epis�dios: O sistema retorna para o usu�rio uma interface com campos para entrada de
+  //            um Nome, email, login, uma senha e a confirma��o da senha.
+  //            O usu�rio preenche os campos e clica em cadastrar
+  //            O sistema ent�o checa para ver se todos os campos est�o preenchidos.
+  //              Caso algum campo deixar de ser preenchido, o sistema avisa que todos
+  //               os campos devem ser preenchidos.
+  //              Caso todos os campos estiverem preenchidos, o sistema checa no banco
+  //               de dados para ver se esse login j� existe..
+  //              Caso aquele login digitado j� exista, o sistema retorna a mesma p�gina
+  //               para o usu�rio avisando que o usu�rio deve escolher outro login,.
+ */
 
 if (isset($submit)) {   //if called by the submit button
+    
     $first_access = "false";
 
     /*
@@ -63,20 +67,23 @@ if (isset($submit)) {   //if called by the submit button
 
             // If there is someone with the same login
             if (mysql_num_rows($query_r)) {
-//                $p_style = "color: red; font-weight: bold";
-//                $p_text = "Login j� existente no sistema. Favor escolher outro login.";
-//                recarrega("?p_style=$p_style&p_text=$p_text&nome=$nome&email=$email&senha=$senha&senha_conf=$senha_conf&novo=$novo");
-// Cen�rio - Adicionar Usu�rio
-// Objetivo:  Permitir ao Administrador criar novos usu�rios.
-// Contexto:  O Administrador deseja adicionar novos usu�rios (n�o cadastrados)
-//            criando novos  usu�rios ao projeto selecionado.
-//            Pr�-Condi��es: Login
-// Atores:    Administrador
-// Recursos:  Dados do usu�rio
-// Epis�dios: O Administrador clica no link �Adicionar usu�rio (n�o existente) neste projeto�,
-//            entrando com as informa��es do novo usu�rio: nome, email, login e senha.
-//            Caso o login j� exista, aparecer� uma mensagem de erro na tela informando que
-//            este login j� existe.
+                /*
+                  //                $p_style = "color: red; font-weight: bold";
+                  //                $p_text = "Login j� existente no sistema. Favor escolher outro login.";
+                  //                recarrega("?p_style=$p_style&p_text=$p_text&nome=$nome&email=$email&senha=$senha&senha_conf=$senha_conf&novo=$novo");
+                  // Cen�rio - Adicionar Usu�rio
+                  // Objetivo:  Permitir ao Administrador criar novos usu�rios.
+                  // Contexto:  O Administrador deseja adicionar novos usu�rios (n�o cadastrados)
+                  //            criando novos  usu�rios ao projeto selecionado.
+                  //            Pr�-Condi��es: Login
+                  // Atores:    Administrador
+                  // Recursos:  Dados do usu�rio
+                  // Epis�dios: O Administrador clica no link �Adicionar usu�rio (n�o existente) neste projeto�,
+                  //            entrando com as informa��es do novo usu�rio: nome, email, login e senha.
+                  //            Caso o login j� exista, aparecer� uma mensagem de erro na tela informando que
+                  //            este login j� existe.
+                 * 
+                 */
                 ?>
                 <script language="JavaScript">
                     alert("Login already exists. Please choose another one.");
@@ -113,17 +120,19 @@ if (isset($submit)) {   //if called by the submit button
      */
     if ($novo == "true") {
 
-        // Cen�rio - Incluir usu�rio independente 
-        // Objetivo:  Permitir um usu�rio, que n�o esteja cadastrado como administrador, se cadastrar 
-        //            com o perfil de administrador	
-        // Contexto:  Sistema aberto Usu�rio deseja cadastrar-se ao sistema como administrador. 
-        //            Usu�rio na tela de cadastro de usu�rio 
-        //            Pr�-Condi��o: Usu�rio ter acessado ao sistema	
-        // Atores:    Usu�rio, Sistema	
-        // Recursos:  Interface, Banco de Dados	
-        // Epis�dios:  Caso aquele login digitado n�o exista, o sistema cadastra esse usu�rio 
-        //               como administrador no banco de dados,  possibilitando:
-        //              - Redirecion�-lo  para a interface de CADASTRAR NOVO PROJETO; 
+        /*
+          // Cen�rio - Incluir usu�rio independente
+          // Objetivo:  Permitir um usu�rio, que n�o esteja cadastrado como administrador, se cadastrar
+          //            com o perfil de administrador
+          // Contexto:  Sistema aberto Usu�rio deseja cadastrar-se ao sistema como administrador.
+          //            Usu�rio na tela de cadastro de usu�rio
+          //            Pr�-Condi��o: Usu�rio ter acessado ao sistema
+          // Atores:    Usu�rio, Sistema
+          // Recursos:  Interface, Banco de Dados
+          // Epis�dios:  Caso aquele login digitado n�o exista, o sistema cadastra esse usu�rio
+          //               como administrador no banco de dados,  possibilitando:
+          //              - Redirecion�-lo  para a interface de CADASTRAR NOVO PROJETO;
+         */
         $id_currentUser = simple_query("id_usuario", "usuario", "login = '$user_login'");
         session_register("id_currentUser");
         ?>
@@ -141,16 +150,18 @@ if (isset($submit)) {   //if called by the submit button
         <?php
     } else {
 
-        // Cen�rio - Adicionar Usu�rio
-        // Objetivo:  Permitir ao Administrador criar novos usu�rios.
-        // Contexto:  O Administrador deseja adicionar novos usu�rios (n�o cadastrados) criando novos
-        //              usu�rios ao projeto selecionado.
-        //            Pr�-Condi��es: Login
-        // Atores:    Administrador
-        // Recursos:  Dados do usu�rio
-        // Epis�dios: Clicando no bot�o Cadastrar para confirmar a adi��o do novo
-        //             usu�rio ao projeto selecionado.
-        //            O novo usu�rio criado receber� uma mensagem via email com seu login e senha.
+        /*
+          // Cen�rio - Adicionar Usu�rio
+          // Objetivo:  Permitir ao Administrador criar novos usu�rios.
+          // Contexto:  O Administrador deseja adicionar novos usu�rios (n�o cadastrados) criando novos
+          //              usu�rios ao projeto selecionado.
+          //            Pr�-Condi��es: Login
+          // Atores:    Administrador
+          // Recursos:  Dados do usu�rio
+          // Epis�dios: Clicando no bot�o Cadastrar para confirmar a adi��o do novo
+          //             usu�rio ao projeto selecionado.
+          //            O novo usu�rio criado receber� uma mensagem via email com seu login e senha.
+         */
 
         /*
          * The administrator of the project just included the user.
