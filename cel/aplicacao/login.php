@@ -6,7 +6,7 @@
 
 session_start();
 
-define("SELECT_USER", "SELECT * FROM usuario WHERE login='%s' AND senha='%s'");
+define("QUERY_USER", "SELECT * FROM usuario WHERE login='%s' AND senha='%s'");
 
 include("bd.inc");
 include("httprequest.inc");
@@ -57,7 +57,7 @@ function authenticate_user($userName, $userPassword) {
     $database = database_connect();
     $result = false;
 
-    $query_user = sprintf(SELECT_USER, mysql_real_escape_string($userName), mysql_real_escape_string($userPassword));
+    $query_user = sprintf(QUERY_USER, mysql_real_escape_string($userName), mysql_real_escape_string($userPassword));
     $authenticated = mysql_query($query_user, $database);
 
     if ($authenticated) {
