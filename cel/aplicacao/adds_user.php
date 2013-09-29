@@ -7,11 +7,14 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
 <?php
+
 session_start();
 
 include("funcoes_genericas.php");
 include_once("bd.inc");
 include("httprequest.inc");
+
+define("QUERY_LOGIN", "SELECT id_usuario FROM usuario WHERE login = '%s'")
 
 $first_access = "true";
 
@@ -35,6 +38,15 @@ $first_access = "true";
   //              Caso aquele login digitado j� exista, o sistema retorna a mesma p�gina
   //               para o usu�rio avisando que o usu�rio deve escolher outro login,.
  */
+
+function encrypting_password($current_password){
+    
+    $current_password = md5($current_password);
+    return $current_password;
+    
+}
+
+
 
 if (isset($submit)) {   //if called by the submit button
     
