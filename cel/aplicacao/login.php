@@ -4,21 +4,22 @@
  * Purpose: View of the login screen with their scenarios
  */
 
-define("SELECT_USER", "SELECT * FROM usuario WHERE login='%s' AND senha='%s'");
-
 session_start();
+
+define("SELECT_USER", "SELECT * FROM usuario WHERE login='%s' AND senha='%s'");
 
 include("bd.inc");
 include("httprequest.inc");
 
 $url = '';
 $submit = false;
-$first_access = true;
 $authenticated = false;
-$current_userLogin = "NAME";
-$current_userPassword = "PASSWORD";
+$current_userLogin = $_POST["login"];
+$current_userPassword = $_POST["senha"];
 
-function shows_loginForm($first_access) {
+shows_loginForm();
+
+function shows_loginForm() {
     ?>
 
     <html>
@@ -26,24 +27,11 @@ function shows_loginForm($first_access) {
             <title>Entre com seu Login e Senha</title>
         </head>
         <body>
+            <p style="color: green; font-weight: bold; text-align: center">
+                <img src="Images/Logo_CEL.jpg" width="100" height="100"><br/><br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;Entre com seu Login e Senha:</p>
 
-            <?php
-            if ($first_access) {
-                ?>
-                <p style="color: green; font-weight: bold; text-align: center">
-                    <img src="Images/Logo_CEL.jpg" width="100" height="100"><br/><br/>
-                    &nbsp;&nbsp;&nbsp;&nbsp;Entre com seu Login e Senha:</p>
-                <?php
-            } else {
-                ?>
-                <p style="color: red; font-weight: bold; text-align: center">
-                    <img src="Images/Logo_CEL.jpg" width="180" height="180"><br/><br/>
-                    &nbsp;&nbsp;&nbsp;&nbsp;Login ou Senha Incorreto</p>
-                <?php
-            }
-            ?>
-
-            <form action="login.php" method="POST">
+            <form name="loginScreen" action="login.php" method="POST">
                 <div align="center">
                     <table cellpadding="5">
                         <tr><td>Login:</td><td><input maxlength="32" name="login" size="24" type="text"></td></tr>
@@ -61,7 +49,6 @@ function shows_loginForm($first_access) {
 
         <i><a href="showSource.php?file=login.php">Veja o c�digo fonte!</a></i>
     </html>
-
     <?php
 }
 
@@ -84,8 +71,7 @@ function authenticate_user($userName, $userPassword) {
 
 /** @Episodio 2: Conectar o SGBD * */
 /** @Restri��o: a fun��o bd_connect definida em bd.inc � utilizada * */
-/** @Exce��o: Erro ao conectar banco de dados **/
-
+/** @Exce��o: Erro ao conectar banco de dados * */
 /** @Episodio 9: Se o formul�rio tiver sido submetido ent�o verificar se o login e senha est�o corretos. * */
 if ($submit) {
     $senha_cript = md5($user_password);
@@ -115,6 +101,5 @@ if ($submit) {
         <?php
     }
 } else {/** @Episodio 3: Mostrar o formul�rio de login para usu�rio. * */
-    shows_loginForm();
 }
 ?>
