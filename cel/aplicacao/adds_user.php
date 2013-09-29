@@ -14,7 +14,7 @@ include("funcoes_genericas.php");
 include_once("bd.inc");
 include("httprequest.inc");
 
-define("QUERY_LOGIN", "SELECT id_usuario FROM usuario WHERE login = '%s'")
+define("QUERY_LOGIN", "SELECT id_usuario FROM usuario WHERE login = '%s'");
 
 $first_access = "true";
 
@@ -46,7 +46,22 @@ function encrypting_password($current_password){
     
 }
 
-
+function checks_equalsLogin($current_login){
+    
+    $database = database_connect();
+    $result = false;
+    
+    $query_login = sprintf(QUERY_USER, mysql_real_escape_string($current_login));
+    $exist_login = mysql_num_rows($query_login);
+    
+    if($exist_login){
+        $result = true;
+    }else{
+        $result = false;
+    }
+    
+    return ($result);
+}
 
 if (isset($submit)) {   //if called by the submit button
     
