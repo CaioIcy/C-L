@@ -38,14 +38,14 @@ class SMTP {
      *  Sets whether debugging is turned on
      *  @var bool
      */
-    var $do_debug;       # the level of debug to perform
+    var $do_debug=0;       # the level of debug to perform
 
     /*     * #@+
      * @access private
      */
-    var $smtp_conn;      # the socket to the server
-    var $error;          # error if any on the last call
-    var $helo_reply;      # the reply the server sent to us for HELO
+    var $smtp_conn=0;      # the socket to the server
+    var $error="";          # error if any on the last call
+    var $helo_reply="";      # the reply the server sent to us for HELO
 
     /*     * #@- */
 
