@@ -41,7 +41,7 @@ $user_password = $row[4];
     </head>
 
     <script language="JavaScript">
-<!--
+        <!--
         function TestarBranco(form)
         {
             login = form.login.value;
@@ -99,7 +99,7 @@ $user_password = $row[4];
         }
 
 
-//-->
+        //-->
     </SCRIPT>
     <body>
         <h3 style="text-align: center">Please, fill the data below:</h3>

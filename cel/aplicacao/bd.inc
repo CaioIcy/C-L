@@ -15,7 +15,6 @@ function database_connect() {
     if (!$connection_serverMySQL) {
 
         die("Error! No connection to Database: " . mysql_error());
-        
     } else {
 
         if ($database_select) {
@@ -23,7 +22,6 @@ function database_connect() {
         } else {
             die("Error! Not connected to $database: " . mysql_error());
         }
-        
     }
 
     return ($result);
