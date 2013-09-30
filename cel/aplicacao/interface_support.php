@@ -94,20 +94,20 @@ session_start();
         echo "seExiste('FALSE');";
     ?>
 
-                                function fim()
-                                {
-                                    if (<?= count($_SESSION["verbos_selecionados"]) ?> != 0)
-                                    {
-                                        document.all.indice.disabled = false;
-                                        document.all.indice.selectedIndex =<?= count($list) ?>;
-                                        document.all.existe[0].checked = true;
-                                        var form = document.getElementById("exist_form");
-                                        form.submit();
-                                    }
-                                    else
-                                        alert("� necessario ao menos um verbo para cada impacto.");
+        function fim()
+        {
+            if (<?= count($_SESSION["verbos_selecionados"]) ?> != 0)
+            {
+                document.all.indice.disabled = false;
+                document.all.indice.selectedIndex =<?= count($list) ?>;
+                document.all.existe[0].checked = true;
+                var form = document.getElementById("exist_form");
+                form.submit();
+            }
+            else
+                alert("� necessario ao menos um verbo para cada impacto.");
 
-                                }
+        }
 
 
                             </script>
@@ -206,32 +206,32 @@ session_start();
                         </FORM>
 
                         <script>
-                                document.reference_form.pai[0].checked = true;
-                                function Sair()
+                            document.reference_form.pai[0].checked = true;
+                            function Sair()
+                            {
+                                var salvar = window.confirm("Voce deseja salvar os subconceitos selecionados?");
+                                if (!salvar)
                                 {
-                                    var salvar = window.confirm("Voce deseja salvar os subconceitos selecionados?");
-                                    if (!salvar)
+                                    for (var i = 0; i < document.reference_form.pai.length; i++)
                                     {
-                                        for (var i = 0; i < document.reference_form.pai.length; i++)
+                                        if (document.reference_form.pai[i].checked)
                                         {
-                                            if (document.reference_form.pai[i].checked)
-                                            {
-                                                document.reference_form.pai[i].checked = false;
-                                            }
+                                            document.reference_form.pai[i].checked = false;
                                         }
-                                        var form = document.getElementById("reference_form");
-                                        form.submit();
                                     }
+                                    var form = document.getElementById("reference_form");
+                                    form.submit();
                                 }
+                            }
 
-                                function Salvar()
-                                {
-                                    /*
+                            function Salvar()
+                            {
+                                /*
                                      var radio = document.getElementById('pai');
                                      var i = 0;
                                      var checked = false;
                                      alert(radio.checked);
-                                     
+                                         
                                      for( i = 0; i < radio.length; ++i )
                                      {
                                      if( radio[i].selected == true )
@@ -239,7 +239,7 @@ session_start();
                                      checked = true;
                                      }
                                      }
-                                     
+                                         
                                      if( checked )
                                      {
                                      var salvar = window.confirm("Voce deseja salvar os subconceitos selecionados?");
@@ -256,10 +256,10 @@ session_start();
         print("check.checked = false;\n");
     }
     ?>
-                                    /*}
+            /*}
                                      }
-                                     */
-                                }
+             */
+        }
                         </script>
 
                         <?php
@@ -377,10 +377,10 @@ session_start();
                                     foreach ($_SESSION["lista_de_sujeito_e_objeto"] as $key => $termo) {
                                         ?>
                                         <OPTION value='<?= $termo->nome ?>' <?php
-                                        if ($indice3 === $key) {
-                                            echo "selected";
-                                            $selected = $termo->nome;
-                                        }
+                                if ($indice3 === $key) {
+                                    echo "selected";
+                                    $selected = $termo->nome;
+                                }
                                         ?> ><?php echo $termo->nome ?></OPTION>
                                                 <?php
                                             }
