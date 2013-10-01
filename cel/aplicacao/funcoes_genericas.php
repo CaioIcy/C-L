@@ -1077,19 +1077,7 @@ function checarSinonimo($projeto, $listSinonimo) {
 # retorna true caso nao exista ou false caso exista (1.3)
 ###################################################################
 
-function checkIfScenarioExists($projeto, $titulo) {
-    $naoexiste = false;
-
-    $r = database_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-    $q = "SELECT * FROM cenario WHERE id_projeto = $projeto AND titulo = '$titulo' ";
-    $qr = mysql_query($q) or die("Erro ao enviar a query de select no cenario<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-    $resultArray = mysql_fetch_array($qr);
-    if ($resultArray == false) {
-        $naoexiste = true;
-    }
-
-    return $naoexiste;
-}
+//function checkIfScenarioExists($projeto, $titulo)
 
 ###################################################################
 # Funcao faz um insert na tabela de pedido.
