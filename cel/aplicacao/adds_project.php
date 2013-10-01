@@ -15,6 +15,7 @@ check_user_authentication("index.php");
  * project, or when a new user registers in the system
  */
 
+/*
 //Cen�rio  -  Cadastrar Novo Projeto 
 //Objetivo:	   Permitir ao usu�rio cadastrar um novo projeto
 //Contexto:	   Usu�rio deseja incluir um novo projeto na base de dados
@@ -30,6 +31,21 @@ check_user_authentication("index.php");
 //Exce��o:	   Se for especificado um nome de projeto j� existente e que perten�a ou tenha a participa��o
 //                 deste usu�rio, o sistema exibe uma mensagem de erro.
 // Called through the submit button
+*/
+
+function include_inDatabase($project_name,$project_description){
+    
+    $database = database_connect();
+    
+    $id_currentUser = $_SESSION['id_currentUser'];
+    $id_includedProject = inclui_projeto($project_name, $project_description);
+    $manager = 1;
+    
+    $query_project = "INSERT INTO participa (id_user, id_project, manager) VALUES ($id_currentUser,$id_includedProject, $manager)";
+    mysql_query($query_project) or die("ERROR while connection to the main table");
+    
+}
+
 if (isset($submit)) {
 
     $id_includedProject = inclui_projeto($project_name, $project_description);
