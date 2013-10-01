@@ -23,18 +23,22 @@ if (!isset($success)) {
     //do nothing
 }
 
-function checkIfScenarioExists($projeto, $titulo) {
-    $naoexiste = false;
+function checkIfScenarioExists($project, $title) {
+    
+    $result = false;
 
-    $r = database_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-    $q = "SELECT * FROM cenario WHERE id_projeto = $projeto AND titulo = '$titulo' ";
-    $qr = mysql_query($q) or die("Erro ao enviar a query de select no cenario<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-    $resultArray = mysql_fetch_array($qr);
+    $database = database_connect() or die("ERROR connection to SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+    $query = "SELECT * FROM cenario WHERE id_projeto = $project AND titulo = '$title' ";
+    $query_project = mysql_query($query) or die("Erro ao enviar a query de select no cenario<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+    $resultArray = mysql_fetch_array($query_project);
     if ($resultArray == false) {
-        $naoexiste = true;
+        $result = true;
+    }else{
+        $result = false;
     }
 
-    return $naoexiste;
+    return $result;
+    
 }
 
 $database_conection = database_connect() or die("Error while connecting to the SGBD");
