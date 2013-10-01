@@ -89,6 +89,16 @@ function checks_blankField($user_name,$user_email,$user_login,$user_password,$ch
     return $result;
 }
 
+function include_inDatabase($user_name,$user_login,$user_email, $user_password){
+    
+    $user_name = str_replace(">", " ", str_replace("<", " ", $user_name));
+    $user_login = str_replace(">", " ", str_replace("<", " ", $user_login));
+    $user_email = str_replace(">", " ", str_replace("<", " ", $user_email));
+    $user_password = encrypting_password($user_password);
+    
+    $id_currentUser = simple_query("id_usuario", "usuario", "login = '$user_login'");
+}
+
 if (isset($submit)) {   //if called by the submit button
     
     $first_access = "false";
@@ -187,7 +197,7 @@ if (isset($submit)) {   //if called by the submit button
           //              - Redirecion�-lo  para a interface de CADASTRAR NOVO PROJETO;
          */
         $id_currentUser = simple_query("id_usuario", "usuario", "login = '$user_login'");
-        session_register("id_currentUser");
+        session_register("id_usuario_corrente");
         ?>
 
         <script language="javascript1.3">

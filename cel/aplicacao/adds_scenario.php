@@ -23,6 +23,24 @@ if (!isset($success)) {
     //do nothing
 }
 
+function checkIfScenarioExists($project, $title) {
+    
+    $result = false;
+
+    $database = database_connect() or die("ERROR connection to SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+    $query = "SELECT * FROM cenario WHERE id_projeto = $project AND titulo = '$title' ";
+    $query_project = mysql_query($query) or die("Erro ao enviar a query de select no cenario<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+    $resultArray = mysql_fetch_array($query_project);
+    if ($resultArray == false) {
+        $result = true;
+    }else{
+        $result = false;
+    }
+
+    return $result;
+    
+}
+
 $database_conection = database_connect() or die("Error while connecting to the SGBD");
 
 if (isset($submit)) {
