@@ -10,13 +10,13 @@
 
 session_start();
 
-include("funcoes_genericas.php");
 include_once("bd.inc");
+include("funcoes_genericas.php");
 include("httprequest.inc");
 
 define("QUERY_LOGIN", "SELECT id_usuario FROM usuario WHERE login = '%s'");
 
-$first_access = "true";
+$first_access = true;
 
 /*
   // Cen�rio - Incluir usu�rio independente
@@ -98,6 +98,14 @@ function include_inDatabase($user_name,$user_login,$user_email, $user_password){
     
     $id_currentUser = simple_query("id_usuario", "usuario", "login = '$user_login'");
 }
+
+function display_errorBlankField(){
+    $text_style = "color: red; font-weight: bold";
+    $error_mensage = "Please, fill in all the fields.";
+    $redo_url = "?p_style=$text_style&p_text=$error_mensage&nome=''&email=''&login=''&senha=''&senha_conf=''&novo=$novo";
+    recarrega($redo_url);
+}
+
 
 if (isset($submit)) {   //if called by the submit button
     
