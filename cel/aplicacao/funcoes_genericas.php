@@ -1010,7 +1010,9 @@ if (!(function_exists("removeRelacao"))) {
 # retorna true caso nao exista ou false caso exista (1.3)
 ###################################################################
 
-function checarLexicoExistente($projeto, $nome) {
+/*
+ * Moved to "adds_lexicon.php" file
+ * function checarLexicoExistente($projeto, $nome) {
     $naoexiste = false;
 
     $r = database_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
@@ -1030,7 +1032,7 @@ function checarLexicoExistente($projeto, $nome) {
     }
 
     return $naoexiste;
-}
+}*/
 
 ###################################################################
 # Recebe o id do projeto e a lista de sinonimos (1.0)
