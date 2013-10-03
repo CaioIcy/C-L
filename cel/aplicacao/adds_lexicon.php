@@ -21,6 +21,28 @@ check_user_authentication("index.php");
 
 $database_conection = database_connect() or die("Erro ao conectar ao SGBD");
 
+function checarLexicoExistente($projeto, $nome) {
+    $naoexiste = false;
+
+    $r = database_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+    $q = "SELECT * FROM lexico WHERE id_projeto = $projeto AND nome = '$nome' ";
+    $qr = mysql_query($q) or die("Erro ao enviar a query de select no lexico<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+    $resultArray = mysql_fetch_array($qr);
+    if ($resultArray == false) {
+        $naoexiste = true;
+    }
+
+    $q = "SELECT * FROM sinonimo WHERE id_projeto = $projeto AND nome = '$nome' ";
+    $qr = mysql_query($q) or die("Erro ao enviar a query de select no lexico<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+    $resultArray = mysql_fetch_array($qr);
+
+    if ($resultArray != false) {
+        $naoexiste = false;
+    }
+
+    return $naoexiste;
+}
+
 // Script called from submit button
 if (isset($submit)) {
 

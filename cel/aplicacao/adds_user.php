@@ -10,13 +10,13 @@
 
 session_start();
 
-include("funcoes_genericas.php");
 include_once("bd.inc");
+include("funcoes_genericas.php");
 include("httprequest.inc");
 
 define("QUERY_LOGIN", "SELECT id_usuario FROM usuario WHERE login = '%s'");
 
-$first_access = "true";
+$first_access = true;
 
 /*
   // Cen�rio - Incluir usu�rio independente
@@ -97,6 +97,35 @@ function include_inDatabase($user_name,$user_login,$user_email, $user_password){
     $user_password = encrypting_password($user_password);
     
     $id_currentUser = simple_query("id_usuario", "usuario", "login = '$user_login'");
+}
+
+function display_errorBlankField(){
+    $text_style = "color: red; font-weight: bold";
+    $error_mensage = "Please, fill in all the fields.";
+    $redo_url = "?p_style=$text_style&p_text=$error_mensage&nome=''&email=''&login=''&senha=''&senha_conf=''&novo=''";
+    recarrega($redo_url);
+}
+
+function creates_newUser(){
+        
+    $database = database_connect() or die("Error while connecting to SGBD");
+    $id_includedUser = simple_query("id_usuario", "usuario", "login = '$user_login'");
+    $query = "INSERT INTO participa (id_usuario, id_projeto)
+    VALUES ($id_includedUser, " . $_SESSION['id_projeto_corrente'] . ")";
+    mysql_query($query) or die("Error while inserting in the main table");
+
+    $user_name = simple_query("nome", "usuario", "id_usuario = $id_includedUser");
+    $project_name = simple_query("nome", "projeto", "id_projeto = " . $_SESSION['id_projeto_corrente']);
+    ?>
+
+    <script language="javascript1.3">
+
+        document.writeln('<p style="color: blue; font-weight: bold; text-align: center"> User <b><?= $user_name ?></b> registered and included in the project <b><?= $project_name ?></b></p>');
+        document.writeln('<p align="center"><a href="javascript:self.close();">Fechar</a></p>');
+
+    </script>
+
+    <?php
 }
 
 if (isset($submit)) {   //if called by the submit button
