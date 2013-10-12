@@ -1,11 +1,11 @@
 <?php
-
 /*
  * This module has functions to save an ontology in a .daml file
  */
 
-include 'estruturas.php';
 session_start();
+
+include_once 'estruturas.php';
 
 // Date pattern
 $dia = date("Y-m-d");

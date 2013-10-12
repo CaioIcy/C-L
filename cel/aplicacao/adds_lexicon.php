@@ -4,9 +4,9 @@
  * A variable &id_project is recieved through a URL, and indicates in which project the new scenario will be inserted in.
  */
 
-include("funcoes_genericas.php");
-include("httprequest.inc");
-include_once("bd.inc");
+include_once 'bd.inc';
+include_once 'funcoes_genericas.php';
+include_once 'httprequest.inc';
 
 define("NEGATIVE", 'n');
 define("POSITIVE", 's');

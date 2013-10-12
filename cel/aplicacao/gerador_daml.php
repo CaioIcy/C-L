@@ -1,10 +1,10 @@
 <?php
-include("save_ontology_to_daml.php");
-include("auxiliar_bd.php");
-include_once("bd.inc");
 
 session_start();
 
+include_once 'save_ontology_to_daml.php';
+include_once 'database_support.php';
+include_once 'bd.inc';
 
 $database_conection = database_connect();
 

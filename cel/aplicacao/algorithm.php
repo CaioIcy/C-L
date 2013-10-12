@@ -3,9 +3,12 @@
  * Purpose: This script is responsible for the algorithms
  * used in the system.
  */
-include 'estruturas.php';
-include_once 'auxiliar_algoritmo.php';
+
 session_start();
+
+include_once 'estruturas.php';
+include_once 'algorithm_support';
+
 ?>
 
 <html>

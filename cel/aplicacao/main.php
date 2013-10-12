@@ -1,6 +1,12 @@
 <?php
+
 session_start();
-include_once("CELConfig/CELConfig.inc");
+
+include_once 'CELConfig/CELConfig.inc';
+include_once 'funcoes_genericas.php';
+include_once 'httprequest.inc';
+include_once 'puts_links.php';
+include_once 'frame_inferior.php';
 
 //$_SESSION['site'] = 'http://pes.inf.puc-rio.br/pes03_1_1/Site/desenvolvimento/teste/';       
 //$_SESSION['site'] = 'http://139.82.24.189/cel_vf/aplicacao/teste/';
@@ -12,9 +18,6 @@ $_SESSION['site'] = "http://" . CELConfig_ReadVar("HTTPD_ip") . "/" . CELConfig_
 /* Caminho relativo ao CEL do diretorio contendo os arquivos de DAML */
 $_SESSION['diretorio'] = CELConfig_ReadVar("DAML_dir_relativo_ao_CEL");
 
-include("funcoes_genericas.php");
-include("httprequest.inc");
-include_once("puts_links.php");
 
 
 
@@ -391,6 +394,7 @@ if (isset($id_project)) {
                     var url = 'gerarGrafo.php?id_projeto=' + '<?= $id_project ?>';
     <?php
 } else {
+
     ?>
                     var url = 'gerarGrafo.php?'
     <?php
@@ -483,7 +487,6 @@ if (isset($id_project)) {
         <!--                     PRIMEIRA PARTE                                     --> 
 
         <?php
-        include("frame_inferior.php");
 
 
         if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU PELA ARVORE) 

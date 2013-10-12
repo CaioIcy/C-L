@@ -43,8 +43,8 @@
  *
  */
 
-include_once("CELConfig/CELConfig.inc");
-include_once("bd.inc");
+include_once'bd.inc';
+include_once'CELConfig/CELConfig.inc';
 
 $ipNome = "IpBD =";
 $ip_value = CELConfig_ReadVar("BD_ip");

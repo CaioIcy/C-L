@@ -10,9 +10,9 @@
 
 session_start();
 
-include_once("bd.inc");
-include("funcoes_genericas.php");
-include("httprequest.inc");
+include_once 'bd.inc';
+include_once 'funcoes_genericas.php';
+include_once 'httprequest.inc';
 
 define("QUERY_LOGIN", "SELECT id_usuario FROM usuario WHERE login = '%s'");
 

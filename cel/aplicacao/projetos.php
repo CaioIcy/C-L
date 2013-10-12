@@ -1,5 +1,7 @@
 <?php
-include("funcoes_genericas.php");
+
+include_once 'funcoes_genericas.php';
+
 ?>
 <html>
 

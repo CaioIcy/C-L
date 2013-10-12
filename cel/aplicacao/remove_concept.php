@@ -6,8 +6,9 @@
 
 session_start();
 
-include("funcoes_genericas.php");
-include("httprequest.inc");
+include_once 'funcoes_genericas.php';
+include_once 'httprequest.inc';
+
 check_user_authentication("index.php");        
 
 inserirPedidoRemoverConceito($_SESSION['id_projeto_corrente'], $id_concept, $_SESSION['id_usuario_corrente']);

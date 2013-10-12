@@ -1,7 +1,7 @@
 <?php
 
-include("funcoes_genericas.php");
-include("httprequest.inc");
+include_once 'funcoes_genericas.php';
+include_once 'httprequest.inc';
 
 //Cen�rio  -  Escolher Projeto
 //Objetivo:     Permitir ao Administrador/Usu�rio escolher um projeto.

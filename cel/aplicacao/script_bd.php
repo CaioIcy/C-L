@@ -7,8 +7,9 @@
     <body>
 
         <?php
-        include_once("bd.inc");
-        include_once("CELConfig/CELConfig.inc");
+        
+        include_once 'bd.inc';
+        include_once 'CELConfig/CELConfig.inc';
 
         $database_conection = database_connect() or die("Erro na conexão à BD : " . mysql_error() . __LINE__);
         if ($database_conection && mysql_select_db(CELConfig_ReadVar("BD_database")))

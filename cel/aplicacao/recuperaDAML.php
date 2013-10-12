@@ -6,8 +6,9 @@
 
     <BODY> 
         <H2>Hist�rico de Arquivos DAML</H2> 
-        <?PHP
-        include_once( "CELConfig/CELConfig.inc" );
+        <?php
+        
+        include_once 'CELConfig/CELConfig.inc';
         
          // Arquivo   : recuperaDAML.php
          // Vers�o       : 1.0

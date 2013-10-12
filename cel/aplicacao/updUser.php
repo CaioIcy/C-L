@@ -1,9 +1,9 @@
 <?php
 session_start();
 
-include("funcoes_genericas.php");
-include("httprequest.inc");
-include_once("bd.inc");
+include_once 'funcoes_genericas.php';
+include_once 'httprequest.inc';
+include_once 'bd.inc';
 
 $id_user = $_SESSION['id_usuario_corrente'];
 

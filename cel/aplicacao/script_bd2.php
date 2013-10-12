@@ -7,9 +7,11 @@
     <body>
 
         <?php
-        include_once("bd.inc");
-        include_once('auxiliar_bd.php');
+        
         session_start();
+        
+        include_once 'bd.inc';
+        include_once 'auxiliar_bd.php';
 
         function converte_impactos() {
             $link = database_connect() or die("Erro na conexão ao BD : " . mysql_error() . __LINE__);

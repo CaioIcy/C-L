@@ -1,7 +1,8 @@
 <?php
+
 session_start();
 
-include("funcoes_genericas.php");
+include_once 'funcoes_genericas.php';
 
 
 chechUserAuthentication("index.php");

@@ -1,6 +1,7 @@
 <?php
-include("bd.inc");
-include("httprequest.inc");
+
+include_once 'bd.inc';
+include_once 'httprequest.inc';
 
 // Cen�rio - Lembrar senha 
 //Objetivo:	 Permitir o usu�rio cadastrado, que esqueceu sua senha,  receber  a mesma por email	

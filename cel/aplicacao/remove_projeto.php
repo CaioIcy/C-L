@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-include("funcoes_genericas.php");
-include("httprequest.inc");
+include_once 'funcoes_genericas.php';
+include_once 'httprequest.inc';
 
 //Cen�rio  -  Remover Projeto 
 //Objetivo:	   Permitir ao Administrador do projeto remover um projeto

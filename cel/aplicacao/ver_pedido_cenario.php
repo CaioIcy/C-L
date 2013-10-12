@@ -7,8 +7,8 @@
  Arquivo chamador: heading.php*/
 session_start();
 
-include("funcoes_genericas.php");
-include("httprequest.inc");
+include_once 'funcoes_genericas.php';
+include_once 'httprequest.inc';
 
 check_user_authentication("index.php"); // Checa se o usuario foi autenticado
 if (isset($submit)) {

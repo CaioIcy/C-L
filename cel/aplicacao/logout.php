@@ -1,6 +1,7 @@
 <?php
-include("bd.inc");
-include_once("CELConfig/CELConfig.inc");
+
+include_once 'bd.inc';
+include_once 'CELConfig/CELConfig.inc';
 
 session_start();
 

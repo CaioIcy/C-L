@@ -1,8 +1,11 @@
 <?php
-include_once "estruturas.php";
-include_once 'auxiliar_algoritmo.php';
-//include "auxiliar_bd.php";
+
 session_start();
+
+include_once 'estruturas.php';
+include_once 'algorithm_support.php';
+
+//include "auxiliar_bd.php";
 ?>
 <html>
     <head>

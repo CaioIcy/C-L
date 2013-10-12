@@ -2,6 +2,10 @@
 /* File: create.php
  * Purpose: This  script does something
  */
+
+include_once 'bd.inc';
+include_once 'database_support';
+
 ?>
 <html>
 
@@ -12,9 +16,6 @@
     <body>
 
         <?php
-        include_once( "bd.inc" );
-        include 'auxiliar_bd.php';
-
         $database_conection = database_connect() or die("Erro na conex�o � BD : " . mysql_error());
 
 

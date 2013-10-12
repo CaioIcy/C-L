@@ -1,7 +1,8 @@
 <?php
 session_start();
 
-include("funcoes_genericas.php");
+include 'frame_inferior.php';
+include 'funcoes_genericas.php';
 
 check_user_authentication("index.php"); // Checks if the user was authenticated
 ?>
@@ -91,8 +92,6 @@ check_user_authentication("index.php"); // Checks if the user was authenticated
     <body>
 
         <?php
-        include("frame_inferior.php");
-
         if (isset($id) && isset($t)) {      // script called by main.php (or the tree)
             if ($t == "c") {
                 ?>

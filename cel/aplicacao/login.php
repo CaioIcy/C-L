@@ -8,8 +8,8 @@ session_start();
 
 define("QUERY_USER", "SELECT * FROM usuario WHERE login='%s' AND senha='%s'");
 
-include("bd.inc");
-include("httprequest.inc");
+include_once 'bd.inc';
+include_once 'httprequest.inc';
 
 $url = '';
 $submit = false;

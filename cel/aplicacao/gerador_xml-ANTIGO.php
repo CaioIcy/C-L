@@ -1,9 +1,11 @@
 <?php
+
 session_start();
-include("puts_XML_tags.php");
-include("funcoes_genericas.php");
-include("httprequest.inc");
-include_once("bd.inc");
+
+include_once 'puts_XML_tags.php';
+include_once 'funcoes_genericas.php';
+include_once 'httprequest.inc';
+include_once 'bd.inc';
 
 check_user_authentication("index.php");        // Checa se o usuario foi autenticado
 // Testa se o usuario quer uma visualiza��o formatada ou n�o

@@ -8,10 +8,12 @@
 // e podera fazer	alteracoes em todos os campos menos no titulo.Ao final a tela principal
 // retorna para a tela de inicio e a arvore e fechada.O form de alteracao tb e fechado.
 // Arquivo chamador: main.php
+
 session_start();
-include("funcoes_genericas.php");
-include("httprequest.inc");
-include_once("bd.inc");
+
+include_once 'bd.inc';
+include_once 'funcoes_genericas.php';
+include_once 'httprequest.inc';
 
 check_user_authentication("index.php"); // Checa se o usuario foi autenticado
 // Conecta ao SGBD

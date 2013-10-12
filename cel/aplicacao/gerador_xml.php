@@ -1,11 +1,11 @@
 <?php
 session_start();
 
-include("funcoes_genericas.php");
-include_once("puts_links.php");
-include("httprequest.inc");
-include_once("bd.inc");
-include_once("seguranca.php");
+include_once 'bd.inc';
+include_once 'funcoes_genericas.php';
+include_once 'puts_links.php';
+include_once 'httprequest.inc';
+include_once 'seguranca.php';
 
 check_user_authentication("index.php");        // Checa se o usuario foi autenticado
 

@@ -1,8 +1,10 @@
 <?php
+
+session_start();
+
 include_once 'estruturas.php';
 include_once 'auxiliar_algoritmo.php';
 include_once 'bd.inc';
-session_start();
 
 function get_subjectList() {
     $id_projeto = $_SESSION['id_projeto'];
@@ -417,8 +419,6 @@ function salvar_algoritmo() {
 
 if (isset($_SESSION["tipos"])) {
     session_unregister("tipos");
-
-    include_once 'bd.inc';
 
     $database_conection = database_connect();
 

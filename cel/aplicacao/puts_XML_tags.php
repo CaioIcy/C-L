@@ -4,7 +4,7 @@
  * Module that puts the tags of the links in the XML files
  */
 
-include ("puts_links.php");
+include_once 'puts_links.php';
 
 function puts_XML_tag($string) {
 

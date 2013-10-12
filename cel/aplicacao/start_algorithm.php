@@ -3,9 +3,9 @@
 	//session_unset();
 	session_start();
 
-	include 'auxiliar_bd.php';
 	include_once 'bd.inc';
-	include_once "script_bd2.php" ;
+	include_once 'database_support.php';
+	include_once 'script_bd2.php' ;
 
 	//mysql_close($link);
         $database_conection = database_connect();

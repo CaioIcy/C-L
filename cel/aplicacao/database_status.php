@@ -1,6 +1,6 @@
 <?php
 
-include_once("bd.inc");
+include_once 'bd.inc';
 
 $database_conection = database_connect();
 

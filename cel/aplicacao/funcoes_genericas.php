@@ -1,6 +1,7 @@
 <?php
-include_once("bd.inc");
-include_once("seguranca.php");
+
+include_once 'bd.inc';
+include_once 'seguranca.php';
 
 if (!(function_exists("chkUser"))) {
 
