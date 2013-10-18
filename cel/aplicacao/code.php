@@ -32,9 +32,9 @@ $database_conection = database_connect() or die("Error while connecting to SGBD"
  */
 if (isset($id_project)) {
     check_proj_perm($_SESSION['id_usuario_corrente'], $id_project) or die("Permission denied");
-    $query = "SELECT nome FROM projeto WHERE id_projeto = $id_project";
-    $query_r = mysql_query($query) or die("Error while sending the query");
-    $result = mysql_fetch_array($query_r);
+    $query_database_command = "SELECT nome FROM projeto WHERE id_projeto = $id_project";
+    $query_connecting_database = mysql_query($query_database_command) or die("Error while sending the query");
+    $result = mysql_fetch_array($query_connecting_database);
     $project_name = $result['nome'];
 } else {
     ?>  
@@ -114,12 +114,12 @@ if (isset($id_project)) {
             mc = new MTMenu();
 
 <?php
-$query = "SELECT id_cenario, titulo  
+$query_database_command = "SELECT id_cenario, titulo  
                   FROM cenario  
                   WHERE id_projeto = $id_project  
                   ORDER BY titulo";
 
-$query_r = mysql_query($query) or die("Error while sending the selection query");
+$query_connecting_database = mysql_query($query_database_command) or die("Error while sending the selection query");
 
 /*
  * We should remove all the HTML tags from the title of the scenario.
@@ -129,7 +129,7 @@ $query_r = mysql_query($query) or die("Error while sending the selection query")
  */
 $search = "'<[\/\!]*?[^<>]*?>'si";
 $replace = "";
-while ($row = mysql_fetch_row($query_r)) {    // for each scenario of the project 
+while ($row = mysql_fetch_row($query_connecting_database)) {    // for each scenario of the project 
     $row[1] = preg_replace($search, $replace, $row[1]);
     ?>
 
@@ -144,9 +144,9 @@ while ($row = mysql_fetch_row($query_r)) {    // for each scenario of the projec
                 mcsrc_<?= $row[0] ?> = new MTMenu();
 
     <?php
-    $query = "SELECT c.id_cenario_to, cen.titulo FROM centocen c, cenario cen WHERE c.id_cenario_from = " . $row[0];
-    $query = $query . " AND c.id_cenario_to = cen.id_cenario";
-    $qrr_2 = mysql_query($query) or die("Error while sending the selection query");
+    $query_database_command = "SELECT c.id_cenario_to, cen.titulo FROM centocen c, cenario cen WHERE c.id_cenario_from = " . $row[0];
+    $query_database_command = $query_database_command . " AND c.id_cenario_to = cen.id_cenario";
+    $qrr_2 = mysql_query($query_database_command) or die("Error while sending the selection query");
     while ($row_2 = mysql_fetch_row($qrr_2)) {
         $row_2[1] = preg_replace($search, $replace, $row_2[1]);
         ?>
@@ -175,13 +175,13 @@ while ($row = mysql_fetch_row($query_r)) {    // for each scenario of the projec
             ml = new MTMenu();
 
 <?php
-$query = "SELECT id_lexico, nome  
+$query_database_command = "SELECT id_lexico, nome  
                   FROM lexico  
                   WHERE id_projeto = $id_project  
                   ORDER BY nome";
 
-$query_r = mysql_query($query) or die("Error while sending the selection query");
-while ($row = mysql_fetch_row($query_r)) {   // for each lexicon of the project 
+$query_connecting_database = mysql_query($query_database_command) or die("Error while sending the selection query");
+while ($row = mysql_fetch_row($query_connecting_database)) {   // for each lexicon of the project 
     ?>
 
                 ml.addItem("<?= $row[1] ?>", "main.php?id=<?= $row[0] ?>&t=l");
@@ -194,9 +194,9 @@ while ($row = mysql_fetch_row($query_r)) {   // for each lexicon of the project
                 // mlsrl_<?= $row[0] ?> = new MTMenu(); 
 
     <?php
-    $query = "SELECT l.id_lexico_to, lex.nome FROM lextolex l, lexico lex WHERE l.id_lexico_from = " . $row[0];
-    $query = $query . " AND l.id_lexico_to = lex.id_lexico";
-    $qrr_2 = mysql_query($query) or die("Error while sending the selection query");
+    $query_database_command = "SELECT l.id_lexico_to, lex.nome FROM lextolex l, lexico lex WHERE l.id_lexico_from = " . $row[0];
+    $query_database_command = $query_database_command . " AND l.id_lexico_to = lex.id_lexico";
+    $qrr_2 = mysql_query($query_database_command) or die("Error while sending the selection query");
     while ($row_2 = mysql_fetch_row($qrr_2)) {
         ?>
 
@@ -236,13 +236,13 @@ while ($row = mysql_fetch_row($query_r)) {   // for each lexicon of the project
             moc = new MTMenu();
 
 <?php
-$query = "SELECT id_conceito, nome  
+$query_database_command = "SELECT id_conceito, nome  
                   FROM conceito 
                   WHERE id_projeto = $id_project  
                   ORDER BY nome";
 
-$query_r = mysql_query($query) or die("Error while sending the selection query");
-while ($row = mysql_fetch_row($query_r)) {  // for each concept of the project 
+$query_connecting_database = mysql_query($query_database_command) or die("Error while sending the selection query");
+while ($row = mysql_fetch_row($query_connecting_database)) {  // for each concept of the project 
     print "moc.addItem(\"$row[1]\", \"main.php?id=$row[0]&t=oc\");";
 }
 ?>
@@ -257,13 +257,13 @@ while ($row = mysql_fetch_row($query_r)) {  // for each concept of the project
             mor = new MTMenu();
 
 <?php
-$query = "SELECT   id_relacao, nome 
+$query_database_command = "SELECT   id_relacao, nome 
                   FROM     relacao r 
                   WHERE    id_projeto = $id_project  
                   ORDER BY nome";
 
-$query_r = mysql_query($query) or die("Error while sending the selection query");
-while ($row = mysql_fetch_row($query_r)) {   // for each relation of the project 
+$query_connecting_database = mysql_query($query_database_command) or die("Error while sending the selection query");
+while ($row = mysql_fetch_row($query_connecting_database)) {   // for each relation of the project 
     print "mor.addItem(\"$row[1]\", \"main.php?id=$row[0]&t=or\");";
 }
 ?>
@@ -278,14 +278,14 @@ while ($row = mysql_fetch_row($query_r)) {   // for each relation of the project
             moa = new MTMenu();
 
 <?php
-$query = "SELECT   id_axioma, axioma 
+$query_database_command = "SELECT   id_axioma, axioma 
                  FROM     axioma 
                  WHERE    id_projeto = $id_project  
                  ORDER BY axioma";
 
-$query_r = mysql_query($query) or die("Error while sending the selection query");
+$query_connecting_database = mysql_query($query_database_command) or die("Error while sending the selection query");
 
-while ($row = mysql_fetch_row($query_r)) {  // for each axiom of the project 
+while ($row = mysql_fetch_row($query_connecting_database)) {  // for each axiom of the project 
     $axi = explode(" disjoint ", $row[1]);
     print "moa.addItem(\"$axi[0]\", \"main.php?id=$row[0]&t=oa\");";
 }

@@ -16,9 +16,9 @@ include_once 'httprequest.inc';
 
 $database_conection = database_connect() or die("Error while connecting to SGBD");
 
-$query = "SELECT * FROM usuario WHERE login='$user_login'";
+$query_database_command = "SELECT * FROM usuario WHERE login='$user_login'";
 
-$query_r = mysql_query($query) or die("Error while executing the query");
+$query_connecting_database = mysql_query($query_database_command) or die("Error while executing the query");
 ?>
 
 <html>
@@ -29,13 +29,13 @@ $query_r = mysql_query($query) or die("Error while executing the query");
 
     <body bgcolor="#FFFFFF">
         <?php
-        if (!mysql_num_rows($query_r)) {
+        if (!mysql_num_rows($query_connecting_database)) {
             ?>
             <p style="color: red; font-weight: bold; text-align: center">Login does not exist!</p>
         <center><a href="JavaScript:window.history.go(-1)">Return</a></center>
         <?php
     } else {
-        $row = mysql_fetch_row($query_r);
+        $row = mysql_fetch_row($query_connecting_database);
         $user_name = $row[1];
         $mail = $row[2];
         $user_login = $row[3];

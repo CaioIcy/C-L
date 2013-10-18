@@ -519,12 +519,12 @@ if (isset($id_project)) {
 
                 <?php
                 if ($t == "c") {
-                    $query = "SELECT id_cenario, titulo, objetivo, contexto, atores, recursos, excecao, episodios, id_projeto    
+                    $query_database_command = "SELECT id_cenario, titulo, objetivo, contexto, atores, recursos, excecao, episodios, id_projeto    
               FROM cenario    
               WHERE id_cenario = $id";
 
-                    $query_r = mysql_query($query) or die("Erro ao enviar a query de selecao !!" . mysql_error());
-                    $result = mysql_fetch_array($query_r);
+                    $query_connecting_database = mysql_query($query_database_command) or die("Erro ao enviar a query de selecao !!" . mysql_error());
+                    $result = mysql_fetch_array($query_connecting_database);
 
                     $c_id_projeto = $result['id_projeto'];
 
@@ -590,12 +590,12 @@ if (isset($id_project)) {
                     <?php
                 } elseif ($t == "l") {
 
-                    $query = "SELECT id_lexico, nome, nocao, impacto, tipo, id_projeto    
+                    $query_database_command = "SELECT id_lexico, nome, nocao, impacto, tipo, id_projeto    
               FROM lexico    
               WHERE id_lexico = $id";
 
-                    $query_r = mysql_query($query) or die("Erro ao enviar a query de selecao !!" . mysql_error());
-                    $result = mysql_fetch_array($query_r);
+                    $query_connecting_database = mysql_query($query_database_command) or die("Erro ao enviar a query de selecao !!" . mysql_error());
+                    $result = mysql_fetch_array($query_connecting_database);
 
                     $l_id_projeto = $result['id_projeto'];
 
@@ -626,11 +626,11 @@ if (isset($id_project)) {
                         //sinonimos 
                         $id_project = $_SESSION['id_projeto_corrente'];
                         $$query_sinonimous = "SELECT * FROM sinonimo WHERE id_lexico = $id";
-                        $query_r = mysql_query($$query_sinonimous) or die("Erro ao enviar a query de Sinonimos" . mysql_error());
+                        $query_connecting_database = mysql_query($$query_sinonimous) or die("Erro ao enviar a query de Sinonimos" . mysql_error());
 
                         $$temporary_variable_sinonimous = array();
 
-                        while ($resultSinonimo = mysql_fetch_array($query_r)) {
+                        while ($resultSinonimo = mysql_fetch_array($query_connecting_database)) {
                             $$temporary_variable_sinonimous[] = $resultSinonimo['nome'];
                         }
                         ?>    
@@ -669,12 +669,12 @@ if (isset($id_project)) {
 
                     <?php
                 } elseif ($t == "oc") {        // se for cenario 
-                    $query = "SELECT id_conceito, nome, descricao   
+                    $query_database_command = "SELECT id_conceito, nome, descricao   
               FROM   conceito   
               WHERE  id_conceito = $id";
 
-                    $query_r = mysql_query($query) or die("Erro ao enviar a query de selecao !!" . mysql_error());
-                    $result = mysql_fetch_array($query_r);
+                    $query_connecting_database = mysql_query($query_database_command) or die("Erro ao enviar a query de selecao !!" . mysql_error());
+                    $result = mysql_fetch_array($query_connecting_database);
                     ?>    
 
                     <tr> 
@@ -701,11 +701,11 @@ if (isset($id_project)) {
 
                     <?php
                 } elseif ($t == "or") {        // se for cenario 
-                    $query = "SELECT id_relacao, nome   
+                    $query_database_command = "SELECT id_relacao, nome   
               FROM relacao   
               WHERE id_relacao = $id";
-                    $query_r = mysql_query($query) or die("Erro ao enviar a query de selecao !!" . mysql_error());
-                    $result = mysql_fetch_array($query_r);
+                    $query_connecting_database = mysql_query($query_database_command) or die("Erro ao enviar a query de selecao !!" . mysql_error());
+                    $result = mysql_fetch_array($query_connecting_database);
                     ?>    
 
                     <tr> 

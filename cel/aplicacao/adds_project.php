@@ -56,8 +56,8 @@ if (isset($submit)) {
         $database_conection = database_connect() or die("Error while connecting to SGBD");
         $manager = 1;
         $id_currentUser = $_SESSION['id_currentUser'];
-        $query = "INSERT INTO participa (id_user, id_project, manager) VALUES ($id_currentUser, $id_includedProject, $manager)";
-        mysql_query($query) or die("Error while connection to the main table");
+        $query_database_command = "INSERT INTO participa (id_user, id_project, manager) VALUES ($id_currentUser, $id_includedProject, $manager)";
+        mysql_query($query_database_command) or die("Error while connection to the main table");
     } else {
         ?>
         <html>

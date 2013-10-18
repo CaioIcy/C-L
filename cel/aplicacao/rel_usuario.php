@@ -14,17 +14,17 @@ if (isset($submit)) {   // Script chamado pelo submit
     // O procedimento sera remover todos que estao no projeto em questao
     // (menos o administrador que esta adicionando/removendo users)
     // e depois acrescentar aqueles que tiverem sido selecionados
-    $query = "DELETE FROM participa
+    $query_database_command = "DELETE FROM participa
           WHERE id_usuario != " . $_SESSION['id_usuario_corrente'] . "
           AND id_projeto = " . $_SESSION['id_projeto_corrente'];
-    mysql_query($query) or die("Erro ao executar a query de DELETE");
+    mysql_query($query_database_command) or die("Erro ao executar a query de DELETE");
 
     $quantity_selected_users = count($users);  
     for ($i = 0; $i < $quantity_selected_users; $i++) {
         // Para cada usuario selecionado
-        $query = "INSERT INTO participa (id_usuario, id_projeto)
+        $query_database_command = "INSERT INTO participa (id_usuario, id_projeto)
               VALUES (" . $users[$i] . ", " . $_SESSION['id_projeto_corrente'] . ")";
-        mysql_query($query) or die("Erro ao cadastrar usuario");
+        mysql_query($query_database_command) or die("Erro ao cadastrar usuario");
     }
     ?>
 
@@ -92,14 +92,14 @@ if (isset($submit)) {   // Script chamado pelo submit
 // Epis�dios:       O Administrador clica no link �Relacionar usu�rio j� existentes com este projeto�.
     // Selecionar todos os users que participam deste projeto,
     // menos o administrador que esta executando este script
-    $query = "SELECT u.id_usuario, login
+    $query_database_command = "SELECT u.id_usuario, login
           FROM usuario u, participa p
           WHERE u.id_usuario = p.id_usuario
           AND p.id_projeto = " . $_SESSION['id_projeto_corrente'] . "
           AND u.id_usuario != " . $_SESSION['id_usuario_corrente'];
 
-    $query_r = mysql_query($query) or die("Erro ao enviar a query");
-    while ($result = mysql_fetch_array($query_r)) {
+    $query_connecting_database = mysql_query($query_database_command) or die("Erro ao enviar a query");
+    while ($result = mysql_fetch_array($query_connecting_database)) {
         ?>
 
                                     <option value="<?= $result['id_usuario'] ?>"><?= $result['login'] ?></option>
@@ -140,12 +140,12 @@ if (isset($submit)) {   // Script chamado pelo submit
             $result_subquery = "$result_subquery , $row[0]";
         $result_subquery = "$result_subquery )";
     }
-    $query = "SELECT usuario.id_usuario, usuario.login FROM usuario where usuario.id_usuario not in " . $result_subquery;
+    $query_database_command = "SELECT usuario.id_usuario, usuario.login FROM usuario where usuario.id_usuario not in " . $result_subquery;
     //$query = "SELECT usuario.id_usuario, usuario.login FROM usuario, participa where usuario.id_usuario=participa.id_usuario and participa.id_projeto<>".$_SESSION['id_projeto_corrente']." and participa.id_usuario not in ".$resultadosubq;
 
-    echo($query);
-    $query_r = mysql_query($query) or die("Erro ao enviar a query");
-    while ($result = mysql_fetch_array($query_r)) {
+    echo($query_database_command);
+    $query_connecting_database = mysql_query($query_database_command) or die("Erro ao enviar a query");
+    while ($result = mysql_fetch_array($query_connecting_database)) {
         ?>
 
                                     <option value="<?= $result['id_usuario'] ?>"><?= $result['login'] ?></option>

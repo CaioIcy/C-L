@@ -75,11 +75,11 @@ function authenticate_user($userName, $userPassword) {
 /** @Episodio 9: Se o formul�rio tiver sido submetido ent�o verificar se o login e senha est�o corretos. * */
 if ($submit) {
     $senha_cript = md5($user_password);
-    $query = "SELECT id_usuario FROM usuario WHERE login='$user_login' AND senha='$senha_cript'";
-    $query_r = mysql_query($query) or die("Erro ao executar a query");
+    $query_database_command = "SELECT id_usuario FROM usuario WHERE login='$user_login' AND senha='$senha_cript'";
+    $query_connecting_database = mysql_query($query_database_command) or die("Erro ao executar a query");
 
     /** @Episodio 10: Se o login e/ou senha estiverem incorretos ent�o retornar a p�gina de login com wrong=true na URL. * */
-    if (!mysql_num_rows($query_r)) {
+    if (!mysql_num_rows($query_connecting_database)) {
         ?>
         <script language="javascript1.3">
             document.location.replace('login.php?wrong=true&url=<?= $url ?>');
@@ -88,7 +88,7 @@ if ($submit) {
         <?php
         $wrong = $_GET["wrong"];
     } else {/** @Episodio 11: Se o login e senha estiverem corretos ent�o registrar sess�o para o usu�rio, fechar login.php e abrir aplica��o . * */
-        $row = mysql_fetch_row($query_r);
+        $row = mysql_fetch_row($query_connecting_database);
         $id_currentUser = $row[0];
 
         session_register("id_currentUser");

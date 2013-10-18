@@ -4,8 +4,8 @@ include_once 'bd.inc';
 
 $database_conection = database_connect();
 
-$query = "show tables";
-$result = mysql_query($query) or die("Error while sending the query : " . mysql_error() . __LINE__);
+$query_database_command = "show tables";
+$result = mysql_query($query_database_command) or die("Error while sending the query : " . mysql_error() . __LINE__);
 
 
 print "<font color=#7c75b2 face=arial><h3>TABELAS e seus ATRIBUTOS<h3></font>";

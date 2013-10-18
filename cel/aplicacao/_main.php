@@ -114,11 +114,11 @@ check_user_authentication("index.php"); // Checks if the user was authenticated
                 $database_connection = database_connect() or die("Erro ao conectar ao SGBD");
 
                 if ($t == "c") {        // if it's a scenario
-                    $query = "SELECT id_cenario, titulo, objetivo, contexto, atores, recursos, episodios
+                    $query_database_command = "SELECT id_cenario, titulo, objetivo, contexto, atores, recursos, episodios
               FROM cenario
               WHERE id_cenario = $id";
-                    $query_r = mysql_query($query) or die("Error while sending selection query");
-                    $result = mysql_fetch_array($query_r);
+                    $query_connecting_database = mysql_query($query_database_command) or die("Error while sending selection query");
+                    $result = mysql_fetch_array($query_connecting_database);
                     ?>
 
                     <tr>
@@ -150,11 +150,11 @@ check_user_authentication("index.php"); // Checks if the user was authenticated
 
                     <?php
                 } else {
-                    $query = "SELECT id_lexico, nome, nocao, impacto
+                    $query_database_command = "SELECT id_lexico, nome, nocao, impacto
               FROM lexico
               WHERE id_lexico = $id";
-                    $query_r = mysql_query($query) or die("Error while sending seleciton query");
-                    $result = mysql_fetch_array($query_r);
+                    $query_connecting_database = mysql_query($query_database_command) or die("Error while sending seleciton query");
+                    $result = mysql_fetch_array($query_connecting_database);
                     ?>
 
                     <tr>

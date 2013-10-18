@@ -26,12 +26,12 @@ $database_recuperation = database_connect() or die("Erro ao conectar ao SGBD");
 //                ver ADMINISTRADOR ESCOLHE PROJETO.
 //                Caso contr�rio, ver USU�RIO ESCOLHE PROJETO.
 
-$query = "SELECT * FROM publicacao";
-$query_r = mysql_query($query) or die("Erro ao enviar a query de busca");
+$query_database_command = "SELECT * FROM publicacao";
+$query_connecting_database = mysql_query($query_database_command) or die("Erro ao enviar a query de busca");
 ?>
 
     <?php
-    while ($result = mysql_fetch_row($query_r))  {
+    while ($result = mysql_fetch_row($query_connecting_database))  {
         $id_project = $result[0];
         $data = $result[1];
         $version = $result[2];

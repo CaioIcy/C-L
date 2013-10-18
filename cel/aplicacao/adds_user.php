@@ -154,11 +154,11 @@ if (isset($submit)) {   //if called by the submit button
              * isn't already someone registered with the same login
              */
             $database_conection = database_connect() or die("Error while connecting to SGBD");
-            $query = "SELECT id_usuario FROM usuario WHERE login = '$user_login'";
-            $query_r = mysql_query($query) or die("Error while sending query");
+            $query_database_command = "SELECT id_usuario FROM usuario WHERE login = '$user_login'";
+            $query_connecting_database = mysql_query($query_database_command) or die("Error while sending query");
 
             // If there is someone with the same login
-            if (mysql_num_rows($query_r)) {
+            if (mysql_num_rows($query_connecting_database)) {
                 /*
                   //                $p_style = "color: red; font-weight: bold";
                   //                $p_text = "Login j� existente no sistema. Favor escolher outro login.";
@@ -192,8 +192,8 @@ if (isset($submit)) {   //if called by the submit button
 
                 // Encrypting the password
                 $user_password = md5($user_password);
-                $query = "INSERT INTO usuario (nome, login, email, senha) VALUES ('$user_name', '$user_login', '$user_email', '$user_password')";
-                mysql_query($query) or die("Error while registering the user");
+                $query_database_command = "INSERT INTO usuario (nome, login, email, senha) VALUES ('$user_name', '$user_login', '$user_email', '$user_password')";
+                mysql_query($query_database_command) or die("Error while registering the user");
                 recarrega("?cadastrado=&novo=$novo&login=$user_login");
             }
         }
@@ -261,9 +261,9 @@ if (isset($submit)) {   //if called by the submit button
          */
         $database_conection = database_connect() or die("Error while connecting to SGBD");
         $id_includedUser = simple_query("id_usuario", "usuario", "login = '$user_login'");
-        $query = "INSERT INTO participa (id_usuario, id_projeto)
+        $query_database_command = "INSERT INTO participa (id_usuario, id_projeto)
           VALUES ($id_includedUser, " . $_SESSION['id_projeto_corrente'] . ")";
-        mysql_query($query) or die("Error while inserting in the main table");
+        mysql_query($query_database_command) or die("Error while inserting in the main table");
 
         $user_name = simple_query("nome", "usuario", "id_usuario = $id_includedUser");
         $project_name = simple_query("nome", "projeto", "id_projeto = " . $_SESSION['id_projeto_corrente']);

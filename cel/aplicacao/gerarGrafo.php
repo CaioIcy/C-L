@@ -24,12 +24,12 @@ $XML = "";
 //Epis�dios:  Restri��o: Possuir um XML gerado do projeto
 
     $database_recuperation = database_connect() or die("Erro ao conectar ao SGBD");
-    $query = "SELECT * FROM publicacao WHERE id_projeto = '$id_project'";
-    $query_r = mysql_query($query) or die("Erro ao enviar a query");
+    $query_database_command = "SELECT * FROM publicacao WHERE id_projeto = '$id_project'";
+    $query_connecting_database = mysql_query($query_database_command) or die("Erro ao enviar a query");
     ?>
     <h2>Gerar Grafo</h2><br>
     <?php
-    while ($result = mysql_fetch_row($query_r)) {
+    while ($result = mysql_fetch_row($query_connecting_database)) {
         $data = $result[1];
         $version = $result[2];
         $XML = $result[3];

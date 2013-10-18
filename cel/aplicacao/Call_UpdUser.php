@@ -24,11 +24,11 @@ $database_conection = database_connect() or die("Error while connecting to SGBD"
 $id_user = $_SESSION['id_usuario_corrente'];
 
 
-$query = "SELECT * FROM usuario WHERE id_usuario='$id_user'";
+$query_database_command = "SELECT * FROM usuario WHERE id_usuario='$id_user'";
 
-$query_r = mysql_query($query) or die("Error while executing query");
+$query_connecting_database = mysql_query($query_database_command) or die("Error while executing query");
 
-$row = mysql_fetch_row($query_r);
+$row = mysql_fetch_row($query_connecting_database);
 $user_name = $row[1];
 $user_email = $row[2];
 $user_login = $row[3];

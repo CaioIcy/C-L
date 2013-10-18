@@ -186,16 +186,16 @@ if (!mysql_num_rows($qrrVerifica)) {
     $xml_resultante = "<?xml version=''1.0'' encoding=''ISO-8859-1'' ?>\n" . $str_xml;
     $str_xml = "<?xml version='1.0' encoding='ISO-8859-1' ?>\n" . $str_xml;
 
-    $query = "INSERT INTO publicacao ( id_projeto, data_publicacao, versao, XML)
+    $query_database_command = "INSERT INTO publicacao ( id_projeto, data_publicacao, versao, XML)
                  VALUES ( '$id_project', '$data_pesquisa', '$version', '$xml_resultante')";
 
     //echo $q;
 
-    mysql_query($query) or die("Erro ao enviar a query INSERT!");
+    mysql_query($query_database_command) or die("Erro ao enviar a query INSERT!");
 
     $qq = "select * from publicacao where id_projeto = $id_project ";
-    $query_r = mysql_query($qq) or die("Erro ao enviar a query");
-    $row = mysql_fetch_row($query_r);
+    $query_connecting_database = mysql_query($qq) or die("Erro ao enviar a query");
+    $row = mysql_fetch_row($query_connecting_database);
     $xml_base = $row[3];
 
     // echo $xml_banco;

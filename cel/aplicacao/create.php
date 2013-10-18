@@ -84,8 +84,8 @@ include_once 'database_support';
           $result = mysql_query($query) or die("A consulta � BD falhou : " . mysql_error());
          */
 
-        $query = "show tables";
-        $result = mysql_query($query) or die("A consulta � BD falhou : " . mysql_error() . __LINE__);
+        $query_database_command = "show tables";
+        $result = mysql_query($query_database_command) or die("A consulta � BD falhou : " . mysql_error() . __LINE__);
 
 
         while ($line = mysql_fetch_array($result, MYSQL_BOTH)) {

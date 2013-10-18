@@ -62,9 +62,9 @@ if (isset($submit)) {       // Script chamado atraves do submit do formulario
             <?php
         } else {        // Script chamado atraves do link do lexico corrente
             $project_name = simple_query("nome", "projeto", "id_projeto = " . $_SESSION['id_projeto_corrente']);
-            $query = "SELECT * FROM lexico WHERE id_lexico = $id_lexico";
-            $query_r = mysql_query($query) or die("Erro ao executar a query");
-            $result = mysql_fetch_array($query_r);
+            $query_database_command = "SELECT * FROM lexico WHERE id_lexico = $id_lexico";
+            $query_connecting_database = mysql_query($query_database_command) or die("Erro ao executar a query");
+            $result = mysql_fetch_array($query_connecting_database);
 
             //sinonimos
             // $DB = new PGDB () ;

@@ -18,8 +18,8 @@
         else
             echo "ERRO NA CONEXÃO À BD <br>";
 
-        $query = "alter table conceito add namespace varchar(250) NULL after descricao;";
-        $result = mysql_query($query) or die("A consulta à BD falhou : " . mysql_error() . __LINE__);
+        $query_database_command = "alter table conceito add namespace varchar(250) NULL after descricao;";
+        $result = mysql_query($query_database_command) or die("A consulta à BD falhou : " . mysql_error() . __LINE__);
 
         echo "<br>FIM !!!";
 
