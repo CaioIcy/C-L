@@ -12,16 +12,22 @@ function database_connect() {
     $connection_serverMySQL = mysql_connect($ip_Value, $user_db, $password_db); //FALSE in case of connection failure
     $database_select = mysql_select_db($database); //Boolean
 
-    if (!$connection_serverMySQL) {
-
-        die("Error! No connection to Database: " . mysql_error());
-    } else {
-
-        if ($database_select) {
-            $result = $connection_serverMySQL;
+    try {
+        if(!$connection_serverMySQL){
+            throw new Exception("Error! No connection to Database: " . mysql_error());
+            die;
         } else {
-            die("Error! Not connected to $database: " . mysql_error());
+            if($database_select){
+                $result = $connection_serverMySQL;
+            } else {
+                throw new Exception("Error! Not connected to $database: " . mysql_error());
+                die;
+            }
         }
+        
+    } catch (Exception $e) {
+        echo $e->getMessage();
+        die;
     }
 
     return ($result);
