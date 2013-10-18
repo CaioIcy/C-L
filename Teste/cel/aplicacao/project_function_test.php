@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname(__FILE__) . '/../../../cel/aplicacao/project_function.php';
+require_once dirname(__FILE__) . '/../../../cel/aplicacao/ProjectFunction.php';
 
 class test_project_function extends PHPUnit_Framework_TestCase{
     

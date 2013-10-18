@@ -3,8 +3,6 @@
 require_once 'bd.inc';
 require_once 'seguranca.php';
 
-database_connect();
-
 ###################################################################
 # Insere um projeto no banco de dados.
 # Recebe o nome e descricao. (1.1)
@@ -16,6 +14,7 @@ database_connect();
 if (!(function_exists("inclui_projeto"))) {
 
     function inclui_projeto($nome, $descricao) {
+        
         $r = database_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
         //verifica se usuario ja existe
         $qv = "SELECT * FROM projeto WHERE nome = '$nome'";
@@ -29,7 +28,8 @@ if (!(function_exists("inclui_projeto"))) {
             //verifica se o nome existente corresponde a um projeto que este usuario participa
             $id_projeto_repetido = $resultArray['id_projeto'];
 
-            $id_usuario_corrente = $_SESSION['id_usuario_corrente'];
+            $id_usuario_corrente = 1;
+            //$id_usuario_corrente = $_SESSION['id_usuario_corrente'];
 
             $qvu = "SELECT * FROM participa WHERE id_projeto = '$id_projeto_repetido' AND id_usuario = '$id_usuario_corrente' ";
 
