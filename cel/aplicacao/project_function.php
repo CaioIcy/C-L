@@ -1,13 +1,9 @@
 <?php
 
-include_once 'bd.inc';
-include_once 'seguranca.php';
+require_once 'bd.inc';
+require_once 'seguranca.php';
 
 database_connect();
-
-function include_project(){
-    
-}
 
 ###################################################################
 # Insere um projeto no banco de dados.
