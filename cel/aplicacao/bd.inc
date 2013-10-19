@@ -9,28 +9,14 @@ function database_connect() {
     $password_db = ""; //Password used to connect to the database
     $database = "cel"; //Database used to query
 
-    $connection_serverMySQL = mysql_connect($ip_Value, $user_db, $password_db); //FALSE in case of connection failure
-    $database_select = mysql_select_db($database); //Boolean
 
     try {
-        if(!$connection_serverMySQL){
-            throw new Exception("Error! No connection to Database: " . mysql_error());
-            die;
-        } else {
-            if($database_select){
-                $result = $connection_serverMySQL;
-            } else {
-                throw new Exception("Error! Not connected to $database: " . mysql_error());
-                die;
-            }
-        }
-        
+        $database_select = mysql_select_db($database);
+        $connection_serverMySQL = mysql_connect($ip_Value, $user_db, $password_db);       
     } catch (Exception $e) {
         echo $e->getMessage();
         die;
     }
-
-    return ($result);
 }
 
 ?>
