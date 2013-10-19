@@ -1,67 +1,61 @@
 <?php
+/**
+ * File name: ProjectFunction.php
+ * Propuse: Function related to project
+ */
 
-require_once 'bd.inc';
+require_once 'Dao/DaoProject.php';
 require_once 'seguranca.php';
 
-###################################################################
-# Insere um projeto no banco de dados.
-# Recebe o nome e descricao. (1.1)
-# Verifica se este usuario ja possui um projeto com esse nome. (1.2)
-# Caso nao possua, insere os valores na tabela PROJETO. (1.3)
-# Devolve o id_cprojeto. (1.4)
-#
-###################################################################
-if (!(function_exists("inclui_projeto"))) {
+/*
+ *Insere um projeto no banco de dados.
+ *Recebe o nome e descricao. (1.1)
+ *Verifica se este usuario ja possui um projeto com esse nome. (1.2)
+ *Caso nao possua, insere os valores na tabela PROJETO. (1.3)
+ *Devolve o id_cprojeto. (1.4)
+ */
 
-    function inclui_projeto($nome, $descricao) {
-        
-        $r = database_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-        //verifica se usuario ja existe
-        $qv = "SELECT * FROM projeto WHERE nome = '$nome'";
-        $qvr = mysql_query($qv) or die("Erro ao enviar a query de select<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+function inclui_projeto($projectName, $descricao) {
+    
+    $projectArray = projectDatabase($projectName);
 
-        //$result = mysql_fetch_row($qvr);
-        $resultArray = mysql_fetch_array($qvr);
+    if ($projectArray != false) {
+        //verifica se o nome existente corresponde a um projeto que este usuario participa
+        $id_projeto_repetido = $resultArray['id_projeto'];
 
+        $id_usuario_corrente = 1;
+        //$id_usuario_corrente = $_SESSION['id_usuario_corrente'];
 
-        if ($resultArray != false) {
-            //verifica se o nome existente corresponde a um projeto que este usuario participa
-            $id_projeto_repetido = $resultArray['id_projeto'];
+        $qvu = "SELECT * FROM participa WHERE id_projeto = '$id_projeto_repetido' AND id_usuario = '$id_usuario_corrente' ";
 
-            $id_usuario_corrente = 1;
-            //$id_usuario_corrente = $_SESSION['id_usuario_corrente'];
+        $qvuv = mysql_query($qvu) or die("Erro ao enviar a query de SELECT no participa<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
 
-            $qvu = "SELECT * FROM participa WHERE id_projeto = '$id_projeto_repetido' AND id_usuario = '$id_usuario_corrente' ";
+        $resultArray = mysql_fetch_row($qvuv);
 
-            $qvuv = mysql_query($qvu) or die("Erro ao enviar a query de SELECT no participa<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-
-            $resultArray = mysql_fetch_row($qvuv);
-
-            if ($resultArray[0] != null) {
-                return -1;
-            }
+        if ($resultArray[0] != null) {
+            return -1;
         }
-
-        $q = "SELECT MAX(id_projeto) FROM projeto";
-        $qrr = mysql_query($q) or die("Erro ao enviar a query de MAX ID<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-        $result = mysql_fetch_row($qrr);
-
-        if ($result[0] == false) {
-            $result[0] = 1;
-        } else {
-            $result[0]++;
-        }
-        $data = date("Y-m-d");
-
-        $qr = "INSERT INTO projeto (id_projeto, nome, data_criacao, descricao)
-                  VALUES ($result[0],'" . prepara_dado($nome) . "','$data' , '" . prepara_dado($descricao) . "')";
-
-        mysql_query($qr) or die("Erro ao enviar a query INSERT<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-
-        return $result[0];
     }
 
+    $q = "SELECT MAX(id_projeto) FROM projeto";
+    $qrr = mysql_query($q) or die("Erro ao enviar a query de MAX ID<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+    $result = mysql_fetch_row($qrr);
+
+    if ($result[0] == false) {
+        $result[0] = 1;
+    } else {
+        $result[0]++;
+    }
+    $data = date("Y-m-d");
+
+    $qr = "INSERT INTO projeto (id_projeto, nome, data_criacao, descricao)
+                  VALUES ($result[0],'" . prepara_dado($nome) . "','$data' , '" . prepara_dado($descricao) . "')";
+
+    mysql_query($qr) or die("Erro ao enviar a query INSERT<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+
+    return $result[0];
 }
+
 ###################################################################
 # Remove um determinado projeto da base de dados
 # Recebe o id do projeto. (1.1)
