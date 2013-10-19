@@ -11,15 +11,13 @@ define("QUERY_USER", "SELECT * FROM usuario WHERE login='%s' AND senha='%s'");
 include_once 'bd.inc';
 include_once 'httprequest.inc';
 
-$url = '';
 $submit = false;
 $authenticated = false;
-$current_userLogin = $_POST["login"];
-$current_userPassword = $_POST["senha"];
 
 shows_loginForm();
 
 function shows_loginForm() {
+    $url = '';
     ?>
 
     <html>
@@ -31,7 +29,7 @@ function shows_loginForm() {
                 <img src="Images/Logo_CEL.jpg" width="100" height="100"><br/><br/>
                 &nbsp;&nbsp;&nbsp;&nbsp;Entre com seu Login e Senha:</p>
 
-            <form name="loginScreen" action="login.php" method="POST">
+            <form name="loginScreen" action="?url=<?= $url ?>" method="POST">
                 <div align="center">
                     <table cellpadding="5">
                         <tr><td>Login:</td><td><input maxlength="32" name="login" size="24" type="text"></td></tr>
