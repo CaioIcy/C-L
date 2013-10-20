@@ -603,4 +603,69 @@ function checarLexicoExistente($projeto, $nome) {
     return $naoexiste;
 }
 
+
+
+###################################################################
+# Processa um pedido identificado pelo seu id.
+# Recebe o id do pedido.(1.1)
+# Faz um select para pegar o pedido usando o id recebido.(1.2)
+# Pega o campo tipo_pedido.(1.3)
+# Se for para remover: Chamamos a funcao remove();(1.4)
+# Se for para alterar: Devemos (re)mover o lexico e inserir o novo.
+# Se for para inserir: chamamos a funcao insert();
+###################################################################
+if (!(function_exists("tratarPedidoLexico"))) {
+
+    function tratarPedidoLexico($id_pedido) {
+        $DB = new PGDB ();
+        $select = new QUERY($DB);
+        $delete = new QUERY($DB);
+        $selectSin = new QUERY($DB);
+        $select->execute("SELECT * FROM pedidolex WHERE id_pedido = $id_pedido");
+        if ($select->getntuples() == 0) {
+            echo "<BR> [ERRO]Pedido invalido.";
+        } else {
+            $record = $select->gofirst();
+            $tipoPedido = $record['tipo_pedido'];
+            if (!strcasecmp($tipoPedido, 'remover')) {
+                $id_lexico = $record['id_lexico'];
+                $id_projeto = $record['id_projeto'];
+                removeLexico($id_projeto, $id_lexico);
+            } else {
+                $id_projeto = $record['id_projeto'];
+                $nome = $record['nome'];
+                $nocao = $record['nocao'];
+                $impacto = $record['impacto'];
+                $classificacao = $record['tipo'];
+
+                //sinonimos
+
+                $sinonimos = array();
+                $selectSin->execute("SELECT nome FROM sinonimo WHERE id_pedidolex = $id_pedido");
+                $sinonimo = $selectSin->gofirst();
+                if ($selectSin->getntuples() != 0) {
+                    while ($sinonimo != 'LAST_RECORD_REACHED') {
+                        $sinonimos[] = $sinonimo["nome"];
+                        $sinonimo = $selectSin->gonext();
+                    }
+                }
+
+                if (!strcasecmp($tipoPedido, 'alterar')) {
+                    $id_lexico = $record['id_lexico'];
+                    alteraLexico($id_projeto, $id_lexico, $nome, $nocao, $impacto, $sinonimos, $classificacao);
+                } else if (($idLexicoConflitante = adicionar_lexico($id_projeto, $nome, $nocao, $impacto, $sinonimos, $classificacao)) <= 0) {
+                    $idLexicoConflitante = -1 * $idLexicoConflitante;
+
+                    $selectLexConflitante->execute("SELECT nome FROM lexico WHERE id_lexico = " . $idLexicoConflitante);
+
+                    $row = $selectLexConflitante->gofirst();
+
+                    return $row["nome"];
+                }
+            }
+            return null;
+        }
+    }
+
+}
 ?>
