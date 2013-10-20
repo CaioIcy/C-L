@@ -378,4 +378,51 @@ if (!(function_exists("inserirPedidoAlterarCenario"))) {
     }
 
 }
+
+###################################################################
+# Funcao faz um insert na tabela de pedido.
+# Para remover um cenario ela deve receber
+# o id do cenario e id projeto.(1.1)
+# Ao final ela manda um e-mail para o gerente do projeto
+# referente a este lexico.(2.1)
+# Arquivos que utilizam essa funcao:
+# remove_scenario.php
+###################################################################
+if (!(function_exists("inserirPedidoRemoverCenario"))) {
+
+    function inserirPedidoRemoverCenario($id_projeto, $id_cenario, $id_usuario) {
+        $DB = new PGDB();
+        $insere = new QUERY($DB);
+        $select = new QUERY($DB);
+        $select2 = new QUERY($DB);
+
+        $q = ("SELECT * FROM participa WHERE gerente = 1 AND id_usuario = $id_usuario AND id_projeto = $id_projeto");
+        $qr = mysql_query($q) or die("Erro ao enviar a query de select no participa<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+        $resultArray = mysql_fetch_array($qr);
+
+        if ($resultArray == false) { //Nao e gerente
+            $select->execute("SELECT * FROM cenario WHERE id_cenario = $id_cenario");
+            $cenario = $select->gofirst();
+            $titulo = $cenario['titulo'];
+            $insere->execute("INSERT INTO pedidocen (id_projeto, id_cenario, titulo, id_usuario, tipo_pedido, aprovado) VALUES ($id_projeto, $id_cenario, '$titulo', $id_usuario, 'remover', 0)");
+            $select->execute("SELECT * FROM usuario WHERE id_usuario = $id_usuario");
+            $select2->execute("SELECT * FROM participa WHERE gerente = 1 AND id_projeto = $id_projeto");
+            $record = $select->gofirst();
+            $nome = $record['nome'];
+            $email = $record['email'];
+            $record2 = $select2->gofirst();
+            while ($record2 != 'LAST_RECORD_REACHED') {
+                $id = $record2['id_usuario'];
+                $select->execute("SELECT * FROM usuario WHERE id_usuario = $id");
+                $record = $select->gofirst();
+                $mailGerente = $record['email'];
+                mail("$mailGerente", "Pedido de Remover Cen�rio", "O usuario do sistema $nome\nPede para remover o cenario $id_cenario \nObrigado!", "From: $nome\r\n" . "Reply-To: $email\r\n");
+                $record2 = $select2->gonext();
+            }
+        } else {
+            removeCenario($id_projeto, $id_cenario);
+        }
+    }
+
+}
 ?>
