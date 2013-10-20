@@ -1,15 +1,27 @@
 <?php
 
-require_once '../bd.inc';
+require_once '/../bd.inc';
 
-function projectDatabase($projectName){
+function projectNameDatabase($projectName){
     
     database_connect();
     
     $query = "SELECT * FROM projeto WHERE nome = '$projectName'";
-    $result = mysql_query($query);
-    $resultArray = mysql_fetch_array($result);
+    $executeQuery = mysql_query($query);
+    $resultArray = mysql_fetch_array($executeQuery);
     
     return $resultArray;
+}
+
+function projectIdDatabase($projectId,$userId){
+    
+    database_connect();
+    
+    $query = "SELECT * FROM participa WHERE id_projeto = '$projectId' AND id_usuario = '$userId'";
+    $executeQuery = mysql_query($query);
+    $resultArray = mysql_fetch_array($executeQuery);
+    
+    return $resultArray;
+    
 }
 ?>

@@ -17,20 +17,14 @@ require_once 'seguranca.php';
 
 function inclui_projeto($projectName, $descricao) {
     
-    $projectArray = projectDatabase($projectName);
+    $projectArray = projectNameDatabase($projectName);
 
     if ($projectArray != false) {
         //verifica se o nome existente corresponde a um projeto que este usuario participa
-        $id_projeto_repetido = $resultArray['id_projeto'];
-
-        $id_usuario_corrente = 1;
-        //$id_usuario_corrente = $_SESSION['id_usuario_corrente'];
-
-        $qvu = "SELECT * FROM participa WHERE id_projeto = '$id_projeto_repetido' AND id_usuario = '$id_usuario_corrente' ";
-
-        $qvuv = mysql_query($qvu) or die("Erro ao enviar a query de SELECT no participa<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-
-        $resultArray = mysql_fetch_row($qvuv);
+        $id_projeto_repetido = $projectArray['id_projeto'];
+        $idCurrentUser = $_SESSION['id_usuario_corrente'];
+        
+        $resultArray = projectIdDatabase($id_projeto_repetido, $idCurrentUser);
 
         if ($resultArray[0] != null) {
             return -1;
