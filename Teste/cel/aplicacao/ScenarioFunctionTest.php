@@ -15,6 +15,10 @@ class test_scenario_function extends PHPUnit_Framework_TestCase{
         $result = inclui_cenario($this->id_project);
         $this->assertEmpty($result);
     }
+    public function testAdicionarCenario() {
+        $result = adicionar_cenario($this->id_project);
+        $this->assertEmpty($result);
+    }
     
 }
 ?>
