@@ -15,7 +15,7 @@ require_once 'seguranca.php';
  *Devolve o id_cprojeto. (1.4)
  */
 
-function inclui_projeto($projectName, $descricao) {
+function includeProject($projectName, $projectDescription) {
     
     $projectArray = getProjectNameDatabase($projectName);
 
@@ -43,7 +43,7 @@ function inclui_projeto($projectName, $descricao) {
     $data = date("Y-m-d");
 
     $qr = "INSERT INTO projeto (id_projeto, nome, data_criacao, descricao)
-                  VALUES ($result[0],'" . prepara_dado($nome) . "','$data' , '" . prepara_dado($descricao) . "')";
+                  VALUES ($result[0],'" . prepara_dado($nome) . "','$data' , '" . prepara_dado($projectDescription) . "')";
 
     mysql_query($qr) or die("Erro ao enviar a query INSERT<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
 
@@ -70,87 +70,17 @@ function inclui_projeto($projectName, $descricao) {
 #
 ###################################################################
 
-function removeProjeto($id_projeto) {
-    $r = database_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-
-    //Remove os pedidos de cenario
-    $qv = "Delete FROM pedidocen WHERE id_projeto = '$id_projeto' ";
-    $deletaPedidoCenario = mysql_query($qv) or die("Erro ao apagar pedidos de cenario<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-
-    //Remove os pedidos de lexico
-    $qv = "Delete FROM pedidolex WHERE id_projeto = '$id_projeto' ";
-    $deletaPedidoLexico = mysql_query($qv) or die("Erro ao apagar pedidos do lexico<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-
-    //Remove os lexicos //verificar lextolex!!!
-    $qv = "SELECT * FROM lexico WHERE id_projeto = '$id_projeto' ";
-    $qvr = mysql_query($qv) or die("Erro ao enviar a query de select no lexico<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-
-    while ($result = mysql_fetch_array($qvr)) {
-        $id_lexico = $result['id_lexico']; //seleciona um lexico
-
-        $qv = "Delete FROM lextolex WHERE id_lexico_from = '$id_lexico' OR id_lexico_to = '$id_lexico' ";
-        $deletaLextoLe = mysql_query($qv) or die("Erro ao apagar pedidos do lextolex<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-
-        $qv = "Delete FROM centolex WHERE id_lexico = '$id_lexico'";
-        $deletacentolex = mysql_query($qv) or die("Erro ao apagar pedidos do centolex<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-
-        //$qv = "Delete FROM sinonimo WHERE id_lexico = '$id_lexico'";
-        //$deletacentolex = mysql_query($qv) or die("Erro ao apagar sinonimo<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-
-        $qv = "Delete FROM sinonimo WHERE id_projeto = '$id_projeto'";
-        $deletacentolex = mysql_query($qv) or die("Erro ao apagar sinonimo<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+function removeProject($projectId) {
+    
+    $result = FALSE;
+    $rmvRresult = rmvProjectDatabase($projectId);
+    
+    if($rmvRresult==1){
+        $result = TRUE;
+    } else {
+        $result = FALSE;
     }
-
-    $qv = "Delete FROM lexico WHERE id_projeto = '$id_projeto' ";
-    $deletaLexico = mysql_query($qv) or die("Erro ao apagar pedidos do lexico<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-
-    //remove os cenarios
-    $qv = "SELECT * FROM cenario WHERE id_projeto = '$id_projeto' ";
-    $qvr = mysql_query($qv) or die("Erro ao enviar a query de select no cenario<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-    $resultArrayCenario = mysql_fetch_array($qvr);
-
-    while ($result = mysql_fetch_array($qvr)) {
-        $id_lexico = $result['id_cenario']; //seleciona um lexico
-
-        $qv = "Delete FROM centocen WHERE id_cenario_from = '$id_cenario' OR id_cenario_to = '$id_cenario' ";
-        $deletaCentoCen = mysql_query($qv) or die("Erro ao apagar pedidos do centocen<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-
-        $qv = "Delete FROM centolex WHERE id_cenario = '$id_cenario'";
-        $deletaLextoLe = mysql_query($qv) or die("Erro ao apagar pedidos do centolex<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-    }
-
-    $qv = "Delete FROM cenario WHERE id_projeto = '$id_projeto' ";
-    $deletaLexico = mysql_query($qv) or die("Erro ao apagar pedidos do cenario<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-
-    //remover participantes
-    $qv = "Delete FROM participa WHERE id_projeto = '$id_projeto' ";
-    $deletaParticipantes = mysql_query($qv) or die("Erro ao apagar no participa<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-
-    //remover publicacao
-    $qv = "Delete FROM publicacao WHERE id_projeto = '$id_projeto' ";
-    $deletaPublicacao = mysql_query($qv) or die("Erro ao apagar no publicacao<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-
-    //remover projeto
-    $qv = "Delete FROM projeto WHERE id_projeto = '$id_projeto' ";
-    $deletaProjeto = mysql_query($qv) or die("Erro ao apagar no participa<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+    
+    return $result;
 }
-
-// Para a correta inclusao de um cenario, uma serie de procedimentos
-// precisam ser tomados (relativos ao requisito 'navegacao circular'):
-//
-// 1. Incluir o novo cenario na base de dados;
-// 2. Para todos os cenarios daquele projeto, exceto o rec�m inserido:
-//      2.1. Procurar em contexto e episodios
-//           por ocorrencias do titulo do cenario incluido;
-//      2.2. Para os campos em que forem encontradas ocorrencias:
-//          2.2.1. Incluir entrada na tabela 'centocen';
-//      2.3. Procurar em contexto e episodios do cenario incluido
-//           por ocorrencias de titulos de outros cenarios do mesmo projeto;
-//      2.4. Se achar alguma ocorrencia:
-//          2.4.1. Incluir entrada na tabela 'centocen';
-// 3. Para todos os nomes de termos do lexico daquele projeto:
-//      3.1. Procurar ocorrencias desses nomes no titulo, objetivo, contexto,
-//           recursos, atores, episodios, do cenario incluido;
-//      3.2. Para os campos em que forem encontradas ocorrencias:
-//          3.2.1. Incluir entrada na tabela 'centolex';
 ?>
