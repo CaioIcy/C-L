@@ -36,7 +36,7 @@ function rmvProjectDatabase($projectId){
     if($deleteRequestSceneario){
         $result = 1;
     }  else {
-        $result = 0;
+        $result = 2;
     }
     
     $queryDelRequestLexicon = "Delete FROM pedidolex WHERE id_projeto = '$projectId'";
@@ -44,7 +44,7 @@ function rmvProjectDatabase($projectId){
     if($deleteRequestLexicon){
         $result = 1;
     } else {
-        $result = 0;
+        $result = 2;
     }
     
     $queryLexicon = "SELECT * FROM lexico WHERE id_projeto = '$projectId'";
@@ -60,7 +60,7 @@ function rmvProjectDatabase($projectId){
         if($deleteLexToLex){
             $result = 1;
         } else {
-            $result = 0;
+            $result = 2;
         }
         
         $queryDelScenToLex = "Delete FROM centolex WHERE id_lexico = '$projectId'";
@@ -68,7 +68,7 @@ function rmvProjectDatabase($projectId){
         if($deleteScenToLex){
             $result = 1;
         } else {
-            $result = 0;
+            $result = 2;
         }
         
         $queryDelSynonym = "Delete FROM sinonimo WHERE id_projeto = '$projectId'";
@@ -76,7 +76,7 @@ function rmvProjectDatabase($projectId){
         if($deleteSynonym){
             $result = 1;
         } else {
-            $result = 0;
+            $result = 2;
         }
         
     }
@@ -86,7 +86,7 @@ function rmvProjectDatabase($projectId){
     if($deleteLexicon){
         $result = 1;
     } else {
-        $result = 0;
+        $result = 2;
     }
     
     $queryScenario = "SELECT * FROM cenario WHERE id_projeto = '$projectId'";
@@ -95,6 +95,57 @@ function rmvProjectDatabase($projectId){
     
     while ($arrayScenario){
         
+        $lexiconId = $arrayScenario['id_cenario'];
+        
+        $queryDelScenToScen = "Delete FROM centocen WHERE id_cenario_from = '$projectId'";
+        $deleteScenToScen = mysql_query($queryDelScenToScen);
+        if($deleteScenToScen){
+            $result = 1;
+        } else {
+            $result = 2;
+        }
+        
+        $queryDelScenToLex = "Delete FROM centolex WHERE id_cenario_from = '$projectId'";
+        $deleteScenToLex = mysql_query($queryDelScenToLex);
+        if($deleteScenToLex){
+            $result = 1;
+        }  else {
+            $result = 2;
+        }
     }
+    
+    $queryDelScenario = "Delete FROM cenario WHERE id_projeto = '$projectId'";
+    $deleteScenario = mysql_query($queryDelScenario);
+    if($deleteScenario){
+        $result = 1;
+    }  else {
+        $result = 2;
+    }
+    
+    $queryDelParticipant = "Delete FROM participa WHERE id_projeto = '$projectId";
+    $deleteParticipant = mysql_query($queryDelParticipant);
+    if($deleteParticipant){
+        $result = 1;
+    } else {
+        $result = 2;
+    }
+    
+    $queryDelPublication = "Delete FROM publicacao WHERE id_projeto";
+    $deletePublication = mysql_query($queryDelPublication);
+    if($deletePublication){
+        $result = 1;
+    }  else {
+        $result = 2;
+    }
+    
+    $queryDelProject = "Delete FROM projeto WHERE id_projeto = '$projectId'";
+    $deleteProject = mysql_query($queryDelProject);
+    if($deleteProject){
+        $result = 1;
+    }  else {
+        $result = 2;
+    }
+    
+    return $result;
 }
 ?>
