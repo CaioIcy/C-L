@@ -17,14 +17,14 @@ require_once 'seguranca.php';
 
 function inclui_projeto($projectName, $descricao) {
     
-    $projectArray = projectNameDatabase($projectName);
+    $projectArray = getProjectNameDatabase($projectName);
 
     if ($projectArray != false) {
         //verifica se o nome existente corresponde a um projeto que este usuario participa
         $id_projeto_repetido = $projectArray['id_projeto'];
         $idCurrentUser = $_SESSION['id_usuario_corrente'];
         
-        $resultArray = projectIdDatabase($id_projeto_repetido, $idCurrentUser);
+        $resultArray = getProjectIdDatabase($id_projeto_repetido, $idCurrentUser);
 
         if ($resultArray[0] != null) {
             return -1;
