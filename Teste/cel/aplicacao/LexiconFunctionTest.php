@@ -15,8 +15,8 @@ class test_lexicon_function extends PHPUnit_Framework_TestCase{
         $this->assertFalse($result);
     }
 
-    function testRemoveProject() {
-        $result = removeProject("2");
+    function testRemoveLexico() {
+        $result = removeLexico("2");
         $this->assertTrue($result);
     }
     
