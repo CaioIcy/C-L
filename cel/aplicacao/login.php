@@ -17,7 +17,7 @@ $authenticated = false;
 shows_loginForm();
 
 function shows_loginForm() {
-    $url = '';
+    $url = 'index.php';
     ?>
 
     <html>
