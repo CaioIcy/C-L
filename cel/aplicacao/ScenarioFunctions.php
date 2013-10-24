@@ -448,4 +448,53 @@ function checarCenarioExistente($projeto, $titulo) {
     return $naoexiste;
 }
 
+###################################################################
+# Processa um pedido identificado pelo seu id.
+# Recebe o id do pedido.(1.1)
+# Faz um select para pegar o pedido usando o id recebido.(1.2)
+# Pega o campo tipo_pedido.(1.3)
+# Se for para remover: Chamamos a funcao remove();(1.4)
+# Se for para alterar: Devemos (re)mover o cenario e inserir o novo.
+# Se for para inserir: chamamos a funcao insert();
+###################################################################
+if (!(function_exists("tratarPedidoCenario"))) {
+
+    function tratarPedidoCenario($id_pedido) {
+        $DB = new PGDB ();
+        $select = new QUERY($DB);
+        $delete = new QUERY($DB);
+        //print("<BR>SELECT * FROM pedidocen WHERE id_pedido = $id_pedido");
+        $select->execute("SELECT * FROM pedidocen WHERE id_pedido = $id_pedido");
+        if ($select->getntuples() == 0) {
+            echo "<BR> [ERRO]Pedido invalido.";
+        } else {
+            $record = $select->gofirst();
+            $tipoPedido = $record['tipo_pedido'];
+            if (!strcasecmp($tipoPedido, 'remover')) {
+                $id_cenario = $record['id_cenario'];
+                $id_projeto = $record['id_projeto'];
+                removeCenario($id_projeto, $id_cenario);
+                //$delete->execute ("DELETE FROM pedidocen WHERE id_cenario = $id_cenario") ;
+            } else {
+
+                $id_projeto = $record['id_projeto'];
+                $titulo = $record['titulo'];
+                $objetivo = $record['objetivo'];
+                $contexto = $record['contexto'];
+                $atores = $record['atores'];
+                $recursos = $record['recursos'];
+                $excecao = $record['excecao'];
+                $episodios = $record['episodios'];
+                if (!strcasecmp($tipoPedido, 'alterar')) {
+                    $id_cenario = $record['id_cenario'];
+                    removeCenario($id_projeto, $id_cenario);
+                    //$delete->execute ("DELETE FROM pedidocen WHERE id_cenario = $id_cenario") ;
+                }
+                adicionar_cenario($id_projeto, $titulo, $objetivo, $contexto, $atores, $recursos, $excecao, $episodios);
+            }
+            //$delete->execute ("DELETE FROM pedidocen WHERE id_pedido = $id_pedido") ;
+        }
+    }
+
+}
 ?>
