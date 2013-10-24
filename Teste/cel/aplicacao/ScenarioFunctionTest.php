@@ -19,6 +19,11 @@ class test_scenario_function extends PHPUnit_Framework_TestCase{
         $result = adicionar_cenario($this->id_project);
         $this->assertEmpty($result);
     }
-    
+        
+    public function testRemoveCenario() {
+        $result = removeProject($this->id_project);
+        $this->assertTrue($result);
+        
+    }
 }
 ?>
