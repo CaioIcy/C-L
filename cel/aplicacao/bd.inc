@@ -1,22 +1,26 @@
 <?php
 
+include_once 'CELConfig/CELConfig.inc';
+
 function database_connect() {
 
-    $result = false; //Represents the result of the connection to the database
+    $result = FALSE; //Result of the action connecting to database
 
-    $ip_Value = "localhost"; //Ip used to connect to the database
-    $user_db = "root"; //User name used to connect to the database
-    $password_db = ""; //Password used to connect to the database
-    $database = "cel"; //Database used to query
+    $ip_Value = CELConfig_ReadVar("BD_ip"); //Ip used to connect to the database
+    $user_db = CELConfig_ReadVar("BD_user"); //User name used to connect to the database
+    $password_db = CELConfig_ReadVar("BD_password"); //Password used to connect to the database
+    $database = CELConfig_ReadVar("BD_database"); //Database used to query
 
+    $connection_serverMySQL = mysql_connect($ip_Value, $user_db, $password_db) or die("ERROR! Database connection : " . mysql_error());
+    $database_select = mysql_select_db($database) or die("ERROR! Table connection : " . mysql_error());
 
-    try {
-        $database_select = mysql_select_db($database);
-        $connection_serverMySQL = mysql_connect($ip_Value, $user_db, $password_db);       
-    } catch (Exception $e) {
-        echo $e->getMessage();
-        die;
+    if ($connection_serverMySQL && $database_select) {
+        $result = $connection_serverMySQL;
+    } else {
+        $result = FALSE;
     }
+
+    return $result;
 }
 
 ?>
