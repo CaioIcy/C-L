@@ -4,90 +4,58 @@
  * Purpose: View of the login screen with their scenarios
  */
 
+/**
+  @Titulo: Acessar o sistema
+
+  @Objetivo: Permitir que o usuário acesse a Aplicação de Edição de Léxicos e de Edição de Cenários, cadastre-se no sistema ou requisite sua senha no caso de tê-la esquecido.
+
+  @Contexto: A página da aplicação é acessada. Na página de abertura ../cel/aplicacao/login.php o usuário insere login ou senha incorretos - $wrong=true.
+
+  @Atores: usuário, aplicação
+
+  @Recursos: URL de acesso ao sistema,  login, senha, bd.inc, httprequest.inc, $wrong, $url, showSource.php?file=login.php, esqueciSenha.php, add_usuario.php?novo=true
+ * */
+/** @Episodio 1: Iniciar sessão * */
 session_start();
 
-include_once 'bd.inc';
-include_once 'httprequest.inc';
+include("bd.inc");
 
-$submit = false;
-$authenticated = false;
+$url = '';
+$submit = '';
+$login = '';
+$senha = '';
+$wrong = "false";
 
-shows_loginForm();
-
-function shows_loginForm() {
-    $url = 'index.php';
-    ?>
-
-    <html>
-        <head>
-            <title>Entre com seu Login e Senha</title>
-        </head>
-        <body>
-            <p style="color: green; font-weight: bold; text-align: center">
-                <img src="Images/Logo_CEL.jpg" width="100" height="100"><br/><br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;Entre com seu Login e Senha:</p>
-
-            <form name="loginScreen" action="?url=<?= $url ?>" method="POST">
-                <div align="center">
-                    <table cellpadding="5">
-                        <tr><td>Login:</td><td><input maxlength="32" name="login" size="24" type="text"></td></tr>
-                        <tr><td>Senha:</td><td><input maxlength="32" name="senha" size="24" type="password"></td></tr>
-                        <tr><td height="10"></td></tr>
-                        <tr><td align="center" colspan="2"><input name="submit" type="submit" value="Entrar"></td></tr>
-                    </table>
-
-                    <p><a href="adds_user.php">Cadastrar-se</a>&nbsp;&nbsp;
-
-                        <a href="forgotten_password.php">Esqueci senha</a></p>
-                </div>
-            </form>
-        </body>
-
-        <i><a href="showSource.php?file=login.php">Veja o c�digo fonte!</a></i>
-    </html>
-    <?php
-}
-
-function authenticate_user($userName, $userPassword) {
-
-    database_connect();
-    $result = false;
-
-    $query_user = "SELECT * FROM usuario WHERE login='$userName' AND senha='$userPassword'";
-    $authenticated = mysql_query($query_user);
-
-    if ($authenticated) {
-        $result = true;
-    } else {
-        $result = false;
-    }
-
-    return ($result);
-}
+include("httprequest.inc");
 
 /** @Episodio 2: Conectar o SGBD * */
-/** @Restri��o: a fun��o bd_connect definida em bd.inc � utilizada * */
-/** @Exce��o: Erro ao conectar banco de dados * */
-/** @Episodio 9: Se o formul�rio tiver sido submetido ent�o verificar se o login e senha est�o corretos. * */
-if ($submit) {
-    $senha_cript = md5($user_password);
-    $query_database_command = "SELECT id_usuario FROM usuario WHERE login='$user_login' AND senha='$senha_cript'";
-    $query_connecting_database = mysql_query($query_database_command) or die("Erro ao executar a query");
+/** @Restrição: a função bd_connect definida em bd.inc é utilizada * */
+/** @Exceção: Erro ao conectar banco de dados * */
+database_connect() or die("ERROR");
 
-    /** @Episodio 10: Se o login e/ou senha estiverem incorretos ent�o retornar a p�gina de login com wrong=true na URL. * */
-    if (!mysql_num_rows($query_connecting_database)) {
+/** @Episodio 9: Se o formulário tiver sido submetido então verificar se o login e senha estão corretos. * */
+if ($submit == 'Entrar') {
+
+    //$senha_cript = md5($senha);
+    $q = "SELECT id_usuario FROM usuario WHERE login='$login' AND senha='$senha'";
+    $qrr = mysql_query($q) or die("Erro ao executar a query");
+
+    /** @Episodio 10: Se o login e/ou senha estiverem incorretos então retornar a página de login com wrong=true na URL. * */
+    $numRowsDB = mysql_num_rows($qrr);
+
+    echo $numRowsDB;
+    if ($numRowsDB == 0) {
         ?>
         <script language="javascript1.3">
             document.location.replace('login.php?wrong=true&url=<?= $url ?>');
         </script>
 
         <?php
-        $wrong = $_GET["wrong"];
-    } else {/** @Episodio 11: Se o login e senha estiverem corretos ent�o registrar sess�o para o usu�rio, fechar login.php e abrir aplica��o . * */
-        $row = mysql_fetch_row($query_connecting_database);
-        $id_currentUser = $row[0];
-
-        session_register("id_currentUser");
+        $wrong = $_get["wrong"];
+    } else {
+        /** @Episodio 11: Se o login e senha estiverem corretos então registrar sessão para o usuário, fechar login.php e abrir aplicação . * */
+        $row = mysql_fetch_row($qrr);
+        $_SESSION['id_current_user'] = $row[0];
         ?>
         <script language="javascript1.3">
             opener.document.location.replace('<?= $url ?>');
@@ -96,6 +64,61 @@ if ($submit) {
 
         <?php
     }
-} else {/** @Episodio 3: Mostrar o formul�rio de login para usu�rio. * */
+} else {
+    /** @Episodio 3: Mostrar o formulário de login para usuário. * */
+    ?>
+
+    <html>
+        <head>
+            <title>Entre com seu Login e Senha</title>
+        </head>
+        <body>
+
+            <?php
+            /** @Episodio 4: Se wrong = true então mostrar a mensagem Login ou Senha incorreto . * */
+            if ($wrong == "true") {
+                ?>
+
+                <p style="color: red; font-weight: bold; text-align: center">
+                    <img src="Images/Logo_CEL.jpg" width="180" height="180"><br/><br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Login ou Senha Incorreto</p>
+
+                <?php
+            }
+            /** @Episodio 5: Se wrong != true então mostrar a mensagem Entre com seu login e senha. * */ else {
+                ?>
+
+                <p style="color: green; font-weight: bold; text-align: center">
+                    <img src="Images/Logo_CEL.jpg" width="100" height="100"><br/><br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Entre com seu Login e Senha:</p>
+
+                <?php
+            }
+            ?>
+
+            <form action="?url=<?= $url ?>" method="post">
+                <div align="center">
+                    <table cellpadding="5">
+                        <tr><td>Login:</td><td><input maxlength="32" name="login" size="24" type="text"></td></tr>
+                        <tr><td>Senha:</td><td><input maxlength="32" name="senha" size="24" type="password"></td></tr>
+                        <tr><td height="10"></td></tr>
+                        <tr><td align="center" colspan="2"><input name="submit" type="submit" value="Entrar"></td></tr>
+                    </table>
+
+                    <?php /** @Episodio 6: [CADASTRAR NOVO USUÁRIO] * */ ?>
+                    <p><a href="add_usuario.php?novo=true">Cadastrar-se</a>&nbsp;&nbsp;
+
+                        <?php /** @Episodio 7: [LEMBRAR SENHA] * */ ?>
+                        <a href="esqueciSenha.php">Esqueci senha</a></p>
+                </div>
+            </form>
+        </body>
+
+        <?php /** @Episodio 8: [MOSTRAR O CÓDIGO FONTE] * */ ?>
+
+        <i><a href="showSource.php?file=login.php">Veja o código fonte!</a></i>    
+    </html>
+
+    <?php
 }
 ?>

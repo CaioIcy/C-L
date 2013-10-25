@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 
 include_once 'funcoes_genericas.php';
@@ -53,7 +52,7 @@ if (isset($_GET['id_projeto'])) {
 if (isset($id_project)) {   // $id_projeto soh nao estara setada caso seja a primeira
     // vez que o usuario esteja acessando o sistema
     // Checagem de seguranca, pois $id_projeto eh passado atraves de JavaScript (cliente)
-    checkPermissionToProject($_SESSION['id_usuario_corrente'], $id_project) or die("Permissao negada");
+    checkPermissionToProject($_SESSION['id_current_user'], $id_project) or die("Permissao negada");
     ?>
 
         function setProjectSelected() {
@@ -162,7 +161,7 @@ if (isset($id_project)) {
                                 <td align="right" valign="top"> <?php
                                     if (isset($id_project)) {
 
-                                        $id_user = $_SESSION['id_usuario_corrente'];
+                                        $id_user = $_SESSION['id_current_user'];
 
                                         $exists_scenario = verificaGerente($id_user, $id_project);
 
@@ -201,7 +200,7 @@ if (isset($id_project)) {
       FROM usuario u, participa pa, projeto p
       WHERE u.id_usuario = pa.id_usuario
       AND pa.id_projeto = p.id_projeto
-      AND pa.id_usuario = " . $_SESSION["id_usuario_corrente"] . "
+      AND pa.id_usuario = " . $_SESSION["id_current_user"] . "
       ORDER BY p.nome";
 
 // executa a consulta
@@ -265,7 +264,7 @@ if (isset($id_project)) {
 
                                     if (isset($id_project)) {
 
-                                        $id_user = $_SESSION['id_usuario_corrente'];
+                                        $id_user = $_SESSION['id_current_user'];
 
                                         $exists_scenario = verificaGerente($id_user, $id_project);
 
