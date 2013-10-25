@@ -6,8 +6,6 @@
 
 session_start();
 
-define("QUERY_USER", "SELECT * FROM usuario WHERE login='%s' AND senha='%s'");
-
 include_once 'bd.inc';
 include_once 'httprequest.inc';
 
@@ -17,7 +15,7 @@ $authenticated = false;
 shows_loginForm();
 
 function shows_loginForm() {
-    $url = '';
+    $url = 'index.php';
     ?>
 
     <html>
@@ -52,11 +50,11 @@ function shows_loginForm() {
 
 function authenticate_user($userName, $userPassword) {
 
-    $database = database_connect();
+    database_connect();
     $result = false;
 
-    $query_user = sprintf(QUERY_USER, mysql_real_escape_string($userName), mysql_real_escape_string($userPassword));
-    $authenticated = mysql_query($query_user, $database);
+    $query_user = "SELECT * FROM usuario WHERE login='$userName' AND senha='$userPassword'";
+    $authenticated = mysql_query($query_user);
 
     if ($authenticated) {
         $result = true;

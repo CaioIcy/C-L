@@ -2,6 +2,15 @@
 
 require_once '/../bd.inc';
 
+define("QUERY_SEL_PARTICIPANT");
+define("QUERY_SEL_PROJECTNAME");
+define("QUERY_DEL_REQUESTSCENARIO");
+define("QUERY_DEL_REQUESTLEXICON");
+define("QUERY_SEL_LEXICON");
+define("QUERY_DEL_LEXICON");
+define("QUERY_SEL_SCENARIO");
+define();
+
 function getProjectNameDatabase($projectName){
     
     database_connect();
