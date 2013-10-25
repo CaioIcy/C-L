@@ -5,7 +5,7 @@ session_start();
 include_once 'funcoes_genericas.php';
 
 
-chechUserAuthentication("index.php");
+check_user_authentication("index.php");
 // Cen�rio - Usu�rio escolhe Projeto
 // Objetivo:  Permitir ao Usu�rio escolher um projeto.
 // Contexto:  O usu�rio deseja escoher um projeto.
