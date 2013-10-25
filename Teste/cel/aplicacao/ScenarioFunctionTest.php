@@ -7,7 +7,7 @@ class test_scenario_function extends PHPUnit_Framework_TestCase{
       private $id_project=NULL;
     
     protected function setUp() {
-        $_SESSION['id_current_user'] = "nivi";
+        $_SESSION['id_usuario_corrente'] = "nivi";
         $this->id_project = includeProject("NOME2", "DESC2");
     }
     

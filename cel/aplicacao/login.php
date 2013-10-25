@@ -42,9 +42,8 @@ if ($submit == 'Entrar') {
 
     /** @Episodio 10: Se o login e/ou senha estiverem incorretos então retornar a página de login com wrong=true na URL. * */
     $numRowsDB = mysql_num_rows($qrr);
-
-    echo $numRowsDB;
-    if ($numRowsDB == 0) {
+    
+    if (!$numRowsDB) {
         ?>
         <script language="javascript1.3">
             document.location.replace('login.php?wrong=true&url=<?= $url ?>');
@@ -55,7 +54,7 @@ if ($submit == 'Entrar') {
     } else {
         /** @Episodio 11: Se o login e senha estiverem corretos então registrar sessão para o usuário, fechar login.php e abrir aplicação . * */
         $row = mysql_fetch_row($qrr);
-        $_SESSION['id_current_user'] = $row[0];
+        $_SESSION['id_usuario_corrente'] = $row[0];
         ?>
         <script language="javascript1.3">
             opener.document.location.replace('<?= $url ?>');
@@ -106,7 +105,7 @@ if ($submit == 'Entrar') {
                     </table>
 
                     <?php /** @Episodio 6: [CADASTRAR NOVO USUÁRIO] * */ ?>
-                    <p><a href="add_usuario.php?novo=true">Cadastrar-se</a>&nbsp;&nbsp;
+                    <p><a href="adds_user.php?novo=true">Cadastrar-se</a>&nbsp;&nbsp;
 
                         <?php /** @Episodio 7: [LEMBRAR SENHA] * */ ?>
                         <a href="esqueciSenha.php">Esqueci senha</a></p>
