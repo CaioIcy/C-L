@@ -631,7 +631,7 @@ if (isset($id_project)) {
                         $$temporary_variable_sinonimous = array();
 
                         while ($resultSinonimo = mysql_fetch_array($query_connecting_database)) {
-                            $$temporary_variable_sinonimous[] = $resultSinonimo['nome'];
+                            $temporary_variable_sinonimous[] = $resultSinonimo['nome'];
                         }
                         ?>    
 

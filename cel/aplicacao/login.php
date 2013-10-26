@@ -16,9 +16,11 @@
   @Recursos: URL de acesso ao sistema,  login, senha, bd.inc, httprequest.inc, $wrong, $url, showSource.php?file=login.php, esqueciSenha.php, add_usuario.php?novo=true
  * */
 /** @Episodio 1: Iniciar sessão * */
+
 session_start();
 
-include("bd.inc");
+include 'bd.inc';
+include 'httprequest.inc';
 
 $url = '';
 $submit = '';
@@ -26,38 +28,37 @@ $login = '';
 $senha = '';
 $wrong = "false";
 
-include("httprequest.inc");
-
 /** @Episodio 2: Conectar o SGBD * */
 /** @Restrição: a função bd_connect definida em bd.inc é utilizada * */
 /** @Exceção: Erro ao conectar banco de dados * */
-database_connect() or die("ERROR");
+database_connect();
 
 /** @Episodio 9: Se o formulário tiver sido submetido então verificar se o login e senha estão corretos. * */
 if ($submit == 'Entrar') {
 
     //$senha_cript = md5($senha);
-    $q = "SELECT id_usuario FROM usuario WHERE login='$login' AND senha='$senha'";
-    $qrr = mysql_query($q) or die("Erro ao executar a query");
+    $queryUser = "SELECT id_usuario FROM usuario WHERE login='$login' AND senha='$senha'";
+    $executeQuery = mysql_query($queryUser) or die("Erro ao executar a query");
 
     /** @Episodio 10: Se o login e/ou senha estiverem incorretos então retornar a página de login com wrong=true na URL. * */
-    $numRowsDB = mysql_num_rows($qrr);
+    $numRowsDB = mysql_num_rows($executeQuery);
     
     if (!$numRowsDB) {
         ?>
         <script language="javascript1.3">
-            document.location.replace('login.php?wrong=true&url=<?= $url ?>');
+            document.location.replace('login.php?wrong=true&url=<?=$url?>');
         </script>
 
         <?php
         $wrong = $_get["wrong"];
     } else {
         /** @Episodio 11: Se o login e senha estiverem corretos então registrar sessão para o usuário, fechar login.php e abrir aplicação . * */
-        $row = mysql_fetch_row($qrr);
+        $row = mysql_fetch_row($executeQuery);
         $_SESSION['id_usuario_corrente'] = $row[0];
+        
         ?>
         <script language="javascript1.3">
-            opener.document.location.replace('<?= $url ?>');
+            opener.document.location.replace("<?=$url?>");
             self.close();
         </script>
 
@@ -83,8 +84,8 @@ if ($submit == 'Entrar') {
                     &nbsp;&nbsp;&nbsp;&nbsp;Login ou Senha Incorreto</p>
 
                 <?php
-            }
-            /** @Episodio 5: Se wrong != true então mostrar a mensagem Entre com seu login e senha. * */ else {
+            } else {
+            /** @Episodio 5: Se wrong != true então mostrar a mensagem Entre com seu login e senha. * */ 
                 ?>
 
                 <p style="color: green; font-weight: bold; text-align: center">
@@ -95,7 +96,7 @@ if ($submit == 'Entrar') {
             }
             ?>
 
-            <form action="?url=<?= $url ?>" method="post">
+            <form action="?url=<?=$url?>" method="post">
                 <div align="center">
                     <table cellpadding="5">
                         <tr><td>Login:</td><td><input maxlength="32" name="login" size="24" type="text"></td></tr>
@@ -108,7 +109,7 @@ if ($submit == 'Entrar') {
                     <p><a href="adds_user.php?novo=true">Cadastrar-se</a>&nbsp;&nbsp;
 
                         <?php /** @Episodio 7: [LEMBRAR SENHA] * */ ?>
-                        <a href="esqueciSenha.php">Esqueci senha</a></p>
+                        <a href="forgotten_password.php">Esqueci senha</a></p>
                 </div>
             </form>
         </body>
