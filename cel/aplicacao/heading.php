@@ -252,7 +252,7 @@ if (isset($id_project)) {
 //Atores:      Usu�rio
 //Recursos:    Sistema, dados do projeto, base de dados
 //Epis�dios:   O Usu�rio clica na op��o �adicionar projeto� encontrada no menu superior.
-                                    ?> <a href="#" onClick="window.open('add_projeto.php', '_blank', 'dependent,height=313,width=550,resizable,scrollbars,titlebar');">Adicionar 
+                                    ?> <a href="#" onClick="window.open('adds_project.php', '_blank', 'dependent,height=313,width=550,resizable,scrollbars,titlebar');">Adicionar 
                                         Projeto</a>&nbsp;&nbsp;&nbsp; <?php
 //Cen�rio  -   Remover Novo Projeto 
 //Objetivo:    Permitir ao Administrador do projeto remover um projeto

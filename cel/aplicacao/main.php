@@ -21,7 +21,7 @@ $_SESSION['diretorio'] = CELConfig_ReadVar("DAML_dir_relativo_ao_CEL");
 
 
 
-chechUserAuthentication("index.php");
+check_user_authentication("index.php");
 
 //Recebe parametro da heading.php. Sem isso vai travar ja que a variavel nao foi inicializada 
 if (isset($_GET['id_projeto'])) {

@@ -47,17 +47,20 @@ function include_inDatabase($project_name,$project_description){
 }
 
 if (isset($submit)) {
-
+    
+    
     $id_includedProject = inclui_projeto($project_name, $project_description);
 
     // Insert in the main table
 
     if ($id_includedProject != -1) {
+        
         $database_conection = database_connect() or die("Error while connecting to SGBD");
         $manager = 1;
-        $id_currentUser = $_SESSION['id_currentUser'];
+        $id_currentUser = $_SESSION['id_usuario_corrente'];
         $query_database_command = "INSERT INTO participa (id_user, id_project, manager) VALUES ($id_currentUser, $id_includedProject, $manager)";
         mysql_query($query_database_command) or die("Error while connection to the main table");
+        
     } else {
         ?>
         <html>
