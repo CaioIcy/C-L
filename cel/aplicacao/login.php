@@ -20,13 +20,14 @@
 session_start();
 
 include 'bd.inc';
-include 'httprequest.inc';
 
 $url = '';
 $submit = '';
 $login = '';
 $senha = '';
 $wrong = "false";
+
+include 'httprequest.inc';
 
 /** @Episodio 2: Conectar o SGBD * */
 /** @Restrição: a função bd_connect definida em bd.inc é utilizada * */
@@ -36,26 +37,27 @@ database_connect();
 /** @Episodio 9: Se o formulário tiver sido submetido então verificar se o login e senha estão corretos. * */
 if ($submit == 'Entrar') {
 
-    //$senha_cript = md5($senha);
-    $queryUser = "SELECT id_usuario FROM usuario WHERE login='$login' AND senha='$senha'";
-    $executeQuery = mysql_query($queryUser) or die("Erro ao executar a query");
+    $senha_cript = md5($senha);
+    $queryUser = "SELECT id_usuario FROM usuario WHERE login='$login' AND senha='$senha_cript'";
+    $executeQuery = mysql_query($queryUser) or die("ERROR Executing Query");
 
     /** @Episodio 10: Se o login e/ou senha estiverem incorretos então retornar a página de login com wrong=true na URL. * */
-    $numRowsDB = mysql_num_rows($executeQuery);
+    $numRows = mysql_num_rows($executeQuery);
     
-    if (!$numRowsDB) {
+    if (!$numRows) {
         ?>
+
         <script language="javascript1.3">
             document.location.replace('login.php?wrong=true&url=<?=$url?>');
         </script>
 
         <?php
-        $wrong = $_get["wrong"];
+        
+        $wrong = $_GET["wrong"];
     } else {
         /** @Episodio 11: Se o login e senha estiverem corretos então registrar sessão para o usuário, fechar login.php e abrir aplicação . * */
         $row = mysql_fetch_row($executeQuery);
         $_SESSION['id_usuario_corrente'] = $row[0];
-        
         ?>
         <script language="javascript1.3">
             opener.document.location.replace("<?=$url?>");

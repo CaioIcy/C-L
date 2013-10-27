@@ -1874,7 +1874,7 @@ if (!(function_exists("formataData"))) {
 if (!(function_exists("chkUser"))) {
 
     function check_user_authentication($url) {
-        if (!isset($_SESSION['id_currentUser'])) {
+        if (!isset($_SESSION['id_usuario_corrente'])) {
             ?>
 
             <script language="javascript1.3">
