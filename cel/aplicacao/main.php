@@ -765,7 +765,7 @@ if (isset($id_project)) {
             // projeto que o usuario esteja cadastrado. Entretanto, como a passagem eh 
             // feita usando JavaScript (no heading.php), devemos checar se este id realmente 
             // corresponde a um projeto que o usuario tenha acesso (seguranca). 
-            checkPermissionToProject($_SESSION['id_usuario_corrente'], $id_project) or die("Permissao negada");
+            check_proj_perm($_SESSION['id_usuario_corrente'], $id_project) or die("Permissao negada");
 
             // Seta uma variavel de sessao correspondente ao projeto atual 
             $_SESSION['id_projeto_corrente'] = $id_project;

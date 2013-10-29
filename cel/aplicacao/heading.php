@@ -53,7 +53,7 @@ if (isset($_GET['id_projeto'])) {
 if (isset($id_project)) {   // $id_projeto soh nao estara setada caso seja a primeira
     // vez que o usuario esteja acessando o sistema
     // Checagem de seguranca, pois $id_projeto eh passado atraves de JavaScript (cliente)
-    checkPermissionToProject($_SESSION['id_usuario_corrente'], $id_project) or die("Permissao negada");
+    check_proj_perm($_SESSION['id_usuario_corrente'], $id_project) or die("Permissao negada");
     ?>
 
         function setProjectSelected() {
