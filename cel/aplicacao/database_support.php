@@ -3,7 +3,7 @@
 session_start();
 
 include_once 'estruturas.php';
-include_once 'auxiliar_algoritmo.php';
+include_once 'algorithm_support.php';
 include_once 'bd.inc';
 
 function get_subjectList() {

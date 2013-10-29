@@ -1,6 +1,6 @@
 <?php
 //session_start(); 
-//include("funcoes_genericas.php"); 
+include("funcoes_genericas.php"); 
 
 check_user_authentication("index.php");        // Cenario: controle de acesso 
 // frame_inferior.php 
