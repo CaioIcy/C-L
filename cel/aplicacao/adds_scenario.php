@@ -203,7 +203,7 @@ if (isset($submit)) {
                 </table>
             </form>
         <center><a href="javascript:self.close();">Close</a></center>
-        <br><i><a href="showSource.php?file=add_cenario.php">See the source code!</a></i>
+        <br><i><a href="showSource.php?file=adds_scenario.php">See the source code!</a></i>
     </body>
     </html>
 

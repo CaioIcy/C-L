@@ -1,6 +1,7 @@
 <?php
 include_once 'bd.inc';
 include_once 'seguranca.php';
+include_once 'class_database.php';
 
 
 ###################################################################
@@ -653,7 +654,7 @@ if (!(function_exists("tratarPedidoCenario"))) {
 # Ao final ela manda um e-mail para o gerente do projeto
 # referente a este cenario caso o criador n�o seja o gerente.
 # Arquivos que utilizam essa funcao:
-# add_cenario.php
+# adds_scenario.php
 ###################################################################
 if (!(function_exists("inserirPedidoAdicionarCenario"))) {
 
