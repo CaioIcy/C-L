@@ -24,37 +24,7 @@ function getProjectIdDatabase($projectId, $userId) {
     return $resultArray;
 }
 
-function delRequestScenario($projectId) {
-
-    $result = 0;
-
-    $queryDelRequestScenario = "Delete FROM pedidocen  WHERE id_pojeto = '$projectId'";
-    $deleteRequestSceneario = mysql_query($queryDelRequestScenario);
-    if ($deleteRequestSceneario) {
-        $result = 1;
-    } else {
-        $result = 2;
-    }
-
-    return $result;
-}
-
-function delRequestLexicon($projectId) {
-
-    $result = 0;
-
-    $queryDelRequestLexicon = "Delete FROM pedidolex WHERE id_projeto = '$projectId'";
-    $deleteRequestLexicon = mysql_query($queryDelRequestLexicon);
-    if ($deleteRequestLexicon) {
-        $result = 1;
-    } else {
-        $result = 2;
-    }
-
-    return $result;
-}
-
-function selLexicon($projectId) {
+function getLexiconDatabase($projectId) {
 
     $queryLexicon = "SELECT * FROM lexico WHERE id_projeto = '$projectId'";
     $selectLexicon = mysql_query($queryLexicon);
@@ -63,7 +33,37 @@ function selLexicon($projectId) {
     return $arrayLexicon;
 }
 
-function delLexToLex($projectId) {
+function delRequestScenarioDatabase($projectId) {
+
+    $result = FALSE;
+
+    $queryDelRequestScenario = "Delete FROM pedidocen  WHERE id_pojeto = '$projectId'";
+    $deleteRequestSceneario = mysql_query($queryDelRequestScenario);
+    if ($deleteRequestSceneario) {
+        $result = TRUE;
+    } else {
+        $result = FALSE;
+    }
+
+    return $result;
+}
+
+function delRequestLexiconDatabase($projectId) {
+
+    $result = FALSE;
+
+    $queryDelRequestLexicon = "Delete FROM pedidolex WHERE id_projeto = '$projectId'";
+    $deleteRequestLexicon = mysql_query($queryDelRequestLexicon);
+    if ($deleteRequestLexicon) {
+        $result = TRUE;
+    } else {
+        $result = FALSE;
+    }
+
+    return $result;
+}
+
+function delLexToLexDatabase($projectId) {
     
     $result = 0;
     
@@ -86,7 +86,7 @@ function rmvProjectDatabase($projectId) {
     database_connect();
 
     $result = 0;
-
+    
     $queryDelRequestScenario = "Delete FROM pedidocen  WHERE id_pojeto = '$projectId'";
     $deleteRequestSceneario = mysql_query($queryDelRequestScenario);
     if ($deleteRequestSceneario) {
