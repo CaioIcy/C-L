@@ -61,6 +61,7 @@ function inclui_projeto($nome, $descricao) {
     return $result[0];
 }
 
+/*
 ###################################################################
 # Remove um determinado projeto da base de dados
 # Recebe o id do projeto. (1.1)
@@ -80,6 +81,7 @@ function inclui_projeto($nome, $descricao) {
 # Apaga os valores da tabela projeto que possuam o id do projeto enviado (2.5)
 #
 ###################################################################
+*/
 
 function removeProjeto($id_projeto) {
     $r = database_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
