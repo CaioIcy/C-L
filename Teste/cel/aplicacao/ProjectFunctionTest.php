@@ -20,10 +20,11 @@ class test_project_function extends PHPUnit_Framework_TestCase {
     }
 
     function testRemoveProject() {
-        $query = "SELECT id_projeto FROM projeto WHERE nome='NOME1'";
+        $query = "SELECT id_projeto FROM projeto WHERE nome = 'NOME1'";
         $idProject = mysql_query($query);
-        $result = removeProjeto($idProject);
-        $this->assertNotNull($result);
+        removeProjeto($idProject);
+        $result = mysql_query($query);
+        $this->assertNull($result);
     }
 
 }
