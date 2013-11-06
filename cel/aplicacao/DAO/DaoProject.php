@@ -73,7 +73,7 @@ function removeProjectDatabase($projectId) {
 
         $lexiconId = $arrayScenario['id_cenario'];
 
-        $queryDelScenToScen = "Delete FROM centocen WHERE id_cenario_from = '$le'";
+        $queryDelScenToScen = "Delete FROM centocen WHERE id_cenario_from = '$lexiconId'";
         $deleteScenToScen = mysql_query($queryDelScenToScen);
         if ($deleteScenToScen) {
             $result = 1;

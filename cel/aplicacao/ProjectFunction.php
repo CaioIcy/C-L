@@ -7,6 +7,8 @@
 require_once 'Dao/DaoProject.php';
 require_once 'seguranca.php';
 
+assert_options(ASSERT_ACTIVE, 1);
+
 /*
  * Insere um projeto no banco de dados.
  * Recebe o nome e descricao. (1.1)
@@ -85,8 +87,9 @@ function inclui_projeto($nome, $descricao) {
 
 function removeProjeto($projectId) {
     
+    assert($projectId > 0);
+    
     $resultRemoveProject = 0;
-    $resultRemoveDatabase = 0;
     
     $resultRemoveDatabase = removeProjectDatabase($projectId);
     
