@@ -4,24 +4,26 @@ require_once dirname(__FILE__) . '/../../../cel/aplicacao/ProjectFunction.php';
 
 class test_project_function extends PHPUnit_Framework_TestCase {
 
-    protected function setUpProjectInDatabase() {
-        includeProject("NOME1", "DESC2");
+    protected function setUp() {
+        $_SESSION['id_usuario_corrente'] = 3;
+        inclui_projeto("NOME1", "DESC1");
     }
 
-    protected function tearDownProjectInDatabase() {
-        removeProjeto("NOME1");
+    protected function tearDown() {
+        $query = "DELETE FROM projeto WHERE nome='NOME1'";
+        mysql_query($query);
     }
 
-    function testIncluiProjeto() {
-        $this->setUpProjectInDatabase();
-        $result = inclui_projeto("NOME2", "DESC2");
-        $this->assertFalse($result);
-        $this->tearDownProjectInDatabase();
+    function testIncluiProjetoNotNull() {
+        $result = inclui_projeto("NOME1", "DESC1");
+        $this->assertNotNull($result);
     }
 
     function testRemoveProject() {
-        $result = removeProject("2");
-        $this->assertTrue($result);
+        $query = "SELECT id_projeto FROM projeto WHERE nome='NOME1'";
+        $idProject = mysql_query($query);
+        $result = removeProjeto($idProject);
+        $this->assertNotNull($result);
     }
 
 }
