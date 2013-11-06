@@ -2,91 +2,12 @@
 
 require_once '/../bd.inc';
 
-function getProjectNameDatabase($projectName) {
-
-    database_connect();
-
-    $querySelProjecName = "SELECT * FROM projeto WHERE nome = '$projectName'";
-    $executeQuery = mysql_query($querySelProjecName);
-    $resultArray = mysql_fetch_array($executeQuery);
-
-    return $resultArray;
-}
-
-function getProjectIdDatabase($projectId, $userId) {
-
-    database_connect();
-
-    $querySelParticipant = "SELECT * FROM participa WHERE id_projeto = '$projectId' AND id_usuario = '$userId'";
-    $executeQuery = mysql_query($querySelParticipant);
-    $resultArray = mysql_fetch_array($executeQuery);
-
-    return $resultArray;
-}
-
-function getLexiconDatabase($projectId) {
-
-    $queryLexicon = "SELECT * FROM lexico WHERE id_projeto = '$projectId'";
-    $selectLexicon = mysql_query($queryLexicon);
-    $arrayLexicon = mysql_fetch_array($selectLexicon);
-
-    return $arrayLexicon;
-}
-
-function delRequestScenarioDatabase($projectId) {
-
-    $result = FALSE;
-
-    $queryDelRequestScenario = "Delete FROM pedidocen  WHERE id_pojeto = '$projectId'";
-    $deleteRequestSceneario = mysql_query($queryDelRequestScenario);
-    if ($deleteRequestSceneario) {
-        $result = TRUE;
-    } else {
-        $result = FALSE;
-    }
-
-    return $result;
-}
-
-function delRequestLexiconDatabase($projectId) {
-
-    $result = FALSE;
-
-    $queryDelRequestLexicon = "Delete FROM pedidolex WHERE id_projeto = '$projectId'";
-    $deleteRequestLexicon = mysql_query($queryDelRequestLexicon);
-    if ($deleteRequestLexicon) {
-        $result = TRUE;
-    } else {
-        $result = FALSE;
-    }
-
-    return $result;
-}
-
-function delLexToLexDatabase($projectId) {
-    
-    $result = 0;
-    
-    $arrayLexicon = selLexicon($projectId);
-    $projectId = $arrayLexicon['id_lexico'];
-
-    $queryDelLexToLex = "Delete FROM lextolex WHERE id_lexico_from = '$projectId'";
-    $deleteLexToLex = mysql_query($queryDelLexToLex);
-    if ($deleteLexToLex) {
-        $result = 1;
-    } else {
-        $result = 2;
-    }
-    
-    return $result;
-}
-
-function rmvProjectDatabase($projectId) {
+function removeProjectDatabase($projectId) {
 
     database_connect();
 
     $result = 0;
-    
+
     $queryDelRequestScenario = "Delete FROM pedidocen  WHERE id_pojeto = '$projectId'";
     $deleteRequestSceneario = mysql_query($queryDelRequestScenario);
     if ($deleteRequestSceneario) {
@@ -152,7 +73,7 @@ function rmvProjectDatabase($projectId) {
 
         $lexiconId = $arrayScenario['id_cenario'];
 
-        $queryDelScenToScen = "Delete FROM centocen WHERE id_cenario_from = '$projectId'";
+        $queryDelScenToScen = "Delete FROM centocen WHERE id_cenario_from = '$le'";
         $deleteScenToScen = mysql_query($queryDelScenToScen);
         if ($deleteScenToScen) {
             $result = 1;
@@ -196,6 +117,85 @@ function rmvProjectDatabase($projectId) {
     $queryDelProject = "Delete FROM projeto WHERE id_projeto = '$projectId'";
     $deleteProject = mysql_query($queryDelProject);
     if ($deleteProject) {
+        $result = 1;
+    } else {
+        $result = 2;
+    }
+
+    return $result;
+}
+
+function getProjectNameDatabase($projectName) {
+
+    database_connect();
+
+    $querySelProjecName = "SELECT * FROM projeto WHERE nome = '$projectName'";
+    $executeQuery = mysql_query($querySelProjecName);
+    $resultArray = mysql_fetch_array($executeQuery);
+
+    return $resultArray;
+}
+
+function getProjectIdDatabase($projectId, $userId) {
+
+    database_connect();
+
+    $querySelParticipant = "SELECT * FROM participa WHERE id_projeto = '$projectId' AND id_usuario = '$userId'";
+    $executeQuery = mysql_query($querySelParticipant);
+    $resultArray = mysql_fetch_array($executeQuery);
+
+    return $resultArray;
+}
+
+function getLexiconDatabase($projectId) {
+
+    $queryLexicon = "SELECT * FROM lexico WHERE id_projeto = '$projectId'";
+    $selectLexicon = mysql_query($queryLexicon);
+    $arrayLexicon = mysql_fetch_array($selectLexicon);
+
+    return $arrayLexicon;
+}
+
+function delRequestScenarioDatabase($projectId) {
+
+    $result = FALSE;
+
+    $queryDelRequestScenario = "Delete FROM pedidocen  WHERE id_pojeto = '$projectId'";
+    $deleteRequestSceneario = mysql_query($queryDelRequestScenario);
+    if ($deleteRequestSceneario) {
+        $result = TRUE;
+    } else {
+        $result = FALSE;
+    }
+
+    return $result;
+}
+
+function delRequestLexiconDatabase($projectId) {
+
+    $result = FALSE;
+
+    $queryDelRequestLexicon = "Delete FROM pedidolex WHERE id_projeto = '$projectId'";
+    $deleteRequestLexicon = mysql_query($queryDelRequestLexicon);
+    if ($deleteRequestLexicon) {
+        $result = TRUE;
+    } else {
+        $result = FALSE;
+    }
+
+    return $result;
+}
+
+function delLexToLexDatabase($projectId) {
+
+    $result = 0;
+
+    $arrayLexicon = selLexicon($projectId);
+    $projectId = $arrayLexicon['id_lexico'];
+
+    $queryDelLexToLex = "Delete FROM lextolex WHERE id_lexico_from = '$projectId'";
+    $deleteLexToLex = mysql_query($queryDelLexToLex);
+    if ($deleteLexToLex) {
         $result = 1;
     } else {
         $result = 2;
