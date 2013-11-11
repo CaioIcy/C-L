@@ -25,6 +25,8 @@ $ip_value = CELConfig_ReadVar("HTTPD_ip");
 ?>
 
 <html>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1">
     <script language="javascript1.3">
 
 
