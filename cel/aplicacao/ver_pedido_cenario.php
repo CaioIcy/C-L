@@ -1,16 +1,20 @@
 <?php
-/* vim: set expandtab tabstop=4 shiftwidth=4: 
- ver_pedido_cenario.php: Esse script exibe os varios pedidos referentes ao cenario.
- O gerente tem a opcao de ver os pedidos jah validados. O gerente tb podera validar e processar pedidos.
- O gerente tera uma terceira opcao que eh a de remover o pedido validado ou nao da lista de pedidos.
- O gerente podera responder a um pedido via e-mail direto desta pagina.
- Arquivo chamador: heading.php*/
+/*
+ * File: ver_pedido_cenario.php
+ * 
+ * This script shows the various requests concerning the scenario.
+ * The manager has the option to see the requests that were already validated.
+ * The manager has a third option: remove the valiated request from the request list
+ * The manager can respond to a request via e-mail, directly from this page.
+ * 
+ * Called by: heading.php
+ */
 session_start();
 
 include_once 'funcoes_genericas.php';
 include_once 'httprequest.inc';
 
-check_user_authentication("index.php"); // Checa se o usuario foi autenticado
+check_user_authentication("index.php");
 if (isset($submit)) {
     $DB = new PGDB ();
     $select = new QUERY($DB);
@@ -32,7 +36,7 @@ if (isset($submit)) {
 
     </script>
 
-    <h4>Operação efetuada com sucesso!</h4>
+    <h4>Operation was successful!</h4>
     <script language="javascript1.3">
 
         self.close();
@@ -43,35 +47,37 @@ if (isset($submit)) {
     ?>
     <html>
         <head>
-            <title>Pedidos de alteração dos Cenários</title>
+            <title>Scenario alteration requests</title>
         </head>
         <body>
-            <h2>Pedidos de Alteração no Conjunto de Cenários</h2>
+            <h2>Alteration requests in group of scenarios</h2>
             <form action="?id_projeto=<?= $id_project ?>" method="post">
 
                 <?php
-// Cenário - Verificar pedidos de alteração de cenários
-//Objetivo:	Permitir ao administrador gerenciar os pedidos de alteração de cenários.
-//Contexto:	Gerente deseja visualizar os pedidos de alteração de cenários.
-//              Pré-Condição: Login, projeto cadastrado.
-//Atores:	Administrador
-//Recursos:	Sistema, banco de dados.
-//Episódios: O administrador clica na opção de Verificar pedidos de alteração de cenários.
-//           Restrição: Somente o Administrador do projeto pode ter essa função visível.
-//           O sistema fornece para o administrador uma tela onde poderá visualizar o histórico
-//           de todas as alterações pendentes ou não para os cenários.
-//           Para novos pedidos de inclusão ou alteração de cenários,
-//           o sistema permite que o administrador opte por Aprovar ou Remover.
-//           Para os pedidos de inclusão ou alteração já aprovados,
-//           o sistema somente habilita a opção remover para o administrador.
-//           Para efetivar as seleções de aprovação e remoção, basta clicar em Processar.
+                /*
+                 * Scenario - Check scenario alteration requests
+                 * Objective:   Allow the administrator to manage the scenario alteration requests.
+                 * Context:     Manager wishes to visualize the scenario alteration requests
+                 *              Pre-condition: Login, registered project
+                 * Actors:      Administrator
+                 * Resources:   System, database
+                 * Episodes:    1- The administrator clicks in the 'Verify scenario requests' option.
+                 *              Restriction: Only the administrator can have this function visible.
+                 *              2- The system provides a screen where the administrator can visualize
+                 *              the history of all the pending alterations.
+                 *              3- For new scenario inclusion/alteration requests, the system allows
+                 *              the administrator to APPROVE or REMOVE.
+                 *              4- For already approved inclusion/alteration requests, the system
+                 *              allows only the REMOVE option to the administrator.
+                 *              5- To commit the approval/removal selections, just click in 'Process'
+                 */
 
                 $DB = new PGDB ();
                 $select = new QUERY($DB);
                 $select2 = new QUERY($DB);
                 $select->execute("SELECT * FROM pedidocen WHERE id_projeto = $id_project");
                 if ($select->getntuples() == 0) {
-                    echo "<BR>Nenhum pedido.<BR>";
+                    echo "<BR>No requests.<BR>";
                 } else {
                     $i = 0;
                     $record = $select->gofirst();
@@ -86,64 +92,63 @@ if (isset($submit)) {
                             ?>
 
                             <br>
-                            <h3>O usuário <a  href="mailto:<?= $usuario['email'] ?>" ><?= $usuario['nome'] ?></a> 
-                                pede para <?= $tipo_pedido ?> o cenário 
+                            <h3>The user <a  href="mailto:<?= $usuario['email'] ?>" ><?= $usuario['nome'] ?></a> 
+                                requests for <?= $tipo_pedido ?> the scenario
                                 <font color="#ff0000"><?= $record['titulo'] ?></font>
                                 <?
                                 if (!strcasecmp($tipo_pedido, 'alterar')) {
-                                    echo"para cenário abaixo:</h3>";
+                                    echo"to scenario below:</h3>";
                                 } else {
                                     echo"</h3>";
                                 }
                                 ?>
                                 <table>
-                                    <td><b>Título:</b></td>
+                                    <td><b>Title:</b></td>
                                     <td><?= $record['titulo'] ?></td>
                                     <tr>
-                                        <td><b>Objetivo:</b></td>
+                                        <td><b>Objective:</b></td>
                                         <td><?= $record['objetivo'] ?></td>
                                     </tr>
                                     <tr>
-                                        <td><b>Contexto:</b></td>
+                                        <td><b>Context:</b></td>
                                         <td><?= $record['contexto'] ?></td>
                                     </tr>
                                     <tr>
-                                        <td><b>Atores:</b></td>
+                                        <td><b>Actors:</b></td>
                                         <td><?= $record['atores'] ?></td>
                                     </tr>
                                     <tr>
-                                        <td><b>Recursos:</b></td>
+                                        <td><b>Resources:</b></td>
                                         <td><?= $record['recursos'] ?></td>
                                     </tr>
                                     <tr>
-                                        <td><b>Exceção:</b></td>
+                                        <td><b>Exception:</b></td>
                                         <td><?= $record['excecao'] ?></td>
                                     </tr>
                                     <tr>
-                                        <td><b>Episódios:</b></td>
+                                        <td><b>Episodes:</b></td>
                                         <td><textarea cols="48" name="episodios" rows="5"><?= $record['episodios'] ?></textarea></td>
                                     </tr>
                                     <tr>
-                                        <td><b>Justificativa:</b></td>
+                                        <td><b>Justification:</b></td>
                                         <td><textarea name="justificativa" cols="48" rows="2"><?= $record['justificativa'] ?></textarea></td>
                                     </tr>
                                 </table>
-            <?php } else { ?>
-                                <h3>O usuário <a  href="mailto:<?= $usuario['email'] ?>" ><?= $usuario['nome'] ?></a> 
-                                    pede para <?= $tipo_pedido ?> o cenário
+                            <?php } else { ?>
+                                <h3>The user <a  href="mailto:<?= $usuario['email'] ?>" ><?= $usuario['nome'] ?></a> 
+                                    requests for <?= $tipo_pedido ?> the scenario
                                     <font color="#ff0000"><?= $record['titulo'] ?></font></h3>
 
                                 <?php
                             }
                             if ($aprovado == 1) {
-                                echo "[<font color=\"#ff0000\"><STRONG>Aprovado</STRONG></font>]<BR>";
+                                echo "[<font color=\"#ff0000\"><STRONG>Approved</STRONG></font>]<BR>";
                             } else {
                                 echo "[<input type=\"checkbox\" name=\"pedidos[]\" value=\"$id_pedido\"> 
-                                <STRONG>Aprovar</STRONG>]<BR>  ";
-//                     echo "Rejeitar<input type=\"checkbox\" name=\"remover[]\" value=\"$id_pedido\">" ;
+                                <STRONG>Approve</STRONG>]<BR>  ";
                             }
                             echo "[<input type=\"checkbox\" name=\"remover[]\" value=\"$id_pedido\">
-                            <STRONG>Remover da lista</STRONG>]";
+                            <STRONG>Remove from list</STRONG>]";
                             print( "<br>\n<hr color=\"#000000\"><br>\n");
                             $record = $select->gonext();
                         }
@@ -151,7 +156,7 @@ if (isset($submit)) {
                     ?>
                     <input name="submit" type="submit" value="Processar">
                     </form>
-                    <br><i><a href="showSource.php?file=ver_pedido_cenario.php">Veja o código fonte!</a></i>
+                    <br><i><a href="showSource.php?file=ver_pedido_cenario.php">See the source code!</a></i>
                     </body>
                     </html>
                     <?php
