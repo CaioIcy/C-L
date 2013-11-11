@@ -134,6 +134,8 @@ if (isset($id_project)) {
 </script>
 
 <html>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1">
     <style>
         a
         {
@@ -239,9 +241,9 @@ if (isset($id_project)) {
 //            -Info; 
 //            -Adicionar Projeto; 
 //            -Alterar Cadastro.
-                                        ?> <a href="#" onClick="novoCenario();">Adicionar Cen�rio</a>&nbsp;&nbsp;&nbsp; 
-                                        <a href="#" onClick="novoLexico();">Adicionar S�mbolo</a>&nbsp;&nbsp;&nbsp; 
-                                        <a href="#" title="Informa��es sobre o Projeto" onClick="projectInformation(<?= $id_project ?>);">Info</a>&nbsp;&nbsp;&nbsp; 
+                                        ?> <a href="#" onClick="novoCenario();">Adicionar Cenário</a>&nbsp;&nbsp;&nbsp; 
+                                        <a href="#" onClick="novoLexico();">Adicionar Símbolo</a>&nbsp;&nbsp;&nbsp; 
+                                        <a href="#" title="Informaçõs sobre o Projeto" onClick="projectInformation(<?= $id_project ?>);">Info</a>&nbsp;&nbsp;&nbsp; 
                                         <?php
                                     }
                                     ?> <?php
