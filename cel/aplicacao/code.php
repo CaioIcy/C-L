@@ -51,6 +51,8 @@ if (isset($id_project)) {
 ?>  
 
 <html> 
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1">
     <head> 
         <!--figure out if this script should be used or not-->
         <script type="text/javascript">
@@ -108,7 +110,7 @@ if (isset($id_project)) {
 
             var menu = null;
             menu = new MTMenu();
-            menu.addItem("Cen�rios");
+            menu.addItem("Cenários");
             // + submenu 
             var mc = null;
             mc = new MTMenu();
@@ -133,15 +135,15 @@ while ($row = mysql_fetch_row($query_connecting_database)) {    // for each scen
     $row[1] = preg_replace($search, $replace, $row[1]);
     ?>
 
-                mc.addItem("<?= $row[1] ?>", "main.php?id=<?= $row[0] ?>&t=c");
+            mc.addItem("<?= $row[1] ?>", "main.php?id=<?= $row[0] ?>&t=c");
 
-                // + submenu 
-                var mcs_<?= $row[0] ?> = null;
-                mcs_<?= $row[0] ?> = new MTMenu();
-                mcs_<?= $row[0] ?>.addItem("Sub-scenarios", "", null, "Scenarios that this scenario references");
-                // + submenu 
-                var mcsrc_<?= $row[0] ?> = null;
-                mcsrc_<?= $row[0] ?> = new MTMenu();
+            // + submenu 
+            var mcs_<?= $row[0] ?> = null;
+            mcs_<?= $row[0] ?> = new MTMenu();
+            mcs_<?= $row[0] ?>.addItem("Sub-scenarios", "", null, "Scenarios that this scenario references");
+            // + submenu 
+            var mcsrc_<?= $row[0] ?> = null;
+            mcsrc_<?= $row[0] ?> = new MTMenu();
 
     <?php
     $query_database_command = "SELECT c.id_cenario_to, cen.titulo FROM centocen c, cenario cen WHERE c.id_cenario_from = " . $row[0];
@@ -157,22 +159,22 @@ while ($row = mysql_fetch_row($query_connecting_database)) {    // for each scen
     }
     ?>
 
-                // - submenu 
-                mcs_<?= $row[0] ?>.makeLastSubmenu(mcsrc_<?= $row[0] ?>);
+            // - submenu 
+            mcs_<?= $row[0] ?>.makeLastSubmenu(mcsrc_<?= $row[0] ?>);
 
-                // - submenu 
-                mc.makeLastSubmenu(mcs_<?= $row[0] ?>);
+            // - submenu 
+            mc.makeLastSubmenu(mcs_<?= $row[0] ?>);
 
     <?php
 }
 ?>
 
-            // - submenu 
-            menu.makeLastSubmenu(mc);
-            menu.addItem("Lexicon");
-            // + submenu 
-            var ml = null;
-            ml = new MTMenu();
+    // - submenu 
+    menu.makeLastSubmenu(mc);
+    menu.addItem("Lexicon");
+    // + submenu 
+    var ml = null;
+    ml = new MTMenu();
 
 <?php
 $query_database_command = "SELECT id_lexico, nome  
@@ -184,14 +186,14 @@ $query_connecting_database = mysql_query($query_database_command) or die("Error 
 while ($row = mysql_fetch_row($query_connecting_database)) {   // for each lexicon of the project 
     ?>
 
-                ml.addItem("<?= $row[1] ?>", "main.php?id=<?= $row[0] ?>&t=l");
-                // + submenu 
-                var mls_<?= $row[0] ?> = null;
-                mls_<?= $row[0] ?> = new MTMenu();
-                // mls_<?= $row[0] ?>.addItem("L�xico", "", null, "Terms of the lexicon this term references"); 
-                // + submenu 
-                // var mlsrl_<?= $row[0] ?> = null; 
-                // mlsrl_<?= $row[0] ?> = new MTMenu(); 
+            ml.addItem("<?= $row[1] ?>", "main.php?id=<?= $row[0] ?>&t=l");
+            // + submenu 
+            var mls_<?= $row[0] ?> = null;
+            mls_<?= $row[0] ?> = new MTMenu();
+            // mls_<?= $row[0] ?>.addItem("L�xico", "", null, "Terms of the lexicon this term references"); 
+            // + submenu 
+            // var mlsrl_<?= $row[0] ?> = null; 
+            // mlsrl_<?= $row[0] ?> = new MTMenu(); 
 
     <?php
     $query_database_command = "SELECT l.id_lexico_to, lex.nome FROM lextolex l, lexico lex WHERE l.id_lexico_from = " . $row[0];
@@ -207,33 +209,33 @@ while ($row = mysql_fetch_row($query_connecting_database)) {   // for each lexic
     }
     ?>
 
-                // - submenu 
-                // mls_<?= $row[0] ?>.makeLastSubmenu(mlsrl_<?= $row[0] ?>); 
-                // - submenu 
-                ml.makeLastSubmenu(mls_<?= $row[0] ?>);
+            // - submenu 
+            // mls_<?= $row[0] ?>.makeLastSubmenu(mlsrl_<?= $row[0] ?>); 
+            // - submenu 
+            ml.makeLastSubmenu(mls_<?= $row[0] ?>);
 
     <?php
 }
 ?>
 
-            // -submenu 
-            menu.makeLastSubmenu(ml);
+    // -submenu 
+    menu.makeLastSubmenu(ml);
 
-            // ONTOLOGY 
-            // + submenu 
-            menu.addItem("Ontology");
-            var mo = null;
-            mo = new MTMenu();
+    // ONTOLOGY 
+    // + submenu 
+    menu.addItem("Ontology");
+    var mo = null;
+    mo = new MTMenu();
 
-            // -submenu 
-            menu.makeLastSubmenu(mo);
+    // -submenu 
+    menu.makeLastSubmenu(mo);
 
 
-            // CONCEPT 
-            // ++ submenu 
-            mo.addItem("Concepts");
-            var moc = null;
-            moc = new MTMenu();
+    // CONCEPT 
+    // ++ submenu 
+    mo.addItem("Concepts");
+    var moc = null;
+    moc = new MTMenu();
 
 <?php
 $query_database_command = "SELECT id_conceito, nome  
@@ -247,14 +249,14 @@ while ($row = mysql_fetch_row($query_connecting_database)) {  // for each concep
 }
 ?>
 
-            // --submenu 
-            mo.makeLastSubmenu(moc);
+    // --submenu 
+    mo.makeLastSubmenu(moc);
 
-            // RELATIONS 
-            // ++ submenu 
-            mo.addItem("Relations");
-            var mor = null;
-            mor = new MTMenu();
+    // RELATIONS 
+    // ++ submenu 
+    mo.addItem("Relations");
+    var mor = null;
+    mor = new MTMenu();
 
 <?php
 $query_database_command = "SELECT   id_relacao, nome 
@@ -268,14 +270,14 @@ while ($row = mysql_fetch_row($query_connecting_database)) {   // for each relat
 }
 ?>
 
-            // --submenu    
-            mo.makeLastSubmenu(mor);
+    // --submenu    
+    mo.makeLastSubmenu(mor);
 
-            // AXIOM 
-            // ++ submenu 
-            mo.addItem("Axioms");
-            var moa = null;
-            moa = new MTMenu();
+    // AXIOM 
+    // ++ submenu 
+    mo.addItem("Axioms");
+    var moa = null;
+    moa = new MTMenu();
 
 <?php
 $query_database_command = "SELECT   id_axioma, axioma 
@@ -291,8 +293,8 @@ while ($row = mysql_fetch_row($query_connecting_database)) {  // for each axiom 
 }
 ?>
 
-            // --submenu    
-            mo.makeLastSubmenu(moa);
+    // --submenu    
+    mo.makeLastSubmenu(moa);
 
         </script> 
     </head> 
