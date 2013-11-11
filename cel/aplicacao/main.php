@@ -1,5 +1,6 @@
 <?php
 
+
 session_start();
 
 include_once 'CELConfig/CELConfig.inc';
@@ -37,7 +38,8 @@ if (!isset($_SESSION['id_projeto_corrente'])) {
 ?>    
 
 <html> 
-
+ <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1">
 
 
     <head> 
@@ -923,7 +925,7 @@ if (isset($id_project)) {
             <?php
         }
         ?>    
-        <i><a href="showSource.php?file=main.php">Veja o c�digo fonte!</a></i> 
+        <i><a href="showSource.php?file=main.php">Veja o código fonte!</a></i> 
     </body> 
 
 </html> 
