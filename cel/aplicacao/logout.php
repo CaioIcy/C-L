@@ -1,5 +1,4 @@
 <?php
-
 include_once 'bd.inc';
 include_once 'CELConfig/CELConfig.inc';
 
@@ -26,13 +25,13 @@ $ip_value = CELConfig_ReadVar("HTTPD_ip");
 
 <html>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1">
+    <meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1">
     <script language="javascript1.3">
 
 
         document.writeln('<p style="color: blue; font-weight: bold; text-align: center">A aplição teminou escolha uma das opções abaixo:</p>');
         document.writeln('<p align="center"><a href="javascript:logoff();">Entrar novamente</a></p>');
-        document.writeln('<p align="center"><a href="http://<?php print( CELConfig_ReadVar("HTTPD_ip") . "/" . CELConfig_ReadVar("CEL_dir_relativo") . "../"); ?>">P�gina inicial</a></p>');
+        document.writeln('<p align="center"><a href="http://<?php print( CELConfig_ReadVar("HTTPD_ip") . "/" . CELConfig_ReadVar("CEL_dir_relativo") . "../"); ?>">Página inicial</a></p>');
         document.writeln('<p align="center"><a href="javascript:self.close();">Fechar</a></p>');
 
         function logoff()
