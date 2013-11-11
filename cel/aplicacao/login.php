@@ -16,7 +16,6 @@
   @Recursos: URL de acesso ao sistema,  login, senha, bd.inc, httprequest.inc, $wrong, $url, showSource.php?file=login.php, esqueciSenha.php, add_usuario.php?novo=true
  * */
 /** @Episodio 1: Iniciar sessão * */
-
 session_start();
 
 include 'bd.inc';
@@ -27,7 +26,7 @@ $login = '';
 $senha = '';
 $wrong = "false";
 
-include 'httprequest.inc';//This include must be in this order
+include 'httprequest.inc'; //This include must be in this order
 
 /** @Episodio 2: Conectar o SGBD * */
 /** @Restrição: a função bd_connect definida em bd.inc é utilizada * */
@@ -43,16 +42,15 @@ if ($submit == 'Entrar') {
 
     /** @Episodio 10: Se o login e/ou senha estiverem incorretos então retornar a página de login com wrong=true na URL. * */
     $numRows = mysql_num_rows($executeQuery);
-    
+
     if (!$numRows) {
         ?>
 
         <script language="javascript1.3">
-            document.location.replace('login.php?wrong=true&url=<?=$url?>');
+            document.location.replace('login.php?wrong=true&url=<?= $url ?>');
         </script>
 
         <?php
-        
         $wrong = $_GET["wrong"];
     } else {
         /** @Episodio 11: Se o login e senha estiverem corretos então registrar sessão para o usuário, fechar login.php e abrir aplicação . * */
@@ -60,7 +58,7 @@ if ($submit == 'Entrar') {
         $_SESSION['id_usuario_corrente'] = $row[0];
         ?>
         <script language="javascript1.3">
-            opener.document.location.replace("<?=$url?>");
+            opener.document.location.replace("<?= $url ?>");
             self.close();
         </script>
 
@@ -72,35 +70,35 @@ if ($submit == 'Entrar') {
 
     <html>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1">
+        <meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1">
         <head>
             <title>Entre com seu Login e Senha</title>
         </head>
         <body>
 
-            <?php
-            /** @Episodio 4: Se wrong = true então mostrar a mensagem Login ou Senha incorreto . * */
-            if ($wrong == "true") {
-                ?>
+    <?php
+    /** @Episodio 4: Se wrong = true então mostrar a mensagem Login ou Senha incorreto . * */
+    if ($wrong == "true") {
+        ?>
 
                 <p style="color: red; font-weight: bold; text-align: center">
                     <img src="Images/Logo_CEL.jpg" width="180" height="180"><br/><br/>
                     &nbsp;&nbsp;&nbsp;&nbsp;Login ou Senha Incorreto</p>
 
-                <?php
-            } else {
-            /** @Episodio 5: Se wrong != true então mostrar a mensagem Entre com seu login e senha. * */ 
-                ?>
+        <?php
+    } else {
+        /** @Episodio 5: Se wrong != true então mostrar a mensagem Entre com seu login e senha. * */
+        ?>
 
                 <p style="color: green; font-weight: bold; text-align: center">
                     <img src="Images/Logo_CEL.jpg" width="100" height="100"><br/><br/>
                     &nbsp;&nbsp;&nbsp;&nbsp;Entre com seu Login e Senha:</p>
 
-                <?php
-            }
-            ?>
+        <?php
+    }
+    ?>
 
-            <form action="?url=<?=$url?>" method="post">
+            <form action="?url=<?= $url ?>" method="post">
                 <div align="center">
                     <table cellpadding="5">
                         <tr><td>Login:</td><td><input maxlength="32" name="login" size="24" type="text"></td></tr>
@@ -109,16 +107,16 @@ if ($submit == 'Entrar') {
                         <tr><td align="center" colspan="2"><input name="submit" type="submit" value="Entrar"></td></tr>
                     </table>
 
-                    <?php /** @Episodio 6: [CADASTRAR NOVO USUÁRIO] * */ ?>
+    <?php /** @Episodio 6: [CADASTRAR NOVO USUÁRIO] * */ ?>
                     <p><a href="adds_user.php?novo=true">Cadastrar-se</a>&nbsp;&nbsp;
 
-                        <?php /** @Episodio 7: [LEMBRAR SENHA] * */ ?>
+    <?php /** @Episodio 7: [LEMBRAR SENHA] * */ ?>
                         <a href="forgotten_password.php">Esqueci senha</a></p>
                 </div>
             </form>
         </body>
 
-        <?php /** @Episodio 8: [MOSTRAR O CÓDIGO FONTE] * */ ?>
+    <?php /** @Episodio 8: [MOSTRAR O CÓDIGO FONTE] * */ ?>
 
         <i><a href="showSource.php?file=login.php">Veja o código fonte!</a></i>    
     </html>
