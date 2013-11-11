@@ -71,6 +71,8 @@ if ($submit == 'Entrar') {
     ?>
 
     <html>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1">
         <head>
             <title>Entre com seu Login e Senha</title>
         </head>
