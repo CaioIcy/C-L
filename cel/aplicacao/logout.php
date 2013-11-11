@@ -30,7 +30,7 @@ $ip_value = CELConfig_ReadVar("HTTPD_ip");
     <script language="javascript1.3">
 
 
-        document.writeln('<p style="color: blue; font-weight: bold; text-align: center">A aplica��o teminou escolha uma das op��es abaixo:</p>');
+        document.writeln('<p style="color: blue; font-weight: bold; text-align: center">A aplição teminou escolha uma das opções abaixo:</p>');
         document.writeln('<p align="center"><a href="javascript:logoff();">Entrar novamente</a></p>');
         document.writeln('<p align="center"><a href="http://<?php print( CELConfig_ReadVar("HTTPD_ip") . "/" . CELConfig_ReadVar("CEL_dir_relativo") . "../"); ?>">P�gina inicial</a></p>');
         document.writeln('<p align="center"><a href="javascript:self.close();">Fechar</a></p>');
