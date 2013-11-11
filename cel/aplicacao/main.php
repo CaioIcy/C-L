@@ -774,7 +774,7 @@ if (isset($id_project)) {
                     <td CLASS="Estilo"><?= simple_query("nome", "projeto", "id_projeto = $id_project") ?></td> 
                 </tr> 
                 <tr> 
-                    <th>Data de cria��o:</th> 
+                    <th>Data de criação:</th> 
                     <?php
                     $data = simple_query("data_criacao", "projeto", "id_projeto = $id_project");
                     ?>    
@@ -783,7 +783,7 @@ if (isset($id_project)) {
 
                 </tr> 
                 <tr> 
-                    <th>Descri��o:</th> 
+                    <th>Descrição:</th> 
                     <td CLASS="Estilo"><?= nl2br(simple_query("descricao", "projeto", "id_projeto = $id_project")) ?></td> 
                 </tr> 
             </table> 
@@ -805,7 +805,7 @@ if (isset($id_project)) {
                 <br> 
                 <table ALIGN=CENTER> 
                     <tr> 
-                        <th>Voc� � um administrador deste projeto:</th> 
+                        <th>Você é um administrador deste projeto:</th> 
 
                         <?php
 // Cen�rio - Administrador escolhe Projeto 
@@ -829,7 +829,7 @@ if (isset($id_project)) {
                     </TR>
 
                     <TR> 
-                        <td CLASS="Estilo"><a href="#" onClick="add_user();">Adicionar usu�rio (não cadastrado) neste projeto</a></td> 
+                        <td CLASS="Estilo"><a href="#" onClick="add_user();">Adicionar usuário (não cadastrado) neste projeto</a></td> 
                     </TR> 
                     <TR> 
                         <td CLASS="Estilo"><a href="#" onClick="relationship_user();">Adicionar usuários já existentes neste projeto</a></td> 
