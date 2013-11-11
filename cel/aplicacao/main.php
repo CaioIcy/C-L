@@ -716,7 +716,7 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
                         <td CLASS="Estilo" height="40" valign=MIDDLE>                   
                             </th>
                         <td CLASS="Estilo"  valign=MIDDLE> 
-                            <a href="#" onClick="remove_relationship(<?= $result['id_relacao'] ?>);">Remover Rela��o</a> 
+                            <a href="#" onClick="remove_relationship(<?= $result['id_relacao'] ?>);">Remover Relação</a> 
                             </th> 
                     </tr> 
 
@@ -736,13 +736,13 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
 
     <?php
     if ($t == "c") {
-        print "<h3>Cen�rios que referenciam este cen�rio</h3>";
+        print "<h3>Cenários que referenciam este cenário</h3>";
     } elseif ($t == "l") {
-        print "<h3>Cen�rios e termos do l�xico que referenciam este termo</h3>";
+        print "<h3>Cen�rios e termos do léxico que referenciam este termo</h3>";
     } elseif ($t == "oc") {
-        print "<h3>Rela��es do conceito</h3>";
+        print "<h3>Relaçoes do conceito</h3>";
     } elseif ($t == "or") {
-        print "<h3>Conceitos referentes � rela��o</h3>";
+        print "<h3>Conceitos referentes a relação</h3>";
     } elseif ($t == "oa") {
         print "<h3>Axioma</h3>";
     }
