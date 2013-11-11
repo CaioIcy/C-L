@@ -110,7 +110,7 @@ if (isset($id_project)) {
 
             var menu = null;
             menu = new MTMenu();
-            menu.addItem("Cenários");
+            menu.addItem("Scenarios");
             // + submenu 
             var mc = null;
             mc = new MTMenu();

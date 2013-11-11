@@ -198,7 +198,7 @@ if (isset($submit)) {
                         <td><textarea cols="51" name="episodios" rows="5" WRAP="SOFT"></textarea></td>
                     </tr>
                     <tr>
-                        <td align="center" colspan="2" height="60"><input name="submit" type="submit" onClick="return checks_form_values(this.form);" value="Adicionar Cen�rio"></td>
+                        <td align="center" colspan="2" height="60"><input name="submit" type="submit" onClick="return checks_form_values(this.form);" value="Add Scenario"></td>
                     </tr>
                 </table>
             </form>
