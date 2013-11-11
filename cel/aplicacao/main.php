@@ -485,62 +485,62 @@ if (isset($id_project)) {
 
         <!--                     PRIMEIRA PARTE                                     --> 
 
-<?php
-if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU PELA ARVORE) 
-    $vetorVazio = array();
-    if ($t == "c") {
-        print "<h3>Informa��es sobre o cen�rio</h3>";
-    } elseif ($t == "l") {
-        print "<h3>Informa��es sobre o s�mbolo</h3>";
-    } elseif ($t == "oc") {
-        print "<h3>Informa��es sobre o conceito</h3>";
-    } elseif ($t == "or") {
-        print "<h3>Informa��es sobre a rela��o</h3>";
-    } elseif ($t == "oa") {
-        print "<h3>Informa��es sobre o axioma</h3>";
-    }
-    ?>    
+        <?php
+        if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU PELA ARVORE) 
+            $vetorVazio = array();
+            if ($t == "c") {
+                print "<h3>Informa��es sobre o cenário</h3>";
+            } elseif ($t == "l") {
+                print "<h3>Informações sobre o símbolo</h3>";
+            } elseif ($t == "oc") {
+                print "<h3>Informações sobre o conceito</h3>";
+            } elseif ($t == "or") {
+                print "<h3>Informa��es sobre a relação</h3>";
+            } elseif ($t == "oa") {
+                print "<h3>Informações sobre o axioma</h3>";
+            }
+            ?>    
             <table> 
 
 
 
 
 
-    <?php
-    $conexaoComBanco = database_connect() or die("Erro ao conectar ao SGBD");
-    ?>   
+                <?php
+                $conexaoComBanco = database_connect() or die("Erro ao conectar ao SGBD");
+                ?>   
 
 
 
                 <!-- CEN�RIO --> 
 
-    <?php
-    if ($t == "c") {
-        $query_database_command = "SELECT id_cenario, titulo, objetivo, contexto, atores, recursos, excecao, episodios, id_projeto    
+                <?php
+                if ($t == "c") {
+                    $query_database_command = "SELECT id_cenario, titulo, objetivo, contexto, atores, recursos, excecao, episodios, id_projeto    
               FROM cenario    
               WHERE id_cenario = $id";
 
-        $query_connecting_database = mysql_query($query_database_command) or die("Erro ao enviar a query de selecao !!" . mysql_error());
-        $result = mysql_fetch_array($query_connecting_database);
+                    $query_connecting_database = mysql_query($query_database_command) or die("Erro ao enviar a query de selecao !!" . mysql_error());
+                    $result = mysql_fetch_array($query_connecting_database);
 
-        $c_id_projeto = $result['id_projeto'];
+                    $c_id_projeto = $result['id_projeto'];
 
-        $vetor_of_cenarios = load_vetor_cenario($c_id_projeto, $id, true);
-        quicksort($vetor_of_cenarios, 0, count($vetor_of_cenarios) - 1, 'cenario');
+                    $vetor_of_cenarios = load_vetor_cenario($c_id_projeto, $id, true);
+                    quicksort($vetor_of_cenarios, 0, count($vetor_of_cenarios) - 1, 'cenario');
 
-        $vetor_of_lexicos = load_vetor_lexico($c_id_projeto, 0, false);
-        quicksort($vetor_of_lexicos, 0, count($vetor_of_lexicos) - 1, 'lexico');
-        ?>    
+                    $vetor_of_lexicos = load_vetor_lexico($c_id_projeto, 0, false);
+                    quicksort($vetor_of_lexicos, 0, count($vetor_of_lexicos) - 1, 'lexico');
+                    ?>    
 
                     <tr> 
                         <th>Titulo:</th><td CLASS="Estilo">
-                    <?php echo nl2br(monta_links($result['titulo'], $vetor_of_lexicos, $vetorVazio)); ?>
+                            <?php echo nl2br(monta_links($result['titulo'], $vetor_of_lexicos, $vetorVazio)); ?>
                         </td> 
 
                     </tr> 
                     <tr> 
                         <th>Objetivo:</th><td CLASS="Estilo">
-        <?php echo nl2br(monta_links($result['objetivo'], $vetor_of_lexicos, $vetorVazio)); ?>
+                            <?php echo nl2br(monta_links($result['objetivo'], $vetor_of_lexicos, $vetorVazio)); ?>
                         </td> 
                     </tr> 
                     <tr> 
@@ -574,32 +574,32 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
                 <TABLE> 
                     <tr> 
                         <td CLASS="Estilo" height="40" valign=MIDDLE> 
-                            <a href="#" onClick="changes_scene(<?= $result['id_cenario'] ?>);">Alterar Cen�rio</a> 
+                            <a href="#" onClick="changes_scene(<?= $result['id_cenario'] ?>);">Alterar Cenário</a> 
                             </th> 
                         <td CLASS="Estilo"  valign=MIDDLE> 
-                            <a href="#" onClick="removes_scene(<?= $result['id_cenario'] ?>);">Remover Cen�rio</a> 
+                            <a href="#" onClick="removes_scene(<?= $result['id_cenario'] ?>);">Remover Cenário</a> 
                             </th> 
                     </tr> 
 
 
                     <!-- L�XICO --> 
 
-        <?php
-    } elseif ($t == "l") {
+                    <?php
+                } elseif ($t == "l") {
 
-        $query_database_command = "SELECT id_lexico, nome, nocao, impacto, tipo, id_projeto    
+                    $query_database_command = "SELECT id_lexico, nome, nocao, impacto, tipo, id_projeto    
               FROM lexico    
               WHERE id_lexico = $id";
 
-        $query_connecting_database = mysql_query($query_database_command) or die("Erro ao enviar a query de selecao !!" . mysql_error());
-        $result = mysql_fetch_array($query_connecting_database);
+                    $query_connecting_database = mysql_query($query_database_command) or die("Erro ao enviar a query de selecao !!" . mysql_error());
+                    $result = mysql_fetch_array($query_connecting_database);
 
-        $l_id_projeto = $result['id_projeto'];
+                    $l_id_projeto = $result['id_projeto'];
 
-        $vetor_of_lexicos = load_vetor_lexico($l_id_projeto, $id, true);
+                    $vetor_of_lexicos = load_vetor_lexico($l_id_projeto, $id, true);
 
-        quicksort($vetor_of_lexicos, 0, count($vetor_of_lexicos) - 1, 'lexico');
-        ?>    
+                    quicksort($vetor_of_lexicos, 0, count($vetor_of_lexicos) - 1, 'lexico');
+                    ?>    
                     <tr> 
                         <th>Nome:</th><td CLASS="Estilo"><?php echo $result['nome']; ?>
                         </td> 
@@ -619,32 +619,32 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
                     <tr> 
                         <th>Sin�nimo(s):</th> 
 
-        <?php
-        //sinonimos 
-        $id_project = $_SESSION['id_projeto_corrente'];
-        $$query_sinonimous = "SELECT * FROM sinonimo WHERE id_lexico = $id";
-        $query_connecting_database = mysql_query($$query_sinonimous) or die("Erro ao enviar a query de Sinonimos" . mysql_error());
+                        <?php
+                        //sinonimos 
+                        $id_project = $_SESSION['id_projeto_corrente'];
+                        $$query_sinonimous = "SELECT * FROM sinonimo WHERE id_lexico = $id";
+                        $query_connecting_database = mysql_query($$query_sinonimous) or die("Erro ao enviar a query de Sinonimos" . mysql_error());
 
-        $$temporary_variable_sinonimous = array();
+                        $$temporary_variable_sinonimous = array();
 
-        while ($resultSinonimo = mysql_fetch_array($query_connecting_database)) {
-            $temporary_variable_sinonimous[] = $resultSinonimo['nome'];
-        }
-        ?>    
+                        while ($resultSinonimo = mysql_fetch_array($query_connecting_database)) {
+                            $temporary_variable_sinonimous[] = $resultSinonimo['nome'];
+                        }
+                        ?>    
 
                         <td CLASS="Estilo">
 
-                        <?php
-                        $counter = count($$temporary_variable_sinonimous);
+                            <?php
+                            $counter = count($$temporary_variable_sinonimous);
 
-                        for ($i = 0; $i < $counter; $i++) {
-                            if ($i == $counter - 1) {
-                                echo $$temporary_variable_sinonimous[$i] . ".";
-                            } else {
-                                echo $$temporary_variable_sinonimous[$i] . ", ";
+                            for ($i = 0; $i < $counter; $i++) {
+                                if ($i == $counter - 1) {
+                                    echo $$temporary_variable_sinonimous[$i] . ".";
+                                } else {
+                                    echo $$temporary_variable_sinonimous[$i] . ", ";
+                                }
                             }
-                        }
-                        ?>    
+                            ?>    
 
                         </td> 
 
@@ -654,25 +654,25 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
                 <TABLE> 
                     <tr> 
                         <td CLASS="Estilo" height="40" valign="middle"> 
-                            <a href="#" onClick="changes_lexicon(<?= $result['id_lexico'] ?>);">Alterar S�mbolo</a> 
+                            <a href="#" onClick="changes_lexicon(<?= $result['id_lexico'] ?>);">Alterar Símbolo</a> 
                             </th> 
                         <td CLASS="Estilo" valign="middle"> 
-                            <a href="#" onClick="removes_lexicon(<?= $result['id_lexico'] ?>);">Remover S�mbolo</a> 
+                            <a href="#" onClick="removes_lexicon(<?= $result['id_lexico'] ?>);">Remover Símbolo</a> 
                             </th> 
                     </tr> 
 
 
                     <!-- ONTOLOGIA - CONCEITO --> 
 
-        <?php
-    } elseif ($t == "oc") {        // se for cenario 
-        $query_database_command = "SELECT id_conceito, nome, descricao   
+                    <?php
+                } elseif ($t == "oc") {        // se for cenario 
+                    $query_database_command = "SELECT id_conceito, nome, descricao   
               FROM   conceito   
               WHERE  id_conceito = $id";
 
-        $query_connecting_database = mysql_query($query_database_command) or die("Erro ao enviar a query de selecao !!" . mysql_error());
-        $result = mysql_fetch_array($query_connecting_database);
-        ?>    
+                    $query_connecting_database = mysql_query($query_database_command) or die("Erro ao enviar a query de selecao !!" . mysql_error());
+                    $result = mysql_fetch_array($query_connecting_database);
+                    ?>    
 
                     <tr> 
                         <th>Nome:</th><td CLASS="Estilo"><?= $result['nome'] ?></td> 
@@ -696,14 +696,14 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
 
                     <!-- ONTOLOGIA - RELA��ES --> 
 
-        <?php
-    } elseif ($t == "or") {        // se for cenario 
-        $query_database_command = "SELECT id_relacao, nome   
+                    <?php
+                } elseif ($t == "or") {        // se for cenario 
+                    $query_database_command = "SELECT id_relacao, nome   
               FROM relacao   
               WHERE id_relacao = $id";
-        $query_connecting_database = mysql_query($query_database_command) or die("Erro ao enviar a query de selecao !!" . mysql_error());
-        $result = mysql_fetch_array($query_connecting_database);
-        ?>    
+                    $query_connecting_database = mysql_query($query_database_command) or die("Erro ao enviar a query de selecao !!" . mysql_error());
+                    $result = mysql_fetch_array($query_connecting_database);
+                    ?>    
 
                     <tr> 
                         <th>Nome:</th><td CLASS="Estilo"><?= $result['nome'] ?></td> 
@@ -723,9 +723,9 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
 
 
 
-        <?php
-    }
-    ?>   
+                    <?php
+                }
+                ?>   
 
             </table> 
             <br> 
@@ -734,19 +734,19 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
 
 
 
-    <?php
-    if ($t == "c") {
-        print "<h3>Cenários que referenciam este cenário</h3>";
-    } elseif ($t == "l") {
-        print "<h3>Cen�rios e termos do léxico que referenciam este termo</h3>";
-    } elseif ($t == "oc") {
-        print "<h3>Relaçoes do conceito</h3>";
-    } elseif ($t == "or") {
-        print "<h3>Conceitos referentes a relação</h3>";
-    } elseif ($t == "oa") {
-        print "<h3>Axioma</h3>";
-    }
-    ?>   
+            <?php
+            if ($t == "c") {
+                print "<h3>Cenários que referenciam este cenário</h3>";
+            } elseif ($t == "l") {
+                print "<h3>Cen�rios e termos do léxico que referenciam este termo</h3>";
+            } elseif ($t == "oc") {
+                print "<h3>Relaçoes do conceito</h3>";
+            } elseif ($t == "or") {
+                print "<h3>Conceitos referentes a relação</h3>";
+            } elseif ($t == "oa") {
+                print "<h3>Axioma</h3>";
+            }
+            ?>   
 
 
 
@@ -755,18 +755,18 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
 
 
 
-    <?php
-    frame_inferior($conexaoComBanco, $t, $id);
-} elseif (isset($id_project)) {         // SCRIPT CHAMADO PELO HEADING.PHP 
-    // Foi passada uma variavel $id_projeto. Esta variavel deve conter o id de um 
-    // projeto que o usuario esteja cadastrado. Entretanto, como a passagem eh 
-    // feita usando JavaScript (no heading.php), devemos checar se este id realmente 
-    // corresponde a um projeto que o usuario tenha acesso (seguranca). 
-    check_proj_perm($_SESSION['id_usuario_corrente'], $id_project) or die("Permissao negada");
+            <?php
+            frame_inferior($conexaoComBanco, $t, $id);
+        } elseif (isset($id_project)) {         // SCRIPT CHAMADO PELO HEADING.PHP 
+            // Foi passada uma variavel $id_projeto. Esta variavel deve conter o id de um 
+            // projeto que o usuario esteja cadastrado. Entretanto, como a passagem eh 
+            // feita usando JavaScript (no heading.php), devemos checar se este id realmente 
+            // corresponde a um projeto que o usuario tenha acesso (seguranca). 
+            check_proj_perm($_SESSION['id_usuario_corrente'], $id_project) or die("Permissao negada");
 
-    // Seta uma variavel de sessao correspondente ao projeto atual 
-    $_SESSION['id_projeto_corrente'] = $id_project;
-    ?>    
+            // Seta uma variavel de sessao correspondente ao projeto atual 
+            $_SESSION['id_projeto_corrente'] = $id_project;
+            ?>    
 
             <table ALIGN=CENTER> 
                 <tr> 
@@ -775,9 +775,9 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
                 </tr> 
                 <tr> 
                     <th>Data de cria��o:</th> 
-    <?php
-    $data = simple_query("data_criacao", "projeto", "id_projeto = $id_project");
-    ?>    
+                    <?php
+                    $data = simple_query("data_criacao", "projeto", "id_projeto = $id_project");
+                    ?>    
 
                     <td CLASS="Estilo"><?= formataData($data) ?></td> 
 
@@ -788,7 +788,7 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
                 </tr> 
             </table> 
 
-    <?php
+            <?php
 // Cen�rio - Escolher Projeto 
 // Objetivo:      Permitir ao Administrador/Usu�rio escolher um projeto. 
 // Contexto:      O Administrador/Usu�rio deseja escolher um projeto. 
@@ -798,16 +798,16 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
 // Epis�dios:     Caso o Usuario selecione da lista de projetos um projeto da qual ele seja 
 //                administrador, ver Administrador escolhe Projeto. 
 //                Caso contr�rio, ver Usu�rio escolhe Projeto. 
-    // Verifica se o usuario eh administrador deste projeto 
-    if (is_admin($_SESSION['id_usuario_corrente'], $id_project)) {
-        ?>    
+            // Verifica se o usuario eh administrador deste projeto 
+            if (is_admin($_SESSION['id_usuario_corrente'], $id_project)) {
+                ?>    
 
                 <br> 
                 <table ALIGN=CENTER> 
                     <tr> 
                         <th>Voc� � um administrador deste projeto:</th> 
 
-        <?php
+                        <?php
 // Cen�rio - Administrador escolhe Projeto 
 // Objetivo:  Permitir ao Administrador escolher um projeto. 
 // Contexto:  O Administrador deseja escolher um projeto. 
@@ -825,14 +825,14 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
 //            -Relacionar usu�rios j� existentes com este projeto 
 //            (ver Relacionar usu�rios com projetos); 
 //            -Gerar xml deste projeto (ver Gerar relat�rios XML); 
-        ?>    
+                        ?>    
                     </TR>
 
                     <TR> 
-                        <td CLASS="Estilo"><a href="#" onClick="add_user();">Adicionar usu�rio (n�o cadastrado) neste projeto</a></td> 
+                        <td CLASS="Estilo"><a href="#" onClick="add_user();">Adicionar usu�rio (não cadastrado) neste projeto</a></td> 
                     </TR> 
                     <TR> 
-                        <td CLASS="Estilo"><a href="#" onClick="relationship_user();">Adicionar usu�rios j� existentes neste projeto</a></td> 
+                        <td CLASS="Estilo"><a href="#" onClick="relationship_user();">Adicionar usuários já existentes neste projeto</a></td> 
                     </TR>   
 
                     <TR> 
@@ -840,17 +840,17 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
                     </TR> 
 
                     <TR> 
-                        <td CLASS="Estilo"><a href="#" onClick="request_scene();">Verificar pedidos de altera��o de Cen�rios</a></td> 
+                        <td CLASS="Estilo"><a href="#" onClick="request_scene();">Verificar pedidos de alteração de Cenários</a></td> 
                     </TR> 
                     <TR> 
-                        <td CLASS="Estilo"><a href="#" onClick="request_lexicon();">Verificar pedidos de altera��o de termos do L�xico</a></td> 
+                        <td CLASS="Estilo"><a href="#" onClick="request_lexicon();">Verificar pedidos de alteração de termos do Léxico</a></td> 
                     </TR>
                     <TR> 
-                        <td CLASS="Estilo"><a href="#" onClick="request_concept();">Verificar pedidos de altera��o de Conceitos</a></td> 
+                        <td CLASS="Estilo"><a href="#" onClick="request_concept();">Verificar pedidos de alteração de Conceitos</a></td> 
                     </TR> 
 
                     <TR> 
-                        <td CLASS="Estilo"><a href="#" onClick="request_relationship();">Verificar pedidos de altera��o de Rela��es</a></td> 
+                        <td CLASS="Estilo"><a href="#" onClick="request_relationship();">Verificar pedidos de alteração de Relações</a></td> 
                     </TR>
 
 
@@ -878,7 +878,7 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
                         <td CLASS="Estilo"><a href="#" onClick="generates_DAML();">Gerar DAML da ontologia do projeto</a></td> 
                     </TR> 
                     <TR> 
-                        <td CLASS="Estilo"><a href="#" onClick="recuperates_DAML();">Hist�rico em DAML da ontologia do projeto</a></td> 
+                        <td CLASS="Estilo"><a href="#" onClick="recuperates_DAML();">Histórico em DAML da ontologia do projeto</a></td> 
                     </TR>           
                     <TR> 
                         <td CLASS="Estilo"><a href="http://www.daml.org/validator/" target="new">*Validador de Ontologias na Web</a></td> 
@@ -893,27 +893,27 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
                         <td CLASS="Estilo"><font size="1">*Para usar Ontologias Geradas pelo C&L: </font></td>               
                     </TR>
                     <TR> 
-                        <td CLASS="Estilo">   <font size="1">Hist�rico em DAML da ontologia do projeto -> Botao Direito do Mouse -> Copiar Atalho</font></td>             
+                        <td CLASS="Estilo">   <font size="1">Histórico em DAML da ontologia do projeto -> Botao Direito do Mouse -> Copiar Atalho</font></td>             
                     </TR>
                 </table>
 
 
-        <?php
-    } else {
-        ?>	
+                <?php
+            } else {
+                ?>	
                 <br>
                 <table ALIGN=CENTER> 
                     <tr> 
-                        <th>Voc� n�o � um administrador deste projeto:</th> 	
+                        <th>Você não é um administrador deste projeto:</th> 	
                     </tr>	
                     <tr> 
                         <td CLASS="Estilo"><a href="#" onClick="generates_grafo();" >Gerar grafo deste projeto</a></td>
                     </tr>  
                 </table>			
-        <?php
-    }
-} else {        // SCRIPT CHAMADO PELO INDEX.PHP 
-    ?>    
+                <?php
+            }
+        } else {        // SCRIPT CHAMADO PELO INDEX.PHP 
+            ?>    
 
             <p>Selecione um projeto acima, ou crie um novo projeto.</p> 
 
