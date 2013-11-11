@@ -6,7 +6,7 @@ include 'funcoes_genericas.php';
 check_user_authentication("index.php");        // Cenario: controle de acesso 
 ?> 
 
-<title>C&L - Cen�rios e L�xico</title> 
+<title>C&L - Cenários e Léxico</title> 
 <frameset rows="103,*" cols="*" frameborder="NO" border="0" framespacing="0"> 
     <frame src="heading.php" name="heading" scrolling="NO"> 
         <frameset cols="160,40,*" frameborder="NO" border="0" framespacing="0" rows="*"> 
