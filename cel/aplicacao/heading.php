@@ -113,11 +113,11 @@ if (isset($id_project)) {
 
 if (isset($id_project)) {
     ?>
-            var url = 'add_lexico.php?id_projeto=' + '<?= $id_project ?>';
+            var url = 'adds_lexicon.php?id_projeto=' + '<?= $id_project ?>';
     <?php
 } else {
     ?>
-            var url = 'add_lexico.php';
+            var url = 'adds_lexicon.php';
     <?php
 }
 ?>

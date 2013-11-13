@@ -57,7 +57,7 @@ if (isset($submit)) {
 
         opener.parent.frames['code'].location.reload();
         opener.parent.frames['text'].location.replace('main.php?id_projeto=<?= $_SESSION['id_projeto_corrente'] ?>');
-        location.href = "add_lexico.php?id_projeto=<?= $id_project ?>&sucesso=s";
+        location.href = "adds_lexicon.php?id_projeto=<?= $id_project ?>&sucesso=s";
 
     </script>   
 
@@ -240,7 +240,7 @@ if (isset($submit)) {
                 </table>
             </form>
         <center><a href="javascript:self.close();">Close</a></center>            
-        <br><i><a href="showSource.php?file=add_lexico.php">See the source code!</a></i>
+        <br><i><a href="showSource.php?file=adds_lexicon.php">See the source code!</a></i>
     </body>
 
     </html>
