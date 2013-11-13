@@ -4,19 +4,18 @@
  * File name: ProjectFunction.php
  * Propuse: Function related to project
  */
+
 require_once 'Dao/DaoProject.php';
 require_once 'seguranca.php';
 
 assert_options(ASSERT_ACTIVE, 1);
 
-/*
- * Insere um projeto no banco de dados.
- * Recebe o nome e descricao. (1.1)
- * Verifica se este usuario ja possui um projeto com esse nome. (1.2)
- * Caso nao possua, insere os valores na tabela PROJETO. (1.3)
- * Devolve o id_cprojeto. (1.4)
+/**
+ * Insert a project in database
+ * @param string $projectName
+ * @param string $projectDescription
+ * @return projectId
  */
-
 function inclui_projeto($nome, $descricao) {
     $r = database_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
     //verifica se usuario ja existe
