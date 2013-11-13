@@ -2,6 +2,8 @@
 /**
  * File Name: DaoProject.php
  * Propuse: Function that interact with the database
+ * 
+ * PHP version 5
  */
 
 require_once '/../bd.inc';
@@ -129,6 +131,13 @@ function removeProjectInDatabase($projectId) {
     return $result;
 }
 
+/**
+ * Function that select all attributes of a project
+ * The selection occurs in table "projeto" database "cel"
+ * 
+ * @param string $projectName
+ * @return bool|array
+ */
 function getProjectNameDatabase($projectName) {
 
     $querySelProjecName = "SELECT * FROM projeto WHERE nome = '$projectName'";
@@ -138,15 +147,31 @@ function getProjectNameDatabase($projectName) {
     return $resultArray;
 }
 
+/**
+ * Function that select a "id_projeto" from database "cel"
+ * The selection occurs in table participa
+ * 
+ * @param string $projectId
+ * @param int $userId
+ * @return bool|array
+ */
 function getProjectIdDatabase($projectId, $userId) {
 
-    $querySelParticipant = "SELECT * FROM participa WHERE id_projeto = '$projectId' AND id_usuario = '$userId'";
+    $querySelParticipant = "SELECT * FROM participa WHERE id_projeto = '$projectId'
+        AND id_usuario = '$userId'";
     $executeQuery = mysql_query($querySelParticipant);
     $resultArray = mysql_fetch_array($executeQuery);
 
     return $resultArray;
 }
 
+/**
+ * Function that select all atributtes of lexico from database
+ * The selection occurs in table "lexico"
+ * 
+ * @param string $projectId
+ * @return bool|array 
+ */
 function getLexiconDatabase($projectId) {
 
     $queryLexicon = "SELECT * FROM lexico WHERE id_projeto = '$projectId'";
@@ -156,33 +181,61 @@ function getLexiconDatabase($projectId) {
     return $arrayLexicon;
 }
 
+/**
+ * Function that delete a request of scenario from database using a specific id
+ * The deletion occurs in table "pedidocen"
+ * 
+ * @param strign $projectId
+ * @return bool
+ */
 function delRequestScenarioDatabase($projectId) {
 
-    $queryDelRequestScenario = "DELETE FROM pedidocen WHERE id_pojeto=" . $projectId . "";
-    $deleteRequestSceneario = mysql_query($queryDelRequestScenario);
+    $queryDelRequestScen = "DELETE FROM pedidocen WHERE id_pojeto=".$projectId."";
+    $deleteRequestScen = mysql_query($queryDelRequestScen);
 
-    return $deleteRequestSceneario;
+    return $deleteRequestScen;
 }
 
+/**
+ * Function that delete a request of lexicon from database using a specific id
+ * The deletion occurs in table "pedidolex"
+ * 
+ * @param string $projectId
+ * @return bool
+ */
 function delRequestLexiconDatabase($projectId) {
 
-    $queryDelRequestLexicon = "DELETE FROM pedidolex WHERE id_projeto=" . $projectId . "";
-    $deleteRequestLexicon = mysql_query($queryDelRequestLexicon);
+    $queryDelRequestLex = "DELETE FROM pedidolex WHERE id_projeto=".$projectId."";
+    $deleteRequestLexicon = mysql_query($queryDelRequestLex);
 
     return $deleteRequestLexicon;
 }
 
+/**
+ * Function that delete a lextolex from database using a specific id
+ * The deletion occurs in table "lextolex"
+ * 
+ * @param string $projectId
+ * @return bool
+ */
 function delLexToLexDatabase($projectId) {
 
     $arrayLexicon = selLexicon($projectId);
     $projectId = $arrayLexicon['id_lexico'];
 
-    $queryDelLexToLex = "Delete FROM lextolex WHERE id_lexico_from = " . $projectId . "";
+    $queryDelLexToLex = "Delete FROM lextolex WHERE id_lexico_from=".$projectId."";
     $deleteLexToLex = mysql_query($queryDelLexToLex);
 
     return $deleteLexToLex;
 }
 
+/**
+ * Function that delete a project from database using a specific id
+ * The deletion occurs in table "projeto"
+ * 
+ * @param string $projectId
+ * @return bool
+ */
 function delProjectDatabase($projectId) {
 
     $queryDelProject = "Delete FROM projeto WHERE id_projeto = " . $projectId . "";
