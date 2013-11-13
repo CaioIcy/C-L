@@ -21,11 +21,11 @@ if (isset($submit)) {
     $update = new QUERY($DB);
     $delete = new QUERY($DB);
     for ($counter = 0; $counter < sizeof($pedidos); $counter++) {
-        $update->execute("update pedidocon set aprovado= 1 where id_pedido = $pedidos[$counter]");
+        $update->execute("UPDATA pedidocon SET aprovado= 1 WHERE id_pedido = " . $pedidos[$counter] . "");
         tratarPedidoConceito($pedidos[$counter]);
     }
     for ($counter = 0; $counter < sizeof($remover); $counter++) {
-        $delete->execute("delete from pedidocon where id_pedido = $remover[$counter]");
+        $delete->execute("DELETE FROM pedidocon WHERE id_pedido = " . $remover[$counter] . "");
     }
     ?>
 
@@ -71,11 +71,11 @@ if (isset($submit)) {
                  *              allows only the REMOVE option to the administrator.
                  *              5- To commit the approval/removal selections, just click in 'Process'
                  */
-                
+
                 $DB = new PGDB ();
                 $select = new QUERY($DB);
                 $select2 = new QUERY($DB);
-                $select->execute("SELECT * FROM pedidocon WHERE id_projeto = $id_project");
+                $select->execute("SELECT * FROM pedidocon WHERE id_projeto = " . $id_project . "");
                 if ($select->getntuples() == 0) {
                     echo "<BR>No requests.<BR>";
                 } else {
@@ -86,7 +86,7 @@ if (isset($submit)) {
                         $id_pedido = $record['id_pedido'];
                         $tipo_pedido = $record['tipo_pedido'];
                         $aprovado = $record['aprovado'];
-                        $select2->execute("SELECT * FROM usuario WHERE id_usuario = $id_user");
+                        $select2->execute("SELECT * FROM usuario WHERE id_usuario = " . $id_user . "");
                         $usuario = $select2->gofirst();
                         if (strcasecmp($tipo_pedido, 'remover')) {
                             ?>
@@ -124,8 +124,8 @@ if (isset($submit)) {
                             if ($aprovado == 1) {
                                 echo "<font color=\"#ff0000\">Approved</font> ";
                             } else {
-                                echo "Approve<input type=\"checkbox\" name=\"pedidos[]\" value=\"$id_pedido\">";
-                                echo "Reject<input type=\"checkbox\" name=\"remover[]\" value=\"$id_pedido\">";
+                                echo "Approve<input type=\"checkbox\" name=\"pedidos[]\" value=\"" . $id_pedido . "\">";
+                                echo "Reject<input type=\"checkbox\" name=\"remover[]\" value=\"" . $id_pedido . "\">";
                             }
                             echo "<br>\n<hr color=\"#000000\"><br>\n";
                             $record = $select->gonext();
