@@ -1,134 +1,30 @@
 <?php
+
 /**
  * File Name: DaoProject.php
  * Propuse: Function that interact with the database
  * 
  * PHP version 5
  */
-
 require_once '/../bd.inc';
 
 function removeProjectInDatabase($projectId) {
 
     database_connect();
-
-    $result = 0;
-
-    $queryDelRequestScenario = "Delete FROM pedidocen  WHERE id_pojeto = '$projectId'";
-    $deleteRequestSceneario = mysql_query($queryDelRequestScenario);
-    if ($deleteRequestSceneario) {
-        $result = 1;
-    } else {
-        $result = 2;
+    
+    $resultDelReqScen = delRequestScenarioDatabase($projectId);
+    $resultDelReqLex = delRequestLexiconDatabase($projectId);
+    
+    $resultSelLex = selLexiconDatabase($projectId);
+    while ($resultSelLex){
+        $id_lexicon = $resultSelLex['id_lexico'];
+        
+        $resultDelLexToLex = delLexToLexDatabase($id_lexicon);
+        $resultDelScenToLex = delScenToLexDatabase($id_lexicon);
+        
     }
-
-    $queryDelRequestLexicon = "Delete FROM pedidolex WHERE id_projeto = '$projectId'";
-    $deleteRequestLexicon = mysql_query($queryDelRequestLexicon);
-    if ($deleteRequestLexicon) {
-        $result = 1;
-    } else {
-        $result = 2;
-    }
-
-    $queryLexicon = "SELECT * FROM lexico WHERE id_projeto = '$projectId'";
-    $selectLexicon = mysql_query($queryLexicon);
-    $arrayLexicon = mysql_fetch_array($selectLexicon);
-
-    while ($arrayLexicon) {
-
-        $projectId = $arrayLexicon['id_lexico'];
-
-        $queryDelLexToLex = "Delete FROM lextolex WHERE id_lexico_from = '$projectId'";
-        $deleteLexToLex = mysql_query($queryDelLexToLex);
-        if ($deleteLexToLex) {
-            $result = 1;
-        } else {
-            $result = 2;
-        }
-
-        $queryDelScenToLex = "Delete FROM centolex WHERE id_lexico = '$projectId'";
-        $deleteScenToLex = mysql_query($queryDelScenToLex);
-        if ($deleteScenToLex) {
-            $result = 1;
-        } else {
-            $result = 2;
-        }
-
-        $queryDelSynonym = "Delete FROM sinonimo WHERE id_projeto = '$projectId'";
-        $deleteSynonym = mysql_query($queryDelSynonym);
-        if ($deleteSynonym) {
-            $result = 1;
-        } else {
-            $result = 2;
-        }
-    }
-
-    $queryDelLexicon = "Delete FROM lexico WHERE id_projeto = '$projectId'";
-    $deleteLexicon = mysql_query($queryDelLexicon);
-    if ($deleteLexicon) {
-        $result = 1;
-    } else {
-        $result = 2;
-    }
-
-    $queryScenario = "SELECT * FROM cenario WHERE id_projeto = '$projectId'";
-    $selectScenario = mysql_query($queryScenario);
-    $arrayScenario = mysql_fetch_array($selectScenario);
-
-    while ($arrayScenario) {
-
-        $lexiconId = $arrayScenario['id_cenario'];
-
-        $queryDelScenToScen = "Delete FROM centocen WHERE id_cenario_from = '$lexiconId'";
-        $deleteScenToScen = mysql_query($queryDelScenToScen);
-        if ($deleteScenToScen) {
-            $result = 1;
-        } else {
-            $result = 2;
-        }
-
-        $queryDelScenToLex = "Delete FROM centolex WHERE id_cenario_from = '$projectId'";
-        $deleteScenToLex = mysql_query($queryDelScenToLex);
-        if ($deleteScenToLex) {
-            $result = 1;
-        } else {
-            $result = 2;
-        }
-    }
-
-    $queryDelScenario = "Delete FROM cenario WHERE id_projeto = '$projectId'";
-    $deleteScenario = mysql_query($queryDelScenario);
-    if ($deleteScenario) {
-        $result = 1;
-    } else {
-        $result = 2;
-    }
-
-    $queryDelParticipant = "Delete FROM participa WHERE id_projeto = '$projectId";
-    $deleteParticipant = mysql_query($queryDelParticipant);
-    if ($deleteParticipant) {
-        $result = 1;
-    } else {
-        $result = 2;
-    }
-
-    $queryDelPublication = "Delete FROM publicacao WHERE id_projeto";
-    $deletePublication = mysql_query($queryDelPublication);
-    if ($deletePublication) {
-        $result = 1;
-    } else {
-        $result = 2;
-    }
-
-    $queryDelProject = "Delete FROM projeto WHERE id_projeto = '$projectId'";
-    $deleteProject = mysql_query($queryDelProject);
-    if ($deleteProject) {
-        $result = 1;
-    } else {
-        $result = 2;
-    }
-
-    return $result;
+    
+    
 }
 
 /**
@@ -172,7 +68,7 @@ function getProjectIdDatabase($projectId, $userId) {
  * @param string $projectId
  * @return bool|array 
  */
-function getLexiconDatabase($projectId) {
+function selLexiconDatabase($projectId) {
 
     $queryLexicon = "SELECT * FROM lexico WHERE id_projeto = '$projectId'";
     $selectLexicon = mysql_query($queryLexicon);
@@ -190,7 +86,7 @@ function getLexiconDatabase($projectId) {
  */
 function delRequestScenarioDatabase($projectId) {
 
-    $queryDelRequestScen = "DELETE FROM pedidocen WHERE id_pojeto=".$projectId."";
+    $queryDelRequestScen = "DELETE FROM pedidocen WHERE id_pojeto=" . $projectId . "";
     $deleteRequestScen = mysql_query($queryDelRequestScen);
 
     return $deleteRequestScen;
@@ -205,7 +101,7 @@ function delRequestScenarioDatabase($projectId) {
  */
 function delRequestLexiconDatabase($projectId) {
 
-    $queryDelRequestLex = "DELETE FROM pedidolex WHERE id_projeto=".$projectId."";
+    $queryDelRequestLex = "DELETE FROM pedidolex WHERE id_projeto=" . $projectId . "";
     $deleteRequestLexicon = mysql_query($queryDelRequestLex);
 
     return $deleteRequestLexicon;
@@ -215,18 +111,29 @@ function delRequestLexiconDatabase($projectId) {
  * Function that delete a lextolex from database using a specific id
  * The deletion occurs in table "lextolex"
  * 
- * @param string $projectId
+ * @param string $idLexicon
  * @return bool
  */
-function delLexToLexDatabase($projectId) {
+function delLexToLexDatabase($idLexicon) {
 
-    $arrayLexicon = selLexicon($projectId);
-    $projectId = $arrayLexicon['id_lexico'];
-
-    $queryDelLexToLex = "Delete FROM lextolex WHERE id_lexico_from=".$projectId."";
+    $queryDelLexToLex = "Delete FROM lextolex WHERE id_lexico_from=" . $idLexicon . "";
     $deleteLexToLex = mysql_query($queryDelLexToLex);
 
     return $deleteLexToLex;
+}
+
+/**
+ * Function that delete a scentolex from database
+ * The deletion occurs in table "centolex"
+ * 
+ * @param int $idLexicon
+ */
+function delScenToLexDatabase($idLexicon) {
+    
+    $queryScenToLex = "Delete FROM centolex WHERE id_lexico = ".$idLexicon."";
+    $deleteScenToLex = mysql_query($queryScenToLex);
+    
+    return $deleteScenToLex;
 }
 
 /**
