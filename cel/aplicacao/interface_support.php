@@ -46,7 +46,7 @@ include_once 'algorithm_support.php';
                             }
                         }
                         ?>
-                        <form method="POST" action="algoritmo.php" id="exist_form">
+                        <form method="POST" action="algorithm.php" id="exist_form">
 
                             <?php
                             if (count($_SESSION["verbos_selecionados"]) != 0) {
@@ -147,7 +147,7 @@ include_once 'algorithm_support.php';
                         }
                         print("O termo $termo vai transformar-se em:<br>");
                         ?>
-                        <form method="POST" action="algoritmo.php">
+                        <form method="POST" action="algorithm.php">
                             <input type="radio" value="TRUE" name="main_subject" size="20" checked> Conceito
                             <input type="radio" value="FALSE" name="main_subject" size="20"> Propriedade
                             <input type="submit" value="OK" name="B1" size="20">
@@ -173,7 +173,7 @@ include_once 'algorithm_support.php';
 
 
 
-                        <form method="POST" action="algoritmo.php" id="reference_form" name="reference_form">
+                        <form method="POST" action="algorithm.php" id="reference_form" name="reference_form">
                             <table border="1" cellspacing="1" width="100%" id="AutoNumber1">
                                 <tr>
                                     <td width="100%" colspan="2"><?php print("Organizar Hierarquia <br>") ?></td>
@@ -340,7 +340,7 @@ include_once 'algorithm_support.php';
                             }
                         }
                         ?>
-                        <form method="POST" nome="rel_form" id="rel_form" action="algoritmo.php">
+                        <form method="POST" nome="rel_form" id="rel_form" action="algorithm.php">
                             <?php
                             print "<H3>Conceito: $conc</H3>";
                             print "<H4>Propriedade:	 $rel </H4><BR>";
@@ -468,7 +468,7 @@ include_once 'algorithm_support.php';
 
                         print "Existe algum termo disjunto do conceito <b>$nome</b> na lista abaixo ou no vocabul�rio m�nimo?";
                         ?>
-                        <form id='rel_form' name='rel_form'  method="POST" action="algoritmo.php">
+                        <form id='rel_form' name='rel_form'  method="POST" action="algorithm.php">
                             <p>
                                 <SELECT onChange='seleciona(this[this.selectedIndex].text);' name="indice" size=10 width="300">
                                     <?php

@@ -411,7 +411,7 @@ function salvar_algoritmo() {
     } else {
         ?>
         <script>
-            document.location = "algoritmo.php";
+            document.location = "algorithm.php";
         </script>
         <?php
     }

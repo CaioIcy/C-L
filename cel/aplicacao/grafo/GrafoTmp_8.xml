@@ -233,7 +233,7 @@ Dentro da função são criadas as variáveis:
 Utiliza os arquivos:
 
 -	estruturas.php
--	auxiliar_algoritmo.php
+-	algorithm_support.php
 -	bd.inc</texto><PT/></sentenca></impacto>
 </lexico>
 <lexico>

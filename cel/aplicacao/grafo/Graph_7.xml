@@ -231,7 +231,7 @@ Dentro da função são criadas as variáveis:
 Utiliza os arquivos:
 
 -	estruturas.php
--	auxiliar_algoritmo.php
+-	algorithm_support.php
 -	bd.inc</TEXTO><REFERENCIA TO="get_lista_de_sujeito">get_lista_de_sujeito</REFERENCIA><REFERENCIA TO="get_lista_de_objeto">get_lista_de_objeto</REFERENCIA><REFERENCIA TO="get_lista_de_verbo">get_lista_de_verbo</REFERENCIA><REFERENCIA TO="get_lista_de_estado">get_lista_de_estado</REFERENCIA><REFERENCIA TO="verifica_tipo">verifica_tipo</REFERENCIA><REFERENCIA TO="atualiza_tipo">atualiza_tipo</REFERENCIA><REFERENCIA TO="cadastra_impacto">cadastra_impacto</REFERENCIA><REFERENCIA TO="get_lista_de_conceitos">get_lista_de_conceitos</REFERENCIA><REFERENCIA TO="get_lista_de_relacoes">get_lista_de_relacoes</REFERENCIA><REFERENCIA TO="get_lista_de_axiomas">get_lista_de_axiomas</REFERENCIA><REFERENCIA TO="get_indices">get_indices</REFERENCIA><REFERENCIA TO="salvar_algoritmo">salvar_algoritmo</REFERENCIA></SENTENCA></IMPACTO>
 </LEXICO>
 <LEXICO>
