@@ -66,7 +66,7 @@ check_user_authentication("index.php"); // Checks if the user was authenticated
             }
 
             function add_user() {
-                var url = 'add_usuario.php';
+                var url = 'adds_user.php';
                 var where = '_blank';
                 var window_spec = 'dependent,height=270,width=490,resizable,scrollbars,titlebar';
                 open(url, where, window_spec);
