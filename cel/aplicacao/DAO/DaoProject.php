@@ -1,5 +1,8 @@
 <?php
 
+assert_options(ASSERT_ACTIVE, 1);
+assert_options(ASSERT_BAIL, 1);
+
 /**
  * File Name: DaoProject.php
  * Propuse: Function that interact with the database
@@ -10,21 +13,25 @@ require_once '/../bd.inc';
 
 function removeProjectInDatabase($projectId) {
 
+    assert($projectId > 0);
+
     database_connect();
-    
+
     $resultDelReqScen = delRequestScenarioDatabase($projectId);
+
+    assert(($resultDelReqScen == TRUE) || ($resultDelReqScen == FALSE));
+
     $resultDelReqLex = delRequestLexiconDatabase($projectId);
-    
+
+    assert(($resultDelReqLex == TRUE) || ($resultDelReqLex == FALSE));
+
     $resultSelLex = selLexiconDatabase($projectId);
-    while ($resultSelLex){
+    while ($resultSelLex) {
         $id_lexicon = $resultSelLex['id_lexico'];
-        
+
         $resultDelLexToLex = delLexToLexDatabase($id_lexicon);
         $resultDelScenToLex = delScenToLexDatabase($id_lexicon);
-        
     }
-    
-    
 }
 
 /**
@@ -52,6 +59,9 @@ function getProjectNameDatabase($projectName) {
  * @return bool|array
  */
 function getProjectIdDatabase($projectId, $userId) {
+    
+    assert($userId>0);
+    assert($projectId>0);
 
     $querySelParticipant = "SELECT * FROM participa WHERE id_projeto = '$projectId'
         AND id_usuario = '$userId'";
@@ -69,6 +79,8 @@ function getProjectIdDatabase($projectId, $userId) {
  * @return bool|array 
  */
 function selLexiconDatabase($projectId) {
+    
+    assert($projectId>0);
 
     $queryLexicon = "SELECT * FROM lexico WHERE id_projeto = '$projectId'";
     $selectLexicon = mysql_query($queryLexicon);
@@ -85,6 +97,8 @@ function selLexiconDatabase($projectId) {
  * @return bool
  */
 function delRequestScenarioDatabase($projectId) {
+    
+    assert($projectId>0);
 
     $queryDelRequestScen = "DELETE FROM pedidocen WHERE id_pojeto=" . $projectId . "";
     $deleteRequestScen = mysql_query($queryDelRequestScen);
@@ -100,6 +114,8 @@ function delRequestScenarioDatabase($projectId) {
  * @return bool
  */
 function delRequestLexiconDatabase($projectId) {
+    
+    assert($projectId>0);
 
     $queryDelRequestLex = "DELETE FROM pedidolex WHERE id_projeto=" . $projectId . "";
     $deleteRequestLexicon = mysql_query($queryDelRequestLex);
@@ -115,7 +131,9 @@ function delRequestLexiconDatabase($projectId) {
  * @return bool
  */
 function delLexToLexDatabase($idLexicon) {
-
+    
+    assert($idLexicon>0);
+    
     $queryDelLexToLex = "Delete FROM lextolex WHERE id_lexico_from=" . $idLexicon . "";
     $deleteLexToLex = mysql_query($queryDelLexToLex);
 
@@ -130,9 +148,11 @@ function delLexToLexDatabase($idLexicon) {
  */
 function delScenToLexDatabase($idLexicon) {
     
-    $queryScenToLex = "Delete FROM centolex WHERE id_lexico = ".$idLexicon."";
+    assert($idLexicon>0);
+
+    $queryScenToLex = "Delete FROM centolex WHERE id_lexico = " . $idLexicon . "";
     $deleteScenToLex = mysql_query($queryScenToLex);
-    
+
     return $deleteScenToLex;
 }
 
@@ -144,6 +164,8 @@ function delScenToLexDatabase($idLexicon) {
  * @return bool
  */
 function delProjectDatabase($projectId) {
+    
+    assert($projectId>0);
 
     $queryDelProject = "Delete FROM projeto WHERE id_projeto = " . $projectId . "";
     $deleteProject = mysql_query($queryDelProject);
