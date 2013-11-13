@@ -24,12 +24,12 @@ if (isset($submit)) {
     $update = new QUERY($DB);
     $delete = new QUERY($DB);
     for ($counter = 0; $counter < sizeof($pedidos); $counter++) {
-        $update->execute("update pedidolex set aprovado= 1 where id_pedido = $pedidos[$counter]");
+        $update->execute("UPDATE pedidolex SET aprovado= 1 WHERE id_pedido = " . $pedidos[$counter] . "");
         tratarPedidoLexico($pedidos[$counter]);
     }
     for ($counter = 0; $counter < sizeof($remover); $counter++) {
-        $delete->execute("delete from pedidolex where id_pedido  = $remover[$counter]");
-        $delete->execute("delete from sinonimo where id_pedidolex = $remover[$counter]");
+        $delete->execute("DELETE FROM pedidolex WHERE id_pedido  = " . $remover[$counter] . "");
+        $delete->execute("DELETE FROM sinonimo WHERE id_pedidolex = " . $remover[$counter] . "");
     }
     ?>
 
@@ -75,7 +75,7 @@ if (isset($submit)) {
                 $select = new QUERY($DB);
                 $select2 = new QUERY($DB);
                 $select3 = new QUERY($DB);
-                $select->execute("SELECT * FROM pedidolex where id_projeto = $id_project");
+                $select->execute("SELECT * FROM pedidolex WHERE id_projeto = " . $id_project . "");
                 if ($select->getntuples() == 0) {
                     echo "<BR>No requests.<BR>";
                 } else {
@@ -88,9 +88,9 @@ if (isset($submit)) {
                         $aprovado = $record['aprovado'];
 
                         //Get the synonyms
-                        $select3->execute("SELECT nome FROM sinonimo WHERE id_pedidolex = $id_pedido");
+                        $select3->execute("SELECT nome FROM sinonimo WHERE id_pedidolex = " . $id_pedido . "");
 
-                        $select2->execute("SELECT * FROM usuario WHERE id_usuario = $id_user");
+                        $select2->execute("SELECT * FROM usuario WHERE id_usuario = " . $id_user . "");
                         $usuario = $select2->gofirst();
                         if (strcasecmp($tipo_pedido, 'remover')) {
                             ?>
@@ -146,10 +146,10 @@ if (isset($submit)) {
                             if ($aprovado == 1) {
                                 echo "[<font color=\"#ff0000\"><STRONG>Approved</STRONG></font>]<BR>";
                             } else {
-                                echo "[<input type=\"checkbox\" name=\"pedidos[]\" value=\"$id_pedido\"> <STRONG>Approve</STRONG>]<BR>  ";
+                                echo "[<input type=\"checkbox\" name=\"pedidos[]\" value=\"" . $id_pedido . "\"> <STRONG>Approve</STRONG>]<BR>  ";
 //                     echo "Rejeitar<input type=\"checkbox\" name=\"remover[]\" value=\"$id_pedido\">" ;
                             }
-                            echo "[<input type=\"checkbox\" name=\"remover[]\" value=\"$id_pedido\"> <STRONG>Remove from list</STRONG>]";
+                            echo "[<input type=\"checkbox\" name=\"remover[]\" value=\"" . $id_pedido . "\"> <STRONG>Remove from list</STRONG>]";
                             print( "<br>\n<hr color=\"#000000\"><br>\n");
                             $record = $select->gonext();
                         }
