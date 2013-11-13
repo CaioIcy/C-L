@@ -21,11 +21,11 @@ if (isset($submit)) {
     $update = new QUERY($DB);
     $delete = new QUERY($DB);
     for ($counter = 0; $counter < sizeof($pedidos); $counter++) {
-        $update->execute("update pedidorel set aprovado= 1 where id_pedido = $pedidos[$counter]");
+        $update->execute("UPDATE pedidorel SET aprovado= 1 WHERE id_pedido = ".$pedidos[$counter]."");
         tratarPedidoRelacao($pedidos[$counter]);
     }
     for ($counter = 0; $counter < sizeof($remover); $counter++) {
-        $delete->execute("delete from pedidorel where id_pedido = $remover[$counter]");
+        $delete->execute("DELETE FROM pedidorel WHERE id_pedido = ".$remover[$counter]."");
     }
     ?>
 
@@ -76,7 +76,7 @@ if (isset($submit)) {
                 $DB = new PGDB ();
                 $select = new QUERY($DB);
                 $select2 = new QUERY($DB);
-                $select->execute("SELECT * FROM pedidorel WHERE id_projeto = $id_project");
+                $select->execute("SELECT * FROM pedidorel WHERE id_projeto = ".$id_project."");
                 if ($select->getntuples() == 0) {
                     echo "<BR>No requests.<BR>";
                 } else {
@@ -88,7 +88,7 @@ if (isset($submit)) {
                         $id_pedido = $record['id_pedido'];
                         $tipo_pedido = $record['tipo_pedido'];
                         $aprovado = $record['aprovado'];
-                        $select2->execute("SELECT * FROM usuario WHERE id_usuario = $id_user");
+                        $select2->execute("SELECT * FROM usuario WHERE id_usuario = ".$id_user."");
                         $usuario = $select2->gofirst();
                         if (strcasecmp($tipo_pedido, 'remover')) {
                             ?>
@@ -116,10 +116,10 @@ if (isset($submit)) {
                             if ($aprovado == 1) {
                                 echo "[<font color=\"#ff0000\"><STRONG>Approved</STRONG></font>]<BR>";
                             } else {
-                                echo "[<input type=\"checkbox\" name=\"pedidos[]\" value=\"$id_pedido\"> <STRONG>Approve</STRONG>]<BR>  ";
+                                echo "[<input type=\"checkbox\" name=\"pedidos[]\" value=\"".$id_pedido."\"> <STRONG>Approve</STRONG>]<BR>  ";
 //                 echo "Rejeitar<input type=\"checkbox\" name=\"remover[]\" value=\"$id_pedido\">" ;
                             }
-                            echo "[<input type=\"checkbox\" name=\"remover[]\" value=\"$id_pedido\"> <STRONG>Remove from list</STRONG>]";
+                            echo "[<input type=\"checkbox\" name=\"remover[]\" value=\"".$id_pedido."\"> <STRONG>Remove from list</STRONG>]";
                             print( "<br>\n<hr color=\"#000000\"><br>\n");
                             $record = $select->gonext();
                         }
