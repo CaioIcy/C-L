@@ -1,6 +1,7 @@
 <?php
 include_once 'bd.inc';
 include_once 'seguranca.php';
+include_once 'FunctionAsserts.php';
 
 assert_options(ASSERT_ACTIVE, 1);
 assert_options(ASSERT_BAIL, 1);
@@ -35,7 +36,7 @@ if (!(function_exists("inclui_cenario"))) {
     function inclui_cenario($id_projeto, $titulo, $objetivo, $contexto, $atores, $recursos, $excecao, $episodios) {
         
         assert($id_projeto > 0);
-        
+        null_assert($titulo);
         //global $r;      // Conexao com a base de dados
         $r = database_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
         $data = date("Y-m-d");
