@@ -76,6 +76,7 @@ if (!(function_exists("adicionar_lexico"))) {
     function adicionar_lexico($id_projeto, $nome, $nocao, $impacto, $sinonimos, $classificacao) {
        
         assert($id_projeto > 0);
+        null_assert($nome);
         
         $r = database_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
 
