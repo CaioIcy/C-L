@@ -3,6 +3,9 @@
 include_once 'bd.inc';
 include_once 'seguranca.php';
 
+assert_options(ASSERT_ACTIVE, 1);
+assert_options(ASSERT_BAIL, 1);
+
 ###################################################################
 # Funcao faz um insert na tabela de pedido.
 # Para remover uma relacao ela deve receber
@@ -15,6 +18,10 @@ include_once 'seguranca.php';
 if (!(function_exists("inserirPedidoRemoverRelacao"))) {
 
     function inserirPedidoRemoverRelacao($id_projeto, $id_relacao, $id_usuario) {
+        
+        assert($id_projeto > 0);
+        assert($id_usuario > 0);
+        
         $DB = new PGDB ();
         $insere = new QUERY($DB);
         $select = new QUERY($DB);
@@ -53,6 +60,9 @@ if (!(function_exists("inserirPedidoRemoverRelacao"))) {
 if (!(function_exists("removeRelacao"))) {
 
     function removeRelacao($id_projeto, $id_relacao) {
+        
+        assert($id_projeto > 0);
+        
         $DB = new PGDB ();
 
         $sql6 = new QUERY($DB);
