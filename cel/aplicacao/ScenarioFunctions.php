@@ -59,7 +59,7 @@ if (!(function_exists("adicionar_cenario"))) {
     function adicionar_cenario($id_projeto, $titulo, $objetivo, $contexto, $atores, $recursos, $excecao, $episodios) {
        
         assert($id_projeto > 0);
-
+        null_assert($titulo);
         // Conecta ao SGBD
         $r = database_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
         // Inclui o cenario na base de dados (sem transformar os campos, sem criar os relacionamentos)
