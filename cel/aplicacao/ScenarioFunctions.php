@@ -1,4 +1,5 @@
 <?php
+
 include_once 'bd.inc';
 include_once 'seguranca.php';
 include_once 'FunctionAsserts.php';
@@ -34,7 +35,7 @@ assert_options(ASSERT_BAIL, 1);
 if (!(function_exists("inclui_cenario"))) {
 
     function inclui_cenario($id_projeto, $titulo, $objetivo, $contexto, $atores, $recursos, $excecao, $episodios) {
-        
+
         assert($id_projeto > 0);
         null_assert($titulo);
         //global $r;      // Conexao com a base de dados
@@ -57,7 +58,7 @@ if (!(function_exists("inclui_cenario"))) {
 if (!(function_exists("adicionar_cenario"))) {
 
     function adicionar_cenario($id_projeto, $titulo, $objetivo, $contexto, $atores, $recursos, $excecao, $episodios) {
-       
+
         assert($id_projeto > 0);
         null_assert($titulo);
         // Conecta ao SGBD
@@ -147,9 +148,9 @@ if (!(function_exists("adicionar_cenario"))) {
               WHERE id_projeto = $id_projeto
               AND id_cenario = $id_incluido";
         $count = count($nomesSinonimos);
-        
+
         assert($count > 0);
-        
+
         for ($i = 0; $i < $count; $i++) {
 
             $qrr = mysql_query($qlc) or die("Erro ao enviar a query de busca<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
@@ -190,10 +191,12 @@ if (!(function_exists("adicionar_cenario"))) {
 if (!(function_exists("removeCenario"))) {
 
     function removeCenario($id_projeto, $id_cenario) {
-        
+        null_assert($id_projeto);
+        null_assert($id_cenario);
         assert($id_projeto > 0);
         assert($id_cenario > 0);
-        
+
+
         $DB = new PGDB ();
         $sql1 = new QUERY($DB);
         $sql2 = new QUERY($DB);
@@ -220,10 +223,10 @@ if (!(function_exists("removeCenario"))) {
 if (!(function_exists("alteraCenario"))) {
 
     function alteraCenario($id_projeto, $id_cenario, $titulo, $objetivo, $contexto, $atores, $recursos, $excecao, $episodios) {
-       
+
         assert($id_projeto > 0);
         assert($id_cenario > 0);
-        
+
         $DB = new PGDB ();
         $sql1 = new QUERY($DB);
         $sql2 = new QUERY($DB);
@@ -326,10 +329,10 @@ if (!(function_exists("alteraCenario"))) {
               WHERE id_projeto = $id_projeto
               AND id_cenario = $id_cenario";
         $count = count($nomesSinonimos);
-        
+
         assert($count > 0);
-     
-        
+
+
         for ($i = 0; $i < $count; $i++) {
 
             $qrr = mysql_query($qlc) or die("Erro ao enviar a query de busca<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
@@ -371,10 +374,10 @@ if (!(function_exists("alteraCenario"))) {
 if (!(function_exists("inserirPedidoAlterarCenario"))) {
 
     function inserirPedidoAlterarCenario($id_projeto, $id_cenario, $titulo, $objetivo, $contexto, $atores, $recursos, $excecao, $episodios, $justificativa, $id_usuario) {
-       
+
         assert($id_projeto > 0);
         assert($id_cenario > 0);
-        
+
         $DB = new PGDB();
         $insere = new QUERY($DB);
         $select = new QUERY($DB);
@@ -420,10 +423,10 @@ if (!(function_exists("inserirPedidoAlterarCenario"))) {
 if (!(function_exists("inserirPedidoRemoverCenario"))) {
 
     function inserirPedidoRemoverCenario($id_projeto, $id_cenario, $id_usuario) {
-       
+
         assert($id_projeto > 0);
         assert($id_cenario > 0);
-        
+
         $DB = new PGDB();
         $insere = new QUERY($DB);
         $select = new QUERY($DB);
