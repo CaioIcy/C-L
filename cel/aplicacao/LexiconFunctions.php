@@ -3,6 +3,8 @@
 include_once 'bd.inc';
 include_once 'seguranca.php';
 
+assert_options(ASSERT_ACTIVE, 1);
+assert_options(ASSERT_BAIL, 1);
 
 ###################################################################
 # Insere um lexico no banco de dados.
@@ -14,6 +16,9 @@ include_once 'seguranca.php';
 if (!(function_exists("inclui_lexico"))) {
 
     function inclui_lexico($id_projeto, $nome, $nocao, $impacto, $sinonimos, $classificacao) {
+      
+        assert($id_projeto > 0);
+        
         $r = database_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
         $data = date("Y-m-d");
 
@@ -69,6 +74,9 @@ if (!(function_exists("inclui_lexico"))) {
 if (!(function_exists("adicionar_lexico"))) {
 
     function adicionar_lexico($id_projeto, $nome, $nocao, $impacto, $sinonimos, $classificacao) {
+       
+        assert($id_projeto > 0);
+        
         $r = database_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
 
         $id_incluido = inclui_lexico($id_projeto, $nome, $nocao, $impacto, $sinonimos, $classificacao); // (1)
@@ -99,6 +107,9 @@ if (!(function_exists("adicionar_lexico"))) {
 
         //sinonimos do novo lexico
         $count = count($sinonimos);
+        
+        assert($count > 0);
+        
         for ($i = 0; $i < $count; $i++) {
 
             $qrr = mysql_query($qr) or die("Erro ao enviar a query de SELECT 2<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
@@ -230,6 +241,10 @@ if (!(function_exists("adicionar_lexico"))) {
 if (!(function_exists("removeLexico"))) {
 
     function removeLexico($id_projeto, $id_lexico) {
+        
+        assert($id_projeto > 0);
+        assert($id_lexico > 0);
+        
         $DB = new PGDB ();
         $delete = new QUERY($DB);
 
@@ -255,6 +270,10 @@ if (!(function_exists("removeLexico"))) {
 if (!(function_exists("alteraLexico"))) {
 
     function alteraLexico($id_projeto, $id_lexico, $nome, $nocao, $impacto, $sinonimos, $classificacao) {
+        
+        assert($id_projeto > 0);
+        assert($id_lexico > 0);
+        
         $DB = new PGDB ();
         $delete = new QUERY($DB);
 
@@ -378,6 +397,9 @@ if (!(function_exists("alteraLexico"))) {
         # Verifica a ocorrencia dos sinonimos do lexico alterado nos outros lexicos
 
         $count = count($sinonimos);
+        
+        assert($count > 0);
+        
         for ($i = 0; $i < $count; $i++) {// para cada sinonimo do lexico alterado
             $qrr = mysql_query($ql) or die("Erro ao enviar a query de select no lexico<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
             while ($resultl = mysql_fetch_array($qrr)) {// para cada lexico exceto o alterado
@@ -465,6 +487,9 @@ if (!(function_exists("inserirPedidoAlterarLexico"))) {
 
     function inserirPedidoAlterarLexico($id_projeto, $id_lexico, $nome, $nocao, $impacto, $justificativa, $id_usuario, $sinonimos, $classificacao) {
 
+        assert($id_projeto > 0);
+        assert($id_lexico > 0);
+        
         $DB = new PGDB ();
         $insere = new QUERY($DB);
         $select = new QUERY($DB);
@@ -594,6 +619,10 @@ if (!(function_exists("inserirPedidoAdicionarLexico"))) {
 if (!(function_exists("inserirPedidoRemoverLexico"))) {
 
     function inserirPedidoRemoverLexico($id_projeto, $id_lexico, $id_usuario) {
+        
+        assert($id_projeto > 0);
+        assert($id_lexico > 0);
+        
         $DB = new PGDB ();
         $insere = new QUERY($DB);
         $select = new QUERY($DB);
