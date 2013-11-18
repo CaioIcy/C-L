@@ -4,6 +4,9 @@ include_once 'bd.inc';
 include_once 'seguranca.php';
 include_once 'class_database.php';
 
+assert_options(ASSERT_ACTIVE, 1);
+assert_options(ASSERT_BAIL, 1);
+
 ###################################################################
 # Funcao faz um insert na tabela de pedido.
 # Para alterar um conceito ela deve receber os campos do conceito
@@ -16,6 +19,10 @@ include_once 'class_database.php';
 if (!(function_exists("inserirPedidoAlterarCenario"))) {
 
     function inserirPedidoAlterarConceito($id_projeto, $id_conceito, $nome, $descricao, $namespace, $justificativa, $id_usuario) {
+       
+        assert($id_projeto > 0);
+        assert($id_usuario > 0);
+        
         $DB = new PGDB();
         $insere = new QUERY($DB);
         $select = new QUERY($DB);
@@ -62,6 +69,10 @@ if (!(function_exists("inserirPedidoAlterarCenario"))) {
 if (!(function_exists("inserirPedidoRemoverConceito"))) {
 
     function inserirPedidoRemoverConceito($id_projeto, $id_conceito, $id_usuario) {
+       
+        assert($id_projeto > 0);
+        assert($id_usuario > 0);
+        
         $DB = new PGDB ();
         $insere = new QUERY($DB);
         $select = new QUERY($DB);
@@ -102,6 +113,9 @@ if (!(function_exists("inserirPedidoRemoverConceito"))) {
 if (!(function_exists("removeConceito"))) {
 
     function removeConceito($id_projeto, $id_conceito) {
+        
+        assert($id_projeto > 0);
+        
         $DB = new PGDB ();
         $sql = new QUERY($DB);
         $sql2 = new QUERY($DB);
