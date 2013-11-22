@@ -87,18 +87,23 @@ function inclui_projeto($nome, $descricao) {
 function removeProjeto($projectId) {
     
     assert($projectId > 0);
-    
-    $resultRemoveProject = 0;
-    
-    $resultRemoveDatabase = removeProjectDatabase($projectId);
-    
-    if($resultRemoveDatabase == 1){
-        $resultRemoveProject = 1;
-    } else {
-        $resultRemoveProject = 2;
-    }
-    
-    return $resultRemoveProject;
-}
 
+    database_connect();
+
+    $resultDelReqScen = delRequestScenarioDatabase($projectId);
+
+    assert(($resultDelReqScen == TRUE) || ($resultDelReqScen == FALSE));
+
+    $resultDelReqLex = delRequestLexiconDatabase($projectId);
+
+    assert(($resultDelReqLex == TRUE) || ($resultDelReqLex == FALSE));
+
+    $resultSelLex = selLexiconDatabase($projectId);
+    while ($resultSelLex) {
+        $id_lexicon = $resultSelLex['id_lexico'];
+
+        $resultDelLexToLex = delLexToLexDatabase($id_lexicon);
+        $resultDelScenToLex = delScenToLexDatabase($id_lexicon);
+    }
+}
 ?>

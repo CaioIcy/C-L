@@ -11,29 +11,6 @@ assert_options(ASSERT_BAIL, 1);
  */
 require_once '/../bd.inc';
 
-function removeProjectInDatabase($projectId) {
-
-    assert($projectId > 0);
-
-    database_connect();
-
-    $resultDelReqScen = delRequestScenarioDatabase($projectId);
-
-    assert(($resultDelReqScen == TRUE) || ($resultDelReqScen == FALSE));
-
-    $resultDelReqLex = delRequestLexiconDatabase($projectId);
-
-    assert(($resultDelReqLex == TRUE) || ($resultDelReqLex == FALSE));
-
-    $resultSelLex = selLexiconDatabase($projectId);
-    while ($resultSelLex) {
-        $id_lexicon = $resultSelLex['id_lexico'];
-
-        $resultDelLexToLex = delLexToLexDatabase($id_lexicon);
-        $resultDelScenToLex = delScenToLexDatabase($id_lexicon);
-    }
-}
-
 /**
  * Function that select all attributes of a project
  * The selection occurs in table "projeto" database "cel"
