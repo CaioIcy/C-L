@@ -234,7 +234,7 @@ if (isset($submit)) {
                         <td align="center" colspan="2" height="60">
                             <input name="submit" type="submit" onClick="return checks_form_values(this.form);" value="Adicionar S�mbolo"><BR><BR>
                             </script>
-                            <A HREF="#" OnClick="javascript:open('RegrasLAL.html', '_blank', 'dependent,height=380,width=520,titlebar');"> See <i>LAL</i> rules</A>
+                            <A HREF="#" OnClick="javascript:open('/../RegrasLAL.html', '_blank', 'dependent,height=380,width=520,titlebar');"> See <i>LAL</i> rules</A>
                         </td>
                     </tr>
                 </table>
