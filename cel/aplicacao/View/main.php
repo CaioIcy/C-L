@@ -1,11 +1,11 @@
 <?php
 session_start();
 
-include_once 'CELConfig/CELConfig.inc';
-include_once 'funcoes_genericas.php';
-include_once 'httprequest.inc';
-include_once 'puts_links.php';
-include_once 'frame_inferior.php';
+include_once '/../CELConfig/CELConfig.inc';
+include_once '/../funcoes_genericas.php';
+include_once '/../httprequest.inc';
+include_once '/../puts_links.php';
+include_once '/../frame_inferior.php';
 
 //$_SESSION['site'] = 'http://pes.inf.puc-rio.br/pes03_1_1/Site/desenvolvimento/teste/';       
 //$_SESSION['site'] = 'http://139.82.24.189/cel_vf/aplicacao/teste/';
@@ -478,7 +478,7 @@ if (isset($id_project)) {
 
 
         </script> 
-        <script type="text/javascript" src="mtmtrack.js">
+        <script type="text/javascript" src="/Shared/mtmtrack.js">
         </script> 
     </head> 
     <body> 

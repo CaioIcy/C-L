@@ -73,7 +73,7 @@ if (isset($id_project)) {
              }*/
         </script> 
 
-        <script type="text/javascript" src="mtmcode.js">
+        <script type="text/javascript" src="/Shared/mtmcode.js">
         </script> 
 
         <script type="text/javascript">

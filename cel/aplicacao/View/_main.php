@@ -86,7 +86,7 @@ check_user_authentication("index.php"); // Checks if the user was authenticated
                 open(url, where, window_spec);
             }
         </script>
-        <script type="text/javascript" src="mtmtrack.js">
+        <script type="text/javascript" src="/Shared/mtmtrack.js">
         </script>
     </head>
     <body>

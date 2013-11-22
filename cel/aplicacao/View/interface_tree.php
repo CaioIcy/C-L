@@ -13,7 +13,7 @@ $database_conection = database_connect();
     <head> 
 
 
-        <script language="javascript" src="mtmcode.js">
+        <script language="javascript" src="/Shared/mtmcode.js">
         </script> 
 
 
