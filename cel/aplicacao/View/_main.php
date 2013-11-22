@@ -34,7 +34,7 @@ check_user_authentication("index.php"); // Checks if the user was authenticated
             }
 
             function changes_lexicon(lexico) {
-                var url = 'alt_lexico.php?id_projeto=' + '<?= $_SESSION['id_projeto_corrente'] ?>' + '&id_lexico=' + lexico;
+                var url = 'change_lexicon.php.php?id_projeto=' + '<?= $_SESSION['id_projeto_corrente'] ?>' + '&id_lexico=' + lexico;
                 var where = '_blank';
                 var window_spec = 'dependent,height=300,width=550,resizable,scrollbars,titlebar';
                 open(url, where, window_spec);

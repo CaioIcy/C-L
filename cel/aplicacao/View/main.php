@@ -100,7 +100,7 @@ if (!isset($_SESSION['id_projeto_corrente'])) {
 ?>
 
     function changes_lexicon(lexico) {
-        var url = 'alt_lexico.php?id_projeto=' + '<?= $_SESSION['id_projeto_corrente'] ?>' + '&id_lexico=' + lexico;
+        var url = 'change_lexicon.php?id_projeto=' + '<?= $_SESSION['id_projeto_corrente'] ?>' + '&id_lexico=' + lexico;
         var where = '_blank';
         var window_spec = 'dependent,height=573,width=570,resizable,scrollbars,titlebar';
         open(url, where, window_spec);
