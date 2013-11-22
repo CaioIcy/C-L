@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-include_once 'funcoes_genericas.php';
-include_once 'httprequest.inc';
+include_once '/../funcoes_genericas.php';
+include_once '/../httprequest.inc';
 
 check_user_authentication("index.php");
 
@@ -41,7 +41,7 @@ if (isset($submit)) {   // Script chamado pelo submit
     <html>
         <head>
             <title>Selecione os usu�rios</title>
-            <script language="javascript1.3" src="MSelect.js"></script>
+            <script language="javascript1.3" src="/Shared/MSelect.js"></script>
             <script language="javascript1.3">
 
                 function create_m_select() {
