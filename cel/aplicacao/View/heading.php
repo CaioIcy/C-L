@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include_once 'funcoes_genericas.php';
+include_once '/../funcoes_genericas.php';
 
 
 check_user_authentication("index.php");
@@ -84,11 +84,11 @@ if (isset($id_project)) {   // $id_projeto soh nao estara setada caso seja a pri
 
 if (isset($id_project)) {
     ?>
-            var url = '/View/adds_scenario.php?id_projeto=' + '<?= $id_project ?>';
+            var url = 'adds_scenario.php?id_projeto=' + '<?= $id_project ?>';
     <?php
 } else {
     ?>
-            var url = '/View/adds_scenario.php?'
+            var url = 'adds_scenario.php?'
     <?php
 }
 ?>
@@ -113,11 +113,11 @@ if (isset($id_project)) {
 
 if (isset($id_project)) {
     ?>
-            var url = '/View/adds_lexicon.php?id_projeto=' + '<?= $id_project ?>';
+            var url = 'adds_lexicon.php?id_projeto=' + '<?= $id_project ?>';
     <?php
 } else {
     ?>
-            var url = '/View/adds_lexicon.php';
+            var url = 'adds_lexicon.php';
     <?php
 }
 ?>
@@ -157,7 +157,7 @@ if (isset($id_project)) {
             <table width="100%" cellspacing="0" cellpadding="0">
                 <tr bgcolor="#E0FFFF">
                    <td width="294" height="79" > <!--<img src="Images/Logo.jpg"></td>-->
-                        <img src="Images/Logo_C.jpg" width="190" height="100"></td>
+                        <img src="/../Images/Logo_C.jpg" width="190" height="100"></td>
                     <td align="right" valign="top">
                         <table>
                             <tr>
@@ -171,13 +171,10 @@ if (isset($id_project)) {
                                         if ($exists_scenario != 0) {
                                             ?>
                                             <font color="#FF0033">Administrador</font>
-
-
                                             <?php
                                         } else {
-                                            ?>                               <font color="#FF0033">Usu�rio normal</font>
-
-
+                                            ?>
+                                            <font color="#FF0033">Usu�rio normal</font>
                                             <?php
                                         }
                                     } else {
@@ -254,7 +251,7 @@ if (isset($id_project)) {
 //Atores:      Usu�rio
 //Recursos:    Sistema, dados do projeto, base de dados
 //Epis�dios:   O Usu�rio clica na op��o �adicionar projeto� encontrada no menu superior.
-                                    ?> <a href="#" onClick="window.open('/View/adds_project.php', '_blank', 'dependent,height=313,width=550,resizable,scrollbars,titlebar');">Adicionar 
+                                    ?> <a href="#" onClick="window.open('adds_project.php', '_blank', 'dependent,height=313,width=550,resizable,scrollbars,titlebar');">Adicionar 
                                         Projeto</a>&nbsp;&nbsp;&nbsp; <?php
 //Cen�rio  -   Remover Novo Projeto 
 //Objetivo:    Permitir ao Administrador do projeto remover um projeto
@@ -297,7 +294,7 @@ if (isset($id_project)) {
 //Atores:    Usu�rio, Sistema.	
 //Recursos:  Interface	
 //Epis�dios: O usu�rio clica na op��o de alterar cadastro da interface
-                                    ?> <a href="#" onClick="window.open('Call_UpdUser.php', '_blank', 'dependent,height=300,width=550,resizable,scrollbars,titlebar');">Alterar 
+                                    ?> <a href="#" onClick="window.open('/../Call_UpdUser.php', '_blank', 'dependent,height=300,width=550,resizable,scrollbars,titlebar');">Alterar 
                                         Cadastro</a>&nbsp;&nbsp;&nbsp; 
 
 
@@ -333,9 +330,9 @@ if (isset($id_project)) {
                         </table>
                     </td>
                 </tr>
-                <tr height="33" bgcolor="#00359F" background="Images/FrameTop.gif">
-                    <td background="Images/TopLeft.gif" width="294" valign="baseline"></td>
-                    <td background="Images/FrameTop.gif" valign="baseline"></td>
+                <tr height="33" bgcolor="#00359F" background="/../Images/FrameTop.gif">
+                    <td background="/../Images/TopLeft.gif" width="294" valign="baseline"></td>
+                    <td background="/../Images/FrameTop.gif" valign="baseline"></td>
                 </tr>
             </table>
         </form>
