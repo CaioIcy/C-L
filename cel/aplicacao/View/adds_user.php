@@ -6,12 +6,12 @@
 
 <?php
 
-include("funcoes_genericas.php");
-include_once("bd.inc");
+include_once '/../funcoes_genericas.php';
+include_once '/../bd.inc';
 
 $primeira_vez = "true";
 
-include("httprequest.inc");
+include_once '/../httprequest.inc';
 
 if (isset($submit)) {   // Se chamado pelo botao de submit
 

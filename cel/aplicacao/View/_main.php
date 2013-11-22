@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-include 'frame_inferior.php';
-include 'funcoes_genericas.php';
+include_once '/../frame_inferior.php';
+include_once '/../funcoes_genericas.php';
 
 check_user_authentication("index.php"); // Checks if the user was authenticated
 ?>

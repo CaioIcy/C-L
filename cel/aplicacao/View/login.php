@@ -18,7 +18,7 @@
 /** @Episodio 1: Iniciar sessão * */
 session_start();
 
-include 'bd.inc';
+include_once '/../bd.inc';
 
 $url = '';
 $submit = '';
@@ -26,7 +26,7 @@ $login = '';
 $senha = '';
 $wrong = "false";
 
-include 'httprequest.inc'; //This include must be in this order
+include_once '/../httprequest.inc'; //This include must be in this order
 
 /** @Episodio 2: Conectar o SGBD * */
 /** @Restrição: a função bd_connect definida em bd.inc é utilizada * */

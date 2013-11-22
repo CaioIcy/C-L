@@ -11,9 +11,9 @@
 
 session_start();
 
-include_once 'bd.inc';
-include_once 'funcoes_genericas.php';
-include_once 'httprequest.inc';
+include_once '/../bd.inc';
+include_once '/../funcoes_genericas.php';
+include_once '/../httprequest.inc';
 
 check_user_authentication("index.php"); // Checa se o usuario foi autenticado
 // Conecta ao SGBD
