@@ -1,7 +1,7 @@
 <?php
 
-include_once 'auxiliar_bd.php';
-include_once 'bd.inc';
+include_once '/../auxiliar_bd.php';
+include_once '/../bd.inc';
 
 session_start();
 

@@ -4,8 +4,8 @@
  */
 session_start();
 
-include_once 'bd.inc';
-include_once 'funcoes_genericas.php';
+include_once '/../bd.inc';
+include_once '/../funcoes_genericas.php';
 
 if (isset($_GET['id_projeto'])) {
     $id_project = $_GET['id_projeto'];
