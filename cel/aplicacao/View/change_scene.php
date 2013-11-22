@@ -128,7 +128,7 @@ if (isset($submit)) {       // Script chamado atraves do submit do formulario
                 </table>
             </form>
         <center><a href="javascript:self.close();">Fechar</a></center>
-        <br><i><a href="showSource.php?file=alt_cenario.php">Veja o c�digo fonte!</a></i>
+        <br><i><a href="showSource.php?file=change_scene.php">Veja o c�digo fonte!</a></i>
     </body>
     </html>
 

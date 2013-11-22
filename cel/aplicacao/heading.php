@@ -84,11 +84,11 @@ if (isset($id_project)) {   // $id_projeto soh nao estara setada caso seja a pri
 
 if (isset($id_project)) {
     ?>
-            var url = 'adds_scenario.php?id_projeto=' + '<?= $id_project ?>';
+            var url = '/View/adds_scenario.php?id_projeto=' + '<?= $id_project ?>';
     <?php
 } else {
     ?>
-            var url = 'adds_scenario.php?'
+            var url = '/View/adds_scenario.php?'
     <?php
 }
 ?>
@@ -113,11 +113,11 @@ if (isset($id_project)) {
 
 if (isset($id_project)) {
     ?>
-            var url = 'adds_lexicon.php?id_projeto=' + '<?= $id_project ?>';
+            var url = '/View/adds_lexicon.php?id_projeto=' + '<?= $id_project ?>';
     <?php
 } else {
     ?>
-            var url = 'adds_lexicon.php';
+            var url = '/View/adds_lexicon.php';
     <?php
 }
 ?>
@@ -254,7 +254,7 @@ if (isset($id_project)) {
 //Atores:      Usu�rio
 //Recursos:    Sistema, dados do projeto, base de dados
 //Epis�dios:   O Usu�rio clica na op��o �adicionar projeto� encontrada no menu superior.
-                                    ?> <a href="#" onClick="window.open('adds_project.php', '_blank', 'dependent,height=313,width=550,resizable,scrollbars,titlebar');">Adicionar 
+                                    ?> <a href="#" onClick="window.open('/View/adds_project.php', '_blank', 'dependent,height=313,width=550,resizable,scrollbars,titlebar');">Adicionar 
                                         Projeto</a>&nbsp;&nbsp;&nbsp; <?php
 //Cen�rio  -   Remover Novo Projeto 
 //Objetivo:    Permitir ao Administrador do projeto remover um projeto

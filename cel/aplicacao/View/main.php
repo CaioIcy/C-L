@@ -62,7 +62,7 @@ if (!isset($_SESSION['id_projeto_corrente'])) {
 ?>
 
     function changes_scene(cenario) {
-        var url = 'alt_cenario.php?id_projeto=' + '<?= $_SESSION['id_projeto_corrente'] ?>' + '&id_cenario=' + cenario;
+        var url = 'change_scene.php?id_projeto=' + '<?= $_SESSION['id_projeto_corrente'] ?>' + '&id_cenario=' + cenario;
         var where = '_blank';
         var window_spec = 'dependent,height=660,width=550,resizable,scrollbars,titlebar';
         open(url, where, window_spec);

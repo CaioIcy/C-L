@@ -98,7 +98,7 @@ if (isset($submit)) {       // Script chamado atraves do submit do formulario
                     </tr>
                 </table>
             </form>
-            <br><i><a href="showSource.php?file=alt_cenario.php">Veja o c�digo fonte!</a></i>
+            <br><i><a href="showSource.php?file=change_scene.php">Veja o c�digo fonte!</a></i>
         </body>
     </html>
 
