@@ -1,8 +1,8 @@
 <?php
 
-include_once 'bd.inc';
-include_once 'seguranca.php';
-include_once 'FunctionAsserts';
+include_once '/../bd.inc';
+include_once '/../seguranca.php';
+include_once '/../FunctionAsserts.php';
 
 assert_options(ASSERT_ACTIVE, 1);
 assert_options(ASSERT_BAIL, 1);
