@@ -1,28 +1,25 @@
 <?php
 
-// Escapa os metacaracteres do PHP
-
-function escapa_metacaracteres($string) {
+// Escapes the PHP metacharacters from the desired string($string)
+function escape_metacharacters($string) {
     $string = ereg_replace("[][{}()*+?.\\^$|]", "\\\\0", $string);
     return $string;
 }
 
-//Remove espaços em branco do inicio e do fim da string
-function prepara_dado($string) {
+// Makes sure a string($string) is safe
+function safely_prepare_data($string) {
 
-
-    // Substitui o & por amp; (para que não de problemas ao gerar o XML)
-
+    // Replaces & by amp; (avoiding XML trouble)
     $string = ereg_replace("&", "&amp;", $string);
 
-    // Retira tags html e php da string
-
+    // Removes html and php tags
     $string = strip_tags($string);
-
-    // Verifica se a diretiva get_magic_quotes_gpc() esta ativada, se estiver a função stripslashes é utilizada na string
-
+    
+    //Checks if the get_magic_quotes_gpc() directive is activated, if so, use stripslashes function on string
     $string = get_magic_quotes_gpc() ? stripslashes($string) : $string;
+    
     $string = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($string) : mysql_escape_string($string);
+    
     return $string;
 }
 ?>

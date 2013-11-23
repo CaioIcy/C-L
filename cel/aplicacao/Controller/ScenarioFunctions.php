@@ -43,9 +43,9 @@ if (!(function_exists("inclui_cenario"))) {
         $data = date("Y-m-d");
 
         $q = "INSERT INTO cenario (id_projeto,data, titulo, objetivo, contexto, atores, recursos, excecao, episodios) 
-		VALUES ($id_projeto,'$data', '" . prepara_dado(strtolower($titulo)) . "', '" . prepara_dado($objetivo) . "',
-		'" . prepara_dado($contexto) . "', '" . prepara_dado($atores) . "', '" . prepara_dado($recursos) . "',
-		'" . prepara_dado($excecao) . "', '" . prepara_dado($episodios) . "')";
+		VALUES ($id_projeto,'$data', '" . safely_prepare_data(strtolower($titulo)) . "', '" . safely_prepare_data($objetivo) . "',
+		'" . safely_prepare_data($contexto) . "', '" . safely_prepare_data($atores) . "', '" . safely_prepare_data($recursos) . "',
+		'" . safely_prepare_data($excecao) . "', '" . safely_prepare_data($episodios) . "')";
 
         mysql_query($q) or die("Erro ao enviar a query<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
         $q = "SELECT max(id_cenario) FROM cenario";
@@ -79,7 +79,7 @@ if (!(function_exists("adicionar_cenario"))) {
         // caso possua, na tabela centocen
 
         while ($result = mysql_fetch_array($qrr)) {    // Para todos os cenarios
-            $tituloEscapado = escapa_metacaracteres($titulo);
+            $tituloEscapado = escape_metacharacters($titulo);
             $regex = "/(\s|\b)(" . $tituloEscapado . ")(\s|\b)/i";
 
             if ((preg_match($regex, $result['contexto']) != 0) ||
@@ -89,7 +89,7 @@ if (!(function_exists("adicionar_cenario"))) {
                 mysql_query($q) or die("Erro ao enviar a query de INSERT<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
             }
 
-            $tituloEscapado = escapa_metacaracteres($result['titulo']);
+            $tituloEscapado = escape_metacharacters($result['titulo']);
             $regex = "/(\s|\b)(" . $tituloEscapado . ")(\s|\b)/i";
 
             if ((preg_match($regex, $contexto) != 0) ||
@@ -105,7 +105,7 @@ if (!(function_exists("adicionar_cenario"))) {
         $q = "SELECT id_lexico, nome FROM lexico WHERE id_projeto = $id_projeto";
         $qrr = mysql_query($q) or die("Erro ao enviar a query de SELECT 3<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
         while ($result2 = mysql_fetch_array($qrr)) {    // (3)
-            $nomeEscapado = escapa_metacaracteres($result2['nome']);
+            $nomeEscapado = escape_metacharacters($result2['nome']);
             $regex = "/(\s|\b)(" . $nomeEscapado . ")(\s|\b)/i";
 
             if ((preg_match($regex, $titulo) != 0) ||
@@ -157,7 +157,7 @@ if (!(function_exists("adicionar_cenario"))) {
             // verifica sinonimos dos outros lexicos no cenario inclu�do
             while ($result = mysql_fetch_array($qrr)) {
 
-                $nomeSinonimoEscapado = escapa_metacaracteres($nomesSinonimos[$i]);
+                $nomeSinonimoEscapado = escape_metacharacters($nomesSinonimos[$i]);
                 $regex = "/(\s|\b)(" . $nomeSinonimoEscapado . ")(\s|\b)/i";
 
                 if ((preg_match($regex, $objetivo) != 0) ||
@@ -244,12 +244,12 @@ if (!(function_exists("alteraCenario"))) {
         # atualiza o cenario
 
         $sql4->execute("update cenario set 
-		objetivo = '" . prepara_dado($objetivo) . "', 
-		contexto = '" . prepara_dado($contexto) . "', 
-		atores = '" . prepara_dado($atores) . "', 
-		recursos = '" . prepara_dado($recursos) . "', 
-		episodios = '" . prepara_dado($episodios) . "', 
-		excecao = '" . prepara_dado($excecao) . "' 
+		objetivo = '" . safely_prepare_data($objetivo) . "', 
+		contexto = '" . safely_prepare_data($contexto) . "', 
+		atores = '" . safely_prepare_data($atores) . "', 
+		recursos = '" . safely_prepare_data($recursos) . "', 
+		episodios = '" . safely_prepare_data($episodios) . "', 
+		excecao = '" . safely_prepare_data($excecao) . "' 
 		where id_cenario = $id_cenario ");
 
         // monta_relacoes($id_projeto);
@@ -264,7 +264,7 @@ if (!(function_exists("alteraCenario"))) {
         $qrr = mysql_query($q) or die("Erro ao enviar a query de SELECT<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
 
         while ($result = mysql_fetch_array($qrr)) {    // Para todos os cenarios
-            $tituloEscapado = escapa_metacaracteres($titulo);
+            $tituloEscapado = escape_metacharacters($titulo);
             $regex = "/(\s|\b)(" . $tituloEscapado . ")(\s|\b)/i";
 
             if ((preg_match($regex, $result['contexto']) != 0) ||
@@ -273,7 +273,7 @@ if (!(function_exists("alteraCenario"))) {
 	                      VALUES (" . $result['id_cenario'] . ", $id_cenario)"; // (2.2.1)
                 mysql_query($q) or die("Erro ao enviar a query de INSERT<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
             }
-            $tituloEscapado = escapa_metacaracteres($result['titulo']);
+            $tituloEscapado = escape_metacharacters($result['titulo']);
             $regex = "/(\s|\b)(" . $tituloEscapado . ")(\s|\b)/i";
 
             if ((preg_match($regex, $contexto) != 0) ||
@@ -288,7 +288,7 @@ if (!(function_exists("alteraCenario"))) {
         $q = "SELECT id_lexico, nome FROM lexico WHERE id_projeto = $id_projeto";
         $qrr = mysql_query($q) or die("Erro ao enviar a query de SELECT 3<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
         while ($result2 = mysql_fetch_array($qrr)) {    // (3)
-            $nomeEscapado = escapa_metacaracteres($result2['nome']);
+            $nomeEscapado = escape_metacharacters($result2['nome']);
             $regex = "/(\s|\b)(" . $nomeEscapado . ")(\s|\b)/i";
 
             if ((preg_match($regex, $titulo) != 0) ||
@@ -337,7 +337,7 @@ if (!(function_exists("alteraCenario"))) {
 
             $qrr = mysql_query($qlc) or die("Erro ao enviar a query de busca<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
             while ($result = mysql_fetch_array($qrr)) {    // verifica sinonimos dos lexicos no cenario inclu�do
-                $nomeSinonimoEscapado = escapa_metacaracteres($nomesSinonimos[$i]);
+                $nomeSinonimoEscapado = escape_metacharacters($nomesSinonimos[$i]);
                 $regex = "/(\s|\b)(" . $nomeSinonimoEscapado . ")(\s|\b)/i";
 
                 if ((preg_match($regex, $objetivo) != 0) ||

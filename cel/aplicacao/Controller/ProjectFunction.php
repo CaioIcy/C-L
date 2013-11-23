@@ -55,7 +55,7 @@ function inclui_projeto($nome, $descricao) {
     $data = date("Y-m-d");
 
     $qr = "INSERT INTO projeto (id_projeto, nome, data_criacao, descricao)
-                  VALUES ($result[0],'" . prepara_dado($nome) . "','$data' , '" . prepara_dado($descricao) . "')";
+                  VALUES ($result[0],'" . safely_prepare_data($nome) . "','$data' , '" . safely_prepare_data($descricao) . "')";
 
     mysql_query($qr) or die("Erro ao enviar a query INSERT<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
 
