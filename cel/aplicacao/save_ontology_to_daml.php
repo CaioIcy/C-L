@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This module has functions to save an ontology in a .daml file
  */
@@ -16,17 +17,18 @@ $data = $dia . "T" . $hora . "Z";
   Objective:
   Save ontology in .daml
   Parameters:
-  - $url_ontology - URL of the Ontology
-  - $local_directory - local directory where the .daml will be stored
-  - $filename - DAML file name (with .daml extension)
-  - $array_info - Array with the following keys ("title" , "creator" , "description" , "subject" , "versionInfo")
-  - $concept_list - List of concepts
-  - $relation_list - List of relations
-  - $axiom_list - List of axioms
+    - $url_ontology - URL of the Ontology
+    - $local_directory - local directory where the .daml will be stored
+    - $filename - DAML file name (with .daml extension)
+    - $array_info - Array with the following keys ("title" , "creator" , "description" , "subject" , "versionInfo")
+    - $concept_list - List of concepts
+    - $relation_list - List of relations
+    - $axiom_list - List of axioms
   Returns:
-  - FALSE - in case there is an error while creating the file
-  - filename - in case the file is created with success
+    - FALSE - in case there is an error while creating the file
+    - filename - in case the file is created with success
  */
+
 function save_daml($url_ontology, $local_directory, $filename, $array_info, $concept_list, $relation_list, $axiom_list) {
     // Registers the ontology URL
     $url = $url_ontology . $filename;
@@ -87,7 +89,7 @@ function save_daml($url_ontology, $local_directory, $filename, $array_info, $con
     }
 
 
-    // Insere os conceitos, rela��es e axiomas 
+    //Inserts the concepts, relations and axioms
     if (!record_concepts($fp, $url, $concept_list, $array_info ["creator"])) {
         return FALSE;
     }
@@ -120,9 +122,10 @@ function save_daml($url_ontology, $local_directory, $filename, $array_info, $con
   - $concept_list - List of concepts
   - $who_created - Creator of the DAML file
  */
+
 function record_concepts($file_pointer, $url_ontology, $concept_list, $who_created) {
 
-// N�o podemos usar a vari�vel $conceito por causa do algoritmo do Jer�nimo... 
+    //Can't use the variable $conceito because of the algorithm of Jeronimo (?????)
     foreach ($concept_list as $oConceito) {
 
         // Concept header
@@ -186,6 +189,7 @@ function record_concepts($file_pointer, $url_ontology, $concept_list, $who_creat
   - $relation_list - List of relations
   - $who_created - Creator of the DAML file
  */
+
 function records_relations($file_pointer, $url_ontology, $relation_list, $who_created) {
     foreach ($relation_list as $relacao) {
         $s_rel = '<daml:ObjectProperty rdf:about="' . "#" . strip_tags($relacao) . '">';
@@ -208,6 +212,7 @@ function records_relations($file_pointer, $url_ontology, $relation_list, $who_cr
   - $url_ontology - URL of the ontology
   - $axiom_list - List of axioms
  */
+
 function records_axioms($file_pointer, $url_ontology, $axiom_list) {
     foreach ($axiom_list as $axiom) {
         // Concept header
