@@ -7,27 +7,25 @@
     <body>
 
         <?php
-        
         session_start();
-        
+
         include_once 'bd.inc';
         include_once 'auxiliar_bd.php';
 
-        function converte_impactos() {
-            $link = database_connect() or die("Erro na conexão ao BD : " . mysql_error() . __LINE__);
+        function convert_impacts() {
+            $link = database_connect() or die("Database connection error: " . mysql_error() . __LINE__);
 
             $filename = "teste.txt";
 
             $query = "select * from lexico;";
-            $result = mysql_query($query) or die("A consulta ao BD falhou : " . mysql_error() . __LINE__);
+            $result = mysql_query($query) or die("Database query failed: " . mysql_error() . __LINE__);
 
             if (!$handle = fopen($filename, 'w')) {
-                print "Nao foi possível abrir o arquivo !!!($filename)";
+                print "Could not open ($filename) file";
                 exit;
             }
 
-            /* É importante escrever para o arquivo teste.txt para separar
-              impactos que estão num mesmo impacto */
+            // Its important to write to teste.txt to separate impacts that are in a same impact
 
             while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
                 $id_lexico = $line['id_lexico'];
@@ -68,12 +66,12 @@
                 print ($line . "<br>\n");
                 if (strcmp(trim($line), "") != 0) {
                     $query = "insert into impacto (id_lexico, impacto) values ('$id_lexico', '$line');";
-                    $result = mysql_query($query) or die("A consulta à BD falhou : " . mysql_error() . " " . $line . " " . $id_lexico . " " . __LINE__);
+                    $result = mysql_query($query) or die("Database query failed: " . mysql_error() . " " . $line . " " . $id_lexico . " " . __LINE__);
                 }
             }
 
             $query = "select * from impacto order by id_lexico;";
-            $result = mysql_query($query) or die("A consulta à BD falhou : " . mysql_error() . __LINE__);
+            $result = mysql_query($query) or die("Database query failed: " . mysql_error() . __LINE__);
             $result2 = mysql_num_rows($result);
 
             mysql_close($link);

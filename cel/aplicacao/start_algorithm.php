@@ -34,7 +34,7 @@ $_SESSION["lista_de_estado"] = get_stateList();
 $_SESSION["salvar"] = "FALSE";
 
 if ($_POST["load"] == "FALSE") {
-    converte_impactos();
+    convert_impacts();
     $_SESSION["lista_de_conceitos"] = array();
     $_SESSION["lista_de_relacoes"] = array();
     $_SESSION["lista_de_axiomas"] = array();
