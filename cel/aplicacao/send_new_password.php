@@ -1,18 +1,24 @@
 <?php
-
 include_once 'bd.inc';
 include_once 'httprequest.inc';
 
-// Cen�rio - Lembrar senha 
-//Objetivo:	 Permitir o usu�rio cadastrado, que esqueceu sua senha,  receber  a mesma por email	
-//Contexto:	 Sistema est� aberto, Usu�rio esqueceu sua senha Usu�rio na tela de lembran�a de 
-//           senha. 
-//           Pr�-Condi��o: Usu�rio ter acessado ao sistema	
-//Atores:	 Usu�rio, Sistema	
-//Recursos:	 Banco de Dados	
-//Epis�dios: O sistema verifica se o login informado � cadastrado no banco de dados.     
-//           Se o login informado for cadastrado, sistema consulta no banco de dados qual 
-//           o email e senha do login informado.           
+/*
+ * Scenario - Remember password
+ * Objective:   Allow the registered user, who forgot his password, to recieve it by e-mail
+ * Context:     System is open, user in the remember password screen
+ *              Pre-condition: User has accessed the system
+ * Actors:      User, system
+ * Resources:   Database
+ * Episodes:    1- The system checks if the informed login is registered in the database
+ *              2- If the informed login is registered, the system checks in the database
+ *                  what the is e-mail and password, corresponding to that login.
+ *              3- The system sends the password to the e-mail corresponding to the informed
+ *                  login
+ *              4- If the informed login isn't registered in the database, the system
+ *                  displays an error message on the screen, saying the the login does
+ *                  not exist, and displays a RETURN button, that redirects the user
+ *                  to the login screen.
+ */
 
 $database_conection = database_connect() or die("Error while connecting to SGBD");
 
@@ -41,25 +47,8 @@ $query_connecting_database = mysql_query($query_database_command) or die("Error 
         $user_login = $row[3];
         $user_password = $row[4];
 
-// Cen�rio - Lembrar senha 
-//Objetivo:	 Permitir o usu�rio cadastrado, que esqueceu sua senha,  receber  a mesma por email	
-//Contexto:	 Sistema est� aberto, Usu�rio esqueceu sua senha Usu�rio na tela de lembran�a de 
-//           senha. 
-//           Pr�-Condi��o: Usu�rio ter acessado ao sistema	
-//Atores:	 Usu�rio, Sistema	
-//Recursos:	 Banco de Dados	
-//Epis�dios: Sistema envia a senha para o email cadastrado correspondente ao login que 
-//           foi informado pelo usu�rio.     
-//           Caso n�o exista nenhum login cadastrado igual ao informado pelo usu�rio, 
-//           sistema exibe mensagem de erro na tela dizendo que login � inexistente, e 
-//           exibe um bot�o voltar, que redireciona o usu�rio para a tela de login novamente.
-                     
-        //$Vemail = ini_set("SMTP","mail.gmail.com");  
-        //require("PHPMailer.php");
-        // Seta o SMTP sem alterar o config
-        //ini_set("SMTP","mail.hotpop.com");
-
         //Generates a random string with string_size characters
+        //$string_size: the size of the string that is going to be generated
         function generateRandomString($string_size) {
             $str = "ABCDEFGHIJKLMNOPQRSTUVXYWZabcdefghijklmnopqrstuvxywz0123456789";
             $cod = "";
@@ -77,9 +66,9 @@ $query_connecting_database = mysql_query($query_database_command) or die("Error 
         $query_up = "update usuario set senha = '$encrypted_new_password' where login = '$user_login'";
         $query_r_up = mysql_query($query_up) or die("Error while executing the update query in the user table");
 
-        $corpo_email = "Dear $user_name,\n As requested, we are sending you your new password to access the C&L system.\n\n Login: $user_login \n Password: $new_password \n\n To avoid future troubles, change your password as soon as you can. \n Thank you! \n C&L support team.";
+        $email_body = "Dear $user_name,\n As requested, we are sending you your new password to access the C&L system.\n\n Login: $user_login \n Password: $new_password \n\n To avoid future troubles, change your password as soon as you can. \n Thank you! \n C&L support team.";
         $headers = "";
-        if (mail("$mail", "New C&L password", "$corpo_email", $headers)) {
+        if (mail("$mail", "New C&L password", "$email_body", $headers)) {
             ?>
             <p style="color: red; font-weight: bold; text-align: center">A new password was created and sent to your registered e-mail.</p>
             <center><a href="JavaScript:window.history.go(-2)">Return</a></center>
