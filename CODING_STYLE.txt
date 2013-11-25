@@ -2,4 +2,89 @@
 Coding style
 ==================================
 
-Default formatter options from NetBeans (7.3.1)
+Default formatter options from NetBeans (7.3.1):
+
+======Tab length======
+	4 spaces
+
+======No newline for======
+	else,
+	else if,
+	while,
+	catch,
+	access modifiers
+
+======Curly braces on the same line for======
+	class declarations,
+	method declaration,
+	if,
+	else,
+	else if,
+	for,
+	foreach,
+	while,
+	do,
+	switch,
+	try,
+	catch
+
+======One newline======
+	Before/after:
+		namespace,
+		use,
+		class,
+		function,
+	Before/between/after:
+		fields,
+	After:
+		opening tag (PHP),
+	
+
+======No newline======
+	Before:
+		class end,
+		function end,
+		closing tag,
+	After:
+		class header,
+		opening tag (HTML),
+
+======One space======
+	Before:
+		keywords:
+			while,
+			else,
+			else if,
+			catch,
+		parenthesis:
+			if,
+			else if,
+			for,
+			foreach,
+			while,
+			catch,
+			switch,
+		left curly braces:
+			class declarations,
+			method declarations,
+			if,
+			else if,
+			else,
+			while,
+			for,
+			foreach,
+			do,
+			switch,
+			try,
+			catch,
+		others:
+			before:
+				closing tag (PHP)
+			after:
+				comma,
+				semicolon,
+				type diffusion,
+				keywords,
+				short tags (PHP)
+
+====== ======
