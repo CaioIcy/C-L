@@ -20,7 +20,7 @@
         <vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\View\change_lexicon.php"/>
         <vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\View\change_scene.php"/>
         <vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\class_database.php"/>
-        <vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\View\code.php"/>
+        <vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\code.php"/>
         <vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\create.php"/>
         <vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\database_status.php"/>
         <vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\database_support.php"/>
@@ -33,14 +33,14 @@
         <vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\gerador_daml.php"/>
         <vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\gerador_xml.php"/>
         <vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\gerarGrafo.php"/>
-        <vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\View\heading.php"/>
+        <vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\heading.php"/>
         <vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\index.php"/>
         <vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\inicio.php"/>
         <vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\interface_support.php"/>
         <vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\View\interface_tree.php"/>
         <vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\View\login.php"/>
         <vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\View\logout.php"/>
-        <vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\View\main.php"/>
+        <vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\main.php"/>
         <vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\monta_relacoes.php"/>
         <vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\mostraXML.php"/>
         <vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\mostrarProjeto.php"/>

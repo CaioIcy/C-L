@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include_once '/../funcoes_genericas.php';
+include_once 'funcoes_genericas.php';
 
 
 check_user_authentication("index.php");
@@ -157,7 +157,7 @@ if (isset($id_project)) {
             <table width="100%" cellspacing="0" cellpadding="0">
                 <tr bgcolor="#E0FFFF">
                    <td width="294" height="79" > <!--<img src="Images/Logo.jpg"></td>-->
-                        <img src="/../Images/Logo_C.jpg" width="190" height="100"></td>
+                        <img src="Images/Logo_C.jpg" width="190" height="100"></td>
                     <td align="right" valign="top">
                         <table>
                             <tr>
@@ -331,8 +331,8 @@ if (isset($id_project)) {
                     </td>
                 </tr>
                 <tr height="33" bgcolor="#00359F" background="/../Images/FrameTop.gif">
-                    <td background="/../Images/TopLeft.gif" width="294" valign="baseline"></td>
-                    <td background="/../Images/FrameTop.gif" valign="baseline"></td>
+                    <td background="Images/TopLeft.gif" width="294" valign="baseline"></td>
+                    <td background="Images/FrameTop.gif" valign="baseline"></td>
                 </tr>
             </table>
         </form>
