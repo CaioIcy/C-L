@@ -21,11 +21,11 @@
         //-->
     </SCRIPT>
     <p style="color: red; font-weight: bold; text-align: center">
-        <img src="Images/Logo_CEL.jpg" width="180" height="100"><br/><br/>
+        <img src="../Images/Logo_CEL.jpg" width="180" height="100"><br/><br/>
     </p>
 
     <body bgcolor="#FFFFFF">
-        <form action="send_new_password.php" method="post">
+        <form action="../send_new_password.php" method="post">
             <div align="center">
 
                 <?php
@@ -55,6 +55,6 @@
             <br>
             <br>
             <center><a href="JavaScript:window.history.go(-1)">Return</a></center>
-        </form<i><a href="showSource.php?file=forgotten_password.php">See the source code!</a></i>
+        </form<i><a href="../showSource.php?file=forgotten_password.php">See the source code!</a></i>
     </body>
 </html>

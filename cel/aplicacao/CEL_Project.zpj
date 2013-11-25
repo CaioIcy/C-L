@@ -38,7 +38,7 @@
         <vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\inicio.php"/>
         <vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\interface_support.php"/>
         <vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\interface_tree.php"/>
-        <vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\login.php"/>
+        <vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\View\login.php"/>
         <vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\logout.php"/>
         <vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\main.php"/>
         <vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\monta_relacoes.php"/>
