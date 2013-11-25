@@ -84,11 +84,11 @@ if (isset($id_project)) {   // $id_projeto soh nao estara setada caso seja a pri
 
 if (isset($id_project)) {
     ?>
-            var url = 'adds_scenario.php?id_projeto=' + '<?= $id_project ?>';
+            var url = 'View/adds_scenario.php?id_projeto=' + '<?= $id_project ?>';
     <?php
 } else {
     ?>
-            var url = 'adds_scenario.php?'
+            var url = 'View/adds_scenario.php?'
     <?php
 }
 ?>
