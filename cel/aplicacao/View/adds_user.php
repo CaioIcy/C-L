@@ -132,7 +132,7 @@ if (isset($submit)) {   // Se chamado pelo botao de submit
 
 // Redireciona o usuario para a parte de inclusao de projetos
 opener.location.replace('index.php');
-open('adds_project.php', '', 'dependent,height=300,width=550,resizable,scrollbars,titlebar');
+open('View/adds_project.php', '', 'dependent,height=300,width=550,resizable,scrollbars,titlebar');
 self.close();
 
 
