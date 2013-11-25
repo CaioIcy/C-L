@@ -81,31 +81,31 @@ if (!(function_exists("gerar_xml"))) {
 
         $id_temp = "";
 
-        $vetor_todos_lexicos = load_vetor_lexico($id_projeto, 0, false);
+        $vetor_todos_lexicos = load_lexicon_vector($id_projeto, 0, false);
 
         // Para cada cen�rio
 
         while ($row = mysql_fetch_row($tb_cenario)) {
             $id_cenario = "<ID>" . $row[0] . "</ID>";
             $id_current_scenario = $row[0];
-            $vetor_cenarios = load_vetor_cenario($id_projeto, $id_current_scenario, true);
+            $vetor_cenarios = load_scenario_vector($id_projeto, $id_current_scenario, true);
 
             // Porque usa $id_temp != $id_cenario ? e a variavel primeiro
 
             if (($id_temp != $id_cenario) or (primeiro)) {
                 $titulo = '<titulo id="' . strtr(strip_tags($row[1]), "����������", "aaaaoooeec") . '">' . ucwords(strip_tags($row[1])) . '</titulo>';
 
-                $objetivo = "<objetivo>" . "<sentenca>" . gera_xml_links(monta_links($row[2], $vetor_todos_lexicos, $vetorVazio)) . "</sentenca>" . "<PT/>" . "</objetivo>";
+                $objetivo = "<objetivo>" . "<sentenca>" . gera_xml_links(build_links($row[2], $vetor_todos_lexicos, $vetorVazio)) . "</sentenca>" . "<PT/>" . "</objetivo>";
 
-                $contexto = "<contexto>" . "<sentenca>" . gera_xml_links(monta_links($row[3], $vetor_todos_lexicos, $vetor_cenarios)) . "</sentenca>" . "<PT/>" . "</contexto>";
+                $contexto = "<contexto>" . "<sentenca>" . gera_xml_links(build_links($row[3], $vetor_todos_lexicos, $vetor_cenarios)) . "</sentenca>" . "<PT/>" . "</contexto>";
 
-                $atores = "<atores>" . "<sentenca>" . gera_xml_links(monta_links($row[4], $vetor_todos_lexicos, $vetorVazio)) . "</sentenca>" . "<PT/>" . "</atores>";
+                $atores = "<atores>" . "<sentenca>" . gera_xml_links(build_links($row[4], $vetor_todos_lexicos, $vetorVazio)) . "</sentenca>" . "<PT/>" . "</atores>";
 
-                $recursos = "<recursos>" . "<sentenca>" . gera_xml_links(monta_links($row[5], $vetor_todos_lexicos, $vetorVazio)) . "</sentenca>" . "<PT/>" . "</recursos>";
+                $recursos = "<recursos>" . "<sentenca>" . gera_xml_links(build_links($row[5], $vetor_todos_lexicos, $vetorVazio)) . "</sentenca>" . "<PT/>" . "</recursos>";
 
-                $excecao = "<excecao>" . "<sentenca>" . gera_xml_links(monta_links($row[7], $vetor_todos_lexicos, $vetorVazio)) . "</sentenca>" . "<PT/>" . "</excecao>";
+                $excecao = "<excecao>" . "<sentenca>" . gera_xml_links(build_links($row[7], $vetor_todos_lexicos, $vetorVazio)) . "</sentenca>" . "<PT/>" . "</excecao>";
 
-                $episodios = "<episodios>" . "<sentenca>" . gera_xml_links(monta_links($row[6], $vetor_todos_lexicos, $vetor_cenarios)) . "</sentenca>" . "<PT/>" . "</episodios>";
+                $episodios = "<episodios>" . "<sentenca>" . gera_xml_links(build_links($row[6], $vetor_todos_lexicos, $vetor_cenarios)) . "</sentenca>" . "<PT/>" . "</episodios>";
 
                 $xml_resultante = $xml_resultante . "<cenario>\n";
 
@@ -151,7 +151,7 @@ if (!(function_exists("gerar_xml"))) {
         // Para cada simbolo do lexico
 
         while ($row = mysql_fetch_row($tb_lexico)) {
-            $vetor_lexicos = load_vetor_lexico($id_projeto, $row[0], true);
+            $vetor_lexicos = load_lexicon_vector($id_projeto, $row[0], true);
             quicksort($vetor_lexicos, 0, count($vetor_lexicos) - 1, 'lexico');
             $id_lexico = "<ID>" . $row[0] . "</ID>";
             if (($id_temp != $id_lexico) or (primeiro)) {
@@ -175,9 +175,9 @@ if (!(function_exists("gerar_xml"))) {
                 }
                 $sinonimo .= "</sinonimos>";
 
-                $nocao = "<nocao>" . "<sentenca>" . gera_xml_links(monta_links($row[2], $vetor_lexicos, $vetorVazio)) . "<PT/>" . "</sentenca>" . "</nocao>";
+                $nocao = "<nocao>" . "<sentenca>" . gera_xml_links(build_links($row[2], $vetor_lexicos, $vetorVazio)) . "<PT/>" . "</sentenca>" . "</nocao>";
 
-                $impacto = "<impacto>" . "<sentenca>" . gera_xml_links(monta_links($row[3], $vetor_lexicos, $vetorVazio)) . "<PT/>" . "</sentenca>" . "</impacto>";
+                $impacto = "<impacto>" . "<sentenca>" . gera_xml_links(build_links($row[3], $vetor_lexicos, $vetorVazio)) . "<PT/>" . "</sentenca>" . "</impacto>";
 
                 $xml_resultante = $xml_resultante . "<lexico>\n";
 
