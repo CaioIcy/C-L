@@ -125,6 +125,6 @@ $user_password = $row[4];
                 </tr>
             </table>
         </form>
-        <br><i><a href="showSource.php?file=Call_UpdUser.php">See the source code!</a></i>
+        <br><i><a href="View/showSource.php?file=Call_UpdUser.php">See the source code!</a></i>
     </body>
 </html>

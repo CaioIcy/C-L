@@ -294,7 +294,7 @@ if (isset($id_project)) {
 //Atores:    Usu�rio, Sistema.	
 //Recursos:  Interface	
 //Epis�dios: O usu�rio clica na op��o de alterar cadastro da interface
-                                    ?> <a href="#" onClick="window.open('/../Call_UpdUser.php', '_blank', 'dependent,height=300,width=550,resizable,scrollbars,titlebar');">Alterar 
+                                    ?> <a href="#" onClick="window.open('Call_UpdUser.php', '_blank', 'dependent,height=300,width=550,resizable,scrollbars,titlebar');">Alterar 
                                         Cadastro</a>&nbsp;&nbsp;&nbsp; 
 
 
