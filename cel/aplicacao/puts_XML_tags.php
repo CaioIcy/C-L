@@ -156,7 +156,7 @@ function make_links_XML($text, $lexicon_vector, $scenario_vector) {
     marca_texto($text, $scenario_vector, "cenario");
     marca_texto_cenario($text, $lexicon_vector, $scenario_vector);
 
-    $str = changes_XML_brackets($text);
-    return $str;
+    $result_string = changes_XML_brackets($text);
+    return $result_string;
 }
 ?> 
