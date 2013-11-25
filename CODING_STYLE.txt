@@ -2,7 +2,10 @@
 Coding style
 ==================================
 
-Default formatter options from NetBeans (7.3.1):
+If using NetBeans IDE (7.3.1), use default formatter options.
+
+======Naming======
+    Separate words with an underscore ( _ )
 
 ======Tab length======
 	4 spaces
@@ -87,4 +90,3 @@ Default formatter options from NetBeans (7.3.1):
 				keywords,
 				short tags (PHP)
 
-====== ======
