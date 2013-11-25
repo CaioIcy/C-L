@@ -57,7 +57,7 @@ if (isset($submit)) {
 
         opener.parent.frames['code'].location.reload();
         opener.parent.frames['text'].location.replace('main.php?id_projeto=<?= $_SESSION['id_projeto_corrente'] ?>');
-        location.href = "adds_lexicon.php?id_projeto=<?= $id_project ?>&sucesso=s";
+        location.href = "View/adds_lexicon.php?id_projeto=<?= $id_project ?>&sucesso=s";
 
     </script>   
 
