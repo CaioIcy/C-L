@@ -1,15 +1,16 @@
 <?php
 
 /*
- * Module that puts the tags of the links in the XML files
+ * File: puts_XML_tags.php
+ * Purpose: puts the tags of the links in the XML files
  */
 
 include_once 'puts_links.php';
 
 function puts_XML_tag($string) {
 
-    $r = "<link ref=\"$string\">$string </link>";
-    return $r;
+    $tagged_string = "<link ref=\"$string\">$string </link>";
+    return $tagged_string;
 }
 
 function get_XML_id($string) {
@@ -26,40 +27,41 @@ function get_XML_id($string) {
 }
 
 function changes_XML_brackets($string) {
-    $open_count = 0;
-    $close_count = 0;
-    $beginning;
-    $end;
-    $x = 0;
-    $y = 0;
-    $vector_id;
-    $link_original;
-    $link_new;
-    $buffer3 = '';
-    $buffer = 0;
-    $i = 0;
     $string_size = strlen($string);
-
+    $open_count = 0;
+    $i = 0;
     while ($i <= $string_size) {
         if ($string[$i] == '}') {
             $open_count = $open_count + 1;
+        } else {
+            //do nothing
         }
         $i++;
-    } // FIM WHILE 1
+    }
 
+    $close_count = 0;
     $i = 0;
     while ($i <= $string_size) {
         if ($string[$i] == '}') {
             $close_count = $close_count + 1;
+        } else {
+            //do nothing
         }
         $i++;
-    } // FIM WHILE 2
+    }
 
     $i = 0;
     if ($open_count == 0) {
         return $string;
+    } else {
+        // do nothing
     }
 
+    $beginning;
+    $end;
+    $buffer = 0;
+    $x = 0;
+    $y = 0;
     $i = 0;
     while ($i <= $string_size) {
         if ($string[$i] == '{') {
@@ -67,7 +69,11 @@ function changes_XML_brackets($string) {
             if ($buffer == 1) {
                 $beginning[$x] = $i;
                 $x++;
+            } else {
+                //do nothing
             }
+        } else {
+            //do nothing
         }
 
         if ($string[$i] == '}') {
@@ -75,10 +81,18 @@ function changes_XML_brackets($string) {
             if ($buffer == 0) {
                 $end[$y] = $i + 1;
                 $y++;
+            } else {
+                //do nothing
             }
+        } else {
+            //do nothing
         }
         $i++;
     };
+
+    $link_original;
+    $link_new;
+    $vector_id;
 
     $i = 0;
     while ($i < $x) { //x = numero de links reais - 1    
@@ -89,7 +103,7 @@ function changes_XML_brackets($string) {
         $buffer2 = 0;
         $conta = 0;
         $n = 0;
-        
+
         $vector_id[$i] = get_XML_id($link);
         $link = '**' . $link;
         $marcador = 0;
@@ -102,6 +116,8 @@ function changes_XML_brackets($string) {
                 $n++;
                 $n++;
                 continue;
+            } else {
+                //do nothing
             }
 
             if ($link[$n] == '*' && $link[$n + 1] == '*') {
@@ -109,10 +125,14 @@ function changes_XML_brackets($string) {
                 $link[$n] = '{';
                 $n++;
                 continue;
+            } else {
+                //do nothing
             }
 
             if ($marcador == 1) {
                 $link[$n] = '{';
+            } else {
+                //do nothing
             }
             $n++;
         }
@@ -127,6 +147,7 @@ function changes_XML_brackets($string) {
         $string = str_replace($link_original[$i], $link_new[$i], $string);
         $i++;
     }
+    
     return $string;
 }
 
@@ -135,7 +156,7 @@ function make_links_XML($text, $lexicon_vector, $scenario_vector) {
     marca_texto($text, $scenario_vector, "cenario");
     marca_texto_cenario($text, $lexicon_vector, $scenario_vector);
 
-    $str = changes_XML_brackets($text);
-    return $str;
+    $result_string = changes_XML_brackets($text);
+    return $result_string;
 }
 ?> 

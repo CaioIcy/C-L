@@ -30,7 +30,7 @@ function make_relationship($id_projeto) {
 
         // Monta vetor com titulo dos cenarios
 
-        $vetor_cenarios = load_vetor_cenario($id_projeto, $id_current_scenario);
+        $vetor_cenarios = load_scenario_vector($id_projeto, $id_current_scenario);
 
         // Monta vetor com nome e sinonimos de todos os lexicos
 

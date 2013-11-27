@@ -1,49 +1,54 @@
 <?php
 
 /*
+ * File: puts_links.php
+ * Purpose: 
+ */
+
+/*
  * To prevent the current lexicon to create a link to itself.
  * Function that loads the vector with all the titles of the lexicons and their
  * synyonyms EXCEPT the ones passed through $id_current_lexicon.
  */
 
-function load_vetor_lexico($id_projeto, $id_current_lexicon, $semAtual) {
-    $vetorDeLexicos = array();
-    if ($semAtual) {
-        $queryLexicos = "SELECT id_lexico, nome    
+function load_lexicon_vector($id_project, $id_current_lexicon, $no_current) {
+    $lexicon_vector = array();
+    if ($no_current) {
+        $query_lexicon = "SELECT id_lexico, nome    
 							FROM lexico    
-							WHERE id_projeto = '$id_projeto' AND id_lexico <> '$id_current_lexicon' 
+							WHERE id_projeto = '$id_project' AND id_lexico <> '$id_current_lexicon' 
 							ORDER BY nome DESC";
 
-        $querySinonimos = "SELECT id_lexico, nome 
+        $query_synonym = "SELECT id_lexico, nome 
 							FROM sinonimo
-							WHERE id_projeto = '$id_projeto' AND id_lexico <> '$id_current_lexicon' 
+							WHERE id_projeto = '$id_project' AND id_lexico <> '$id_current_lexicon' 
 							ORDER BY nome DESC";
     } else {
 
-        $queryLexicos = "SELECT id_lexico, nome    
+        $query_lexicon = "SELECT id_lexico, nome    
 							FROM lexico    
-							WHERE id_projeto = '$id_projeto' 
+							WHERE id_projeto = '$id_project' 
 							ORDER BY nome DESC";
 
-        $querySinonimos = "SELECT id_lexico, nome    
+        $query_synonym = "SELECT id_lexico, nome    
 							FROM sinonimo
-							WHERE id_projeto = '$id_projeto' ORDER BY nome DESC";
+							WHERE id_projeto = '$id_project' ORDER BY nome DESC";
     }
 
-    $resultadoQueryLexicos = mysql_query($queryLexicos) or die("Error while sending the selection query in the lexicon table!" . mysql_error());
+    $query_lexicon_result = mysql_query($query_lexicon) or die("Error while sending the selection query in the lexicon table!" . mysql_error());
 
     $i = 0;
-    while ($linhaLexico = mysql_fetch_object($resultadoQueryLexicos)) {
-        $vetorDeLexicos[$i] = $linhaLexico;
+    while ($lexicon_line = mysql_fetch_object($query_lexicon_result)) {
+        $lexicon_vector[$i] = $lexicon_line;
         $i++;
     }
 
-    $resultadoQuerySinonimos = mysql_query($querySinonimos) or die("Error while sending the selection query in the synonym table!" . mysql_error());
-    while ($linhaSinonimo = mysql_fetch_object($resultadoQuerySinonimos)) {
-        $vetorDeLexicos[$i] = $linhaSinonimo;
+    $query_synonym_result = mysql_query($query_synonym) or die("Error while sending the selection query in the synonym table!" . mysql_error());
+    while ($synonym_line = mysql_fetch_object($query_synonym_result)) {
+        $lexicon_vector[$i] = $synonym_line;
         $i++;
     }
-    return $vetorDeLexicos;
+    return $lexicon_vector;
 }
 
 /*
@@ -52,106 +57,104 @@ function load_vetor_lexico($id_projeto, $id_current_lexicon, $semAtual) {
  * EXCEPT the ones passed through $id_current_scenario.
  */
 
-function load_vetor_cenario($id_projeto, $id_current_scenario, $semAtual) {
-    if (!isset($vetorDeCenarios)) {
-        $vetorDeCenarios = array();
+function load_scenario_vector($id_project, $id_current_scenario, $no_current) {
+    if (!isset($scenario_vector)) {
+        $scenario_vector = array();
     }
-    if ($semAtual) {
-        $queryCenarios = "SELECT id_cenario, titulo    
+    if ($no_current) {
+        $query_scenarios = "SELECT id_cenario, titulo    
 							FROM cenario    
-							WHERE id_projeto = '$id_projeto' AND id_cenario <> '$id_current_scenario' 
+							WHERE id_projeto = '$id_project' AND id_cenario <> '$id_current_scenario' 
 							ORDER BY titulo DESC";
     } else {
-        $queryCenarios = "SELECT id_cenario, titulo    
+        $query_scenarios = "SELECT id_cenario, titulo    
 							FROM cenario    
-							WHERE id_projeto = '$id_projeto' 
+							WHERE id_projeto = '$id_project' 
 							ORDER BY titulo DESC";
     }
 
-    $resultadoQueryCenarios = mysql_query($queryCenarios) or die("Error while sending the selection query" . mysql_error());
+    $query_scenarios_result = mysql_query($query_scenarios) or die("Error while sending the selection query" . mysql_error());
 
     $i = 0;
-    while ($linhaCenario = mysql_fetch_object($resultadoQueryCenarios)) {
-        $vetorDeCenarios[$i] = $linhaCenario;
+    while ($scenario_line = mysql_fetch_object($query_scenarios_result)) {
+        $scenario_vector[$i] = $scenario_line;
         $i++;
     }
 
-    return $vetorDeCenarios;
+    return $scenario_vector;
 }
 
-//Splits the array in two
-function divide_array(&$vet, $ini, $fim, $tipo) {
-    $i = $ini;
-    $j = $fim;
+function split_array_in_two(&$vector, $start, $finish, $type) {
+    $i = $start;
+    $j = $finish;
     $dir = 1;
 
     while ($i < $j) {
-        if (strcasecmp($tipo, 'cenario') == 0) {
-            if (strlen($vet[$i]->titulo) < strlen($vet[$j]->titulo)) {
-                $str_temp = $vet[$i];
-                $vet[$i] = $vet[$j];
-                $vet[$j] = $str_temp;
+        if (strcasecmp($type, 'cenario') == 0) {
+            if (strlen($vector[$i]->titulo) < strlen($vector[$j]->titulo)) {
+                $temporary_string = $vector[$i];
+                $vector[$i] = $vector[$j];
+                $vector[$j] = $temporary_string;
                 $dir--;
             }
         } else {
-            if (strlen($vet[$i]->nome) < strlen($vet[$j]->nome)) {
-                $str_temp = $vet[$i];
-                $vet[$i] = $vet[$j];
-                $vet[$j] = $str_temp;
+            if (strlen($vector[$i]->nome) < strlen($vector[$j]->nome)) {
+                $temporary_string = $vector[$i];
+                $vector[$i] = $vector[$j];
+                $vector[$j] = $temporary_string;
                 $dir--;
             }
         }
-        if ($dir == 1)
+        if ($dir == 1) {
             $j--;
-        else
+        } else {
             $i++;
+        }
     }
 
     return $i;
 }
 
-//Sorts the array
-function quicksort(&$vet, $ini, $fim, $tipo) {
-    if ($ini < $fim) {
-        $k = divide_array($vet, $ini, $fim, $tipo);
-        quicksort($vet, $ini, $k - 1, $tipo);
-        quicksort($vet, $k + 1, $fim, $tipo);
+function quicksort(&$vector, $start, $finish, $type) {
+    if ($start < $finish) {
+        $k = split_array_in_two($vector, $start, $finish, $type);
+        quicksort($vector, $start, $k - 1, $type);
+        quicksort($vector, $k + 1, $finish, $type);
     }
 }
 
 /*
  * Function that builds the links according to the text, passed through the
- * parameter $text. Leixcons, passed through $lexiconVector. And scenarios,
- * passed through $scenariosVector
+ * parameter $text. Leixcons, passed through $lexicon_vector. And scenarios,
+ * passed through $scenarios_vector
  */
 
-function monta_links($text, $lexiconVector, $scenariosVector) {
-    $copiaTexto = $text;
-    if (!isset($vetorAuxLexicos)) {
-        $vetorAuxLexicos = array();
+function build_links($text, $lexicon_vector, $scenarios_vector) {
+    $copy_text = $text;
+    if (!isset($aux_vector_lexicon)) {
+        $aux_vector_lexicon = array();
     }
-    if (!isset($vetorAuxCenarios)) {
-        $vetorAuxCenarios = array();
+    if (!isset($aux_vector_scenarios)) {
+        $aux_vector_scenarios = array();
     }
-    if (!isset($scenariosVector)) {
-        $scenariosVector = array();
+    if (!isset($scenarios_vector)) {
+        $scenarios_vector = array();
     }
-    if (!isset($lexiconVector)) {
-        $lexiconVector = array();
+    if (!isset($lexicon_vector)) {
+        $lexicon_vector = array();
     }
 
     // If the scenarios vector if empty, it will only search for references to lexicon
-
-    if (count($scenariosVector) == 0) {
+    if (count($scenarios_vector) == 0) {
 
         $i = 0;
         $a = 0;
-        while ($i < count($lexiconVector)) {
-            $nomeLexico = escape_metacharacters($lexiconVector[$i]->nome);
-            $regex = "/(\s|\b)(" . $nomeLexico . ")(\s|\b)/i";
-            if (preg_match($regex, $copiaTexto) != 0) {
-                $copiaTexto = preg_replace($regex, " ", $copiaTexto);
-                $vetorAuxLexicos[$a] = $lexiconVector[$i];
+        while ($i < count($lexicon_vector)) {
+            $name_lexicon = escape_metacharacters($lexicon_vector[$i]->nome);
+            $regex = "/(\s|\b)(" . $name_lexicon . ")(\s|\b)/i";
+            if (preg_match($regex, $copy_text) != 0) {
+                $copy_text = preg_replace($regex, " ", $copy_text);
+                $aux_vector_lexicon[$a] = $lexicon_vector[$i];
                 $a++;
             }
             $i++;
@@ -159,106 +162,104 @@ function monta_links($text, $lexiconVector, $scenariosVector) {
     } else {
 
         // If the scenarios vector is NOT empty, it will search for lexicon and scenarios
-
-        $tamLexicos = count($lexiconVector);
-        $tamCenarios = count($scenariosVector);
-        $tamanhoTotal = $tamLexicos + $tamCenarios;
+        $lexicon_size = count($lexicon_vector);
+        $scenarios_size = count($scenarios_vector);
+        $total_size = $lexicon_size + $scenarios_size;
         $i = 0;
         $j = 0;
         $a = 0;
         $b = 0;
-        $contador = 0;
-        while ($contador < $tamanhoTotal) {
-            if (($i < $tamLexicos ) && ($j < $tamCenarios)) {
-                if (strlen($scenariosVector[$j]->titulo) < strlen($lexiconVector[$i]->nome)) {
-                    $nomeLexico = escape_metacharacters($lexiconVector[$i]->nome);
-                    $regex = "/(\s|\b)(" . $nomeLexico . ")(\s|\b)/i";
-                    if (preg_match($regex, $copiaTexto) != 0) {
-                        $copiaTexto = preg_replace($regex, " ", $copiaTexto);
-                        $vetorAuxLexicos[$a] = $lexiconVector[$i];
+        $counter = 0;
+        while ($counter < $total_size) {
+            if (($i < $lexicon_size ) && ($j < $scenarios_size)) {
+                if (strlen($scenarios_vector[$j]->titulo) < strlen($lexicon_vector[$i]->nome)) {
+                    $name_lexicon = escape_metacharacters($lexicon_vector[$i]->nome);
+                    $regex = "/(\s|\b)(" . $name_lexicon . ")(\s|\b)/i";
+                    if (preg_match($regex, $copy_text) != 0) {
+                        $copy_text = preg_replace($regex, " ", $copy_text);
+                        $aux_vector_lexicon[$a] = $lexicon_vector[$i];
                         $a++;
                     }
                     $i++;
                 } else {
 
-                    $tituloCenario = escape_metacharacters($scenariosVector[$j]->titulo);
-                    $regex = "/(\s|\b)(" . $tituloCenario . ")(\s|\b)/i";
-                    if (preg_match($regex, $copiaTexto) != 0) {
-                        $copiaTexto = preg_replace($regex, " ", $copiaTexto);
-                        $vetorAuxCenarios[$b] = $scenariosVector[$j];
+                    $scenario_title = escape_metacharacters($scenarios_vector[$j]->titulo);
+                    $regex = "/(\s|\b)(" . $scenario_title . ")(\s|\b)/i";
+                    if (preg_match($regex, $copy_text) != 0) {
+                        $copy_text = preg_replace($regex, " ", $copy_text);
+                        $aux_vector_scenarios[$b] = $scenarios_vector[$j];
                         $b++;
                     }
                     $j++;
                 }
-            } else if ($tamLexicos == $i) {
+            } else if ($lexicon_size == $i) {
 
-                $tituloCenario = escape_metacharacters($scenariosVector[$j]->titulo);
-                $regex = "/(\s|\b)(" . $tituloCenario . ")(\s|\b)/i";
-                if (preg_match($regex, $copiaTexto) != 0) {
-                    $copiaTexto = preg_replace($regex, " ", $copiaTexto);
-                    $vetorAuxCenarios[$b] = $scenariosVector[$j];
+                $scenario_title = escape_metacharacters($scenarios_vector[$j]->titulo);
+                $regex = "/(\s|\b)(" . $scenario_title . ")(\s|\b)/i";
+                if (preg_match($regex, $copy_text) != 0) {
+                    $copy_text = preg_replace($regex, " ", $copy_text);
+                    $aux_vector_scenarios[$b] = $scenarios_vector[$j];
                     $b++;
                 }
                 $j++;
-            } else if ($tamCenarios == $j) {
+            } else if ($scenarios_size == $j) {
 
-                $nomeLexico = escape_metacharacters($lexiconVector[$i]->nome);
-                $regex = "/(\s|\b)(" . $nomeLexico . ")(\s|\b)/i";
-                if (preg_match($regex, $copiaTexto) != 0) {
-                    $copiaTexto = preg_replace($regex, " ", $copiaTexto);
-                    $vetorAuxLexicos[$a] = $lexiconVector[$i];
+                $name_lexicon = escape_metacharacters($lexicon_vector[$i]->nome);
+                $regex = "/(\s|\b)(" . $name_lexicon . ")(\s|\b)/i";
+                if (preg_match($regex, $copy_text) != 0) {
+                    $copy_text = preg_replace($regex, " ", $copy_text);
+                    $aux_vector_lexicon[$a] = $lexicon_vector[$i];
                     $a++;
                 }
                 $i++;
             }
-            $contador++;
+            $counter++;
         }
     }
 
     // Adds the links for lexicon in the text
-
-    $indice = 0;
-    $vetorAux = array();
-    while ($indice < count($vetorAuxLexicos)) {
-        $nomeLexico = escape_metacharacters($vetorAuxLexicos[$indice]->nome);
-        $regex = "/(\s|\b)(" . $nomeLexico . ")(\s|\b)/i";
-        $link = "<a title=\"L�xico\" href=\"main.php?t=l&id=" . $vetorAuxLexicos[$indice]->id_lexico . "\">" . $vetorAuxLexicos[$indice]->nome . "</a>";
-        $vetorAux[$indice] = $link;
-        $text = preg_replace($regex, "$1wzzxkkxy" . $indice . "$3", $text);
-        $indice++;
+    $index = 0;
+    $aux_vector = array();
+    while ($index < count($aux_vector_lexicon)) {
+        $name_lexicon = escape_metacharacters($aux_vector_lexicon[$index]->nome);
+        $regex = "/(\s|\b)(" . $name_lexicon . ")(\s|\b)/i";
+        $link = "<a title=\"L�xico\" href=\"main.php?t=l&id=" . $aux_vector_lexicon[$index]->id_lexico . "\">" . $aux_vector_lexicon[$index]->nome . "</a>";
+        $aux_vector[$index] = $link;
+        $text = preg_replace($regex, "$1wzzxkkxy" . $index . "$3", $text);
+        $index++;
     }
-    $indice2 = 0;
 
-    while ($indice2 < count($vetorAux)) {
-        $linkLexico = ( $vetorAux[$indice2] );
-        $regex = "/(\s|\b)(wzzxkkxy" . $indice2 . ")(\s|\b)/i";
-        $text = preg_replace($regex, "$1" . $linkLexico . "$3", $text);
-        $indice2++;
+    $index_2 = 0;
+    while ($index_2 < count($aux_vector)) {
+        $lexicon_link = ( $aux_vector[$index_2] );
+        $regex = "/(\s|\b)(wzzxkkxy" . $index_2 . ")(\s|\b)/i";
+        $text = preg_replace($regex, "$1" . $lexicon_link . "$3", $text);
+        $index_2++;
     }
 
 
     // Adds the links for scenarios in the text
-
-    $indice = 0;
-    $vetorAuxCen = array();
-    while ($indice < count($vetorAuxCenarios)) {
-        $tituloCenario = escape_metacharacters($vetorAuxCenarios[$indice]->titulo);
-        $regex = "/(\s|\b)(" . $tituloCenario . ")(\s|\b)/i";
-        $link = "$1<a title=\"Cen�rio\" href=\"main.php?t=c&id=" . $vetorAuxCenarios[$indice]->id_cenario . "\"><span style=\"font-variant: small-caps\">" . $vetorAuxCenarios[$indice]->titulo . "</span></a>$3";
-        $vetorAuxCen[$indice] = $link;
-        $text = preg_replace($regex, "$1wzzxkkxyy" . $indice . "$3", $text);
-        $indice++;
+    $index = 0;
+    $aux_vector_scenario_2 = array();
+    while ($index < count($aux_vector_scenarios)) {
+        $scenario_title = escape_metacharacters($aux_vector_scenarios[$index]->titulo);
+        $regex = "/(\s|\b)(" . $scenario_title . ")(\s|\b)/i";
+        $link = "$1<a title=\"Cen�rio\" href=\"main.php?t=c&id=" . $aux_vector_scenarios[$index]->id_cenario . "\"><span style=\"font-variant: small-caps\">" . $aux_vector_scenarios[$index]->titulo . "</span></a>$3";
+        $aux_vector_scenario_2[$index] = $link;
+        $text = preg_replace($regex, "$1wzzxkkxyy" . $index . "$3", $text);
+        $index++;
     }
 
 
-    $indice2 = 0;
-    while ($indice2 < count($vetorAuxCen)) {
-        $linkCenario = ( $vetorAuxCen[$indice2] );
-        $regex = "/(\s|\b)(wzzxkkxyy" . $indice2 . ")(\s|\b)/i";
+    $index_2 = 0;
+    while ($index_2 < count($aux_vector_scenario_2)) {
+        $linkCenario = ( $aux_vector_scenario_2[$index_2] );
+        $regex = "/(\s|\b)(wzzxkkxyy" . $index_2 . ")(\s|\b)/i";
         $text = preg_replace($regex, "$1" . $linkCenario . "$3", $text);
-        $indice2++;
+        $index_2++;
     }
 
     return $text;
 }
+
 ?>

@@ -525,47 +525,47 @@ if (isset($id_project)) {
 
                     $c_id_projeto = $result['id_projeto'];
 
-                    $vetor_of_cenarios = load_vetor_cenario($c_id_projeto, $id, true);
+                    $vetor_of_cenarios = load_scenario_vector($c_id_projeto, $id, true);
                     quicksort($vetor_of_cenarios, 0, count($vetor_of_cenarios) - 1, 'cenario');
 
-                    $vetor_of_lexicos = load_vetor_lexico($c_id_projeto, 0, false);
+                    $vetor_of_lexicos = load_lexicon_vector($c_id_projeto, 0, false);
                     quicksort($vetor_of_lexicos, 0, count($vetor_of_lexicos) - 1, 'lexico');
                     ?>    
 
                     <tr> 
                         <th>Titulo:</th><td CLASS="Estilo">
-                            <?php echo nl2br(monta_links($result['titulo'], $vetor_of_lexicos, $vetorVazio)); ?>
+                            <?php echo nl2br(build_links($result['titulo'], $vetor_of_lexicos, $vetorVazio)); ?>
                         </td> 
 
                     </tr> 
                     <tr> 
                         <th>Objetivo:</th><td CLASS="Estilo">
-                            <?php echo nl2br(monta_links($result['objetivo'], $vetor_of_lexicos, $vetorVazio)); ?>
+                            <?php echo nl2br(build_links($result['objetivo'], $vetor_of_lexicos, $vetorVazio)); ?>
                         </td> 
                     </tr> 
                     <tr> 
                         <th>Contexto:</th><td CLASS="Estilo">
-                            <?php echo nl2br(monta_links($result['contexto'], $vetor_of_lexicos, $vetor_of_cenarios)); ?>		 
+                            <?php echo nl2br(build_links($result['contexto'], $vetor_of_lexicos, $vetor_of_cenarios)); ?>		 
                         </td> 
                     </tr> 
                     <tr> 
                         <th>Atores:</th><td CLASS="Estilo">
-                            <?php echo nl2br(monta_links($result['atores'], $vetor_of_lexicos, $vetorVazio)); ?>
+                            <?php echo nl2br(build_links($result['atores'], $vetor_of_lexicos, $vetorVazio)); ?>
                         </td>  
                     </tr> 
                     <tr> 
                         <th>Recursos:</th><td CLASS="Estilo">
-                            <?php echo nl2br(monta_links($result['recursos'], $vetor_of_lexicos, $vetorVazio)); ?>
+                            <?php echo nl2br(build_links($result['recursos'], $vetor_of_lexicos, $vetorVazio)); ?>
                         </td> 
                     </tr> 
                     <tr> 
                         <th>Exce��o:</th><td CLASS="Estilo">
-                            <?php echo nl2br(monta_links($result['excecao'], $vetor_of_lexicos, $vetorVazio)); ?>
+                            <?php echo nl2br(build_links($result['excecao'], $vetor_of_lexicos, $vetorVazio)); ?>
                         </td> 
                     </tr> 
                     <tr> 
                         <th>Epis�dios:</th><td CLASS="Estilo">
-                            <?php echo nl2br(monta_links($result['episodios'], $vetor_of_lexicos, $vetor_of_cenarios)); ?>
+                            <?php echo nl2br(build_links($result['episodios'], $vetor_of_lexicos, $vetor_of_cenarios)); ?>
 
                         </td> 
                     </tr> 
@@ -596,7 +596,7 @@ if (isset($id_project)) {
 
                     $l_id_projeto = $result['id_projeto'];
 
-                    $vetor_of_lexicos = load_vetor_lexico($l_id_projeto, $id, true);
+                    $vetor_of_lexicos = load_lexicon_vector($l_id_projeto, $id, true);
 
                     quicksort($vetor_of_lexicos, 0, count($vetor_of_lexicos) - 1, 'lexico');
                     ?>    
@@ -605,7 +605,7 @@ if (isset($id_project)) {
                         </td> 
                     </tr> 
                     <tr> 
-                        <th>No��o:</th><td CLASS="Estilo"><?php echo nl2br(monta_links($result['nocao'], $vetor_of_lexicos, $vetorVazio)); ?>
+                        <th>No��o:</th><td CLASS="Estilo"><?php echo nl2br(build_links($result['nocao'], $vetor_of_lexicos, $vetorVazio)); ?>
                         </td> 
                     </tr> 
                     <tr> 
@@ -613,7 +613,7 @@ if (isset($id_project)) {
                         </td> 
                     </tr> 
                     <tr> 
-                        <th>Impacto(s):</th><td CLASS="Estilo"><?php echo nl2br(monta_links($result['impacto'], $vetor_of_lexicos, $vetorVazio)); ?> 
+                        <th>Impacto(s):</th><td CLASS="Estilo"><?php echo nl2br(build_links($result['impacto'], $vetor_of_lexicos, $vetorVazio)); ?> 
                         </td>
                     </tr> 
                     <tr> 
