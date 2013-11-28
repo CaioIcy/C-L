@@ -82,7 +82,7 @@ if ($submit == 'Entrar') {
         ?>
 
                 <p style="color: red; font-weight: bold; text-align: center">
-                    <img src="Images/Logo_CEL.jpg" width="180" height="180"><br/><br/>
+                    <img src="../Images/Logo_CEL.jpg" width="180" height="180"><br/><br/>
                     &nbsp;&nbsp;&nbsp;&nbsp;Login ou Senha Incorreto</p>
 
         <?php
@@ -91,7 +91,7 @@ if ($submit == 'Entrar') {
         ?>
 
                 <p style="color: green; font-weight: bold; text-align: center">
-                    <img src="Images/Logo_CEL.jpg" width="100" height="100"><br/><br/>
+                    <img src="../Images/Logo_CEL.jpg" width="100" height="100"><br/><br/>
                     &nbsp;&nbsp;&nbsp;&nbsp;Entre com seu Login e Senha:</p>
 
         <?php

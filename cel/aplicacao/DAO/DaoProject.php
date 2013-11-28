@@ -1,22 +1,25 @@
 <?php
 
-assert_options(ASSERT_ACTIVE, 1);
-assert_options(ASSERT_BAIL, 1);
-
 /**
  * File Name: DaoProject.php
  * Propuse: Function that interact with the database
  * 
  * PHP version 5
  */
+
+assert_options(ASSERT_ACTIVE, 1);
+assert_options(ASSERT_BAIL, 1);
+
 require_once '/../bd.inc';
 
 /**
  * Function that select all attributes of a project
  * The selection occurs in table "projeto" database "cel"
  * 
- * @param string $projectName
+ * @param string $projectName Represents the name of the project in database
+ * 
  * @return bool|array
+ * 
  */
 function getProjectNameDatabase($projectName) {
 
@@ -31,9 +34,11 @@ function getProjectNameDatabase($projectName) {
  * Function that select a "id_projeto" from database "cel"
  * The selection occurs in table participa
  * 
- * @param string $projectId
- * @param int $userId
+ * @param string $projectId Represents id of a project in database
+ * int $userId Represents id of an user in database
+ * 
  * @return bool|array
+ * 
  */
 function getProjectIdDatabase($projectId, $userId) {
     
@@ -52,8 +57,10 @@ function getProjectIdDatabase($projectId, $userId) {
  * Function that select all atributtes of lexico from database
  * The selection occurs in table "lexico"
  * 
- * @param string $projectId
+ * @param string $projectId Represents id of a project in database
+ * 
  * @return bool|array 
+ * 
  */
 function selLexiconDatabase($projectId) {
     
@@ -70,14 +77,17 @@ function selLexiconDatabase($projectId) {
  * Function that delete a request of scenario from database using a specific id
  * The deletion occurs in table "pedidocen"
  * 
- * @param strign $projectId
+ * @param strign $projectId Represents id of a project in database
+ * 
  * @return bool
+ * 
  */
 function delRequestScenarioDatabase($projectId) {
     
     assert($projectId>0);
 
-    $queryDelRequestScen = "DELETE FROM pedidocen WHERE id_pojeto=" . $projectId . "";
+    $queryDelRequestScen = "DELETE FROM pedidocen
+        WHERE id_pojeto=" . $projectId . "";
     $deleteRequestScen = mysql_query($queryDelRequestScen);
 
     return $deleteRequestScen;
@@ -87,14 +97,17 @@ function delRequestScenarioDatabase($projectId) {
  * Function that delete a request of lexicon from database using a specific id
  * The deletion occurs in table "pedidolex"
  * 
- * @param string $projectId
+ * @param string $projectId Represents id of a project in database
+ * 
  * @return bool
+ * 
  */
 function delRequestLexiconDatabase($projectId) {
     
     assert($projectId>0);
 
-    $queryDelRequestLex = "DELETE FROM pedidolex WHERE id_projeto=" . $projectId . "";
+    $queryDelRequestLex = "DELETE FROM pedidolex 
+        WHERE id_projeto=" . $projectId . "";
     $deleteRequestLexicon = mysql_query($queryDelRequestLex);
 
     return $deleteRequestLexicon;
@@ -104,14 +117,17 @@ function delRequestLexiconDatabase($projectId) {
  * Function that delete a lextolex from database using a specific id
  * The deletion occurs in table "lextolex"
  * 
- * @param string $idLexicon
+ * @param string $idLexicon Represents id of a lexicon in database
+ * 
  * @return bool
+ * 
  */
 function delLexToLexDatabase($idLexicon) {
     
     assert($idLexicon>0);
     
-    $queryDelLexToLex = "Delete FROM lextolex WHERE id_lexico_from=" . $idLexicon . "";
+    $queryDelLexToLex = "Delete FROM lextolex
+        WHERE id_lexico_from=" . $idLexicon . "";
     $deleteLexToLex = mysql_query($queryDelLexToLex);
 
     return $deleteLexToLex;
@@ -121,7 +137,10 @@ function delLexToLexDatabase($idLexicon) {
  * Function that delete a scentolex from database
  * The deletion occurs in table "centolex"
  * 
- * @param int $idLexicon
+ * @param int $idLexicon Represents id of a lexicon in database
+ * 
+ * @return none
+ * 
  */
 function delScenToLexDatabase($idLexicon) {
     
@@ -137,8 +156,10 @@ function delScenToLexDatabase($idLexicon) {
  * Function that delete a project from database using a specific id
  * The deletion occurs in table "projeto"
  * 
- * @param string $projectId
+ * @param string $projectId Represents id of a project in database
+ * 
  * @return bool
+ * 
  */
 function delProjectDatabase($projectId) {
     
