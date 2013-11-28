@@ -492,28 +492,28 @@ include_once 'algorithm_support';
 
                     session_unregister("reference");
 
-                    $achou = FALSE;
+                    $element_found = FALSE;
 
                     if (isset($_POST['pai'])) {
-                        $pai_nome = $_POST['pai'];
-                        $key2 = concept_exists($pai_nome, $concepts);
-                        $filhos = array();
-                        foreach ($concepts as $key3 => $filho) {
-                            $filho_nome = trim($filho->nome);
+                        $father_name = $_POST['pai'];
+                        $key2 = concept_exists($father_name, $concepts);
+                        $children = array();
+                        foreach ($concepts as $key3 => $son) {
+                            $son_name = trim($son->nome);
                             if (isset($_POST[$key3])) {
-                                $filhos[] = $filho_nome;
+                                $children[] = $son_name;
                             }
                         }
-                        if (count($filhos) > 0) {
-                            create_hierarchy(&$concepts[$key2], $filhos, $concepts);
-                            $achou = true;
+                        if (count($children) > 0) {
+                            create_hierarchy(&$concepts[$key2], $children, $concepts);
+                            $element_found = true;
                         }
                     } else {
                         $finish_relation = true;
                     }
 
 
-                    if (!$achou) {
+                    if (!$element_found) {
                         //tentar montar hierarquia pelo vocabulario minimo.
                     }
                 }
@@ -545,38 +545,38 @@ include_once 'algorithm_support';
 
              */
 
-            function traduz() {
+            function translation() {
                 //Verifica se as listas foram iniciadas.
                 if (isset($_SESSION["lista_de_sujeito"]) && isset($_SESSION["lista_de_objeto"]) &&
                         isset($_SESSION["lista_de_verbo"]) && isset($_SESSION["lista_de_estado"]) &&
                         isset($_SESSION["lista_de_conceitos"]) && isset($_SESSION["lista_de_relacoes"]) &&
                         isset($_SESSION["lista_de_axiomas"])) {
-                    $sujeitos = $_SESSION["lista_de_sujeito"];
-                    $objetos = $_SESSION["lista_de_objeto"];
-                    $verbos = $_SESSION["lista_de_verbo"];
-                    $estados = $_SESSION["lista_de_estado"];
+                    $subjects = $_SESSION["lista_de_sujeito"];
+                    $objects = $_SESSION["lista_de_objeto"];
+                    $verbs = $_SESSION["lista_de_verbo"];
+                    $states = $_SESSION["lista_de_estado"];
                 } else {
                     echo "ERRO! <br>";
                     exit();
                 }
 
-                $lista_de_sujeito_e_objeto = array_merge($sujeitos, $objetos);
-                sort($lista_de_sujeito_e_objeto);
-                $_SESSION['lista_de_sujeito_e_objeto'] = $lista_de_sujeito_e_objeto;
+                $list_of_subjects_objects = array_merge($subjects, $objects);
+                sort($list_of_subjects_objects);
+                $_SESSION['lista_de_sujeito_e_objeto'] = $list_of_subjects_objects;
 
 
                 if ($_SESSION["funcao"] == "sujeito_objeto") {
-                    translate_subject_to_object($lista_de_sujeito_e_objeto, &$_SESSION["lista_de_conceitos"], &$_SESSION["lista_de_relacoes"], &$_SESSION["lista_de_axiomas"]);
+                    translate_subject_to_object($list_of_subjects_objects, &$_SESSION["lista_de_conceitos"], &$_SESSION["lista_de_relacoes"], &$_SESSION["lista_de_axiomas"]);
                     $_SESSION["funcao"] = "verbo";
                 }
 
                 if ($_SESSION["funcao"] == "verbo") {
-                    translate_verbs($verbos, &$_SESSION["lista_de_relacoes"]);
+                    translate_verbs($verbs, &$_SESSION["lista_de_relacoes"]);
                     $_SESSION["funcao"] = "estado";
                 }
 
                 if ($_SESSION["funcao"] == "estado") {
-                    translate_states($estados, &$_SESSION["lista_de_conceitos"], &$_SESSION["lista_de_relacoes"], &$_SESSION["lista_de_axiomas"]);
+                    translate_states($states, &$_SESSION["lista_de_conceitos"], &$_SESSION["lista_de_relacoes"], &$_SESSION["lista_de_axiomas"]);
                     $_SESSION["funcao"] = "organiza";
                 }
 
@@ -619,7 +619,7 @@ include_once 'algorithm_support';
         <?php
     }
 
-    traduz();
+    translation();
     ?>
 
 
