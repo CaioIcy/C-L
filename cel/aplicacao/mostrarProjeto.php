@@ -3,20 +3,22 @@
 include_once 'funcoes_genericas.php';
 include_once 'httprequest.inc';
 
-//Cen�rio  -  Escolher Projeto
-//Objetivo:     Permitir ao Administrador/Usu�rio escolher um projeto.
-//Contexto:     O Administrador/Usu�rio deseja escolher um projeto.
-//Pr�-Condi��es:Login, Ser Administrador
-//Atores:       Administrador, Usu�rio
-//Recursos:     Usu�rios cadastrados
-//Epis�dios:    Caso o Usuario selecione da lista de projetos um projeto da qual ele seja administrador,
-//              ver ADMINISTRADOR ESCOLHE PROJETO.
-//              Caso contr�rio, ver USU�RIO ESCOLHE PROJETO
+/*
+ * Scenario - Choose project
+ * Objective:   Allow the user/administrator to choose a project.
+ * Context:     The user/administrator wisehs to choose a project.
+ *              Pre-conditions: logged in, be registered as an administrator
+ * Actors:      Administrator, user
+ * Resources:   Registered users
+ * Episodes:    1- User selects a project from the project list
+ *              2- If the user selected a project that he administrates, see
+ *                  ADMINISTRATOR CHOOSES PROJECT
+ *              3- Else, see USER CHOOSES PROJECT
+ */
+$database_recuperation = database_connect() or die("Error while connecting to the database.");
 
-$database_recuperation = database_connect() or die("Erro ao conectar ao SGBD");
-
-$qq = "select * from publicacao where id_projeto = $id_project AND versao = $version";
-$query_connecting_database = mysql_query($qq) or die("Erro ao enviar a query");
+$query = "select * from publicacao where id_projeto = $id_project AND versao = $version";
+$query_connecting_database = mysql_query($query) or die("Error while sending query.");
 $row = mysql_fetch_row($query_connecting_database);
 $xml_base = $row[3];
 
