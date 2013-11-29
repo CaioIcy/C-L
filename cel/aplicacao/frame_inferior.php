@@ -8,20 +8,20 @@ check_user_authentication("index.php");        // Cenario: controle de acesso
 // id do respectivo, mostra os dados necess�rios 
 // no frame. 
 
-function frame_inferior($bd, $tipo, $id) {
+function frame_inferior($database, $type_variable, $id) {
     $search = "'<[\/\!]*?[^<>]*?>'si";
     $replace = "";
 
 
-    if ($tipo == "c") {            // Se for cenario 
+    if ($type_variable == "c") {            // Se for cenario 
         // Seleciona os cen�rios que referenciam o cen�rio 
         // com o id passado. 
-        $qry_cenario = "SELECT id_cenario, titulo 
+        $query_cenary = "SELECT id_cenario, titulo 
                             FROM   cenario, centocen 
                             WHERE  id_cenario = id_cenario_from 
                             AND    id_cenario_to = " . $id;
 
-        $tb_cenario = mysql_query($qry_cenario) or
+        $table_cenary = mysql_query($query_cenary) or
                 die("Erro ao enviar a query de selecao.");
         ?> 
 
@@ -31,7 +31,7 @@ function frame_inferior($bd, $tipo, $id) {
             </tr> 
 
             <?php
-            while ($row = mysql_fetch_row($tb_cenario)) {
+            while ($row = mysql_fetch_row($table_cenary)) {
                 // Retira as tags HTML de dentro do titulo do cenario 
                 $row[1] = preg_replace($search, $replace, $row[1]);
                 $link = "<a href=javascript:reCarrega" .
@@ -43,25 +43,25 @@ function frame_inferior($bd, $tipo, $id) {
                 <?php
             } // while 
         } // if 
-        else if ($tipo == "l") {
+        else if ($type_variable == "l") {
             // Seleciona os cen�rios que referenciam o l�xico 
             // com o id passado. 
-            $qry_cenario = "SELECT c.id_cenario, c.titulo 
+            $query_cenary = "SELECT c.id_cenario, c.titulo 
                             FROM   cenario c, centolex cl 
                             WHERE  c.id_cenario = cl.id_cenario 
                             AND    cl.id_lexico = " . $id;
 
-            $tb_cenario = mysql_query($qry_cenario) or
+            $table_cenary = mysql_query($query_cenary) or
                     die("Erro ao enviar a query de selecao.");
 
             // Seleciona os lexicos que referenciam o lexico 
             // com o id passado. 
-            $qry_lexico = "SELECT id_lexico, nome 
+            $query_lexico = "SELECT id_lexico, nome 
                            FROM   lexico, lextolex 
                            WHERE  id_lexico  = id_lexico_from 
                            AND    id_lexico_to = " . $id;
 
-            $tb_lexico = mysql_query($qry_lexico) or
+            $table_lexico = mysql_query($query_lexico) or
                     die("Erro ao enviar a query de selecao.");
             ?> 
 
@@ -78,7 +78,7 @@ function frame_inferior($bd, $tipo, $id) {
                     <tr> 
 
                         <?php
-                        if ($rowc = mysql_fetch_row($tb_cenario)) {
+                        if ($rowc = mysql_fetch_row($table_cenary)) {
                             $rowc[1] = preg_replace($search, $replace, $rowc[1]);
                             $link = "<a href=javascript:reCarrega" .
                                     "('main.php?id=$rowc[0]&t=c');><span style=\"font-variant: small-caps\">$rowc[1]</span></a>";
@@ -91,7 +91,7 @@ function frame_inferior($bd, $tipo, $id) {
                         <td><?= $link ?></td> 
 
                         <?php
-                        if ($rowl = mysql_fetch_row($tb_lexico)) {
+                        if ($rowl = mysql_fetch_row($table_lexico)) {
                             $link = "<a href=javascript:reCarrega" .
                                     "('main.php?id=$rowl[0]&t=l');>$rowl[1]</a>";
                         } // if 
@@ -109,7 +109,7 @@ function frame_inferior($bd, $tipo, $id) {
                     } // if 
                 } // while 
             } //elseif 
-            else if ($tipo == "oc") /* CONCEITO */ {
+            else if ($type_variable == "oc") /* CONCEITO */ {
                 $q = "SELECT   r.id_relacao, r.nome, predicado 
                  FROM     conceito c, relacao_conceito rc, relacao r 
                  WHERE    c.id_conceito = $id 
@@ -124,7 +124,7 @@ function frame_inferior($bd, $tipo, $id) {
                     print "<tr><td CLASS=\"Estilo\"><a href=\"main.php?id=$line[0]&t=or\">$line[1]</a></td><td>$line[2]</TD></tr>";
                 }
             } //elseif 
-            else if ($tipo == "or") /* RELA��O */ {
+            else if ($type_variable == "or") /* RELA��O */ {
                 $q = "SELECT DISTINCT  c.id_conceito, c.nome 
                  FROM     conceito c, relacao_conceito rc, relacao r 
                  WHERE    r.id_relacao = $id 
@@ -139,7 +139,7 @@ function frame_inferior($bd, $tipo, $id) {
                     print "<tr><td CLASS=\"Estilo\"><a href=\"main.php?id=$line[0]&t=oc\">$line[1]</a></td></tr>";
                 }
             } //elseif 
-            else if ($tipo == "oa") /* AXIOMA */ {
+            else if ($type_variable == "oa") /* AXIOMA */ {
 
                 $q = "SELECT   * 
                  FROM     axioma
