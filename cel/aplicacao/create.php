@@ -89,9 +89,9 @@ include_once 'database_support';
 
 
         while ($line = mysql_fetch_array($result, MYSQL_BOTH)) {
-            $tabela = "show create table cel." . $line[0];
-            $atributos = mysql_query($tabela) or die("A consulta � BD falhou : " . mysql_error() . __LINE__);
-            while ($linha = mysql_fetch_array($atributos, MYSQL_BOTH)) {
+            $tabel = "show create table cel." . $line[0];
+            $atributs = mysql_query($tabel) or die("A consulta � BD falhou : " . mysql_error() . __LINE__);
+            while ($linha = mysql_fetch_array($atributs, MYSQL_BOTH)) {
                 print ("\$query = \"$linha[1] ;\";<br>");
                 print ("\$result = mysql_query(\$query) or die(\"A consulta � BD falhou : \" . mysql_error() . __LINE__);<br>");
                 print ("<br>");
