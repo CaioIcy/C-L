@@ -13,9 +13,9 @@ if ($_POST['user'] == "") {
     $sql_user = "select nome from usuario where id_usuario='" . $_SESSION['id_usuario_corrente'] . "';";
     $query_user = mysql_query($sql_user) or die("Erro ao verificar usu�rio!" . mysql_error());
     $result = mysql_fetch_array($query_user);
-    $usuario = $result[0];
+    $user = $result[0];
 } else {
-    $usuario = $_POST['user'];
+    $user = $_POST['user'];
 }
 
 // Recupera nome do projeto 
@@ -25,21 +25,21 @@ $result = mysql_fetch_array($query_project);
 $project = $result[0];
 
 $site = $_SESSION['site'];
-$dir = $_SESSION['diretorio'];
-$arquivo = strtr($project, "������", "aaaooo") . "__" . date("j-m-Y_H-i-s") . ".daml";
+$actual_diretory = $_SESSION['diretorio'];
+$file = strtr($project, "������", "aaaooo") . "__" . date("j-m-Y_H-i-s") . ".daml";
 
 $i = array("title" => $_POST['title'],
-    "creator" => $usuario,
+    "creator" => $user,
     "description" => $_POST['description'],
     "subject" => $_POST['subject'],
     "versionInfo" => $_POST['versionInfo']);
 
 $_SESSION['id_projeto'] = $_SESSION['id_projeto_corrente'];
-$lista_conceitos = get_conceptList();
-$lista_relacoes = get_relationList();
-$lista_axiomas = get_lista_de_axiomas();
+$list_concepts = get_conceptList();
+$list_relations = get_relationList();
+$list_axioms = get_lista_de_axiomas();
 
-$daml = save_daml($site, $dir, $arquivo, $i, $lista_conceitos, $lista_relacoes, $lista_axiomas);
+$daml = save_daml($site, $actual_diretory, $file, $i, $list_concepts, $list_relations, $list_axioms);
 
 mysql_close($database_conection);
 ?>   
