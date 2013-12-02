@@ -5,13 +5,14 @@
  * Propuse: Function related to project
  */
 
-require_once '/../Dao/DaoProject.php';
+require_once '/../Dao/ProjectDAO.php';
 require_once '/../seguranca.php';
 
 assert_options(ASSERT_ACTIVE, 1);
 
 /**
  * Insert a project in database
+ * 
  * @param string $projectName
  * @param string $projectDescription
  * @return projectId
