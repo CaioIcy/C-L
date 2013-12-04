@@ -17,16 +17,16 @@ $data = $dia . "T" . $hora . "Z";
   Objective:
   Save ontology in .daml
   Parameters:
-    - $url_ontology - URL of the Ontology
-    - $local_directory - local directory where the .daml will be stored
-    - $filename - DAML file name (with .daml extension)
-    - $array_info - Array with the following keys ("title" , "creator" , "description" , "subject" , "versionInfo")
-    - $concept_list - List of concepts
-    - $relation_list - List of relations
-    - $axiom_list - List of axioms
+  - $url_ontology - URL of the Ontology
+  - $local_directory - local directory where the .daml will be stored
+  - $filename - DAML file name (with .daml extension)
+  - $array_info - Array with the following keys ("title" , "creator" , "description" , "subject" , "versionInfo")
+  - $concept_list - List of concepts
+  - $relation_list - List of relations
+  - $axiom_list - List of axioms
   Returns:
-    - FALSE - in case there is an error while creating the file
-    - filename - in case the file is created with success
+  - FALSE - in case there is an error while creating the file
+  - filename - in case the file is created with success
  */
 
 function save_daml($url_ontology, $local_directory, $filename, $array_info, $concept_list, $relation_list, $axiom_list) {

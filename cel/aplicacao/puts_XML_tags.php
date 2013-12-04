@@ -147,7 +147,7 @@ function changes_XML_brackets($string) {
         $string = str_replace($link_original[$i], $link_new[$i], $string);
         $i++;
     }
-    
+
     return $string;
 }
 
