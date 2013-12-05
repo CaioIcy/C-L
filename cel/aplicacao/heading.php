@@ -269,7 +269,7 @@ if (isset($id_project)) {
                                         $exists_scenario = verificaGerente($id_user, $id_project);
 
                                         if ($exists_scenario != 0) {
-                                            ?> <a href="#" onClick="window.open('remove_projeto.php', '_blank', 'dependent,height=300,width=550,resizable,scrollbars,titlebar');">Remover 
+                                            ?> <a href="#" onClick="window.open('View/remove_projeto.php', '_blank', 'dependent,height=300,width=550,resizable,scrollbars,titlebar');">Remover 
                                                 Projeto</a>&nbsp;&nbsp;&nbsp; <?php
                                         }
                                     }
