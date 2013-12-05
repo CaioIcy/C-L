@@ -1880,7 +1880,7 @@ if (!(function_exists("chkUser"))) {
 
             <script language="javascript1.3">
 
-                open('View/login.php?url=<?= $url ?>', 'login', 'dependent,height=430,width=490,resizable,scrollbars,titlebar');
+                open('login.php?url=<?= $url ?>', 'login', 'dependent,height=430,width=490,resizable,scrollbars,titlebar');
 
             </script>
 
