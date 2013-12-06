@@ -27,6 +27,7 @@ $XML = "";
      *              2- Display a XSL
      */
 
+    $id_project = $_REQUEST['id_projeto'];
     $database_recuperation = database_connect() or die("Error while connecting to the database");
     if (isset($erase)) {
         if ($erase) {
