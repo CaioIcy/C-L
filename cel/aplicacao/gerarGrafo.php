@@ -23,6 +23,7 @@ $XML = "";
 //Recursos:   Sistema, XML, dados cadastrados do projeto, banco de dados.
 //Epis�dios:  Restri��o: Possuir um XML gerado do projeto
 
+    $id_project = $_REQUEST['id_projeto'];
     $database_recuperation = database_connect() or die("Erro ao conectar ao SGBD");
     $query_database_command = "SELECT * FROM publicacao WHERE id_projeto = '$id_project'";
     $query_connecting_database = mysql_query($query_database_command) or die("Erro ao enviar a query");
