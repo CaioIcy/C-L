@@ -225,11 +225,11 @@ if (isset($id_project)) {
 <?php
 if (isset($id_project)) {
     ?>
-                var url = 'ver_pedido_lexico.php?id_projeto=' + '<?= $id_project ?>';
+                var url = 'View/ver_pedido_lexico.php?id_projeto=' + '<?= $id_project ?>';
     <?php
 } else {
     ?>
-                var url = 'ver_pedido_lexico.php?';
+                var url = 'View/ver_pedido_lexico.php?';
     <?php
 }
 ?>
