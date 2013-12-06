@@ -47,7 +47,8 @@ $user_password = $row[4];
             login = form.login.value;
             senha = form.senha.value;
             senha_conf = form.senha_conf.value;
-            nome = form.nome.value;
+            nome = f
+            orm.nome.value;
             email = form.email.value;
 
             if (login == "")
