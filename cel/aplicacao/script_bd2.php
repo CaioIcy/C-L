@@ -7,10 +7,9 @@
     <body>
 
         <?php
-        session_start();
 
         include_once 'bd.inc';
-        include_once 'auxiliar_bd.php';
+        include_once 'database_support.php';
 
         function convert_impacts() {
             $link = database_connect() or die("Database connection error: " . mysql_error() . __LINE__);
@@ -57,7 +56,7 @@
                     continue;
                 }
                 if ($pegar_id) {
-                    $id = sscanf($line, "%d");
+                    $id = scanf($line, "%d");
                     $id_lexico = $id[0];
                     $pegar_id = 0;
                     continue;
