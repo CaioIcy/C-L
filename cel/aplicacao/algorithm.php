@@ -114,7 +114,7 @@ include_once 'algorithm_support';
                             $_SESSION["job"] = "exist";
                             ?>
                             <SCRIPT language='javascript'>
-                                document.location = "auxiliar_interface.php";
+                                document.location = "interface_support.php";
                             </SCRIPT>
 
 
@@ -174,7 +174,7 @@ include_once 'algorithm_support';
                                 $_SESSION["job"] = "insert_relation";
                                 ?>
                                 <SCRIPT language='javascript'>
-                                    document.location = "auxiliar_interface.php";
+                                    document.location = "interface_support.php";
                                 </SCRIPT>
                                 <?php
                                 exit();
@@ -255,7 +255,7 @@ include_once 'algorithm_support';
                         $_SESSION["job"] = "disjoint";
                         ?>
                         <SCRIPT language='javascript'>
-                            document.location = "auxiliar_interface.php";
+                            document.location = "interface_support.php";
                         </SCRIPT>
                         <?php
                         exit();
@@ -320,7 +320,7 @@ include_once 'algorithm_support';
                     $_SESSION["job"] = "exist";
                     ?>
                     <SCRIPT language='javascript'>
-                        document.location = "auxiliar_interface.php";
+                        document.location = "interface_support.php";
                     </SCRIPT>
                     <?php
                     exit();
@@ -377,7 +377,7 @@ include_once 'algorithm_support';
                     ?>
                     <p>
                         <SCRIPT language='javascript'>
-                            document.location = "auxiliar_interface.php";
+                            document.location = "interface_support.php";
                         </SCRIPT>
                         <?php
                         exit();
@@ -480,9 +480,9 @@ include_once 'algorithm_support';
                         //$_SESSION['nome1'] = $nova_lista_de_conceitos;//
                         $_SESSION["job"] = "reference";
                         ?>
-                        <a href="auxiliar_interface.php">auxiliar_interface</a>
+                        <a href="interface_support.php">auxiliar_interface</a>
                         <SCRIPT language='javascript'>
-                            document.location = "auxiliar_interface.php";
+                            document.location = "interface_support.php";
                         </SCRIPT>
                         <?php
                         exit();

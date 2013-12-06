@@ -403,7 +403,7 @@ function save_algorithm() {
     if ($_SESSION["funcao"] != 'fim') {
         ?>
         <script>
-            document.location = "auxiliar_interface.php";
+            document.location = "interface_support.php";
         </script>
         <?php
     } else {

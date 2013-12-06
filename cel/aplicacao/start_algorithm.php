@@ -20,7 +20,7 @@ if (is_array($lexicon_array)) {
     $_SESSION["nome1"] = 1;
     ?>
     <script language="javascript">
-        window.location = "auxiliar_interface.php";
+        window.location = "interface_support.php";
     </script>
     <?php
     exit();
