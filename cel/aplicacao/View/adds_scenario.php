@@ -44,6 +44,15 @@ function checkIfScenarioExists($project, $title) {
 $database_conection = database_connect() or die("Error while connecting to the SGBD");
 
 if (isset($submit)) {
+    
+    $scene_title = $_POST['titulo'];
+    $scene_goal = $_POST['objetivo'];
+    $scene_context = $_POST['contexto'];
+    $scene_performer = $_POST['atores'];
+    $scene_resource = $_POST['recursos'];
+    $scene_exception = $_POST['excecao'];
+    $scene_episode = $_POST['episodios'];
+    
     $exists_scenario = checkIfScenarioExists($_SESSION['id_projeto_corrente'], $scene_title);
 
     if ($exists_scenario == true) {
