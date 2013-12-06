@@ -44,6 +44,8 @@ if (isset($submit)) {
     </script>
 
 <?php } else {
+    
+    $id_project = $_REQUEST['id_projeto'];
     ?>
     <html>
         <head>
@@ -75,7 +77,7 @@ if (isset($submit)) {
                 $DB = new PGDB ();
                 $select = new QUERY($DB);
                 $select2 = new QUERY($DB);
-                $select->execute("SELECT * FROM pedidocen WHERE id_projeto = " . $id_project . "");
+                $select->execute("SELECT * FROM pedidocen WHERE id_projeto = '" . $id_project . "'");
                 if ($select->getntuples() == 0) {
                     echo "<BR>No requests.<BR>";
                 } else {
