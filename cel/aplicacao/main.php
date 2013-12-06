@@ -192,11 +192,11 @@ if (!isset($_SESSION['id_projeto_corrente'])) {
 <?php
 if (isset($id_project)) {
     ?>
-                var url = 'ver_pedido_cenario.php?id_projeto=' + '<?= $id_project ?>';
+                var url = 'View/ver_pedido_cenario.php?id_projeto=' + '<?= $id_project ?>';
     <?php
 } else {
     ?>
-                var url = 'ver_pedido_cenario.php';
+                var url = 'View/ver_pedido_cenario.php';
     <?php
 }
 ?>
@@ -326,7 +326,7 @@ if (isset($id_project)) {
 ?>
 
     function relationship_user() {
-        var url = 'rel_usuario.php';
+        var url = 'View/rel_usuario.php';
         var where = '_blank';
         var window_spec = 'dependent,height=380,width=550,resizable,scrollbars,titlebar';
         open(url, where, window_spec);
