@@ -262,7 +262,7 @@ function checkEmail(email) {
             </tr>
         </table>
         </form>
-        <br><i><a href="View/showSource.php?file=adds_user.php">Veja o código fonte!</a></i>
+        <br><i><a href="showSource.php?file=adds_user.php">Veja o código fonte!</a></i>
     </body>
 </html>
 
