@@ -44,6 +44,7 @@ if (isset($submit)) {
     </script>
 
 <?php } else {
+    $id_project = $_REQUEST['id_projeto'];
     ?>
     <html>
         <head>
