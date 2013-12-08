@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-include_once 'funcoes_genericas.php';
-include_once 'CELConfig/CELConfig.inc';
+include_once '../funcoes_genericas.php';
+include_once '../CELConfig/CELConfig.inc';
 
 
 

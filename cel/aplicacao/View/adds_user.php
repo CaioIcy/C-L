@@ -128,7 +128,7 @@ if (isset($submit)) {   // Se chamado pelo botao de submit
         $id_usuario_corrente = simple_query("id_usuario", "usuario", "login = '$login'");
 ?>
 
-<script language="javascript1.3">
+<!--<script language="javascript1.3">
 
 // Redireciona o usuario para a parte de inclusao de projetos
 opener.location.replace('index.php');
@@ -136,7 +136,7 @@ open('View/adds_project.php', '', 'dependent,height=300,width=550,resizable,scro
 self.close();
 
 
-</script>
+</script>-->
 
 <?php
     } else {

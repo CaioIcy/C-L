@@ -324,7 +324,7 @@ if (isset($id_project)) {
 // Atores:	  Usu�rio, Sistema.	
 // Recursos:  Interface	
 // Epis�dios: O usu�rio clica na op��o de logout
-                                    ?> <a href="logout.php" target="_parent">Sair</a>&nbsp;&nbsp;&nbsp; <a href="View/help.htm" target="_blank"> 
+                                    ?> <a href="View/logout.php" target="_parent">Sair</a>&nbsp;&nbsp;&nbsp; <a href="View/help.htm" target="_blank"> 
                                         Ajuda</a></td>
                             </tr>
                         </table>
