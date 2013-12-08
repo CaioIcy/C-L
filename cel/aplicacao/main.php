@@ -41,7 +41,7 @@ if (!isset($_SESSION['id_projeto_corrente'])) {
 
 
     <head> 
-        <LINK rel="stylesheet" type="text/css" href="style.css"> 
+        <LINK rel="stylesheet" type="text/css" href="View/Shared/Css/style.css"> 
         <script language="javascript1.3">
 
             // Funcoes que serao usadas quando o script for chamado atraves dele proprio ou da arvore 

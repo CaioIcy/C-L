@@ -5,7 +5,7 @@
 
 <HTML> 
     <HEAD> 
-        <LINK rel="stylesheet" type="text/css" href="style.css"> 
+        <LINK rel="stylesheet" type="text/css" href="View/Shared/Css/style.css"> 
         <TITLE>DAML files recovery</TITLE> 
     </HEAD> 
 
