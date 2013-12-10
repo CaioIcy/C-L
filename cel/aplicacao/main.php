@@ -61,12 +61,12 @@ if (!isset($_SESSION['id_projeto_corrente'])) {
 //              Se usu�rio clica em Alterar ent�o ALTERAR CEN�RIO 
 ?>
 
-    function changes_scene(cenario) {
-        var url = 'change_scene.php?id_projeto=' + '<?= $_SESSION['id_projeto_corrente'] ?>' + '&id_cenario=' + cenario;
-        var where = '_blank';
-        var window_spec = 'dependent,height=660,width=550,resizable,scrollbars,titlebar';
-        open(url, where, window_spec);
-    }
+            function changes_scene(cenario) {
+                var url = 'change_scene.php?id_projeto=' + '<?= $_SESSION['id_projeto_corrente'] ?>' + '&id_cenario=' + cenario;
+                var where = '_blank';
+                var window_spec = 'dependent,height=660,width=550,resizable,scrollbars,titlebar';
+                open(url, where, window_spec);
+            }
 
 <?php
 // Cen�rio - Atualizar Cen�rio 
@@ -80,12 +80,12 @@ if (!isset($_SESSION['id_projeto_corrente'])) {
 //                Se usu�rio clica em Excluir ent�o EXCLUIR CEN�RIO 
 ?>
 
-    function removes_scene(cenario) {
-        var url = 'remove_scenario.php?id_projeto=' + '<?= $_SESSION['id_projeto_corrente'] ?>' + '&id_cenario=' + cenario;
-        var where = '_blank';
-        var window_spec = 'dependent,height=300,width=550,resizable,scrollbars,titlebar';
-        open(url, where, window_spec);
-    }
+            function removes_scene(cenario) {
+                var url = 'remove_scenario.php?id_projeto=' + '<?= $_SESSION['id_projeto_corrente'] ?>' + '&id_cenario=' + cenario;
+                var where = '_blank';
+                var window_spec = 'dependent,height=300,width=550,resizable,scrollbars,titlebar';
+                open(url, where, window_spec);
+            }
 
 <?php
 //Cen�rios -  Atualizar L�xico 
@@ -99,12 +99,12 @@ if (!isset($_SESSION['id_projeto_corrente'])) {
 //                Se usu�rio clica em Alterar ent�o ALTERAR L�XICO 
 ?>
 
-    function changes_lexicon(lexico) {
-        var url = 'change_lexicon.php?id_projeto=' + '<?= $_SESSION['id_projeto_corrente'] ?>' + '&id_lexico=' + lexico;
-        var where = '_blank';
-        var window_spec = 'dependent,height=573,width=570,resizable,scrollbars,titlebar';
-        open(url, where, window_spec);
-    }
+            function changes_lexicon(lexico) {
+                var url = 'change_lexicon.php?id_projeto=' + '<?= $_SESSION['id_projeto_corrente'] ?>' + '&id_lexico=' + lexico;
+                var where = '_blank';
+                var window_spec = 'dependent,height=573,width=570,resizable,scrollbars,titlebar';
+                open(url, where, window_spec);
+            }
 
 <?php
 //Cen�rios -  Atualizar L�xico 
@@ -118,15 +118,15 @@ if (!isset($_SESSION['id_projeto_corrente'])) {
 //                Se usu�rio clica em Excluir ent�o EXCLUIR L�XICO 
 ?>
 
-    function removes_lexicon(lexico) {
-        var url = 'remove_lexicon.php?id_projeto=' + '<?= $_SESSION['id_projeto_corrente'] ?>' + '&id_lexico=' + lexico;
-        var where = '_blank';
-        var window_spec = 'dependent,height=300,width=550,resizable,scrollbars,titlebar';
-        open(url, where, window_spec);
-    }
+            function removes_lexicon(lexico) {
+                var url = 'remove_lexicon.php?id_projeto=' + '<?= $_SESSION['id_projeto_corrente'] ?>' + '&id_lexico=' + lexico;
+                var where = '_blank';
+                var window_spec = 'dependent,height=300,width=550,resizable,scrollbars,titlebar';
+                open(url, where, window_spec);
+            }
 
-    // Funcoes que serao usadas quando o script 
-    // for chamado atraves da heading.php 
+            // Funcoes que serao usadas quando o script 
+            // for chamado atraves da heading.php 
 
 <?php
 // Cen�rio - Atualizar Cen�rio 
@@ -140,12 +140,12 @@ if (!isset($_SESSION['id_projeto_corrente'])) {
 //                Se usu�rio clica em Alterar ent�o ALTERAR CEN�RIO 
 ?>
 
-    function change_concept(concept) {
-        var url = 'alt_conceito.php?id_projeto=' + '<?= $_SESSION['id_projeto_corrente'] ?>' + '&id_conceito=' + conceito;
-        var where = '_blank';
-        var window_spec = 'dependent,height=300,width=550,resizable,scrollbars,titlebar';
-        open(url, where, window_spec);
-    }
+            function change_concept(concept) {
+                var url = 'alt_conceito.php?id_projeto=' + '<?= $_SESSION['id_projeto_corrente'] ?>' + '&id_conceito=' + conceito;
+                var where = '_blank';
+                var window_spec = 'dependent,height=300,width=550,resizable,scrollbars,titlebar';
+                open(url, where, window_spec);
+            }
 
 <?php
 // Cen�rio - Atualizar Conceito
@@ -159,20 +159,20 @@ if (!isset($_SESSION['id_projeto_corrente'])) {
 //                Se usu�rio clica em Excluir ent�o EXCLUIR CEN�RIO 
 ?>
 
-    function remove_conceito(concept) {
-        var url = 'remove_concept.php?id_projeto=' + '<?= $_SESSION['id_projeto_corrente'] ?>' + '&id_conceito=' + concept;
-        var where = '_blank';
-        var window_spec = 'dependent,height=300,width=550,resizable,scrollbars,titlebar';
-        open(url, where, window_spec);
-    }
+            function remove_conceito(concept) {
+                var url = 'remove_concept.php?id_projeto=' + '<?= $_SESSION['id_projeto_corrente'] ?>' + '&id_conceito=' + concept;
+                var where = '_blank';
+                var window_spec = 'dependent,height=300,width=550,resizable,scrollbars,titlebar';
+                open(url, where, window_spec);
+            }
 
-    function remove_relationship(relationship) {
+            function remove_relationship(relationship) {
 
-        var url = 'remove_relation.php?id_projeto=' + '<?= $_SESSION['id_projeto_corrente'] ?>' + '&id_relacao=' + relationship;
-        var where = '_blank';
-        var window_spec = 'dependent,height=300,width=550,resizable,scrollbars,titlebar';
-        open(url, where, window_spec);
-    }
+                var url = 'remove_relation.php?id_projeto=' + '<?= $_SESSION['id_projeto_corrente'] ?>' + '&id_relacao=' + relationship;
+                var where = '_blank';
+                var window_spec = 'dependent,height=300,width=550,resizable,scrollbars,titlebar';
+                open(url, where, window_spec);
+            }
 
 <?php
 // Cen�rio - Administrador escolhe Projeto 
@@ -188,23 +188,23 @@ if (!isset($_SESSION['id_projeto_corrente'])) {
 //                de cen�rio); 
 ?>
 
-    function request_scene() {
+            function request_scene() {
 <?php
 if (isset($id_project)) {
     ?>
-                var url = 'View/ver_pedido_cenario.php?id_projeto=' + '<?= $id_project ?>';
+                    var url = 'View/ver_pedido_cenario.php?id_projeto=' + '<?= $id_project ?>';
     <?php
 } else {
     ?>
-                var url = 'View/ver_pedido_cenario.php';
+                    var url = 'View/ver_pedido_cenario.php';
     <?php
 }
 ?>
 
-        var where = '_blank';
-        var window_spec = 'dependent,height=300,width=550,resizable,scrollbars,titlebar';
-        open(url, where, window_spec);
-    }
+                var where = '_blank';
+                var window_spec = 'dependent,height=300,width=550,resizable,scrollbars,titlebar';
+                open(url, where, window_spec);
+            }
 
 <?php
 // Cen�rio - Administrador escolhe Projeto 
@@ -220,24 +220,24 @@ if (isset($id_project)) {
 //            ( ver Verificar pedidos de altera��o de termos do l�xico); 
 ?>
 
-    function request_lexicon() {
+            function request_lexicon() {
 
 <?php
 if (isset($id_project)) {
     ?>
-                var url = 'View/ver_pedido_lexico.php?id_projeto=' + '<?= $id_project ?>';
+                    var url = 'View/ver_pedido_lexico.php?id_projeto=' + '<?= $id_project ?>';
     <?php
 } else {
     ?>
-                var url = 'View/ver_pedido_lexico.php?';
+                    var url = 'View/ver_pedido_lexico.php?';
     <?php
 }
 ?>
 
-        var where = '_blank';
-        var window_spec = 'dependent,height=300,width=550,resizable,scrollbars,titlebar';
-        open(url, where, window_spec);
-    }
+                var where = '_blank';
+                var window_spec = 'dependent,height=300,width=550,resizable,scrollbars,titlebar';
+                open(url, where, window_spec);
+            }
 
 <?php
 // Cen�rio - Administrador escolhe Projeto 
@@ -253,43 +253,43 @@ if (isset($id_project)) {
 //            ( ver Verificar pedidos de altera��o de termos do l�xico); 
 ?>
 
-    function request_concept() {
+            function request_concept() {
 
 <?php
 if (isset($id_project)) {
     ?>
-                var url = 'View/ver_pedido_conceito.php?id_projeto=' + '<?= $id_project ?>';
+                    var url = 'View/ver_pedido_conceito.php?id_projeto=' + '<?= $id_project ?>';
     <?php
 } else {
     ?>
-                var url = 'View/ver_pedido_conceito.php?';
+                    var url = 'View/ver_pedido_conceito.php?';
     <?php
 }
 ?>
 
-        var where = '_blank';
-        var window_spec = 'dependent,height=300,width=550,resizable,scrollbars,titlebar';
-        open(url, where, window_spec);
-    }
+                var where = '_blank';
+                var window_spec = 'dependent,height=300,width=550,resizable,scrollbars,titlebar';
+                open(url, where, window_spec);
+            }
 
-    function request_relationship() {
+            function request_relationship() {
 
 <?php
 if (isset($id_project)) {
     ?>
-                var url = 'View/ver_pedido_relacao.php?id_projeto=' + '<?= $id_project ?>';
+                    var url = 'View/ver_pedido_relacao.php?id_projeto=' + '<?= $id_project ?>';
     <?php
 } else {
     ?>
-                var url = 'View/ver_pedido_relacao.php?';
+                    var url = 'View/ver_pedido_relacao.php?';
     <?php
 }
 ?>
 
-        var where = '_blank';
-        var window_spec = 'dependent,height=300,width=550,resizable,scrollbars,titlebar';
-        open(url, where, window_spec);
-    }
+                var where = '_blank';
+                var window_spec = 'dependent,height=300,width=550,resizable,scrollbars,titlebar';
+                open(url, where, window_spec);
+            }
 
 <?php
 // Cen�rio - Administrador escolhe Projeto 
@@ -304,12 +304,12 @@ if (isset($id_project)) {
 //            -Adicionar usu�rio (n�o existente) neste projeto (ver Adicionar Usu�rio); 
 ?>
 
-    function add_user() {
-        var url = 'View/adds_user.php';
-        var where = '_blank';
-        var window_spec = 'dependent,height=320,width=490,resizable,scrollbars,titlebar';
-        open(url, where, window_spec);
-    }
+            function add_user() {
+                var url = 'View/adds_user.php';
+                var where = '_blank';
+                var window_spec = 'dependent,height=320,width=490,resizable,scrollbars,titlebar';
+                open(url, where, window_spec);
+            }
 
 <?php
 // Cen�rio - Administrador escolhe Projeto 
@@ -325,12 +325,12 @@ if (isset($id_project)) {
 //            (ver Relacionar usu�rios com projetos); 
 ?>
 
-    function relationship_user() {
-        var url = 'View/rel_usuario.php';
-        var where = '_blank';
-        var window_spec = 'dependent,height=380,width=550,resizable,scrollbars,titlebar';
-        open(url, where, window_spec);
-    }
+            function relationship_user() {
+                var url = 'View/rel_usuario.php';
+                var where = '_blank';
+                var window_spec = 'dependent,height=380,width=550,resizable,scrollbars,titlebar';
+                open(url, where, window_spec);
+            }
 
 <?php
 // Cen�rio - Administrador escolhe Projeto 
@@ -345,136 +345,136 @@ if (isset($id_project)) {
 //            -Gerar xml deste projeto (ver Gerar relat�rios XML); 
 ?>
 
-    function generates_XML()
-    {
+            function generates_XML()
+            {
 
 <?php
 if (isset($id_project)) {
     ?>
-                var url = 'form_xml.php?id_projeto=' + '<?= $id_project ?>';
+                    var url = 'form_xml.php?id_projeto=' + '<?= $id_project ?>';
     <?php
 } else {
     ?>
-                var url = 'form_xml.php?';
+                    var url = 'form_xml.php?';
     <?php
 }
 ?>
 
-        var where = '_blank';
-        var window_spec = 'dependent,height=330,width=550,resizable,scrollbars,titlebar';
-        open(url, where, window_spec);
-    }
+                var where = '_blank';
+                var window_spec = 'dependent,height=330,width=550,resizable,scrollbars,titlebar';
+                open(url, where, window_spec);
+            }
 
-    function recuperates_XML()
-    {
+            function recuperates_XML()
+            {
 
 <?php
 if (isset($id_project)) {
     ?>
-                var url = 'recuperarXML.php?id_projeto=' + '<?= $id_project ?>';
+                    var url = 'recuperarXML.php?id_projeto=' + '<?= $id_project ?>';
     <?php
 } else {
     ?>
-                var url = 'recuperarXML.php?';
+                    var url = 'recuperarXML.php?';
     <?php
 }
 ?>
 
-        var where = '_blank';
-        var window_spec = 'dependent,height=330,width=550,resizable,scrollbars,titlebar';
-        open(url, where, window_spec);
-    }
+                var where = '_blank';
+                var window_spec = 'dependent,height=330,width=550,resizable,scrollbars,titlebar';
+                open(url, where, window_spec);
+            }
 
-    function generates_grafo()
-    {
+            function generates_grafo()
+            {
 
 <?php
 if (isset($id_project)) {
     ?>
-                var url = 'gerarGrafo.php?id_projeto=' + '<?= $id_project ?>';
+                    var url = 'gerarGrafo.php?id_projeto=' + '<?= $id_project ?>';
     <?php
 } else {
     ?>
-                var url = 'gerarGrafo.php?'
+                    var url = 'gerarGrafo.php?'
     <?php
 }
 ?>
 
-        var where = '_blank';
-        var window_spec = 'dependent,height=330,width=550,resizable,scrollbars,titlebar';
-        open(url, where, window_spec);
-    }
+                var where = '_blank';
+                var window_spec = 'dependent,height=330,width=550,resizable,scrollbars,titlebar';
+                open(url, where, window_spec);
+            }
 
 
 <?php
 // Objetivo:  Gerar ontologia do projeto 
 ?>
-    function generates_Ontology()
-    {
+            function generates_Ontology()
+            {
 
 <?php
 if (isset($id_project)) {
     ?>
-                var url = 'inicio.php?id_projeto=' + '<?= $id_project ?>';
+                    var url = 'inicio.php?id_projeto=' + '<?= $id_project ?>';
     <?php
 } else {
     ?>
-                var url = 'inicio.php?';
+                    var url = 'inicio.php?';
     <?php
 }
 ?>
 
-        var where = '_blank';
-        var window_spec = "";
-        open(url, where, window_spec);
-    }
+                var where = '_blank';
+                var window_spec = "";
+                open(url, where, window_spec);
+            }
 
 <?php
 // Ontologia - DAML 
 // Objetivo:  Gerar daml deste da ontologia do projeto 
 ?>
-    function generates_DAML()
-    {
+            function generates_DAML()
+            {
 
 <?php
 if (isset($id_project)) {
     ?>
-                var url = 'form_daml.php?id_projeto=' + '<?= $id_project ?>';
+                    var url = 'form_daml.php?id_projeto=' + '<?= $id_project ?>';
     <?php
 } else {
     ?>
-                var url = 'form_daml.php?';
+                    var url = 'form_daml.php?';
     <?php
 }
 ?>
 
-        var where = '_blank';
-        var window_spec = 'dependent,height=375,width=550,resizable,scrollbars,titlebar';
-        open(url, where, window_spec);
-    }
+                var where = '_blank';
+                var window_spec = 'dependent,height=375,width=550,resizable,scrollbars,titlebar';
+                open(url, where, window_spec);
+            }
 
 <?php
 // Objetivo : Recuperar hist�rico da ontologia em DAML 
 ?>
-    function recuperates_DAML()
-    {
+            function recuperates_DAML()
+            {
 
 <?php
 if (isset($id_project)) {
     ?>
-                var url = 'recuperaDAML.php?id_projeto=' + '<?= $id_project ?>';
+                    var url = 'recuperaDAML.php?id_projeto=' + '<?= $id_project ?>';
     <?php
 } else {
     ?>
-                var url = 'recuperaDAML.php?';
+                    var url = 'recuperaDAML.php?';
     <?php
 }
 ?>
 
-        var where = '_blank';
-        var window_spec = 'dependent,height=330,width=550,resizable,scrollbars,titlebar';
-        open(url, where, window_spec);
-    }
+                var where = '_blank';
+                var window_spec = 'dependent,height=330,width=550,resizable,scrollbars,titlebar';
+                open(url, where, window_spec);
+            }
 
 
         </script> 
