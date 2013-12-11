@@ -3,8 +3,7 @@ session_start();
 
 include_once '../funcoes_genericas.php';
 include_once '../CELConfig/CELConfig.inc';
-
-
+include_once '../Controller/ProjectFunction.php';
 
 //Cen�rio  -  Remover Projeto da base
 //Objetivo:	   Efetuar a remo��o de um projeto da base de dados
@@ -17,7 +16,7 @@ include_once '../CELConfig/CELConfig.inc';
 
 $id_project = $_SESSION['id_projeto_corrente'];
 
-removeProjeto($id_project);
+removeProject($id_project);
 ?>
 <html>
     <script language="javascript1.3">
