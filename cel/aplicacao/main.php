@@ -7,22 +7,16 @@ include_once 'httprequest.inc';
 include_once 'puts_links.php';
 include_once 'frame_inferior.php';
 
-//$_SESSION['site'] = 'http://pes.inf.puc-rio.br/pes03_1_1/Site/desenvolvimento/teste/';       
-//$_SESSION['site'] = 'http://139.82.24.189/cel_vf/aplicacao/teste/';
-/* URL do diretorio contendo os arquivos de DAML */
+
+/* URL of the directory containing the DAML files */
 $_SESSION['site'] = "http://" . CELConfig_ReadVar("HTTPD_ip") . "/" . CELConfig_ReadVar("CEL_dir_relativo") . CELConfig_ReadVar("DAML_dir_relativo_ao_CEL");
 
-//$_SESSION['diretorio'] = "/home/local/pes/pes03_1_1/Site/desenvolvimento/teste/";        
-//$_SESSION['diretorio'] = "teste/";        
-/* Caminho relativo ao CEL do diretorio contendo os arquivos de DAML */
+/* Path from directory containing DAML files relative to CEL */
 $_SESSION['diretorio'] = CELConfig_ReadVar("DAML_dir_relativo_ao_CEL");
-
-
-
 
 check_user_authentication("index.php");
 
-//Recebe parametro da heading.php. Sem isso vai travar ja que a variavel nao foi inicializada 
+//Gets parameter from heading.php. Will crash without it, since variable was uninitialized
 if (isset($_GET['id_projeto'])) {
     $id_project = $_GET['id_projeto'];
 } else {
@@ -39,64 +33,54 @@ if (!isset($_SESSION['id_projeto_corrente'])) {
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1">
 
-
     <head> 
         <LINK rel="stylesheet" type="text/css" href="View/Shared/Css/style.css"> 
         <script language="javascript1.3">
-
-            // Funcoes que serao usadas quando o script for chamado atraves dele proprio ou da arvore 
+            // Functions that will be used when the script is called through himself or the tree
             function recharge(URL) {
                 document.location.replace(URL);
             }
 
 <?php
-// Cen�rio - Atualizar Cen�rio 
-//Objetivo:     Permitir Inclus�o, Altera��o e Exclus�o de um Cen�rio por um usu�rio 
-//Contexto:     Usu�rio deseja incluir um cen�rio ainda n�o cadastrado, alterar e/ou excluir 
-//              um cen�rio previamente cadastrados. 
-//Pr�-Condi��o: Login 
-//Atores:       Usu�rio, Gerente do projeto 
-//Recursos:     Sistema, menu superior, objeto a ser modificado 
-//Epis�dios:    O usu�rio clica no menu superior na op��o: 
-//              Se usu�rio clica em Alterar ent�o ALTERAR CEN�RIO 
+/*
+ * Scenario - Update Scenario
+ * Objective:   Allow inclusion, alteration and exclusion of a scenario, by a user.
+ * Context:     User wishes to include a new scenario, or alter/exclude an old one.
+ *              Pre-condition: logged in
+ * Actors:      User, project manager
+ * Resources:   System, upper menu, object to be modified
+ * Episodes:    1- User clicks on Alter, then ALTER SCENARIO
+ *              2- User clicks on Exclude, then EXCLUDE SCENARIO
+ * 
+ */
 ?>
 
-            function changes_scene(cenario) {
-                var url = 'change_scene.php?id_projeto=' + '<?= $_SESSION['id_projeto_corrente'] ?>' + '&id_cenario=' + cenario;
+            function changes_scenario(scenario) {
+                var url = 'change_scene.php?id_projeto=' + '<?= $_SESSION['id_projeto_corrente'] ?>' + '&id_cenario=' + scenario;
                 var where = '_blank';
                 var window_spec = 'dependent,height=660,width=550,resizable,scrollbars,titlebar';
                 open(url, where, window_spec);
             }
 
-<?php
-// Cen�rio - Atualizar Cen�rio 
-//Objetivo:     Permitir Inclus�o, Altera��o e Exclus�o de um Cen�rio por um usu�rio 
-//Contexto:     Usu�rio deseja incluir um cen�rio ainda n�o cadastrado, alterar e/ou excluir 
-//              um cen�rio previamente cadastrados. 
-//Pr�-Condi��o: Login 
-//Atores:       Usu�rio, Gerente do projeto 
-//Recursos:     Sistema, menu superior, objeto a ser modificado 
-//Epis�dios:    O usu�rio clica no menu superior na op��o: 
-//                Se usu�rio clica em Excluir ent�o EXCLUIR CEN�RIO 
-?>
-
-            function removes_scene(cenario) {
-                var url = 'remove_scenario.php?id_projeto=' + '<?= $_SESSION['id_projeto_corrente'] ?>' + '&id_cenario=' + cenario;
+            function removes_scenario(scenario) {
+                var url = 'remove_scenario.php?id_projeto=' + '<?= $_SESSION['id_projeto_corrente'] ?>' + '&id_cenario=' + scenario;
                 var where = '_blank';
                 var window_spec = 'dependent,height=300,width=550,resizable,scrollbars,titlebar';
                 open(url, where, window_spec);
             }
 
 <?php
-//Cen�rios -  Atualizar L�xico 
-//Objetivo:     Permitir Inclus�o, Altera��o e Exclus�o de um L�xico por um usu�rio 
-//Contexto:     Usu�rio deseja incluir um lexico ainda n�o cadastrado, alterar e/ou 
-//              excluir um cen�rio/l�xico previamente cadastrados. 
-//Pr�-Condi��o: Login 
-//Atores:       Usu�rio, Gerente do projeto 
-//Recursos:     Sistema, menu superior, objeto a ser modificado 
-//Epis�dios:    O usu�rio clica no menu superior na op��o: 
-//                Se usu�rio clica em Alterar ent�o ALTERAR L�XICO 
+/*
+ * Scenario - Update Lexicon
+ * Objective:   Allow inclusion, alteration and exclusion of a lexicon, by a user.
+ * Context:     User wishes to include a new lexicon, or alter/exclude an old one.
+ *              Pre-condition: logged in
+ * Actors:      User, project manager
+ * Resources:   System, upper menu, object to be modified
+ * Episodes:    1- User clicks on Alter, then ALTER LEXICON
+ *              2- User clicks on Exclude, then EXCLUDE LEXICON
+ * 
+ */
 ?>
 
             function changes_lexicon(lexico) {
@@ -106,18 +90,6 @@ if (!isset($_SESSION['id_projeto_corrente'])) {
                 open(url, where, window_spec);
             }
 
-<?php
-//Cen�rios -  Atualizar L�xico 
-//Objetivo:     Permitir Inclus�o, Altera��o e Exclus�o de um L�xico por um usu�rio 
-//Contexto:     Usu�rio deseja incluir um lexico ainda n�o cadastrado, alterar e/ou 
-//              excluir um cen�rio/l�xico previamente cadastrados. 
-//Pr�-Condi��o: Login 
-//Atores:       Usu�rio, Gerente do projeto 
-//Recursos:     Sistema, menu superior, objeto a ser modificado 
-//Epis�dios:    O usu�rio clica no menu superior na op��o: 
-//                Se usu�rio clica em Excluir ent�o EXCLUIR L�XICO 
-?>
-
             function removes_lexicon(lexico) {
                 var url = 'remove_lexicon.php?id_projeto=' + '<?= $_SESSION['id_projeto_corrente'] ?>' + '&id_lexico=' + lexico;
                 var where = '_blank';
@@ -125,39 +97,27 @@ if (!isset($_SESSION['id_projeto_corrente'])) {
                 open(url, where, window_spec);
             }
 
-            // Funcoes que serao usadas quando o script 
-            // for chamado atraves da heading.php 
 
 <?php
-// Cen�rio - Atualizar Cen�rio 
-//Objetivo:     Permitir Inclus�o, Altera��o e Exclus�o de um Cen�rio por um usu�rio 
-//Contexto:     Usu�rio deseja incluir um cen�rio ainda n�o cadastrado, alterar e/ou excluir 
-//              um cen�rio previamente cadastrados. 
-//              Pr�-Condi��o: Login 
-//Atores:       Usu�rio, Gerente do projeto 
-//Recursos:     Sistema, menu superior, objeto a ser modificado 
-//Epis�dios:    O usu�rio clica no menu superior na op��o: 
-//                Se usu�rio clica em Alterar ent�o ALTERAR CEN�RIO 
+/*
+ * Scenario - Update Concept
+ * Objective:   Allow inclusion, alteration and exclusion of a concept, by a user.
+ * Context:     User wishes to include a new concept, or alter/exclude an old one.
+ *              Pre-condition: logged in
+ * Actors:      User, project manager
+ * Resources:   System, upper menu, object to be modified
+ * Episodes:    1- User clicks on Alter, then ALTER CONCEPT
+ *              2- User clicks on Exclude, then EXCLUDE CONCEPT
+ * 
+ */
 ?>
 
             function change_concept(concept) {
-                var url = 'alt_conceito.php?id_projeto=' + '<?= $_SESSION['id_projeto_corrente'] ?>' + '&id_conceito=' + conceito;
+                var url = 'alt_conceito.php?id_projeto=' + '<?= $_SESSION['id_projeto_corrente'] ?>' + '&id_conceito=' + concept;
                 var where = '_blank';
                 var window_spec = 'dependent,height=300,width=550,resizable,scrollbars,titlebar';
                 open(url, where, window_spec);
             }
-
-<?php
-// Cen�rio - Atualizar Conceito
-//Objetivo:    Permitir Inclus�o, Altera��o e Exclus�o de um Cen�rio por um usu�rio 
-//Contexto:     Usu�rio deseja incluir um cen�rio ainda n�o cadastrado, alterar e/ou excluir 
-//              um cen�rio previamente cadastrados. 
-//Pr�-Condi��o: Login 
-//Atores:       Usu�rio, Gerente do projeto 
-//Recursos:     Sistema, menu superior, objeto a ser modificado 
-//Epis�dios:    O usu�rio clica no menu superior na op��o: 
-//                Se usu�rio clica em Excluir ent�o EXCLUIR CEN�RIO 
-?>
 
             function remove_conceito(concept) {
                 var url = 'remove_concept.php?id_projeto=' + '<?= $_SESSION['id_projeto_corrente'] ?>' + '&id_conceito=' + concept;
@@ -175,17 +135,23 @@ if (!isset($_SESSION['id_projeto_corrente'])) {
             }
 
 <?php
-// Cen�rio - Administrador escolhe Projeto 
-// Objetivo:      Permitir ao Administrador escolher um projeto. 
-// Contexto:      O Administrador deseja escolher um projeto. 
-// Pr�-Condi��es: Login, Ser administrador do projeto selecionado. 
-// Atores:        Administrador 
-// Recursos:      Projetos doAdministrador 
-// Epis�dios:     O Administrador seleciona da lista de projetos um projeto da qual ele seja 
-//                administrador. 
-//                Aparecendo na tela as op��es de: 
-//                -Verificar pedidos de altera��o de cen�rio (ver Verificar pedidos de altera��o 
-//                de cen�rio); 
+/*
+ * Scenario - Administrator chooses project
+ * Objective:   Allow the administrator to choose a project
+ * Context:     The administrator wishes to choose a project
+ *              Pre-conditions: Logged in, be administrator of the selected project
+ * Actors:      Administator
+ * Resources:   Projects of the administrator
+ * Episodes:    1- The administrator selects a project which he administrates, from
+ *                  a list of projects
+ *              Options, in that case:
+ *              2- Verify scenario alteration requests
+ *              3- Verify lexicon term alteration requests
+ *              4- Verify concept alteration requests
+ *              5- Add user to project
+ *              6- Relate users to project
+ *              7- Generate XML from this project
+ */
 ?>
 
             function request_scene() {
@@ -206,20 +172,6 @@ if (isset($id_project)) {
                 open(url, where, window_spec);
             }
 
-<?php
-// Cen�rio - Administrador escolhe Projeto 
-// Objetivo:  Permitir ao Administrador escolher um projeto. 
-// Contexto:  O Administrador deseja escolher um projeto. 
-// Pr�-Condi��es: Login, Ser administrador do projeto selecionado. 
-// Atores:    Administrador 
-// Recursos:  Projetos doAdministrador 
-// Epis�dios: O Administrador seleciona da lista de projetos um projeto da qual ele seja 
-//            administrador. 
-//            Aparecendo na tela as op��es de: 
-//            - Verificar pedidos de altera��o de termos do l�xico 
-//            ( ver Verificar pedidos de altera��o de termos do l�xico); 
-?>
-
             function request_lexicon() {
 
 <?php
@@ -238,20 +190,6 @@ if (isset($id_project)) {
                 var window_spec = 'dependent,height=300,width=550,resizable,scrollbars,titlebar';
                 open(url, where, window_spec);
             }
-
-<?php
-// Cen�rio - Administrador escolhe Projeto 
-// Objetivo:  Permitir ao Administrador escolher um projeto. 
-// Contexto:  O Administrador deseja escolher um projeto. 
-// Pr�-Condi��es: Login, Ser administrador do projeto selecionado. 
-// Atores:    Administrador 
-// Recursos:  Projetos doAdministrador 
-// Epis�dios: O Administrador seleciona da lista de projetos um projeto da qual ele seja 
-//            administrador. 
-//            Aparecendo na tela as op��es de: 
-//            - Verificar pedidos de altera��o de termos do l�xico 
-//            ( ver Verificar pedidos de altera��o de termos do l�xico); 
-?>
 
             function request_concept() {
 
@@ -291,19 +229,6 @@ if (isset($id_project)) {
                 open(url, where, window_spec);
             }
 
-<?php
-// Cen�rio - Administrador escolhe Projeto 
-// Objetivo:  Permitir ao Administrador escolher um projeto. 
-// Contexto:  O Administrador deseja escolher um projeto. 
-// Pr�-Condi��es: Login, Ser administrador do projeto selecionado. 
-// Atores:    Administrador 
-// Recursos:  Projetos doAdministrador 
-// Epis�dios: O Administrador seleciona da lista de projetos um projeto da qual ele seja 
-//            administrador. 
-//            Aparecendo na tela as op��es de: 
-//            -Adicionar usu�rio (n�o existente) neste projeto (ver Adicionar Usu�rio); 
-?>
-
             function add_user() {
                 var url = 'View/adds_user.php';
                 var where = '_blank';
@@ -311,39 +236,12 @@ if (isset($id_project)) {
                 open(url, where, window_spec);
             }
 
-<?php
-// Cen�rio - Administrador escolhe Projeto 
-// Objetivo:  Permitir ao Administrador escolher um projeto. 
-// Contexto:  O Administrador deseja escolher um projeto. 
-// Pr�-Condi��es: Login, Ser administrador do projeto selecionado. 
-// Atores:    Administrador 
-// Recursos:  Projetos doAdministrador 
-// Epis�dios: O Administrador seleciona da lista de projetos um projeto da qual ele seja 
-//            administrador. 
-//            Aparecendo na tela as op��es de: 
-//            -Relacionar usu�rios j� existentes com este projeto 
-//            (ver Relacionar usu�rios com projetos); 
-?>
-
             function relationship_user() {
                 var url = 'View/rel_usuario.php';
                 var where = '_blank';
                 var window_spec = 'dependent,height=380,width=550,resizable,scrollbars,titlebar';
                 open(url, where, window_spec);
             }
-
-<?php
-// Cen�rio - Administrador escolhe Projeto 
-// Objetivo:  Permitir ao Administrador escolher um projeto. 
-// Contexto:  O Administrador deseja escolher um projeto. 
-// Pr�-Condi��es: Login, Ser administrador do projeto selecionado. 
-// Atores:    Administrador 
-// Recursos:  Projetos doAdministrador 
-// Epis�dios: O Administrador seleciona da lista de projetos um projeto da qual ele seja 
-//            administrador. 
-//            Aparecendo na tela as op��es de: 
-//            -Gerar xml deste projeto (ver Gerar relat�rios XML); 
-?>
 
             function generates_XML()
             {
@@ -574,10 +472,10 @@ if (isset($id_project)) {
                 <TABLE> 
                     <tr> 
                         <td CLASS="Estilo" height="40" valign=MIDDLE> 
-                            <a href="#" onClick="changes_scene(<?= $result['id_cenario'] ?>);">Alterar Cenário</a> 
+                            <a href="#" onClick="changes_scenario(<?= $result['id_cenario'] ?>);">Alterar Cenário</a> 
                             </th> 
                         <td CLASS="Estilo"  valign=MIDDLE> 
-                            <a href="#" onClick="removes_scene(<?= $result['id_cenario'] ?>);">Remover Cenário</a> 
+                            <a href="#" onClick="removes_scenario(<?= $result['id_cenario'] ?>);">Remover Cenário</a> 
                             </th> 
                     </tr> 
 
