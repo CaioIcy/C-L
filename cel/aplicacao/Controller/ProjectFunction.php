@@ -17,10 +17,10 @@ assert_options(ASSERT_ACTIVE, 1);
  * @param string $projectDescription
  * @return projectId
  */
-function inclui_projeto($nome, $descricao) {
+function includeProject($projectName, $projectDescription) {
     $r = database_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
     //verifica se usuario ja existe
-    $qv = "SELECT * FROM projeto WHERE nome = '$nome'";
+    $qv = "SELECT * FROM projeto WHERE nome = '$projectName'";
     $qvr = mysql_query($qv) or die("Erro ao enviar a query de select<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
 
     //$result = mysql_fetch_row($qvr);
@@ -56,55 +56,69 @@ function inclui_projeto($nome, $descricao) {
     $data = date("Y-m-d");
 
     $qr = "INSERT INTO projeto (id_projeto, nome, data_criacao, descricao)
-                  VALUES ($result[0],'" . safely_prepare_data($nome) . "','$data' , '" . safely_prepare_data($descricao) . "')";
+                  VALUES ($result[0],'" . safely_prepare_data($projectName) . "','$data' , '" . safely_prepare_data($projectDescription) . "')";
 
     mysql_query($qr) or die("Erro ao enviar a query INSERT<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
 
     return $result[0];
 }
 
-/*
-###################################################################
-# Remove um determinado projeto da base de dados
-# Recebe o id do projeto. (1.1)
-# Apaga os valores da tabela pedidocen que possuam o id do projeto enviado (1.2)
-# Apaga os valores da tabela pedidolex que possuam o id do projeto enviado (1.3)
-# Faz um SELECT para saber quais l�xico pertencem ao projeto de id_projeto (1.4)
-# Apaga os valores da tabela lextolex que possuam possuam lexico do projeto (1.5)
-# Apaga os valores da tabela centolex que possuam possuam lexico do projeto (1.6)
-# Apaga os valores da tabela sinonimo que possuam possuam o id do projeto (1.7)
-# Apaga os valores da tabela lexico que possuam o id do projeto enviado (1.8)
-# Faz um SELECT para saber quais cenario pertencem ao projeto de id_projeto (1.9)
-# Apaga os valores da tabela centocen que possuam possuam cenarios do projeto (2.0)
-# Apaga os valores da tabela centolex que possuam possuam cenarios do projeto (2.1)
-# Apaga os valores da tabela cenario que possuam o id do projeto enviado (2.2)
-# Apaga os valores da tabela participa que possuam o id do projeto enviado (2.3)
-# Apaga os valores da tabela publicacao que possuam o id do projeto enviado (2.4)
-# Apaga os valores da tabela projeto que possuam o id do projeto enviado (2.5)
-#
-###################################################################
-*/
-
-function removeProjeto($projectId) {
+/**
+ * Function that delete a whole project and related
+ * 
+ * @param int $projectId
+ */
+function removeProject($projectId) {
     
     assert($projectId > 0);
 
     database_connect();
-
+    
     $resultDelReqScen = delRequestScenarioDatabase($projectId);
-
     assert(($resultDelReqScen == TRUE) || ($resultDelReqScen == FALSE));
 
     $resultDelReqLex = delRequestLexiconDatabase($projectId);
-
     assert(($resultDelReqLex == TRUE) || ($resultDelReqLex == FALSE));
 
-    $resultSelLex = selLexiconDatabase($projectId);
-    while ($resultSelLex) {
-        $id_lexicon = $resultSelLex['id_lexico'];
+    $arrayLexicon = selLexiconDatabase($projectId);
+    while ($arrayLexicon) {
+        $lexiconId = $arrayLexicon['id_lexico']; // Select a lexico
 
-        $resultDelLexToLex = delLexToLexDatabase($id_lexicon);
-        $resultDelScenToLex = delScenToLexDatabase($id_lexicon);
+        $resultDelLexToLex = delLexToLexDatabase($lexiconId);
+        assert(($resultDelLexToLex == TRUE) || ($resultDelLexToLex == FALSE));
+        
+        $resultDelScenToLex = delScenToLexDatabase($lexiconId);
+        assert(($resultDelScenToLex == TRUE) || ($resultDelScenToLex == FALSE));
+        
+        $resultDelSynonym = delSynonymDatabase($projectId);
+        assert(($resultDelSynonym == TRUE) || ($resultDelSynonym == FALSE));
     }
+    
+    $resultDelLexicon = delLexiconDatabase($projectId);
+    assert(($resultDelLexicon == TRUE) || ($resultDelLexicon == FALSE));
+    
+    $arrayScenario = selScenarioDatabase($projectId);
+    while($arrayScenario){
+        $scenarioId = $arrayScenario['id_cenario']; // Select a scenario
+        
+        $resultDelScenToScen = delScenToScenDatabase($scenarioId);
+        assert(($resultDelScenToScen == TRUE) || ($resultDelScenToScen == FALSE));
+        
+        $resultDelScenLex = delScenToLexDatabase($scenarioId);
+        assert(($resultDelScenLex == TRUE) || ($resultDelScenLex == FALSE));
+    }
+    
+    $resultDelScenario = delScenarioDatabase($projectId);
+    assert(($resultDelScenario == TRUE) || ($resultDelScenario == FALSE));
+    
+    $resultDelParticipant = delParticipantDatabase($projectId);
+    assert(($resultDelParticipant == TRUE) || ($resultDelParticipant == FALSE));
+    
+    $resultDelPublication = delPublicationDatabase($projectId);
+    assert(($resultDelPublication == TRUE) || ($resultDelPublication == FALSE));
+    
+    $resultDelProject = delProjectDatabase($projectId);
+    assert(($resultDelProject == TRUE) || ($resultDelProject == FALSE));
+    
 }
 ?>
